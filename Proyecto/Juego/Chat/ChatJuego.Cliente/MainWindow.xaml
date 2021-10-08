@@ -8,7 +8,7 @@
         Title="Inicio de Sesión" Height="450" Width="800">
     <Grid Background="Gray">
         <TextBox Name="TBUsuario" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="160" Margin="316,142,316,254"></TextBox>
-        <TextBox Name="TBContrasenia" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="160" Margin="316,196,316,200"></TextBox>
+        <PasswordBox Name="TBContrasenia" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="160" Margin="316,196,316,200"></PasswordBox>
 
         <Button x:Name="BotonIniciarSesion" Content="Iniciar Sesión" Width="100" Background="CadetBlue" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="210,190,210,100" Click="BotonIniciarSesion_Click"/>
         <Label Content="Usuario" HorizontalAlignment="Left" Margin="316,116,0,0" VerticalAlignment="Top"/>

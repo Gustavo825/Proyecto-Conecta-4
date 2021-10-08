@@ -18,7 +18,6 @@ C:\Users\perez\Desktop\Croy\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\ChatJuego.Cliente.exe.config
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\ChatJuego.Cliente.exe
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\ChatJuego.Cliente.pdb
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.AssemblyReference.cache
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Chat.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\MainWindow.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\App.g.cs

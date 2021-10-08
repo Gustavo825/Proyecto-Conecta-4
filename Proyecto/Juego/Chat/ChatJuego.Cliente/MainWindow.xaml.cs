@@ -36,8 +36,7 @@ namespace ChatJuego.Cliente
                 Jugador jugador = new Jugador()
                 {
                     usuario = TBUsuario.Text,
-                    contrasenia = TBContrasenia.Text
-                };
+                    contrasenia = TBContrasenia.Password                };
                 JugadorCallBack jC = new JugadorCallBack();
                 InstanceContext contexto = new InstanceContext(jC);
                 Proxy.ChatServicioClient servidor = new Proxy.ChatServicioClient(contexto);
