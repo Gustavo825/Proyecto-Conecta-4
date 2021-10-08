@@ -1,0 +1,77 @@
+﻿<Window x:Class="ChatJuego.Cliente.Chat" Closing="Window_Closing"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatJuego.Cliente"
+        mc:Ignorable="d"
+        Title="Chat" Height="450" Width="800">
+    <Grid Background="AntiqueWhite">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="31"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" >
+            <Label Name="Titulo" Content="Conectado" Background="WhiteSmoke" Foreground="Black" HorizontalContentAlignment="Left" Margin="1"></Label>
+        </Grid>
+        <Grid Grid.Row="1" Background="CornflowerBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Name="Scroller" Grid.Column ="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Background="Transparent">
+                <ItemsControl Name="UsuariosConectados">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="32"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label HorizontalContentAlignment="Center" HorizontalAlignment="Center" Content="{Binding UsuarioConectado}" MouseLeftButtonDown="Label_MouseLeftButtonDown"></Label>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <ScrollViewer Name="ScrollerContenido" Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Background="MediumAquamarine">
+                <ItemsControl Name="PlantillaMensaje">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5" Background="{Binding FondoElemento}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="32"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal" Background="{Binding FondoCabecera}">
+                                        <Label Content="{Binding Nombre}" HorizontalAlignment="Left"></Label>
+                                        <Label Content="{Binding TiempoDeEnvio}" HorizontalAlignment="Right"></Label>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label HorizontalContentAlignment="Right" HorizontalAlignment="Right" Content="{Binding MensajeEnviado}"></Label>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Row="2" Background="LightGray">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Name ="ContenidoDelMensaje" Background="WhiteSmoke" Width="600" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" ></TextBox>
+                <Button Name="BotonEnviar" Content="Enviar" Margin="20" HorizontalAlignment="Right" Background = "Beige" Width="138" Foreground="Black" Click="BotonEnviar_Click"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
