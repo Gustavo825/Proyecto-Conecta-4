@@ -11,6 +11,9 @@ namespace ChatJuego.Host
 
         [OperationContract(IsOneWay = true)]
         void inicializar();
+
+        [OperationContract(IsOneWay = false)]
+        EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo);
         
         [OperationContract(IsOneWay = true)]
         void mandarMensaje(Mensaje mensaje);

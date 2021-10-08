@@ -104,10 +104,18 @@ namespace ChatJuego.Host
                     continue;
                 if (jugadores[conexiones].usuario == nombreJugador)
                 {
+                    conexion.recibirMensaje(jugador, mensaje, nombresDeJugadores);
                     conexiones.recibirMensaje(jugador, mensaje, nombresDeJugadores);
                     break;
                 }
             }
+        }
+
+        public EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo)
+        {
+            Autenticacion autenticacion = new Autenticacion();
+            EstadoDeRegistro estadoDeRegistro = autenticacion.registro(usuario, contrasenia, correo);
+            return estadoDeRegistro;
         }
     }
 }

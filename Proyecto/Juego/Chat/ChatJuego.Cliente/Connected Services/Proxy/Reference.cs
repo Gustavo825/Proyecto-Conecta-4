@@ -122,6 +122,23 @@ namespace ChatJuego.Cliente.Proxy {
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EstadoDeRegistro", Namespace="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos")]
+    public enum EstadoDeRegistro : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Correcto = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FallidoPorCorreo = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FallidoPorUsuario = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Fallido = 3,
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Mensaje", Namespace="http://schemas.datacontract.org/2004/07/ChatJuego.Host")]
@@ -231,6 +248,12 @@ namespace ChatJuego.Cliente.Proxy {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/inicializar")]
         System.Threading.Tasks.Task inicializarAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatServicio/registroJugador", ReplyAction="http://tempuri.org/IChatServicio/registroJugadorResponse")]
+        ChatJuego.Cliente.Proxy.EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatServicio/registroJugador", ReplyAction="http://tempuri.org/IChatServicio/registroJugadorResponse")]
+        System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoDeRegistro> registroJugadorAsync(string usuario, string contrasenia, string correo);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/mandarMensaje")]
         void mandarMensaje(ChatJuego.Cliente.Proxy.Mensaje mensaje);
         
@@ -302,6 +325,14 @@ namespace ChatJuego.Cliente.Proxy {
         
         public System.Threading.Tasks.Task inicializarAsync() {
             return base.Channel.inicializarAsync();
+        }
+        
+        public ChatJuego.Cliente.Proxy.EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo) {
+            return base.Channel.registroJugador(usuario, contrasenia, correo);
+        }
+        
+        public System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoDeRegistro> registroJugadorAsync(string usuario, string contrasenia, string correo) {
+            return base.Channel.registroJugadorAsync(usuario, contrasenia, correo);
         }
         
         public void mandarMensaje(ChatJuego.Cliente.Proxy.Mensaje mensaje) {

@@ -14,13 +14,42 @@ namespace ChatJuego.Base_de_datos
         {
         }
 
-        public EstadoDeAutenticacion iniciarSesion(string usuario, string contrasenia)
+        public EstadoDeRegistro registro(string usuarioR, string contraseniaR, string correoR)
         {
-            EstadoDeAutenticacion estado = EstadoDeAutenticacion.Failed;
+            EstadoDeRegistro estado = EstadoDeRegistro.Fallido;
             using (var contexto = new JugadorContexto())
             {
                 var jugadores = (from jugador in contexto.jugadores
-                                 where jugador.usuario == usuario && jugador.contrasenia == contrasenia
+                                 where jugador.usuario == usuarioR
+                                 select jugador).Count();
+                if (jugadores > 0)
+                {
+                    estado = EstadoDeRegistro.FallidoPorUsuario;
+                    return estado;
+                }
+                jugadores = (from jugador in contexto.jugadores
+                                 where jugador.correo == correoR
+                                 select jugador).Count();
+                if (jugadores > 0)
+                {
+                    estado = EstadoDeRegistro.FallidoPorCorreo;
+                    return estado;
+                }
+                var jugadorRegistrado = contexto.jugadores.Add(new Jugador() { usuario = usuarioR, contrasenia = ComputeSHA256Hash(contraseniaR), correo = correoR, puntaje = 0 });
+                contexto.SaveChanges();
+                estado = EstadoDeRegistro.Correcto;
+                return estado;
+            }
+        }
+
+        public EstadoDeAutenticacion iniciarSesion(string usuario, string contrasenia)
+        {
+            EstadoDeAutenticacion estado = EstadoDeAutenticacion.Failed;
+            string contraseniaCifrada = ComputeSHA256Hash(contrasenia);
+            using (var contexto = new JugadorContexto())
+            {
+                var jugadores = (from jugador in contexto.jugadores
+                                 where jugador.usuario == usuario && jugador.contrasenia == contraseniaCifrada
                                  select jugador).Count();
                 if (jugadores > 0)
                 {
@@ -54,4 +83,13 @@ namespace ChatJuego.Base_de_datos
         Correcto = 0,
         Failed
     }
+
+    public enum EstadoDeRegistro 
+    { 
+        Correcto = 0,
+        FallidoPorCorreo,
+        FallidoPorUsuario,
+        Fallido
+    }
+
 }

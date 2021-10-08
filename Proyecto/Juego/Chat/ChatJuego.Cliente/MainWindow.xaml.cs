@@ -23,23 +23,25 @@ namespace ChatJuego.Cliente
     public partial class MainWindow : Window
     {
 
-
+        Proxy.ChatServicioClient servidor;
+        JugadorCallBack jC;
         public MainWindow()
         {
+            jC = new JugadorCallBack();
+            InstanceContext contexto = new InstanceContext(jC);
+            servidor = new Proxy.ChatServicioClient(contexto);
             InitializeComponent();
         }
 
         private void BotonIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(TBUsuario.Text))
+            if (!string.IsNullOrEmpty(TBUsuario.Text) && !string.IsNullOrEmpty(TBContrasenia.Password))
             {
                 Jugador jugador = new Jugador()
                 {
                     usuario = TBUsuario.Text,
-                    contrasenia = TBContrasenia.Password                };
-                JugadorCallBack jC = new JugadorCallBack();
-                InstanceContext contexto = new InstanceContext(jC);
-                Proxy.ChatServicioClient servidor = new Proxy.ChatServicioClient(contexto);
+                    contrasenia = TBContrasenia.Password 
+                };
                 var estado = servidor.conectarse(jugador);
                 if (estado)
                 {
@@ -52,7 +54,18 @@ namespace ChatJuego.Cliente
                 {
                     MessageBox.Show("Credenciales incorrectas", "Error en el inicio de sesión", MessageBoxButton.OK);
                 }
+            } else
+            {
+                MessageBox.Show("Existen campos vacíos", "Campos incompletos", MessageBoxButton.OK);
             }
+        }
+
+        private void BotonRegistrarseI_Click(object sender, RoutedEventArgs e)
+        {
+
+            RegistroDeJugador registro = new RegistroDeJugador(servidor,this);
+            registro.Show();
+            this.Hide();
         }
     }
 }

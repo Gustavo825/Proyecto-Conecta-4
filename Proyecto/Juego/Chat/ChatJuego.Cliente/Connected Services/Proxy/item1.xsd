@@ -10,4 +10,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Jugador" nillable="true" type="tns:Jugador" />
+  <xs:simpleType name="EstadoDeRegistro">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Correcto" />
+      <xs:enumeration value="FallidoPorCorreo" />
+      <xs:enumeration value="FallidoPorUsuario" />
+      <xs:enumeration value="Fallido" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EstadoDeRegistro" nillable="true" type="tns:EstadoDeRegistro" />
 </xs:schema>
