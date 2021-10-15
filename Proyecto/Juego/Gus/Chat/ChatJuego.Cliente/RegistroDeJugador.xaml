@@ -1,0 +1,24 @@
+﻿<Window x:Class="ChatJuego.Cliente.RegistroDeJugador" Closing="Window_Closing"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatJuego.Cliente"
+        mc:Ignorable="d"
+        Title="Registro De Jugador" Height="450" Width="800">
+    <Grid Background="Gray">
+        <TextBox Name="TBCorreoR" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="211" Margin="293,104,288,292"></TextBox>
+        <PasswordBox Name="TBContraseniaRegistro" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="211" Margin="293,206,288,190"></PasswordBox>
+
+        <Button x:Name="BotonRegistrarse" Content="Registrarse" Width="100" Background="CadetBlue" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="432,320,260,60" Click="BotonRegistrarse_Click"/>
+        <Label Content="Correo" HorizontalAlignment="Left" Margin="293,78,0,0" VerticalAlignment="Top"/>
+        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="293,180,0,0" VerticalAlignment="Top"/>
+        <Label Content="Registro" HorizontalAlignment="Left" Margin="364,31,0,0" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="TBContraseniaRegistroConfirmacion" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="211" Margin="293,260,288,136"/>
+        <Label Content="Confirmar contraseña" HorizontalAlignment="Left" Margin="293,234,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TBUsuarioR" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="211" Margin="293,154,288,242"/>
+        <Label Content="Usuario" HorizontalAlignment="Left" Margin="293,128,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="BotonCancelarR" Content="Cancelar" Width="100" Background="CadetBlue" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="273,320,419,60" Click="BotonCancelar"/>
+
+    </Grid>
+</Window>
