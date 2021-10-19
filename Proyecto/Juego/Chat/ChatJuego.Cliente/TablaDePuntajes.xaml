@@ -15,13 +15,13 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" >
-            <Label Name="Titulo" Content="Tabla de mejores puntuaciones" Background="WhiteSmoke" Foreground="Black" HorizontalContentAlignment="Center" Margin="1"></Label>
+            <Label Name="Titulo" Content="Tabla de mejores puntuaciones" Background="#D2DFFF" Foreground="Black" HorizontalContentAlignment="Center" Margin="1"></Label>
         </Grid>
         <Grid Grid.Row="1" Background="CornflowerBlue">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <ScrollViewer Name="ScrollerContenido" Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Background="CadetBlue">
+            <ScrollViewer Name="ScrollerContenido" Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Background="#F2F5FF">
                 <ItemsControl Name="PlantillaTablaDePuntuaciones">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -32,21 +32,21 @@
                                     <ColumnDefinition Width="100"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <Border  BorderBrush="Black" BorderThickness="2 2 2 2" CornerRadius="4">
+                                    <Border  BorderBrush="Black" BorderThickness="1 1 1 1" >
                                         <StackPanel Orientation="Horizontal" Background="{Binding FondoPosicion}">
                                             <Label Content="{Binding Lugar}" HorizontalAlignment="Center"></Label>
                                         </StackPanel>
                                     </Border>
                                 </Grid>
                                 <Grid Grid.Column="1">
-                                    <Border  BorderBrush="Black" BorderThickness="2 2 2 2" CornerRadius="4">
+                                    <Border  BorderBrush="Black" BorderThickness="1 1 1 1" >
                                         <StackPanel Orientation="Horizontal">
                                             <Label HorizontalContentAlignment="Right" HorizontalAlignment="Left" Content="{Binding NombreJugador}"></Label>
                                         </StackPanel>
                                     </Border>
                                 </Grid>
                                 <Grid Grid.Column="2">
-                                    <Border  BorderBrush="Black" BorderThickness="2 2 2 2" CornerRadius="4">
+                                    <Border  BorderBrush="Black" BorderThickness="1 1 1 1" >
 
                                         <StackPanel Orientation="Horizontal">
                                             <Label HorizontalContentAlignment="Right" HorizontalAlignment="Center" Content="{Binding Puntaje}"></Label>

@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="Chat" Height="450" Width="800"
         Background="#F2F5FF">
+    
+    
     <Grid Background="AntiqueWhite">
         <Grid.RowDefinitions>
             <RowDefinition Height="31"></RowDefinition>
@@ -28,7 +30,8 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition Width="52*"></ColumnDefinition>
-                <ColumnDefinition Width="347*"/>
+                <ColumnDefinition Width="118*"/>
+                <ColumnDefinition Width="229*"/>
                 <ColumnDefinition Width="243*"/>
             </Grid.ColumnDefinitions>
             <ScrollViewer Name="Scroller" Grid.Column ="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Background="White">
@@ -51,17 +54,38 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-            <ScrollViewer Name="ScrollerContenido" Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Background="#F2F5FF" Grid.ColumnSpan="3">
+            <ScrollViewer Name="ScrollerContenido" Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Background="#F2F5FF" Grid.ColumnSpan="4">
 
                 <ItemsControl Name="PlantillaMensaje" >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid HorizontalAlignment="{Binding Posicion}"  Margin="5" Background="{Binding FondoElemento}">
+                            <DataTemplate.Resources>
+                                <Storyboard x:Key="ItemAnimation" AutoReverse="False">
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyGrid" Storyboard.TargetProperty="(UIElement.Opacity)">
+                                        <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1" />
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyGrid" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                        <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.1" Value="1" />
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </DataTemplate.Resources>
+                            <DataTemplate.Triggers>
+                                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                                    <BeginStoryboard Storyboard="{StaticResource ItemAnimation}" />
+                                </EventTrigger>
+                            </DataTemplate.Triggers>
+                            <Grid x:Name="MyGrid" RenderTransformOrigin="0.5,1" HorizontalAlignment="{Binding Posicion}"  Margin="5" Background="{Binding FondoElemento}">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="32"></RowDefinition>
                                     <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
-
+                                <Grid.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                    </TransformGroup>
+                                </Grid.RenderTransform>
                                 <Grid Grid.Row="0">
 
                                     <StackPanel Orientation="Horizontal" Background="{Binding FondoCabecera}">
@@ -88,7 +112,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column ="0" Name ="ContenidoDelMensaje" HorizontalAlignment="Center" Background="WhiteSmoke" Width="665" TextWrapping="Wrap" Margin="10" KeyDown="ContenidoDelMensaje_KeyDown"></TextBox>
-            <Button Grid.Column="1" x:Name="BotonEnviar"  BorderThickness="0" Background = "Transparent" Width="56" Foreground="Transparent" Click="BotonEnviar_Click">
+            <Button Grid.Column="1" x:Name="BotonEnviar"  BorderThickness="0" Background = "Transparent" Width="50" Foreground="Transparent" Click="BotonEnviar_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="60"/>
