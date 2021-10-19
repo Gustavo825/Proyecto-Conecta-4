@@ -71,5 +71,13 @@ namespace ChatJuego.Cliente
             registro.Show();
             this.Hide();
         }
+
+        private void TBContrasenia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                BotonIniciarSesion_Click(new object(),new RoutedEventArgs());
+            }
+        }
     }
 }

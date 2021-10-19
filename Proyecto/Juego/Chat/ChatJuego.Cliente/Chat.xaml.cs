@@ -24,6 +24,8 @@ namespace ChatJuego.Cliente
         private ChatServicioClient servidor;
         private bool mensajePrivado = false;
         private Label jugadorPrivadoSeleccionado;
+
+        
         public ScrollViewer VistaDeContenidoDeScroll
         {
             get { return ScrollerContenido; }
@@ -84,6 +86,7 @@ namespace ChatJuego.Cliente
                 if (mensajePrivado)
                 {
                     string mensaje = "Mensaje privado: " + mensajeFinal;
+                    PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
                     servidor.mandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString());
                     mensajePrivado = false;
                     jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
@@ -92,7 +95,7 @@ namespace ChatJuego.Cliente
                 else
                 {
                     Mensaje mensaje = new Mensaje() { ContenidoMensaje = mensajeFinal, TiempoDeEnvio = DateTime.Now };
-                    PlantillaMensaje.Items.Add(new { FondoElemento = "White", FondoCabecera = "Salmon", Nombre = jugador.usuario, TiempoDeEnvio = mensaje.TiempoDeEnvio.ToString(), MensajeEnviado = mensaje.ContenidoMensaje });
+                    PlantillaMensaje.Items.Add(new {Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = mensaje.TiempoDeEnvio.ToString(), MensajeEnviado = mensaje.ContenidoMensaje });
                     servidor.mandarMensaje(mensaje);
                     ContenidoDelMensaje.Clear();
                 }
@@ -110,6 +113,12 @@ namespace ChatJuego.Cliente
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             servidor.desconectarse();
+        }
+
+        private void ContenidoDelMensaje_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                BotonEnviar_Click(new object(), new RoutedEventArgs());
         }
     }
 }

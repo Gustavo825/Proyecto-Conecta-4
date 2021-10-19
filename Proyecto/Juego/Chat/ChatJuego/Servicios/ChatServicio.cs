@@ -30,7 +30,7 @@ namespace ChatJuego.Host
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IChatJugadorCallBack>();
             jugadores.Remove(conexion);
-            string[] nombresDeJugadores = new string[100];
+            string[] nombresDeJugadores = new string[jugadores.Count()];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -48,7 +48,7 @@ namespace ChatJuego.Host
         public void inicializar()
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IChatJugadorCallBack>();
-            string[] nombresDeJugadores = new string[100];
+            string[] nombresDeJugadores = new string[jugadores.Count()];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -57,7 +57,6 @@ namespace ChatJuego.Host
             }
             foreach (var conexiones in jugadores.Keys)
             {
-      
                 conexiones.actualizarJugadoresConectados(nombresDeJugadores);
             }
         }
@@ -69,7 +68,7 @@ namespace ChatJuego.Host
             if (!jugadores.TryGetValue(conexion, out jugador))
                 return;
             Console.WriteLine("{0}:{1}", jugador.usuario, mensaje.ContenidoMensaje);
-            string[] nombresDeJugadores = new string[100];
+            string[] nombresDeJugadores = new string[jugadores.Count()];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -91,7 +90,7 @@ namespace ChatJuego.Host
             if (!jugadores.TryGetValue(conexion, out jugador))
                 return;
             Console.WriteLine("{0}:{1}", jugador.usuario, mensaje.ContenidoMensaje);
-            string[] nombresDeJugadores = new string[100];
+            string[] nombresDeJugadores = new string[jugadores.Count()];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -104,7 +103,6 @@ namespace ChatJuego.Host
                     continue;
                 if (jugadores[conexiones].usuario == nombreJugador)
                 {
-                    conexion.recibirMensaje(jugador, mensaje, nombresDeJugadores);
                     conexiones.recibirMensaje(jugador, mensaje, nombresDeJugadores);
                     break;
                 }

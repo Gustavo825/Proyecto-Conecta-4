@@ -38,7 +38,7 @@
 
         </Grid>
         <Grid Grid.Row="4" Grid.ColumnSpan="2">
-            <PasswordBox Name="TBContrasenia" HorizontalAlignment="Center" Height="23" Width="160"  Grid.Column="1"></PasswordBox>
+            <PasswordBox Name="TBContrasenia" HorizontalAlignment="Center" Height="23" Width="160"  Grid.Column="1" KeyDown="TBContrasenia_KeyDown"></PasswordBox>
 
         </Grid>
         <Grid Grid.Row="5" Grid.ColumnSpan="2">
