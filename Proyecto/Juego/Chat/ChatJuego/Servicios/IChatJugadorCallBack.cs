@@ -13,5 +13,7 @@ namespace ChatJuego.Host
         [OperationContract(IsOneWay = true)]
         void actualizarJugadoresConectados(string[] nombresDeJugadores);
 
+        [OperationContract(IsOneWay = true)]
+        void mostrarPuntajes(Jugador[] jugadores);
     }
 }

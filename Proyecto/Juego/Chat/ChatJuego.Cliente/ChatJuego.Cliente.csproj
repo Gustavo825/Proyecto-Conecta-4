@@ -60,6 +60,9 @@
     <Compile Include="RegistroDeJugador.xaml.cs">
       <DependentUpon>RegistroDeJugador.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TablaDePuntajes.xaml.cs">
+      <DependentUpon>TablaDePuntajes.xaml</DependentUpon>
+    </Compile>
     <Page Include="Chat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,6 +88,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="RegistroDeJugador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TablaDePuntajes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,6 +162,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Iconos\Enviar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

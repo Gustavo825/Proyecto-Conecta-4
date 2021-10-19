@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ChatJuego.Cliente"
         mc:Ignorable="d"
         Title="Chat" Height="450" Width="800">
+
     <Grid Background="AntiqueWhite">
         <Grid.RowDefinitions>
             <RowDefinition Height="31"></RowDefinition>
@@ -16,7 +17,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" >
-            <Label Name="Titulo" Content="Conectado" Background="WhiteSmoke" Foreground="Black" HorizontalContentAlignment="Left" Margin="1"></Label>
+            <Label x:Name="Titulo" Content="Conectado" Background="WhiteSmoke" Foreground="Black" HorizontalContentAlignment="Left" Margin="1"></Label>
         </Grid>
         <Grid Grid.Row="1" Background="CornflowerBlue">
             <Grid.ColumnDefinitions>
@@ -42,35 +43,45 @@
                 </ItemsControl>
             </ScrollViewer>
             <ScrollViewer Name="ScrollerContenido" Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Background="MediumAquamarine">
-                <ItemsControl Name="PlantillaMensaje">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="5" Background="{Binding FondoElemento}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="32"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0">
-                                    <StackPanel Orientation="Horizontal" Background="{Binding FondoCabecera}">
-                                        <Label Content="{Binding Nombre}" HorizontalAlignment="Left"></Label>
-                                        <Label Content="{Binding TiempoDeEnvio}" HorizontalAlignment="Right"></Label>
-                                    </StackPanel>
+            
+                    <ItemsControl Name="PlantillaMensaje" HorizontalAlignment="Left" Width="300">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="5" Background="{Binding FondoElemento}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="32"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <StackPanel Orientation="Horizontal" Background="{Binding FondoCabecera}">
+                                            <Label Content="{Binding Nombre}" HorizontalAlignment="Left"></Label>
+                                            <Label Content="{Binding TiempoDeEnvio}" HorizontalAlignment="Right"></Label>
+                                        </StackPanel>
+                                    </Grid>
+                                    <Grid Grid.Row="1">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label HorizontalContentAlignment="Right" HorizontalAlignment="Right" Content="{Binding MensajeEnviado}"></Label>
+                                        </StackPanel>
+                                    </Grid>
                                 </Grid>
-                                <Grid Grid.Row="1">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label HorizontalContentAlignment="Right" HorizontalAlignment="Right" Content="{Binding MensajeEnviado}"></Label>
-                                    </StackPanel>
-                                </Grid>
-                            </Grid>
                         </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
             </ScrollViewer>
+
         </Grid>
         <Grid Grid.Row="2" Background="LightGray">
             <StackPanel Orientation="Horizontal">
-                <TextBox Name ="ContenidoDelMensaje" Background="WhiteSmoke" Width="600" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" ></TextBox>
-                <Button Name="BotonEnviar" Content="Enviar" Margin="20" HorizontalAlignment="Right" Background = "Beige" Width="138" Foreground="Black" Click="BotonEnviar_Click"></Button>
+                <TextBox Name ="ContenidoDelMensaje" Background="WhiteSmoke" Width="665" TextWrapping="Wrap" AcceptsReturn="True" Margin="10" ></TextBox>
+                <Label Width="27"></Label>
+                <Button x:Name="BotonEnviar"  BorderThickness="0" Background = "Transparent" Width="56" Foreground="Transparent" Click="BotonEnviar_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="60"/>
+                        </Style>
+                    </Button.Resources>
+                    <Image Source="C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\Iconos\Enviar.png" Height="48" Width="38"/>
+                </Button>
             </StackPanel>
         </Grid>
     </Grid>

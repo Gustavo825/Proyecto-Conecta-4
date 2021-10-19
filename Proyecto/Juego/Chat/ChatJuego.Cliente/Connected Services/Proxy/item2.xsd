@@ -58,6 +58,11 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="recuperarPuntajesDeJugadores">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="recibirMensaje">
     <xs:complexType>
       <xs:sequence>
@@ -71,6 +76,13 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="nombresDeJugadores" nillable="true" type="q8:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mostrarPuntajes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" minOccurs="0" name="jugadores" nillable="true" type="q9:ArrayOfJugador" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

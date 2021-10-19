@@ -31,6 +31,10 @@ namespace ChatJuego.Cliente
             InstanceContext contexto = new InstanceContext(jC);
             servidor = new Proxy.ChatServicioClient(contexto);
             InitializeComponent();
+            //TablaDePuntajes tp = new TablaDePuntajes(servidor);
+            //tp.Show();
+            //jC.setTablaDePuntajes(tp);
+
         }
 
         private void BotonIniciarSesion_Click(object sender, RoutedEventArgs e)

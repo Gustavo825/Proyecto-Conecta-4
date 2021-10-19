@@ -271,6 +271,12 @@ namespace ChatJuego.Cliente.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/desconectarse")]
         System.Threading.Tasks.Task desconectarseAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/recuperarPuntajesDeJugadores")]
+        void recuperarPuntajesDeJugadores();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/recuperarPuntajesDeJugadores")]
+        System.Threading.Tasks.Task recuperarPuntajesDeJugadoresAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -281,6 +287,9 @@ namespace ChatJuego.Cliente.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/actualizarJugadoresConectados")]
         void actualizarJugadoresConectados(string[] nombresDeJugadores);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/mostrarPuntajes")]
+        void mostrarPuntajes(ChatJuego.Cliente.Proxy.Jugador[] jugadores);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -357,6 +366,14 @@ namespace ChatJuego.Cliente.Proxy {
         
         public System.Threading.Tasks.Task desconectarseAsync() {
             return base.Channel.desconectarseAsync();
+        }
+        
+        public void recuperarPuntajesDeJugadores() {
+            base.Channel.recuperarPuntajesDeJugadores();
+        }
+        
+        public System.Threading.Tasks.Task recuperarPuntajesDeJugadoresAsync() {
+            return base.Channel.recuperarPuntajesDeJugadoresAsync();
         }
     }
 }

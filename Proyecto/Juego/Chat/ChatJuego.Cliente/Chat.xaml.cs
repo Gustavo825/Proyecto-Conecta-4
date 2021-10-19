@@ -41,6 +41,7 @@ namespace ChatJuego.Cliente
             get { return PlantillaMensaje; }
             set { PlantillaMensaje = value; }
         }
+     
 
         public Label TituloDeMensaje
         {
@@ -53,9 +54,14 @@ namespace ChatJuego.Cliente
             InitializeComponent();
             this.jugador = jugador;
             this.servidor = servidor;
+            Titulo.Content = "Bienvenid@ al chat " + jugador.usuario;
 
         }
 
+        public Jugador getJugador()
+        {
+            return jugador;
+        }
 
 
 
@@ -63,9 +69,21 @@ namespace ChatJuego.Cliente
         {
             if (!string.IsNullOrEmpty(ContenidoDelMensaje.Text))
             {
+                string mensajeFinal;
+                if (ContenedorDelMensaje.Text.Length > 36)
+                {
+                    int tamanioMensaje = ContenedorDelMensaje.Text.Length;
+                    mensajeFinal = ContenedorDelMensaje.Text.Substring(0, 30);
+                    mensajeFinal += System.Environment.NewLine;
+                    mensajeFinal += ContenedorDelMensaje.Text.Substring(31,tamanioMensaje - 32);
+                    
+                } else
+                {
+                    mensajeFinal = ContenedorDelMensaje.Text;
+                }
                 if (mensajePrivado)
                 {
-                    string mensaje = "Mensaje privado: " + ContenidoDelMensaje.Text;
+                    string mensaje = "Mensaje privado: " + mensajeFinal;
                     servidor.mandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString());
                     mensajePrivado = false;
                     jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
@@ -73,8 +91,8 @@ namespace ChatJuego.Cliente
                 }
                 else
                 {
-                    Mensaje mensaje = new Mensaje() { ContenidoMensaje = ContenidoDelMensaje.Text, TiempoDeEnvio = DateTime.Now };
-                    PantallaDeMensajes.Items.Add(new { FondoElemento = "White", FondoCabecera = "Salmon", Nombre = jugador.usuario, TiempoDeEnvio = mensaje.TiempoDeEnvio.ToString(), MensajeEnviado = mensaje.ContenidoMensaje });
+                    Mensaje mensaje = new Mensaje() { ContenidoMensaje = mensajeFinal, TiempoDeEnvio = DateTime.Now };
+                    PlantillaMensaje.Items.Add(new { FondoElemento = "White", FondoCabecera = "Salmon", Nombre = jugador.usuario, TiempoDeEnvio = mensaje.TiempoDeEnvio.ToString(), MensajeEnviado = mensaje.ContenidoMensaje });
                     servidor.mandarMensaje(mensaje);
                     ContenidoDelMensaje.Clear();
                 }

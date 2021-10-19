@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ServiceModel;
 using System.Windows;
+using System.Linq;
+
 
 namespace ChatJuego.Host
 {
@@ -55,11 +57,9 @@ namespace ChatJuego.Host
             }
             foreach (var conexiones in jugadores.Keys)
             {
-                if (conexiones == conexion)
-                    continue;
+      
                 conexiones.actualizarJugadoresConectados(nombresDeJugadores);
             }
-            conexion.recibirMensaje(new Jugador() { usuario = "" }, new Mensaje() { ContenidoMensaje = "Bienvenido al Chat" }, nombresDeJugadores);
         }
 
         public void mandarMensaje(Mensaje mensaje)
@@ -111,11 +111,32 @@ namespace ChatJuego.Host
             }
         }
 
+        public void recuperarPuntajesDeJugadores()
+        {
+            var conexion = OperationContext.Current.GetCallbackChannel<IChatJugadorCallBack>();
+            using (var contexto = new JugadorContexto())
+            {
+                var jugadores = (from jugador in contexto.jugadores
+                                 select jugador).ToList().OrderByDescending(x => x.puntaje);
+                var jugadoresArreglo = new Jugador[jugadores.Count()];
+                int i = 0;
+                foreach (Jugador jugador in jugadores)
+                {
+                    jugadoresArreglo[i] = jugador;
+                    i++;
+                }
+                conexion.mostrarPuntajes(jugadoresArreglo);
+                
+            }
+        }
+
         public EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo)
         {
             Autenticacion autenticacion = new Autenticacion();
             EstadoDeRegistro estadoDeRegistro = autenticacion.registro(usuario, contrasenia, correo);
             return estadoDeRegistro;
         }
+
+
     }
 }

@@ -19,4 +19,10 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="EstadoDeRegistro" nillable="true" type="tns:EstadoDeRegistro" />
+  <xs:complexType name="ArrayOfJugador">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jugador" nillable="true" type="tns:Jugador" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJugador" nillable="true" type="tns:ArrayOfJugador" />
 </xs:schema>

@@ -23,5 +23,8 @@ namespace ChatJuego.Host
 
         [OperationContract(IsOneWay = true)]
         void desconectarse();
+
+        [OperationContract(IsOneWay = true)]
+        void recuperarPuntajesDeJugadores();
     }
 }
