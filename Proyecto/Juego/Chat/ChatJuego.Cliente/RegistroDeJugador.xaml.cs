@@ -24,9 +24,9 @@ namespace ChatJuego.Cliente
         private ChatServicioClient servidor;
         private InvitacionCorreoServicioClient servidorCorreo;
         private InstanceContext contexto;
-        private MainWindow inicioDeSesion;
+        private IniciarSesion inicioDeSesion;
         private int codigoDeRegistro;
-        public RegistroDeJugador(ChatServicioClient servidor, MainWindow inicioDeSesion, System.ServiceModel.InstanceContext contexto)
+        public RegistroDeJugador(ChatServicioClient servidor, IniciarSesion inicioDeSesion, System.ServiceModel.InstanceContext contexto)
         {
             InitializeComponent();
             this.servidor = servidor;

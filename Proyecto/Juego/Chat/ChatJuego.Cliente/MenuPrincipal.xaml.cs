@@ -47,7 +47,7 @@ namespace ChatJuego.Cliente
 
         private void BotonSalir_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            IniciarSesion mainWindow = new IniciarSesion();
             servidor.desconectarse();
             mainWindow.Show();
             this.Close();
