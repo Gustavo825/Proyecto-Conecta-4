@@ -57,6 +57,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connected Services\Proxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="EnviarInvitacion.xaml.cs">
+      <DependentUpon>EnviarInvitacion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegistroDeJugador.xaml.cs">
       <DependentUpon>RegistroDeJugador.xaml</DependentUpon>
     </Compile>
@@ -64,6 +72,10 @@
       <DependentUpon>TablaDePuntajes.xaml</DependentUpon>
     </Compile>
     <Page Include="Chat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EnviarInvitacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -77,11 +89,6 @@
     </Compile>
     <Compile Include="Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\Proxy\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -115,6 +122,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\Proxy\ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\Proxy\ChatJuego.Cliente.Proxy.EstadoDeRegistro.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -162,6 +172,21 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Iconos\Enviar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fuente\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Iconos\envioInvitacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Iconos\ingresarUsuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Iconos\botonEnviarInvitacion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

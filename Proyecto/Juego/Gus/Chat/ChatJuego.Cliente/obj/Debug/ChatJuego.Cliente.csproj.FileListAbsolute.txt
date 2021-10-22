@@ -19,12 +19,18 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\ChatJuego.Cl
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\ChatJuego.Cliente.exe
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\ChatJuego.Cliente.pdb
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Chat.g.cs
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\EnviarInvitacion.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\MainWindow.g.cs
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\RegistroDeJugador.g.cs
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\TablaDePuntajes.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\App.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente_MarkupCompile.cache
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente_MarkupCompile.lref
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Chat.baml
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\EnviarInvitacion.baml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\MainWindow.baml
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\RegistroDeJugador.baml
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\TablaDePuntajes.baml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.g.resources
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.Properties.Resources.resources
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.GenerateResource.cache
@@ -32,7 +38,3 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cl
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.exe
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.pdb
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.AssemblyReference.cache
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\RegistroDeJugador.g.cs
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\RegistroDeJugador.baml
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\TablaDePuntajes.g.cs
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\TablaDePuntajes.baml

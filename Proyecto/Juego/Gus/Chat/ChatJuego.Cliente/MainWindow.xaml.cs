@@ -24,16 +24,19 @@ namespace ChatJuego.Cliente
     {
 
         Proxy.ChatServicioClient servidor;
+        Proxy.InvitacionCorreoServicioClient servidorCorreo;
         JugadorCallBack jC;
         public MainWindow()
         {
             jC = new JugadorCallBack();
             InstanceContext contexto = new InstanceContext(jC);
             servidor = new Proxy.ChatServicioClient(contexto);
+            servidorCorreo = new Proxy.InvitacionCorreoServicioClient(contexto);
             InitializeComponent();
             TablaDePuntajes tp = new TablaDePuntajes(servidor);
             tp.Show();
             jC.setTablaDePuntajes(tp);
+           
 
         }
 
@@ -51,9 +54,11 @@ namespace ChatJuego.Cliente
                 {
                     servidor.inicializar();
                     Chat chat = new Chat(jugador, servidor);
+                    EnviarInvitacion enviar = new EnviarInvitacion(servidorCorreo,jugador);
                     jC.setChat(chat);
                     chat.Show();
-                    this.Close();
+                    enviar.Show();
+                    Close();
                 } else
                 {
                     MessageBox.Show("Credenciales incorrectas", "Error en el inicio de sesión", MessageBoxButton.OK);
@@ -70,6 +75,14 @@ namespace ChatJuego.Cliente
             RegistroDeJugador registro = new RegistroDeJugador(servidor,this);
             registro.Show();
             this.Hide();
+        }
+
+        private void TBContrasenia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                BotonIniciarSesion_Click(new object(),new RoutedEventArgs());
+            }
         }
     }
 }

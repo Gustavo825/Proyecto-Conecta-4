@@ -7,18 +7,67 @@
         mc:Ignorable="d"
         Title="Registro De Jugador" Height="450" Width="800">
     <Grid Background="Gray">
-        <TextBox Name="TBCorreoR" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="211" Margin="293,104,288,292"></TextBox>
-        <PasswordBox Name="TBContraseniaRegistro" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="211" Margin="293,206,288,190"></PasswordBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Button x:Name="BotonRegistrarse" Content="Registrarse" Width="100" Background="CadetBlue" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="432,320,260,60" Click="BotonRegistrarse_Click"/>
-        <Label Content="Correo" HorizontalAlignment="Left" Margin="293,78,0,0" VerticalAlignment="Top"/>
-        <Label Content="Contraseña" HorizontalAlignment="Left" Margin="293,180,0,0" VerticalAlignment="Top"/>
-        <Label Content="Registro" HorizontalAlignment="Left" Margin="364,31,0,0" VerticalAlignment="Top"/>
-        <PasswordBox x:Name="TBContraseniaRegistroConfirmacion" HorizontalAlignment="Center" Height="23" VerticalAlignment="Center" Width="211" Margin="293,260,288,136"/>
-        <Label Content="Confirmar contraseña" HorizontalAlignment="Left" Margin="293,234,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TBUsuarioR" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="211" Margin="293,154,288,242"/>
-        <Label Content="Usuario" HorizontalAlignment="Left" Margin="293,128,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BotonCancelarR" Content="Cancelar" Width="100" Background="CadetBlue" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="273,320,419,60" Click="BotonCancelar"/>
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Label Content="Registro" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+        </Grid>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Label Content="Usuario" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBox x:Name="TBUsuarioR" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="23"/>
+
+        </Grid>
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <Label Content="Correo" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+
+        </Grid>
+        <Grid Grid.Row="4" Grid.ColumnSpan="2">
+            <TextBox Name="TBCorreoR" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="23"></TextBox>
+
+        </Grid>
+        <Grid Grid.Row="5" Grid.ColumnSpan="2">
+            <Label Content="Contraseña" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        </Grid>
+        <Grid Grid.Row="6" Grid.ColumnSpan="2">
+            <PasswordBox Name="TBContraseniaRegistro" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="250" Height="23"></PasswordBox>
+
+        </Grid>
+        <Grid Grid.Row="7" Grid.ColumnSpan="2">
+            <Label Content="Confirmar contraseña" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        </Grid>
+        <Grid Grid.Row="8" Grid.ColumnSpan="2">
+            <PasswordBox x:Name="TBContraseniaRegistroConfirmacion" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="23" />
+
+        </Grid>
+        <Grid Grid.Row="9" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="BotonRegistrarse" Content="Registrarse" Width="100" Background="CadetBlue" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center"  Click="BotonRegistrarse_Click"/>
+            <Button Grid.Column="2" x:Name="BotonCancelarR" Content="Cancelar" Width="100" Background="CadetBlue" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Click="BotonCancelar"/>
+
+        </Grid>
+
+
 
     </Grid>
 </Window>

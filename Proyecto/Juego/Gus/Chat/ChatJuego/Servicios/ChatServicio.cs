@@ -4,14 +4,20 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using System.Windows;
 using System.Linq;
-
+using ChatJuego.Servicios;
+using System.Net.Mail;
+using System.Net;
 
 namespace ChatJuego.Host
 {
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
-    public class ChatServicio : IChatServicio
+    public class ChatServicio : IChatServicio, IInvitacionCorreoServicio
     {
-        Dictionary<IChatJugadorCallBack, Jugador> jugadores = new Dictionary<IChatJugadorCallBack, Jugador>();
+        public static Dictionary<IChatJugadorCallBack, Jugador> jugadores = new Dictionary<IChatJugadorCallBack, Jugador>();
+        private const string correo = "juegocontecta4equipo1@gmail.com";
+        private const string SMTPServidor = "smtp.gmail.com";
+        private const int puerto = 587;
+        private const string contrasenia = "gusandreacarlos1*";
         public bool conectarse(Jugador jugador)
         {
             Autenticacion autenticacion = new Autenticacion();
@@ -30,7 +36,7 @@ namespace ChatJuego.Host
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IChatJugadorCallBack>();
             jugadores.Remove(conexion);
-            string[] nombresDeJugadores = new string[100];
+            string[] nombresDeJugadores = new string[jugadores.Count()];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -45,10 +51,65 @@ namespace ChatJuego.Host
             }
         }
 
-        public void inicializar()
+        
+
+        public EstadoDeEnvio enviarInvitacion(Jugador jugadorInvitado, string codigoPartida, Jugador jugadorInvitador)
+        {
+            EstadoDeEnvio estado = EstadoDeEnvio.Fallido;
+            using (var contexto = new JugadorContexto())
+            {
+                var jugadores = (from jugador in contexto.jugadores
+                                 where jugador.usuario == jugadorInvitado.usuario
+                                 select jugador).Count();
+                if (jugadores == 0)
+                {
+                    estado = EstadoDeEnvio.UsuarioNoEncontrado;
+                    return estado;
+                }
+                jugadorInvitado.correo = (from jugador in contexto.jugadores
+                                           where jugador.usuario == jugadorInvitado.usuario
+                                           select jugador.correo).Single();
+                try
+                {
+                    SmtpClient smtpCliente = new SmtpClient(SMTPServidor, puerto);
+                    smtpCliente.EnableSsl = true;
+                    smtpCliente.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtpCliente.UseDefaultCredentials = false;
+                    smtpCliente.Credentials = new NetworkCredential(correo, contrasenia);
+                    string jugadorQueInvita = "";
+                    jugadorQueInvita = jugadorInvitador.usuario;
+                    using (MailMessage mensaje = new MailMessage())
+                    {
+                        mensaje.From = new MailAddress(correo);
+                        mensaje.Subject = "Invitación de " + jugadorQueInvita;
+                        mensaje.Body = "El código para unirse a la partida es: " + codigoPartida;
+                        mensaje.IsBodyHtml = false;
+                        mensaje.To.Add(jugadorInvitado.correo);
+                        try
+                        {
+                            smtpCliente.Send(mensaje);
+                            estado = EstadoDeEnvio.Correcto;
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Aquí");
+                            estado = EstadoDeEnvio.Fallido;
+                        }
+                    }
+                } catch
+                {
+                    Console.WriteLine("Ups");
+                }
+            }
+            return estado;
+
+        }
+   
+
+    public void inicializar()
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IChatJugadorCallBack>();
-            string[] nombresDeJugadores = new string[100];
+            string[] nombresDeJugadores = new string[jugadores.Count()];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -57,11 +118,8 @@ namespace ChatJuego.Host
             }
             foreach (var conexiones in jugadores.Keys)
             {
-                if (conexiones == conexion)
-                    continue;
                 conexiones.actualizarJugadoresConectados(nombresDeJugadores);
             }
-            conexion.recibirMensaje(new Jugador() { usuario = "" }, new Mensaje() { ContenidoMensaje = "Bienvenido al Chat" }, nombresDeJugadores);
         }
 
         public void mandarMensaje(Mensaje mensaje)
@@ -71,7 +129,7 @@ namespace ChatJuego.Host
             if (!jugadores.TryGetValue(conexion, out jugador))
                 return;
             Console.WriteLine("{0}:{1}", jugador.usuario, mensaje.ContenidoMensaje);
-            string[] nombresDeJugadores = new string[100];
+            string[] nombresDeJugadores = new string[jugadores.Count()];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -93,7 +151,7 @@ namespace ChatJuego.Host
             if (!jugadores.TryGetValue(conexion, out jugador))
                 return;
             Console.WriteLine("{0}:{1}", jugador.usuario, mensaje.ContenidoMensaje);
-            string[] nombresDeJugadores = new string[100];
+            string[] nombresDeJugadores = new string[jugadores.Count()];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -106,7 +164,6 @@ namespace ChatJuego.Host
                     continue;
                 if (jugadores[conexiones].usuario == nombreJugador)
                 {
-                    conexion.recibirMensaje(jugador, mensaje, nombresDeJugadores);
                     conexiones.recibirMensaje(jugador, mensaje, nombresDeJugadores);
                     break;
                 }
@@ -139,6 +196,12 @@ namespace ChatJuego.Host
             return estadoDeRegistro;
         }
 
-
+    public enum EstadoDeEnvio
+    {
+        Correcto = 0,
+        UsuarioNoEncontrado,
+        Fallido
     }
+
+}
 }
