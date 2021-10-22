@@ -62,7 +62,7 @@ namespace ChatJuego.Cliente
         private void BotonRegistrarseI_Click(object sender, RoutedEventArgs e)
         {
 
-            RegistroDeJugador registro = new RegistroDeJugador(servidor,this);
+            RegistroDeJugador registro = new RegistroDeJugador(servidor,this,contexto);
             registro.Show();
             this.Hide();
         }

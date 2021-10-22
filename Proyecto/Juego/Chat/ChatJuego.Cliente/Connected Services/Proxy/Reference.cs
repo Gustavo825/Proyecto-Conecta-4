@@ -400,6 +400,12 @@ namespace ChatJuego.Cliente.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInvitacionCorreoServicio/enviarInvitacion", ReplyAction="http://tempuri.org/IInvitacionCorreoServicio/enviarInvitacionResponse")]
         System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio> enviarInvitacionAsync(ChatJuego.Cliente.Proxy.Jugador jugadorInvitado, string codigoPartida, ChatJuego.Cliente.Proxy.Jugador jugadorInvitador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInvitacionCorreoServicio/mandarCodigoDeRegistro", ReplyAction="http://tempuri.org/IInvitacionCorreoServicio/mandarCodigoDeRegistroResponse")]
+        ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio mandarCodigoDeRegistro(string codigoDeRegistro, string correo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInvitacionCorreoServicio/mandarCodigoDeRegistro", ReplyAction="http://tempuri.org/IInvitacionCorreoServicio/mandarCodigoDeRegistroResponse")]
+        System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio> mandarCodigoDeRegistroAsync(string codigoDeRegistro, string correo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -449,6 +455,14 @@ namespace ChatJuego.Cliente.Proxy {
         
         public System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio> enviarInvitacionAsync(ChatJuego.Cliente.Proxy.Jugador jugadorInvitado, string codigoPartida, ChatJuego.Cliente.Proxy.Jugador jugadorInvitador) {
             return base.Channel.enviarInvitacionAsync(jugadorInvitado, codigoPartida, jugadorInvitador);
+        }
+        
+        public ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio mandarCodigoDeRegistro(string codigoDeRegistro, string correo) {
+            return base.Channel.mandarCodigoDeRegistro(codigoDeRegistro, correo);
+        }
+        
+        public System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio> mandarCodigoDeRegistroAsync(string codigoDeRegistro, string correo) {
+            return base.Channel.mandarCodigoDeRegistroAsync(codigoDeRegistro, correo);
         }
     }
 }

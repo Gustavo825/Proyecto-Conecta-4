@@ -62,6 +62,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="RegistroDeJugadorInputDeCodigo.xaml.cs">
+      <DependentUpon>RegistroDeJugadorInputDeCodigo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EnviarInvitacion.xaml.cs">
       <DependentUpon>EnviarInvitacion.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,10 @@
       <DependentUpon>TablaDePuntajes.xaml</DependentUpon>
     </Compile>
     <Page Include="Chat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistroDeJugadorInputDeCodigo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

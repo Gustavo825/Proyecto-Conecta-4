@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\App.xaml
-6-1236398170
+71583714327
 
-13202326987
+141648883203
 151842682125
-Chat.xaml;EnviarInvitacion.xaml;MainWindow.xaml;MenuPrincipal.xaml;RegistroDeJugador.xaml;TablaDePuntajes.xaml;
+Chat.xaml;RegistroDeJugadorInputDeCodigo.xaml;EnviarInvitacion.xaml;MainWindow.xaml;MenuPrincipal.xaml;RegistroDeJugador.xaml;TablaDePuntajes.xaml;
 
-True
+False
 

@@ -16,5 +16,7 @@ namespace ChatJuego.Servicios
     {
         [OperationContract(IsOneWay = false)]
         EstadoDeEnvio enviarInvitacion(Jugador jugadorInvitado, string codigoPartida, Jugador jugadorInvitador);
+        [OperationContract(IsOneWay = false)]
+        EstadoDeEnvio mandarCodigoDeRegistro(string codigoDeRegistro, string correo);
     }
 }

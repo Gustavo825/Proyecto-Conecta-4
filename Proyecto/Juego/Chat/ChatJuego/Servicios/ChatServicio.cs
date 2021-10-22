@@ -196,7 +196,47 @@ namespace ChatJuego.Host
             return estadoDeRegistro;
         }
 
-    public enum EstadoDeEnvio
+        public EstadoDeEnvio mandarCodigoDeRegistro(string codigoDeRegistro, string correoDeRegistro)
+        {
+            EstadoDeEnvio estado = EstadoDeEnvio.Fallido;
+            
+                try
+                {
+                    SmtpClient smtpCliente = new SmtpClient(SMTPServidor, puerto);
+                    smtpCliente.EnableSsl = true;
+                    smtpCliente.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtpCliente.UseDefaultCredentials = false;
+                    smtpCliente.Credentials = new NetworkCredential(correo, contrasenia);
+                    using (MailMessage mensaje = new MailMessage())
+                    {
+                        mensaje.From = new MailAddress(correo);
+                        mensaje.Subject = "Confirmación de registro de jugador";
+                        mensaje.Body = "Ingrese el siguiente código para validar su registro: " + codigoDeRegistro;
+                        mensaje.IsBodyHtml = false;
+                        mensaje.To.Add(correoDeRegistro);
+                          Console.WriteLine(correoDeRegistro);
+                        try
+                        {
+                            smtpCliente.Send(mensaje);
+                            estado = EstadoDeEnvio.Correcto;
+                        }
+                        catch
+                        {
+                            Console.WriteLine("Aquí");
+                            estado = EstadoDeEnvio.Fallido;
+                        }
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Ups");
+                }
+            
+            return estado;
+
+        }
+
+        public enum EstadoDeEnvio
     {
         Correcto = 0,
         UsuarioNoEncontrado,

@@ -52,7 +52,7 @@ namespace ChatJuego.Cliente
             }
         }
 
-        public int generarCodigoDePartida()
+        public static int generarCodigoDePartida()
         {
             return new Random().Next(1000, 3000);
         }

@@ -102,4 +102,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="mandarCodigoDeRegistro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigoDeRegistro" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mandarCodigoDeRegistroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ChatJuego.Host" minOccurs="0" name="mandarCodigoDeRegistroResult" type="q13:ChatServicio.EstadoDeEnvio" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
