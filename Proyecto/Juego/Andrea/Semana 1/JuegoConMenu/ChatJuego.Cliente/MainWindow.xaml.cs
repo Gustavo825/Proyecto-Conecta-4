@@ -50,7 +50,7 @@ namespace ChatJuego.Cliente
                 if (estado)
                 {
                     //servidor.inicializar();
-                    MenuPrincipal menuPrincipal = new MenuPrincipal(servidor, jC);
+                    MenuPrincipal menuPrincipal = new MenuPrincipal(servidor, jC, jugador);
                     menuPrincipal.Show();
                     this.Close();
                 } else

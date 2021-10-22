@@ -111,10 +111,10 @@ namespace ChatJuego.Cliente
             mensajePrivado = true;
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            servidor.desconectarse();
-        }
+        //private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        //{
+          //  servidor.desconectarse();
+        //}
 
         private void ContenidoDelMensaje_KeyDown(object sender, KeyEventArgs e)
         {

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JugadorModeloStoreContainer" CdmEntityContainer="JugadorContexto">
+    <EntitySetMapping Name="Jugadors">
+      <EntityTypeMapping TypeName="JugadorModelo.Jugador">
+        <MappingFragment StoreEntitySet="Jugadores">
+          <ScalarProperty Name="JugadorId" ColumnName="JugadorId" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+          <ScalarProperty Name="puntaje" ColumnName="puntaje" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

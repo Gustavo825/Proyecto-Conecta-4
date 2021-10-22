@@ -23,12 +23,14 @@ namespace ChatJuego.Cliente
     {
         Proxy.ChatServicioClient servidor;
         JugadorCallBack jC;
+        Jugador jugador;
 
 
-        public MenuPrincipal(ChatServicioClient servidor, JugadorCallBack jC)
+        public MenuPrincipal(ChatServicioClient servidor, JugadorCallBack jC, Jugador jugador)
         {
             this.jC = jC;
             this.servidor = servidor;
+            this.jugador = jugador;
             InitializeComponent();
         }
 
@@ -47,6 +49,14 @@ namespace ChatJuego.Cliente
             mainWindow.Show();
             this.Close();
 
+        }
+
+        private void BotonChat_Click(object sender, RoutedEventArgs e)
+        {
+            servidor.inicializar();
+            Chat chat = new Chat(jugador,servidor);
+            jC.setChat(chat);
+            chat.Show();
         }
     }
 }
