@@ -82,6 +82,7 @@
     <Compile Include="Dominio\Mensaje.cs" />
     <Compile Include="Host\Host.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\IInvitacionCorreoServicio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

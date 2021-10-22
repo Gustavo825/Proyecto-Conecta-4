@@ -24,17 +24,14 @@ namespace ChatJuego.Cliente
     {
 
         Proxy.ChatServicioClient servidor;
-        JugadorCallBack jC;
+        JugadorCallBack jugadorCallback;
+        InstanceContext contexto;
         public MainWindow()
         {
-            jC = new JugadorCallBack();
-            InstanceContext contexto = new InstanceContext(jC);
+            jugadorCallback = new JugadorCallBack();
+            contexto = new InstanceContext(jugadorCallback);
             servidor = new Proxy.ChatServicioClient(contexto);
             InitializeComponent();
-            //TablaDePuntajes tp = new TablaDePuntajes(servidor);
-            //tp.Show();
-            //jC.setTablaDePuntajes(tp);
-
         }
 
         private void BotonIniciarSesion_Click(object sender, RoutedEventArgs e)
@@ -49,11 +46,9 @@ namespace ChatJuego.Cliente
                 var estado = servidor.conectarse(jugador);
                 if (estado)
                 {
-                    servidor.inicializar();
-                    Chat chat = new Chat(jugador, servidor);
-                    jC.setChat(chat);
-                    chat.Show();
-                    this.Close();
+                    MenuPrincipal menuPrincipal = new MenuPrincipal(servidor, jugadorCallback, jugador, contexto);
+                    menuPrincipal.Show();
+                    Close();
                 } else
                 {
                     MessageBox.Show("Credenciales incorrectas", "Error en el inicio de sesión", MessageBoxButton.OK);

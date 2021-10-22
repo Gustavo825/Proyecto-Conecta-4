@@ -9,4 +9,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Mensaje" nillable="true" type="tns:Mensaje" />
+  <xs:simpleType name="ChatServicio.EstadoDeEnvio">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Correcto" />
+      <xs:enumeration value="UsuarioNoEncontrado" />
+      <xs:enumeration value="Fallido" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ChatServicio.EstadoDeEnvio" nillable="true" type="tns:ChatServicio.EstadoDeEnvio" />
 </xs:schema>

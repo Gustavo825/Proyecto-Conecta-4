@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ChatJuego.Cliente"
         mc:Ignorable="d"
         Title="Inicio de Sesión" Height="450" Width="800">
-    <Grid Background="Gray">
+    <Grid Background="#214CAE">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="643*"/>
             <ColumnDefinition Width="150*"/>
@@ -15,38 +15,70 @@
             <RowDefinition Height="100"/>
             <RowDefinition Height="30"/>
             <RowDefinition/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="1"/>
             <RowDefinition/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="80"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.ColumnSpan="2">
-            <Label Content="Inicio de Sesión" HorizontalAlignment="Center"  VerticalAlignment="Center" Grid.Column="1"/>
+            <Image Source="Iconos\inicio de sesion.png" Height="60"></Image>
 
         </Grid>
-        <Grid Grid.Row="1" Grid.ColumnSpan="2">
-            <Label Content="Usuario" HorizontalAlignment="Center"  Grid.Column="1"/>
+        <Grid Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" >
+            <Image Source="Iconos\Find_Four_Board_2015.png" HorizontalAlignment="Center" Height="150" Margin="0,-84,60,37"/>
 
         </Grid>
-        <Grid Grid.Row="2" Grid.ColumnSpan="2">
-            <TextBox Name="TBUsuario" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap"  Width="160" Grid.Column="1"></TextBox>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="5"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0" Source="Iconos\usuario.png" Height="30" HorizontalAlignment="Right"/>
+            <TextBox Grid.Column="2" Name="TBUsuario"  HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  Width="190" />
 
         </Grid>
         <Grid Grid.Row="3" Grid.ColumnSpan="2">
-            <Label Content="Contraseña" HorizontalAlignment="Center"  Grid.Column="1"/>
 
         </Grid>
-        <Grid Grid.Row="4" Grid.ColumnSpan="2">
-            <PasswordBox Name="TBContrasenia" HorizontalAlignment="Center" Height="23" Width="160"  Grid.Column="1" KeyDown="TBContrasenia_KeyDown"></PasswordBox>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="Iconos\contrasenia.png"  Height="30" HorizontalAlignment="Right"></Image>
+            <PasswordBox Grid.Column="2" Name="TBContrasenia" HorizontalAlignment="Left" Height="23" Width="190" KeyDown="TBContrasenia_KeyDown" />
 
         </Grid>
-        <Grid Grid.Row="5" Grid.ColumnSpan="2">
-            <Button x:Name="BotonIniciarSesion" Content="Iniciar Sesión" Width="100" Background="CadetBlue" Foreground="White" HorizontalAlignment="Center"   Click="BotonIniciarSesion_Click" Grid.Column="1" Height="25"/>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="4" HorizontalAlignment="Right">
+
 
         </Grid>
         <Grid Grid.Row="6" Grid.ColumnSpan="2">
-            <Button x:Name="BotonRegistrarseI" Content="Registrarse" Width="100" Background="CadetBlue" Foreground="White" HorizontalAlignment="Center" Click="BotonRegistrarseI_Click" Height="24" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="53*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BotonIniciarSesion" Height="62" Width="176" BorderThickness="0" Background = "Transparent" Foreground="Transparent" Click="BotonIniciarSesion_Click" Margin="131,-13,459,-13" Grid.ColumnSpan="2">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="60"/>
+                    </Style>
+                </Button.Resources>
+                <Image Source="Iconos\botonIniciarSesion.png" Height="62" Width="176"/>
+            </Button>
+            <Button x:Name="BotonRegistrarseI" BorderThickness="0" Height="62" Width="176" Background = "Transparent" Foreground="Transparent" Click="BotonRegistrarseI_Click"  Grid.Column="1">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="60"/>
+                    </Style>
+                </Button.Resources>
+                <Image Source="Iconos\botonRegistrarse.png" Height="62" Width="176"/>
+            </Button>
 
         </Grid>
 

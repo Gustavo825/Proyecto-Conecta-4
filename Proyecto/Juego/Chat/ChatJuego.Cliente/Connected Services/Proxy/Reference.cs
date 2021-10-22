@@ -232,6 +232,20 @@ namespace ChatJuego.Cliente.Proxy {
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ChatServicio.EstadoDeEnvio", Namespace="http://schemas.datacontract.org/2004/07/ChatJuego.Host")]
+    public enum ChatServicioEstadoDeEnvio : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Correcto = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        UsuarioNoEncontrado = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Fallido = 2,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Proxy.IChatServicio", CallbackContract=typeof(ChatJuego.Cliente.Proxy.IChatServicioCallback))]
     public interface IChatServicio {
@@ -374,6 +388,67 @@ namespace ChatJuego.Cliente.Proxy {
         
         public System.Threading.Tasks.Task recuperarPuntajesDeJugadoresAsync() {
             return base.Channel.recuperarPuntajesDeJugadoresAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Proxy.IInvitacionCorreoServicio", CallbackContract=typeof(ChatJuego.Cliente.Proxy.IInvitacionCorreoServicioCallback))]
+    public interface IInvitacionCorreoServicio {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInvitacionCorreoServicio/enviarInvitacion", ReplyAction="http://tempuri.org/IInvitacionCorreoServicio/enviarInvitacionResponse")]
+        ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio enviarInvitacion(ChatJuego.Cliente.Proxy.Jugador jugadorInvitado, string codigoPartida, ChatJuego.Cliente.Proxy.Jugador jugadorInvitador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInvitacionCorreoServicio/enviarInvitacion", ReplyAction="http://tempuri.org/IInvitacionCorreoServicio/enviarInvitacionResponse")]
+        System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio> enviarInvitacionAsync(ChatJuego.Cliente.Proxy.Jugador jugadorInvitado, string codigoPartida, ChatJuego.Cliente.Proxy.Jugador jugadorInvitador);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IInvitacionCorreoServicioCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IInvitacionCorreoServicio/recibirMensaje")]
+        void recibirMensaje(ChatJuego.Cliente.Proxy.Jugador jugador, ChatJuego.Cliente.Proxy.Mensaje mensaje, string[] nombresDeJugadores);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IInvitacionCorreoServicio/actualizarJugadoresConectados")]
+        void actualizarJugadoresConectados(string[] nombresDeJugadores);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IInvitacionCorreoServicio/mostrarPuntajes")]
+        void mostrarPuntajes(ChatJuego.Cliente.Proxy.Jugador[] jugadores);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IInvitacionCorreoServicioChannel : ChatJuego.Cliente.Proxy.IInvitacionCorreoServicio, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class InvitacionCorreoServicioClient : System.ServiceModel.DuplexClientBase<ChatJuego.Cliente.Proxy.IInvitacionCorreoServicio>, ChatJuego.Cliente.Proxy.IInvitacionCorreoServicio {
+        
+        public InvitacionCorreoServicioClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
+        }
+        
+        public InvitacionCorreoServicioClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
+        }
+        
+        public InvitacionCorreoServicioClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public InvitacionCorreoServicioClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
+        }
+        
+        public InvitacionCorreoServicioClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio enviarInvitacion(ChatJuego.Cliente.Proxy.Jugador jugadorInvitado, string codigoPartida, ChatJuego.Cliente.Proxy.Jugador jugadorInvitador) {
+            return base.Channel.enviarInvitacion(jugadorInvitado, codigoPartida, jugadorInvitador);
+        }
+        
+        public System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio> enviarInvitacionAsync(ChatJuego.Cliente.Proxy.Jugador jugadorInvitado, string codigoPartida, ChatJuego.Cliente.Proxy.Jugador jugadorInvitador) {
+            return base.Channel.enviarInvitacionAsync(jugadorInvitado, codigoPartida, jugadorInvitador);
         }
     }
 }

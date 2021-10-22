@@ -1,4 +1,5 @@
 ﻿using ChatJuego.Base_de_datos;
+using ChatJuego.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,6 @@ namespace ChatJuego.Host
         {
             JugadorContexto jc = new JugadorContexto();
             ServiceHost host = new ServiceHost(typeof(ChatServicio));
-            
             host.Open();
             Console.WriteLine("Servidor corriendo");
             Console.ReadLine();
