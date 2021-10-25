@@ -1,10 +1,10 @@
 ﻿
 
-FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\Chat.xaml;;
-FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\RegistroDeJugadorInputDeCodigo.xaml;;
-FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\EnviarInvitacion.xaml;;
-FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\MainWindow.xaml;;
-FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\MenuPrincipal.xaml;;
-FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\RegistroDeJugador.xaml;;
-FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\TablaDePuntajes.xaml;;
+FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\Ventanas\Chat\Chat.xaml;;
+FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\Ventanas\Registro de Jugador\RegistroDeJugadorInputDeCodigo.xaml;;
+FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\Ventanas\Enviar Invitacion\EnviarInvitacion.xaml;;
+FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\Ventanas\Iniciar Sesion\IniciarSesion.xaml;;
+FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\Ventanas\Menu Principal\MenuPrincipal.xaml;;
+FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\Ventanas\Registro de Jugador\RegistroDeJugador.xaml;;
+FC:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\Ventanas\Tabla de Puntajes\TablaDePuntajes.xaml;;
 

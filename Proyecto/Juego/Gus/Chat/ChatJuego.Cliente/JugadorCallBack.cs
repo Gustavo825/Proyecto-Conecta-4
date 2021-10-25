@@ -1,10 +1,11 @@
 ﻿using ChatJuego.Cliente.Proxy;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace ChatJuego.Cliente
 {
-    public class JugadorCallBack : Proxy.IChatServicioCallback, Proxy.IInvitacionCorreoServicioCallback
+    public class JugadorCallBack : Proxy.IChatServicioCallback, Proxy.IInvitacionCorreoServicioCallback, Proxy.IServidorCallback, Proxy.ITablaDePuntajesCallback
     {
         private Chat chat;
         private TablaDePuntajes tabla;

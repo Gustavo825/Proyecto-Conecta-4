@@ -6,11 +6,11 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using static ChatJuego.Host.ChatServicio;
+using static ChatJuego.Host.Servicio;
 
 namespace ChatJuego.Servicios
 {
-    [ServiceContract(CallbackContract = typeof(IChatJugadorCallBack))]
+    [ServiceContract(CallbackContract = typeof(IJugadorCallBack))]
 
     public interface IInvitacionCorreoServicio
     {
@@ -18,5 +18,12 @@ namespace ChatJuego.Servicios
         EstadoDeEnvio enviarInvitacion(Jugador jugadorInvitado, string codigoPartida, Jugador jugadorInvitador);
         [OperationContract(IsOneWay = false)]
         EstadoDeEnvio mandarCodigoDeRegistro(string codigoDeRegistro, string correo);
+    }
+
+    public enum EstadoDeEnvio
+    {
+        Correcto = 0,
+        UsuarioNoEncontrado,
+        Fallido
     }
 }

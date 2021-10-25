@@ -76,13 +76,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JugadorModelo.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Servicios\ChatServicio.cs" />
-    <Compile Include="Servicios\IChatJugadorCallBack.cs" />
+    <Compile Include="Servicios\Servicio.cs" />
+    <Compile Include="Servicios\IJugadorCallBack.cs" />
     <Compile Include="Servicios\IChatServicio.cs" />
     <Compile Include="Dominio\Mensaje.cs" />
     <Compile Include="Host\Host.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\IInvitacionCorreoServicio.cs" />
+    <Compile Include="Servicios\ITablaDePuntajes.cs" />
+    <Compile Include="Servicios\IServidor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

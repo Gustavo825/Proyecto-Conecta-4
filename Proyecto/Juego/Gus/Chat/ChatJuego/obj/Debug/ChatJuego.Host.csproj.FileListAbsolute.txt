@@ -12,6 +12,7 @@ C:\Users\perez\Desktop\Croy\ChatJuego\obj\Debug\ChatJuego.Host.csproj.AssemblyRe
 C:\Users\perez\Desktop\Croy\ChatJuego\obj\Debug\ChatJuego.Host.csproj.CoreCompileInputs.cache
 C:\Users\perez\Desktop\Croy\ChatJuego\obj\Debug\ChatJuego.exe
 C:\Users\perez\Desktop\Croy\ChatJuego\obj\Debug\ChatJuego.pdb
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\obj\Debug\ChatJuego.Host.csproj.CoreCompileInputs.cache
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\bin\Debug\ChatJuego.exe.config
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\bin\Debug\ChatJuego.exe
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\bin\Debug\ChatJuego.pdb
@@ -19,7 +20,6 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\bin\Debug\EntityFramework.dll
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\bin\Debug\EntityFramework.xml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\obj\Debug\ChatJuego.Host.csproj.CoreCompileInputs.cache
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\obj\Debug\ChatJuego.exe
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\obj\Debug\ChatJuego.pdb
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\obj\Debug\ChatJuego.Host.csproj.AssemblyReference.cache
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\obj\Debug\ChatJuego.Host.csproj.CopyComplete

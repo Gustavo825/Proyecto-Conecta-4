@@ -3,28 +3,21 @@ using System.ServiceModel;
 
 namespace ChatJuego.Host
 {
-    [ServiceContract(CallbackContract = typeof(IChatJugadorCallBack))]
+    [ServiceContract(CallbackContract = typeof(IJugadorCallBack))]
     public interface IChatServicio
     {
-        [OperationContract(IsOneWay = false)]
-        bool conectarse(Jugador jugador);
 
         [OperationContract(IsOneWay = true)]
         void inicializar();
 
-        [OperationContract(IsOneWay = false)]
-        EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo);
         
         [OperationContract(IsOneWay = true)]
-        void mandarMensaje(Mensaje mensaje);
+        void mandarMensaje(Mensaje mensaje, Jugador jugadorQueMandaMensaje);
 
         [OperationContract(IsOneWay = true)]
-        void mandarMensajePrivado(Mensaje mensaje, string nombreJugador);
+        void mandarMensajePrivado(Mensaje mensaje, string nombreJugador, Jugador jugadorQueMandaMensaje);
 
-        [OperationContract(IsOneWay = true)]
-        void desconectarse();
 
-        [OperationContract(IsOneWay = true)]
-        void recuperarPuntajesDeJugadores();
+        
     }
 }

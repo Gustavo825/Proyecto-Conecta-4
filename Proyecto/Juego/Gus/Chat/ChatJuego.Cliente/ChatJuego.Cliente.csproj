@@ -62,34 +62,34 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="RegistroDeJugadorInputDeCodigo.xaml.cs">
+    <Compile Include="Ventanas\Registro de Jugador\RegistroDeJugadorInputDeCodigo.xaml.cs">
       <DependentUpon>RegistroDeJugadorInputDeCodigo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EnviarInvitacion.xaml.cs">
+    <Compile Include="Ventanas\Enviar Invitacion\EnviarInvitacion.xaml.cs">
       <DependentUpon>EnviarInvitacion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MenuPrincipal.xaml.cs">
+    <Compile Include="Ventanas\Menu Principal\MenuPrincipal.xaml.cs">
       <DependentUpon>MenuPrincipal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegistroDeJugador.xaml.cs">
+    <Compile Include="Ventanas\Registro de Jugador\RegistroDeJugador.xaml.cs">
       <DependentUpon>RegistroDeJugador.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TablaDePuntajes.xaml.cs">
+    <Compile Include="Ventanas\Tabla de Puntajes\TablaDePuntajes.xaml.cs">
       <DependentUpon>TablaDePuntajes.xaml</DependentUpon>
     </Compile>
-    <Page Include="Chat.xaml">
+    <Page Include="Ventanas\Chat\Chat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegistroDeJugadorInputDeCodigo.xaml">
+    <Page Include="Ventanas\Registro de Jugador\RegistroDeJugadorInputDeCodigo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EnviarInvitacion.xaml">
+    <Page Include="Ventanas\Enviar Invitacion\EnviarInvitacion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Ventanas\Iniciar Sesion\IniciarSesion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -97,22 +97,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Chat.xaml.cs">
+    <Compile Include="Ventanas\Chat\Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Ventanas\Iniciar Sesion\IniciarSesion.xaml.cs">
+      <DependentUpon>IniciarSesion.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MenuPrincipal.xaml">
+    <Page Include="Ventanas\Menu Principal\MenuPrincipal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegistroDeJugador.xaml">
+    <Page Include="Ventanas\Registro de Jugador\RegistroDeJugador.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TablaDePuntajes.xaml">
+    <Page Include="Ventanas\Tabla de Puntajes\TablaDePuntajes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,13 +136,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\Proxy\ChatJuego.Cliente.Proxy.ChatServicioEstadoDeEnvio.datasource">
+    <None Include="Connected Services\Proxy\ChatJuego.Cliente.Proxy.EstadoDeEnvio.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\Proxy\ChatJuego.Cliente.Proxy.EstadoDeRegistro.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\Proxy\ChatServicio.wsdl" />
     <None Include="Connected Services\Proxy\item.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -158,6 +157,10 @@
     <None Include="Connected Services\Proxy\item4.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\Proxy\item5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Proxy\Servicio.wsdl" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -168,6 +171,84 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fuente\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Iniciar Sesion\Iconos\inicio de sesion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Iniciar Sesion\Iconos\Find_Four_Board_2015.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Iniciar Sesion\Iconos\usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Iniciar Sesion\Iconos\contrasenia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Iniciar Sesion\Iconos\botonIniciarSesion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Iniciar Sesion\Iconos\botonRegistrarse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Chat\Iconos\Enviar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Enviar Invitacion\Iconos\envioInvitacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Enviar Invitacion\Iconos\ingresarUsuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Enviar Invitacion\Iconos\botonEnviarInvitacion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Menu Principal\Iconos\conecta 4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Menu Principal\Iconos\crear_partida.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Menu Principal\Iconos\unirse_a_partida.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Menu Principal\Iconos\salir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Menu Principal\Iconos\tablaPuntajes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Menu Principal\Iconos\iconoConfiguracion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Menu Principal\Iconos\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Registro de Jugador\Iconos\registro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Registro de Jugador\Iconos\usuario.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Registro de Jugador\Iconos\correo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Registro de Jugador\Iconos\contrasenia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Registro de Jugador\Iconos\confirmarContrasenia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Registro de Jugador\Iconos\botonRegistrarse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Registro de Jugador\Iconos\botonCancelar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Registro de Jugador\Iconos\FindFourBoard.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\Proxy\" />
@@ -186,44 +267,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Iconos\Enviar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Fuente\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Iconos\envioInvitacion.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Iconos\ingresarUsuario.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Iconos\botonEnviarInvitacion.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Iconos\chat.png" />
-    <Resource Include="Iconos\conecta 4.png" />
-    <Resource Include="Iconos\crear_partida.png" />
-    <Resource Include="Iconos\iconoConfiguracion.png" />
-    <Resource Include="Iconos\salir.png" />
-    <Resource Include="Iconos\tablaPuntajes.png" />
-    <Resource Include="Iconos\unirse_a_partida.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Iconos\botonCancelar.png" />
-    <Resource Include="Iconos\botonIniciarSesion.png" />
-    <Resource Include="Iconos\botonRegistrarse.png" />
-    <Resource Include="Iconos\confirmarContrasenia.png" />
-    <Resource Include="Iconos\contrasenia.png" />
-    <Resource Include="Iconos\correo.png" />
-    <Resource Include="Iconos\FindFourBoard.png" />
-    <Resource Include="Iconos\Find_Four_Board_2015.png" />
-    <Resource Include="Iconos\inicio de sesion.png" />
-    <Resource Include="Iconos\Penguins_playign_find_four.png" />
-    <Resource Include="Iconos\registro.png" />
-    <Resource Include="Iconos\usuario.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
