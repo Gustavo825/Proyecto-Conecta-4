@@ -21,12 +21,12 @@ namespace ChatJuego.Cliente
     /// </summary>
     public partial class RegistroDeJugador : Window
     {
-        private ChatServicioClient servidor;
+        private ServidorClient servidor;
         private InvitacionCorreoServicioClient servidorCorreo;
         private InstanceContext contexto;
         private MainWindow inicioDeSesion;
         private int codigoDeRegistro;
-        public RegistroDeJugador(ChatServicioClient servidor, MainWindow inicioDeSesion, System.ServiceModel.InstanceContext contexto)
+        public RegistroDeJugador(ServidorClient servidor, MainWindow inicioDeSesion, System.ServiceModel.InstanceContext contexto)
         {
             InitializeComponent();
             this.servidor = servidor;

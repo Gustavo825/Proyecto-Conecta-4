@@ -21,26 +21,30 @@ namespace ChatJuego.Cliente
     /// </summary>
     public partial class MenuPrincipal : Window
     {
-        Proxy.ChatServicioClient servidor;
-        Proxy.InvitacionCorreoServicioClient servidorCorreo;
+        ServidorClient servidor;
+        ChatServicioClient servidorChat;
+        InvitacionCorreoServicioClient servidorCorreo;
+        TablaDePuntajesClient servidorTablaDePuntajes;
         InstanceContext contexto;
         JugadorCallBack jC;
         Jugador jugador;
 
 
-        public MenuPrincipal(ChatServicioClient servidor, JugadorCallBack jC, Jugador jugador, InstanceContext contexto)
+        public MenuPrincipal(ServidorClient servidor, JugadorCallBack jC, Jugador jugador, InstanceContext contexto, ChatServicioClient servidorChat)
         {
             this.jC = jC;
             this.servidor = servidor;
             this.jugador = jugador;
             this.contexto = contexto;
-            servidorCorreo = new InvitacionCorreoServicioClient(this.contexto);
+            servidorCorreo = new InvitacionCorreoServicioClient(contexto);
+            this.servidorChat = servidorChat;
+            servidorTablaDePuntajes = new TablaDePuntajesClient(contexto);
             InitializeComponent();
         }
 
         private void BotonTablaPuntajes_Click(object sender, RoutedEventArgs e)
         {
-            TablaDePuntajes tablaPuntajes = new TablaDePuntajes(servidor);
+            TablaDePuntajes tablaPuntajes = new TablaDePuntajes(servidorTablaDePuntajes);
             jC.setTablaDePuntajes(tablaPuntajes);
             tablaPuntajes.Show();
         }
@@ -56,8 +60,8 @@ namespace ChatJuego.Cliente
 
         private void BotonChat_Click(object sender, RoutedEventArgs e)
         {
-            servidor.inicializar();
-            Chat chat = new Chat(jugador, servidor);
+            Chat chat = new Chat(jugador, servidorChat);
+            servidorChat.inicializar();
             jC.setChat(chat);
             chat.Show();
         }
@@ -67,6 +71,10 @@ namespace ChatJuego.Cliente
             EnviarInvitacion enviarInvitacion = new EnviarInvitacion(servidorCorreo,jugador, this);
             enviarInvitacion.Show();
             this.Hide();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
         }
     }
 }
