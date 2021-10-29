@@ -9,6 +9,7 @@
     <Property Name="correo" Type="nvarchar(max)" />
     <Property Name="contrasenia" Type="nvarchar(max)" />
     <Property Name="puntaje" Type="real" />
+    <Property Name="imagenUsuario" Type="varbinary(max)" />
   </EntityType>
   <EntityContainer Name="JugadorModeloStoreContainer">
     <EntitySet Name="Jugadores" EntityType="Self.Jugadores" Schema="dbo" store:Type="Tables" />

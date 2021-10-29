@@ -5,6 +5,7 @@
       <xs:element minOccurs="0" name="JugadorId" type="xs:int" />
       <xs:element minOccurs="0" name="contrasenia" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="imagenUsuario" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="puntaje" nillable="true" type="xs:float" />
       <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
     </xs:sequence>

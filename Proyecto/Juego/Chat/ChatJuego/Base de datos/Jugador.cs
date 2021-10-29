@@ -19,5 +19,6 @@ namespace ChatJuego.Base_de_datos
         public string correo { get; set; }
         public string contrasenia { get; set; }
         public Nullable<float> puntaje { get; set; }
+        public byte[] imagenUsuario { get; set; }
     }
 }

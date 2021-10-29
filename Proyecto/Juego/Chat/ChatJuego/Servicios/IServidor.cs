@@ -18,7 +18,10 @@ namespace ChatJuego.Servicios
 
 
         [OperationContract(IsOneWay = false)]
-        EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo);
+        EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador);
+
+        [OperationContract(IsOneWay = false)]
+        byte[] obtenerBytesDeImagenDeJugador(string usuario);
 
         [OperationContract(IsOneWay = true)]
         void desconectarse();

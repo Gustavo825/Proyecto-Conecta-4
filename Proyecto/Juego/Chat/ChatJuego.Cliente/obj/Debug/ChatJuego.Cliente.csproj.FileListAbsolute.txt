@@ -26,6 +26,7 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Men
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Registro de Jugador\RegistroDeJugador.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Tabla de Puntajes\TablaDePuntajes.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\App.g.cs
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente_Content.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente_MarkupCompile.cache
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente_MarkupCompile.lref
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Chat\Chat.baml

@@ -125,6 +125,9 @@ namespace ChatJuego.Cliente.Proxy {
         private string correoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] imagenUsuarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<float> puntajeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -175,6 +178,19 @@ namespace ChatJuego.Cliente.Proxy {
                 if ((object.ReferenceEquals(this.correoField, value) != true)) {
                     this.correoField = value;
                     this.RaisePropertyChanged("correo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] imagenUsuario {
+            get {
+                return this.imagenUsuarioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.imagenUsuarioField, value) != true)) {
+                    this.imagenUsuarioField = value;
+                    this.RaisePropertyChanged("imagenUsuario");
                 }
             }
         }
@@ -421,10 +437,16 @@ namespace ChatJuego.Cliente.Proxy {
         System.Threading.Tasks.Task<bool> conectarseAsync(ChatJuego.Cliente.Proxy.Jugador jugador);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/registroJugador", ReplyAction="http://tempuri.org/IServidor/registroJugadorResponse")]
-        ChatJuego.Cliente.Proxy.EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo);
+        ChatJuego.Cliente.Proxy.EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/registroJugador", ReplyAction="http://tempuri.org/IServidor/registroJugadorResponse")]
-        System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoDeRegistro> registroJugadorAsync(string usuario, string contrasenia, string correo);
+        System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoDeRegistro> registroJugadorAsync(string usuario, string contrasenia, string correo, byte[] imagenDeJugador);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/obtenerBytesDeImagenDeJugador", ReplyAction="http://tempuri.org/IServidor/obtenerBytesDeImagenDeJugadorResponse")]
+        byte[] obtenerBytesDeImagenDeJugador(string usuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/obtenerBytesDeImagenDeJugador", ReplyAction="http://tempuri.org/IServidor/obtenerBytesDeImagenDeJugadorResponse")]
+        System.Threading.Tasks.Task<byte[]> obtenerBytesDeImagenDeJugadorAsync(string usuario);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/desconectarse")]
         void desconectarse();
@@ -482,12 +504,20 @@ namespace ChatJuego.Cliente.Proxy {
             return base.Channel.conectarseAsync(jugador);
         }
         
-        public ChatJuego.Cliente.Proxy.EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo) {
-            return base.Channel.registroJugador(usuario, contrasenia, correo);
+        public ChatJuego.Cliente.Proxy.EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador) {
+            return base.Channel.registroJugador(usuario, contrasenia, correo, imagenDeJugador);
         }
         
-        public System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoDeRegistro> registroJugadorAsync(string usuario, string contrasenia, string correo) {
-            return base.Channel.registroJugadorAsync(usuario, contrasenia, correo);
+        public System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoDeRegistro> registroJugadorAsync(string usuario, string contrasenia, string correo, byte[] imagenDeJugador) {
+            return base.Channel.registroJugadorAsync(usuario, contrasenia, correo, imagenDeJugador);
+        }
+        
+        public byte[] obtenerBytesDeImagenDeJugador(string usuario) {
+            return base.Channel.obtenerBytesDeImagenDeJugador(usuario);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> obtenerBytesDeImagenDeJugadorAsync(string usuario) {
+            return base.Channel.obtenerBytesDeImagenDeJugadorAsync(usuario);
         }
         
         public void desconectarse() {

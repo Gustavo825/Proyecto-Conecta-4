@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,12 +21,18 @@ namespace ChatJuego.Cliente
     /// </summary>
     public partial class EnviarInvitacion : Window
     {
+        SoundPlayer sonidoBoton = new SoundPlayer();
+        SoundPlayer sonidoError = new SoundPlayer();
         InvitacionCorreoServicioClient servidorCorreo;
         private Jugador jugador;
         private MenuPrincipal menuPrincipal;
 
         public EnviarInvitacion(Proxy.InvitacionCorreoServicioClient servidorCorreo, Jugador jugador, MenuPrincipal menuPrincipal)
         {
+            string ruta = System.IO.Directory.GetCurrentDirectory();
+            ruta = ruta.Substring(0, ruta.Length - 9);
+            sonidoBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
+            sonidoError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
             InitializeComponent();
             this.jugador = jugador;
             this.menuPrincipal = menuPrincipal;
@@ -34,6 +41,7 @@ namespace ChatJuego.Cliente
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            sonidoBoton.Play();
             if (!string.IsNullOrEmpty(TBUsuarioInvitacion.Text))
             {
                 var estado = servidorCorreo.enviarInvitacion(new Jugador() { usuario = TBUsuarioInvitacion.Text }, generarCodigoDePartida().ToString(), jugador);
@@ -49,6 +57,10 @@ namespace ChatJuego.Cliente
                     MessageBox.Show("Invitación enviada", "Correcto", MessageBoxButton.OK);
 
                 }
+            } else
+            {
+                sonidoError.Play();
+                MessageBox.Show("Ingrese la información requerida","Campos vacíos",MessageBoxButton.OK);
             }
         }
 

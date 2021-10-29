@@ -268,5 +268,14 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ventanas\Registro de Jugador\Iconos\imagenPredeterminada.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ventanas\Sonidos\ClicEnBoton.wav" />
+    <Content Include="Ventanas\Sonidos\Error.wav" />
+    <Content Include="Ventanas\Sonidos\MusicaDeMenu.wav" />
+    <Content Include="Ventanas\Sonidos\MusicaDePartida.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

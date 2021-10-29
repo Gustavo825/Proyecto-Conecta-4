@@ -183,6 +183,7 @@ namespace ChatJuego.Host
                 int i = 0;
                 foreach (Jugador jugador in jugadores)
                 {
+                    jugador.imagenUsuario = null;
                     jugadoresArreglo[i] = jugador;
                     i++;
                 }
@@ -191,10 +192,10 @@ namespace ChatJuego.Host
             }
         }
 
-        public EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo)
+        public EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador)
         {
             Autenticacion autenticacion = new Autenticacion();
-            EstadoDeRegistro estadoDeRegistro = autenticacion.registro(usuario, contrasenia, correo);
+            EstadoDeRegistro estadoDeRegistro = autenticacion.registro(usuario, contrasenia, correo, imagenDeJugador);
             return estadoDeRegistro;
         }
 
@@ -238,7 +239,15 @@ namespace ChatJuego.Host
 
         }
 
-        
-
-}
+        public byte[] obtenerBytesDeImagenDeJugador(string usuario)
+        {
+            using (var contexto = new JugadorContexto())
+            {
+                var bytesDeImagen = (from jugador in contexto.jugadores
+                                 where jugador.usuario == usuario
+                                 select jugador.imagenUsuario).ToArray();
+                return bytesDeImagen[0];
+            }
+        }
+    }
 }

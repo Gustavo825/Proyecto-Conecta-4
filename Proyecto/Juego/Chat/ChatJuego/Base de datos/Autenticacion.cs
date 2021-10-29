@@ -14,7 +14,7 @@ namespace ChatJuego.Base_de_datos
         {
         }
 
-        public EstadoDeRegistro registro(string usuarioR, string contraseniaR, string correoR)
+        public EstadoDeRegistro registro(string usuarioR, string contraseniaR, string correoR, byte[] imagenDeJugador)
         {
             EstadoDeRegistro estado = EstadoDeRegistro.Fallido;
             using (var contexto = new JugadorContexto())
@@ -35,7 +35,7 @@ namespace ChatJuego.Base_de_datos
                     estado = EstadoDeRegistro.FallidoPorCorreo;
                     return estado;
                 }
-                var jugadorRegistrado = contexto.jugadores.Add(new Jugador() { usuario = usuarioR, contrasenia = ComputeSHA256Hash(contraseniaR), correo = correoR, puntaje = 0 });
+                var jugadorRegistrado = contexto.jugadores.Add(new Jugador() { usuario = usuarioR, contrasenia = ComputeSHA256Hash(contraseniaR), correo = correoR, puntaje = 0 , imagenUsuario = imagenDeJugador });
                 contexto.SaveChanges();
                 estado = EstadoDeRegistro.Correcto;
                 return estado;
