@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9090/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/ChatJuego.Host" />
+  <xs:import schemaLocation="http://localhost:9090/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" />
+  <xs:import schemaLocation="http://localhost:9090/?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:9090/?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/ChatJuego.Servicios" />
+  <xs:element name="inicializar">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mandarMensaje">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ChatJuego.Host" minOccurs="0" name="mensaje" nillable="true" type="q1:Mensaje" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" minOccurs="0" name="jugadorQueMandaMensaje" nillable="true" type="q2:Jugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mandarMensajePrivado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ChatJuego.Host" minOccurs="0" name="mensaje" nillable="true" type="q3:Mensaje" />
+        <xs:element minOccurs="0" name="nombreJugador" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" minOccurs="0" name="jugadorQueMandaMensaje" nillable="true" type="q4:Jugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="recibirMensaje">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" minOccurs="0" name="jugador" nillable="true" type="q5:Jugador" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ChatJuego.Host" minOccurs="0" name="mensaje" nillable="true" type="q6:Mensaje" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="nombresDeJugadores" nillable="true" type="q7:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="actualizarJugadoresConectados">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="nombresDeJugadores" nillable="true" type="q8:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mostrarPuntajes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" minOccurs="0" name="jugadores" nillable="true" type="q9:ArrayOfJugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enviarInvitacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" minOccurs="0" name="jugadorInvitado" nillable="true" type="q10:Jugador" />
+        <xs:element minOccurs="0" name="codigoPartida" nillable="true" type="xs:string" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" minOccurs="0" name="jugadorInvitador" nillable="true" type="q11:Jugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enviarInvitacionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ChatJuego.Servicios" minOccurs="0" name="enviarInvitacionResult" type="q12:EstadoDeEnvio" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mandarCodigoDeRegistro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigoDeRegistro" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mandarCodigoDeRegistroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ChatJuego.Servicios" minOccurs="0" name="mandarCodigoDeRegistroResult" type="q13:EstadoDeEnvio" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="conectarse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" minOccurs="0" name="jugador" nillable="true" type="q14:Jugador" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="conectarseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="conectarseResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="registroJugador">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="contrasenia" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="imagenDeJugador" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="registroJugadorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" minOccurs="0" name="registroJugadorResult" type="q15:EstadoDeRegistro" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="obtenerBytesDeImagenDeJugador">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="obtenerBytesDeImagenDeJugadorResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="obtenerBytesDeImagenDeJugadorResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="desconectarse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="recuperarPuntajesDeJugadores">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
