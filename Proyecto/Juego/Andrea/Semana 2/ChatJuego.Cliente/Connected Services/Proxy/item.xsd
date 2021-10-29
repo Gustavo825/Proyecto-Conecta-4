@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ChatJuego.Base_de_datos" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="Jugador">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="JugadorId" type="xs:int" />
+      <xs:element minOccurs="0" name="contrasenia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="puntaje" nillable="true" type="xs:float" />
+      <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Jugador" nillable="true" type="tns:Jugador" />
+  <xs:complexType name="ArrayOfJugador">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Jugador" nillable="true" type="tns:Jugador" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJugador" nillable="true" type="tns:ArrayOfJugador" />
+  <xs:simpleType name="EstadoDeRegistro">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Correcto" />
+      <xs:enumeration value="FallidoPorCorreo" />
+      <xs:enumeration value="FallidoPorUsuario" />
+      <xs:enumeration value="Fallido" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EstadoDeRegistro" nillable="true" type="tns:EstadoDeRegistro" />
+</xs:schema>
