@@ -1,0 +1,7 @@
+C:\Users\gustt\source\repos\ChatJuego\bin\Debug\ChatJuego.exe.config
+C:\Users\gustt\source\repos\ChatJuego\bin\Debug\ChatJuego.exe
+C:\Users\gustt\source\repos\ChatJuego\bin\Debug\ChatJuego.pdb
+C:\Users\gustt\source\repos\ChatJuego\obj\Debug\WCF.csproj.CoreCompileInputs.cache
+C:\Users\gustt\source\repos\ChatJuego\obj\Debug\ChatJuego.exe
+C:\Users\gustt\source\repos\ChatJuego\obj\Debug\ChatJuego.pdb
+C:\Users\gustt\source\repos\ChatJuego\obj\Debug\WCF.csproj.AssemblyReference.cache
