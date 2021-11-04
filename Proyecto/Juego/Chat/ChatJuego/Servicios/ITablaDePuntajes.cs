@@ -13,6 +13,6 @@ namespace ChatJuego.Servicios
     public interface ITablaDePuntajes
     {
         [OperationContract(IsOneWay = true)]
-        void recuperarPuntajesDeJugadores();
+        void RecuperarPuntajesDeJugadores();
     }
 }

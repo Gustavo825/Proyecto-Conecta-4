@@ -14,13 +14,13 @@ namespace ChatJuego.Base_de_datos
         {
         }
 
-        public EstadoDeRegistro registro(string usuarioR, string contraseniaR, string correoR, byte[] imagenDeJugador)
+        public EstadoDeRegistro Registro(string usuarioARegistrar, string contraseniaARegistrar, string correoARegistrar, byte[] imagenDeJugador)
         {
             EstadoDeRegistro estado = EstadoDeRegistro.Fallido;
             using (var contexto = new JugadorContexto())
             {
                 var jugadores = (from jugador in contexto.jugadores
-                                 where jugador.usuario == usuarioR
+                                 where jugador.usuario == usuarioARegistrar
                                  select jugador).Count();
                 if (jugadores > 0)
                 {
@@ -28,21 +28,21 @@ namespace ChatJuego.Base_de_datos
                     return estado;
                 }
                 jugadores = (from jugador in contexto.jugadores
-                                 where jugador.correo == correoR
+                                 where jugador.correo == correoARegistrar
                                  select jugador).Count();
                 if (jugadores > 0)
                 {
                     estado = EstadoDeRegistro.FallidoPorCorreo;
                     return estado;
                 }
-                var jugadorRegistrado = contexto.jugadores.Add(new Jugador() { usuario = usuarioR, contrasenia = ComputeSHA256Hash(contraseniaR), correo = correoR, puntaje = 0 , imagenUsuario = imagenDeJugador });
+                var jugadorRegistrado = contexto.jugadores.Add(new Jugador() { usuario = usuarioARegistrar, contrasenia = ComputeSHA256Hash(contraseniaARegistrar), correo = correoARegistrar, puntaje = 0 , imagenUsuario = imagenDeJugador });
                 contexto.SaveChanges();
                 estado = EstadoDeRegistro.Correcto;
                 return estado;
             }
         }
 
-        public EstadoDeAutenticacion iniciarSesion(string usuario, string contrasenia)
+        public EstadoDeAutenticacion IniciarSesion(string usuario, string contrasenia)
         {
             EstadoDeAutenticacion estado = EstadoDeAutenticacion.Failed;
             string contraseniaCifrada = ComputeSHA256Hash(contrasenia);
@@ -59,15 +59,11 @@ namespace ChatJuego.Base_de_datos
             return estado;
         }
 
-        private string ComputeSHA256Hash(string input)
+        private string ComputeSHA256Hash(string contrasenia)
         {
-            // Create a SHA256   
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                // ComputeHash - returns byte array  
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-                // Convert byte array to a string   
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(contrasenia));
                 StringBuilder builder = new StringBuilder();
                 for (int i = 0; i < bytes.Length; i++)
                 {

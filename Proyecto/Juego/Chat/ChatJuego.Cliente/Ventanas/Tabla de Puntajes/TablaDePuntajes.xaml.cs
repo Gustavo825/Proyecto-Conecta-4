@@ -32,7 +32,7 @@ namespace ChatJuego.Cliente
             InitializeComponent();
             this.servidorTablaDePuntajes = servidorTablaDePuntajes;
             PlantillaTablaDePuntuaciones.Items.Add(new { FondoElemento = "00FFFFFF", FondoPosicion = "00FFFFFF", Lugar = "", NombreJugador = "Jugador", Puntaje = "Puntaje" });
-           this.servidorTablaDePuntajes.recuperarPuntajesDeJugadores();
+            this.servidorTablaDePuntajes.RecuperarPuntajesDeJugadores();
         }
     }
 }

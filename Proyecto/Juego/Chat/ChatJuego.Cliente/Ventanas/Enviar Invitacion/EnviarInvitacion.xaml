@@ -23,7 +23,7 @@
             <TextBox Name="TBUsuarioInvitacion" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120"></TextBox>
         </Grid>
         <Grid Grid.Row="3">
-            <Button VerticalAlignment="Center" HorizontalAlignment="Center" Height="62" Width="176"  BorderThickness="0" Background = "Transparent"  Foreground="Transparent" Click="Button_Click" >
+            <Button VerticalAlignment="Center" HorizontalAlignment="Center" Height="62" Width="176"  BorderThickness="0" Background = "Transparent"  Foreground="Transparent" Click="BotonDeEnviarInvitacion_Click" >
                 <Image Height="62" Width="176" Source="Iconos\botonEnviarInvitacion.png"></Image>
             </Button>
             <Image Source="/Iconos/Penguins_playign_find_four.png" HorizontalAlignment="Right" Width="150" Margin="0,-122,89,122"></Image>

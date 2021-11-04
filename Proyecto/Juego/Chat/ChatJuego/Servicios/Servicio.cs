@@ -18,10 +18,10 @@ namespace ChatJuego.Host
         private const string SMTPServidor = "smtp.gmail.com";
         private const int puerto = 587;
         private const string contrasenia = "gusandreacarlos1*";
-        public bool conectarse(Jugador jugador)
+        public bool Conectarse(Jugador jugador)
         {
             Autenticacion autenticacion = new Autenticacion();
-            EstadoDeAutenticacion estado = autenticacion.iniciarSesion(jugador.usuario, jugador.contrasenia);
+            EstadoDeAutenticacion estado = autenticacion.IniciarSesion(jugador.usuario, jugador.contrasenia);
             if (estado == EstadoDeAutenticacion.Correcto)
             {
                 foreach (var jugadorIniciado in jugadores.Values)
@@ -42,7 +42,7 @@ namespace ChatJuego.Host
             return false;
         }
 
-        public void desconectarse()
+        public void Desconectarse()
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
             jugadores.Remove(conexion);
@@ -57,13 +57,13 @@ namespace ChatJuego.Host
             {
                 if (conexiones == conexion)
                     continue;
-                conexiones.actualizarJugadoresConectados(nombresDeJugadores);
+                conexiones.ActualizarJugadoresConectados(nombresDeJugadores);
             }
         }
 
         
 
-        public EstadoDeEnvio enviarInvitacion(Jugador jugadorInvitado, string codigoPartida, Jugador jugadorInvitador)
+        public EstadoDeEnvio EnviarInvitacion(Jugador jugadorInvitado, string codigoPartida, Jugador jugadorInvitador)
         {
             EstadoDeEnvio estado = EstadoDeEnvio.Fallido;
             using (var contexto = new JugadorContexto())
@@ -116,7 +116,7 @@ namespace ChatJuego.Host
         }
    
 
-    public void inicializar()
+    public void InicializarChat()
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
             string[] nombresDeJugadores = new string[jugadores.Count()];
@@ -128,11 +128,11 @@ namespace ChatJuego.Host
             }
             foreach (var conexiones in jugadores.Keys)
             {
-                conexiones.actualizarJugadoresConectados(nombresDeJugadores);
+                conexiones.ActualizarJugadoresConectados(nombresDeJugadores);
             }
         }
 
-        public void mandarMensaje(Mensaje mensaje, Jugador jugadorQueMandaMensaje)
+        public void MandarMensaje(Mensaje mensaje, Jugador jugadorQueMandaMensaje)
         {
             Console.WriteLine("{0}:{1}", jugadorQueMandaMensaje.usuario, mensaje.ContenidoMensaje);
             string[] nombresDeJugadores = new string[jugadores.Count()];
@@ -146,11 +146,11 @@ namespace ChatJuego.Host
             {
                 if (jugadores[conexiones].usuario == jugadorQueMandaMensaje.usuario)
                     continue;
-                conexiones.recibirMensaje(jugadorQueMandaMensaje, mensaje,nombresDeJugadores);
+                conexiones.RecibirMensaje(jugadorQueMandaMensaje, mensaje,nombresDeJugadores);
             }
         }
 
-        public void mandarMensajePrivado(Mensaje mensaje, string nombreJugador, Jugador jugadorQueMandaMensaje)
+        public void MandarMensajePrivado(Mensaje mensaje, string nombreJugador, Jugador jugadorQueMandaMensaje)
         {
             Console.WriteLine("{0}:{1}", jugadorQueMandaMensaje.usuario, mensaje.ContenidoMensaje);
             string[] nombresDeJugadores = new string[jugadores.Count()];
@@ -166,13 +166,13 @@ namespace ChatJuego.Host
                     continue;
                 if (jugadores[conexiones].usuario == nombreJugador)
                 {
-                    conexiones.recibirMensaje(jugadorQueMandaMensaje, mensaje, nombresDeJugadores);
+                    conexiones.RecibirMensaje(jugadorQueMandaMensaje, mensaje, nombresDeJugadores);
                     break;
                 }
             }
         }
 
-        public void recuperarPuntajesDeJugadores()
+        public void RecuperarPuntajesDeJugadores()
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
             using (var contexto = new JugadorContexto())
@@ -187,19 +187,19 @@ namespace ChatJuego.Host
                     jugadoresArreglo[i] = jugador;
                     i++;
                 }
-                conexion.mostrarPuntajes(jugadoresArreglo);
+                conexion.MostrarPuntajes(jugadoresArreglo);
                 
             }
         }
 
-        public EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador)
+        public EstadoDeRegistro RegistroDeJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador)
         {
             Autenticacion autenticacion = new Autenticacion();
-            EstadoDeRegistro estadoDeRegistro = autenticacion.registro(usuario, contrasenia, correo, imagenDeJugador);
+            EstadoDeRegistro estadoDeRegistro = autenticacion.Registro(usuario, contrasenia, correo, imagenDeJugador);
             return estadoDeRegistro;
         }
 
-        public EstadoDeEnvio mandarCodigoDeRegistro(string codigoDeRegistro, string correoDeRegistro)
+        public EstadoDeEnvio MandarCodigoDeRegistro(string codigoDeRegistro, string correoDeRegistro)
         {
             EstadoDeEnvio estado = EstadoDeEnvio.Fallido;
             
@@ -225,21 +225,21 @@ namespace ChatJuego.Host
                         }
                         catch
                         {
-                            Console.WriteLine("Aquí");
+                            Console.WriteLine("No se mandó el correo");
                             estado = EstadoDeEnvio.Fallido;
                         }
                     }
                 }
                 catch
                 {
-                    Console.WriteLine("Ups");
+                    Console.WriteLine("No se pudo crear el cliente SMTP ");
                 }
             
             return estado;
 
         }
 
-        public byte[] obtenerBytesDeImagenDeJugador(string usuario)
+        public byte[] ObtenerBytesDeImagenDeJugador(string usuario)
         {
             using (var contexto = new JugadorContexto())
             {

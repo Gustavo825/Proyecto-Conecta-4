@@ -8,14 +8,14 @@ namespace ChatJuego.Host
     {
 
         [OperationContract(IsOneWay = true)]
-        void inicializar();
+        void InicializarChat();
 
         
         [OperationContract(IsOneWay = true)]
-        void mandarMensaje(Mensaje mensaje, Jugador jugadorQueMandaMensaje);
+        void MandarMensaje(Mensaje mensaje, Jugador jugadorQueMandaMensaje);
 
         [OperationContract(IsOneWay = true)]
-        void mandarMensajePrivado(Mensaje mensaje, string nombreJugador, Jugador jugadorQueMandaMensaje);
+        void MandarMensajePrivado(Mensaje mensaje, string nombreJugador, Jugador jugadorQueMandaMensaje);
 
 
         

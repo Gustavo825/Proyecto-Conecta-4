@@ -14,16 +14,16 @@ namespace ChatJuego.Servicios
     {
 
         [OperationContract(IsOneWay = false)]
-        bool conectarse(Jugador jugador);
+        bool Conectarse(Jugador jugador);
 
 
         [OperationContract(IsOneWay = false)]
-        EstadoDeRegistro registroJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador);
+        EstadoDeRegistro RegistroDeJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador);
 
         [OperationContract(IsOneWay = false)]
-        byte[] obtenerBytesDeImagenDeJugador(string usuario);
+        byte[] ObtenerBytesDeImagenDeJugador(string usuario);
 
         [OperationContract(IsOneWay = true)]
-        void desconectarse();
+        void Desconectarse();
     }
 }

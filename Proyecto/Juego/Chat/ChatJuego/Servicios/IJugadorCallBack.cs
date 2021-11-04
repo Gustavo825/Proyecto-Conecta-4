@@ -8,12 +8,12 @@ namespace ChatJuego.Host
     public interface IJugadorCallBack
     {
         [OperationContract(IsOneWay = true)]
-        void recibirMensaje(Jugador jugador, Mensaje mensaje,string[] nombresDeJugadores);
+        void RecibirMensaje(Jugador jugador, Mensaje mensaje,string[] nombresDeJugadores);
 
         [OperationContract(IsOneWay = true)]
-        void actualizarJugadoresConectados(string[] nombresDeJugadores);
+        void ActualizarJugadoresConectados(string[] nombresDeJugadores);
 
         [OperationContract(IsOneWay = true)]
-        void mostrarPuntajes(Jugador[] jugadores);
+        void MostrarPuntajes(Jugador[] jugadores);
     }
 }

@@ -24,25 +24,24 @@ namespace ChatJuego.Cliente
     /// </summary>
     public partial class MainWindow : Window
     {
-        MediaPlayer musicaMenu = new MediaPlayer();
-        SoundPlayer sonidoBoton = new SoundPlayer();
-        SoundPlayer sonidoError = new SoundPlayer();
-        Proxy.ServidorClient servidor;
-        JugadorCallBack jugadorCallback;
+        MediaPlayer musicaDelMenu = new MediaPlayer();
+        SoundPlayer sonidoDeBoton = new SoundPlayer();
+        SoundPlayer sonidoDeError = new SoundPlayer();
+        ServidorClient servidor;
+        JugadorCallBack callBackDelJugador;
         InstanceContext contexto;
         public MainWindow()
         {
-            jugadorCallback = new JugadorCallBack();
-            contexto = new InstanceContext(jugadorCallback);
-            servidor = new Proxy.ServidorClient(contexto);
+            callBackDelJugador = new JugadorCallBack();
+            contexto = new InstanceContext(callBackDelJugador);
+            servidor = new ServidorClient(contexto);
             InitializeComponent();
             string ruta = System.IO.Directory.GetCurrentDirectory();
             ruta = ruta.Substring(0, ruta.Length - 9);
-            musicaMenu.Open(new Uri(ruta + @"Ventanas\Sonidos\MusicaDeMenu.wav"));
-            musicaMenu.Play();
-            sonidoBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
-            sonidoError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
-
+            musicaDelMenu.Open(new Uri(ruta + @"Ventanas\Sonidos\MusicaDeMenu.wav"));
+            musicaDelMenu.Play();
+            sonidoDeBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
+            sonidoDeError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
         }
 
         private void BotonIniciarSesion_Click(object sender, RoutedEventArgs e)
@@ -54,29 +53,37 @@ namespace ChatJuego.Cliente
                     usuario = TBUsuario.Text,
                     contrasenia = TBContrasenia.Password 
                 };
-                var estado = servidor.conectarse(jugador);
-                if (estado)
+                try
                 {
-                    jugador.imagenUsuario = servidor.obtenerBytesDeImagenDeJugador(jugador.usuario);
-                    MenuPrincipal menuPrincipal = new MenuPrincipal(servidor, jugadorCallback, jugador, contexto, new ChatServicioClient(contexto));
-                    menuPrincipal.Show();
-                    musicaMenu.Stop();
-                    Close();
-                } else
+                    bool estado = servidor.Conectarse(jugador);
+                    if (estado)
+                    {
+                        jugador.imagenUsuario = servidor.ObtenerBytesDeImagenDeJugador(jugador.usuario);
+                        MenuPrincipal menuPrincipal = new MenuPrincipal(servidor, callBackDelJugador, jugador, contexto);
+                        menuPrincipal.Show();
+                        musicaDelMenu.Stop();
+                        Close();
+                    }
+                    else
+                    {
+                        sonidoDeError.Play();
+                        MessageBox.Show("Credenciales incorrectas", "Error en el inicio de sesión", MessageBoxButton.OK);
+                    }
+                } catch (EndpointNotFoundException endpointNotFoundException)
                 {
-                    sonidoError.Play();
-                    MessageBox.Show("Credenciales incorrectas", "Error en el inicio de sesión", MessageBoxButton.OK);
+                    MessageBox.Show("No se ha podido conectar con el servidor", "Error de conexión", MessageBoxButton.OK);
+                    servidor = new ServidorClient(contexto);
                 }
             } else
             {
-                sonidoBoton.Play();
+                sonidoDeBoton.Play();
                 MessageBox.Show("Existen campos vacíos", "Campos incompletos", MessageBoxButton.OK);
             }
         }
 
-        private void BotonRegistrarseI_Click(object sender, RoutedEventArgs e)
+        private void BotonRegistrarse_Click(object sender, RoutedEventArgs e)
         {
-            sonidoBoton.Play();
+            sonidoDeBoton.Play();
             RegistroDeJugador registro = new RegistroDeJugador(servidor,this,contexto);
             registro.Show();
             this.Hide();

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Media;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,57 +22,75 @@ namespace ChatJuego.Cliente
     /// </summary>
     public partial class EnviarInvitacion : Window
     {
-        SoundPlayer sonidoBoton = new SoundPlayer();
-        SoundPlayer sonidoError = new SoundPlayer();
-        InvitacionCorreoServicioClient servidorCorreo;
+        SoundPlayer sonidoDeBoton = new SoundPlayer();
+        SoundPlayer sonidoDeError = new SoundPlayer();
+        InvitacionCorreoServicioClient servidorDeCorreo;
+        InstanceContext contexto;
         private Jugador jugador;
         private MenuPrincipal menuPrincipal;
+        bool perdidaDeConexion = false;
 
-        public EnviarInvitacion(Proxy.InvitacionCorreoServicioClient servidorCorreo, Jugador jugador, MenuPrincipal menuPrincipal)
+        public EnviarInvitacion(Jugador jugador, MenuPrincipal menuPrincipal, InstanceContext contexto)
         {
             string ruta = System.IO.Directory.GetCurrentDirectory();
             ruta = ruta.Substring(0, ruta.Length - 9);
-            sonidoBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
-            sonidoError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
+            sonidoDeBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
+            sonidoDeError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
             InitializeComponent();
             this.jugador = jugador;
             this.menuPrincipal = menuPrincipal;
-            this.servidorCorreo = servidorCorreo;
+            this.contexto = contexto;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BotonDeEnviarInvitacion_Click(object sender, RoutedEventArgs e)
         {
-            sonidoBoton.Play();
+            sonidoDeBoton.Play();
             if (!string.IsNullOrEmpty(TBUsuarioInvitacion.Text))
             {
-                var estado = servidorCorreo.enviarInvitacion(new Jugador() { usuario = TBUsuarioInvitacion.Text }, generarCodigoDePartida().ToString(), jugador);
-                if (estado == EstadoDeEnvio.UsuarioNoEncontrado)
+                try
                 {
-                    MessageBox.Show("El usuario ingresado no existe", "Usuario no encontrado", MessageBoxButton.OK);
-                } else if (estado == EstadoDeEnvio.Fallido)
-                {
-                    MessageBox.Show("Ocurrió un error y no se pudo mandar la invitación", "Error", MessageBoxButton.OK);
-                } else
-                {
+                    servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
+                    var estado = servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = TBUsuarioInvitacion.Text }, GenerarCodigoDePartida().ToString(), jugador);
+                    if (estado == EstadoDeEnvio.UsuarioNoEncontrado)
+                    {
+                        MessageBox.Show("El usuario ingresado no existe", "Usuario no encontrado", MessageBoxButton.OK);
+                    }
+                    else if (estado == EstadoDeEnvio.Fallido)
+                    {
+                        MessageBox.Show("Ocurrió un error y no se pudo mandar la invitación", "Error", MessageBoxButton.OK);
+                    }
+                    else
+                    {
 
-                    MessageBox.Show("Invitación enviada", "Correcto", MessageBoxButton.OK);
+                        MessageBox.Show("Invitación enviada", "Correcto", MessageBoxButton.OK);
 
+                    }
+                }
+                catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
+                {
+                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    perdidaDeConexion = true;
+                    menuPrincipal.Close();
+                    this.Close();
                 }
             } else
             {
-                sonidoError.Play();
+                sonidoDeError.Play();
                 MessageBox.Show("Ingrese la información requerida","Campos vacíos",MessageBoxButton.OK);
             }
         }
 
-        public static int generarCodigoDePartida()
+        public static int GenerarCodigoDePartida()
         {
             return new Random().Next(1000, 3000);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            menuPrincipal.Show();
+           if (!perdidaDeConexion)
+                menuPrincipal.Show();   
         }
     }
 }

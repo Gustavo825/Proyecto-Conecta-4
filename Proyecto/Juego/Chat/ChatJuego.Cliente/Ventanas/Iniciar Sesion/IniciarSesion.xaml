@@ -71,7 +71,7 @@
                 </Button.Resources>
                 <Image Source="Iconos\botonIniciarSesion.png" Height="62" Width="176"/>
             </Button>
-            <Button x:Name="BotonRegistrarseI" BorderThickness="0" Height="62" Width="176" Background = "Transparent" Foreground="Transparent" Click="BotonRegistrarseI_Click"  Grid.Column="1">
+            <Button x:Name="BotonRegistrarseI" BorderThickness="0" Height="62" Width="176" Background = "Transparent" Foreground="Transparent" Click="BotonRegistrarse_Click"  Grid.Column="1">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="60"/>
