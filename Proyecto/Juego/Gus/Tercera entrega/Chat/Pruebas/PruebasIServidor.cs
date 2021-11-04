@@ -95,5 +95,12 @@ namespace Pruebas
         {
             Assert.AreEqual(null,servidor.ObtenerBytesDeImagenDeJugador("JugadorNoExistente"));
         }
+
+        [TestMethod]
+        public void TestDesconectarse()
+        {
+            servidor.Conectarse(new Jugador() { usuario = "Gustavo825", contrasenia = "61245" });
+            servidor.Desconectarse();
+        }
     }
 }

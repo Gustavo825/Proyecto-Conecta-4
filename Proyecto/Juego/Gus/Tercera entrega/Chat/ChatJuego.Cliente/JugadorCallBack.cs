@@ -10,7 +10,7 @@ namespace ChatJuego.Cliente
         private Chat chat;
         private TablaDePuntajes tabla;
 
-        public void ActualizarJugadoresConectados(string[] nombresDeJugadores)
+        public virtual void ActualizarJugadoresConectados(string[] nombresDeJugadores)
         {
             if (chat != null)
             {
@@ -24,7 +24,7 @@ namespace ChatJuego.Cliente
             }
         }
 
-        public void MostrarPuntajes(Jugador[] jugadores)
+        public virtual void MostrarPuntajes(Jugador[] jugadores)
         {
             if (tabla != null)
             {
@@ -37,7 +37,7 @@ namespace ChatJuego.Cliente
             }
         }
 
-        public void RecibirMensaje(Jugador jugador, Mensaje mensaje, string[] nombresDeJugadores)
+        public virtual void RecibirMensaje(Jugador jugador, Mensaje mensaje, string[] nombresDeJugadores)
         {
             if (chat != null)
             {

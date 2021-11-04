@@ -35,6 +35,17 @@ namespace ChatJuego.Host
                 var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
                 Console.WriteLine("Jugador Conectado: {0}", jugador.usuario);
                 jugadores.Add(conexion, jugador);
+                string[] nombresDeJugadores = new string[jugadores.Count()];
+                int i = 0;
+                foreach (Jugador nombre in jugadores.Values)
+                {
+                    nombresDeJugadores[i] = nombre.usuario;
+                    i++;
+                }
+                foreach (var conexiones in jugadores.Keys)
+                {
+                    conexiones.ActualizarJugadoresConectados(nombresDeJugadores);
+                }
                 return EstadoDeInicioDeSesion.Correcto;
             } else
                 return EstadoDeInicioDeSesion.Fallido;

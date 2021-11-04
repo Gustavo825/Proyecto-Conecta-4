@@ -9,36 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace Pruebas.Proxy {
-    using System.Runtime.Serialization;
     
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EstadoDeEliminacion", Namespace="http://schemas.datacontract.org/2004/07/ChatJuego.Servicios")]
-    public enum EstadoDeEliminacion : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Correcto = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Fallido = 1,
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EstadoDeRegistro", Namespace="http://schemas.datacontract.org/2004/07/ChatJuego.Servicios")]
-    public enum EstadoDeRegistro : int {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Correcto = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        FallidoPorCorreo = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        FallidoPorUsuario = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Fallido = 3,
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Proxy.IChatServicio", CallbackContract=typeof(Pruebas.Proxy.IChatServicioCallback))]
@@ -215,16 +186,16 @@ namespace Pruebas.Proxy {
         System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoDeInicioDeSesion> ConectarseAsync(ChatJuego.Cliente.Proxy.Jugador jugador);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/EliminarJugador", ReplyAction="http://tempuri.org/IServidor/EliminarJugadorResponse")]
-        Pruebas.Proxy.EstadoDeEliminacion EliminarJugador(ChatJuego.Cliente.Proxy.Jugador jugador);
+        ChatJuego.Cliente.Proxy.EstadoDeEliminacion EliminarJugador(ChatJuego.Cliente.Proxy.Jugador jugador);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/EliminarJugador", ReplyAction="http://tempuri.org/IServidor/EliminarJugadorResponse")]
-        System.Threading.Tasks.Task<Pruebas.Proxy.EstadoDeEliminacion> EliminarJugadorAsync(ChatJuego.Cliente.Proxy.Jugador jugador);
+        System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoDeEliminacion> EliminarJugadorAsync(ChatJuego.Cliente.Proxy.Jugador jugador);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/RegistroDeJugador", ReplyAction="http://tempuri.org/IServidor/RegistroDeJugadorResponse")]
-        Pruebas.Proxy.EstadoDeRegistro RegistroDeJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador);
+        ChatJuego.Cliente.Proxy.EstadoDeRegistro RegistroDeJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/RegistroDeJugador", ReplyAction="http://tempuri.org/IServidor/RegistroDeJugadorResponse")]
-        System.Threading.Tasks.Task<Pruebas.Proxy.EstadoDeRegistro> RegistroDeJugadorAsync(string usuario, string contrasenia, string correo, byte[] imagenDeJugador);
+        System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoDeRegistro> RegistroDeJugadorAsync(string usuario, string contrasenia, string correo, byte[] imagenDeJugador);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/ObtenerBytesDeImagenDeJugador", ReplyAction="http://tempuri.org/IServidor/ObtenerBytesDeImagenDeJugadorResponse")]
         byte[] ObtenerBytesDeImagenDeJugador(string usuario);
@@ -288,19 +259,19 @@ namespace Pruebas.Proxy {
             return base.Channel.ConectarseAsync(jugador);
         }
         
-        public Pruebas.Proxy.EstadoDeEliminacion EliminarJugador(ChatJuego.Cliente.Proxy.Jugador jugador) {
+        public ChatJuego.Cliente.Proxy.EstadoDeEliminacion EliminarJugador(ChatJuego.Cliente.Proxy.Jugador jugador) {
             return base.Channel.EliminarJugador(jugador);
         }
         
-        public System.Threading.Tasks.Task<Pruebas.Proxy.EstadoDeEliminacion> EliminarJugadorAsync(ChatJuego.Cliente.Proxy.Jugador jugador) {
+        public System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoDeEliminacion> EliminarJugadorAsync(ChatJuego.Cliente.Proxy.Jugador jugador) {
             return base.Channel.EliminarJugadorAsync(jugador);
         }
         
-        public Pruebas.Proxy.EstadoDeRegistro RegistroDeJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador) {
+        public ChatJuego.Cliente.Proxy.EstadoDeRegistro RegistroDeJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador) {
             return base.Channel.RegistroDeJugador(usuario, contrasenia, correo, imagenDeJugador);
         }
         
-        public System.Threading.Tasks.Task<Pruebas.Proxy.EstadoDeRegistro> RegistroDeJugadorAsync(string usuario, string contrasenia, string correo, byte[] imagenDeJugador) {
+        public System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoDeRegistro> RegistroDeJugadorAsync(string usuario, string contrasenia, string correo, byte[] imagenDeJugador) {
             return base.Channel.RegistroDeJugadorAsync(usuario, contrasenia, correo, imagenDeJugador);
         }
         

@@ -18,6 +18,10 @@ C:\Users\perez\Desktop\Croy\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\ChatJuego.Cliente.exe.config
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\ChatJuego.Cliente.exe
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\ChatJuego.Cliente.pdb
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Chat\Chat.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Registro de Jugador\RegistroDeJugadorInputDeCodigo.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Enviar Invitacion\EnviarInvitacion.g.cs
@@ -42,8 +46,5 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cl
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.CoreCompileInputs.cache
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.exe
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.pdb
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.AssemblyReference.cache
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.CopyComplete

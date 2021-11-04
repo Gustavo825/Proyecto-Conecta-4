@@ -10,7 +10,6 @@ namespace ChatJuego.Host
         [OperationContract(IsOneWay = true)]
         void InicializarChat();
 
-        
         [OperationContract(IsOneWay = true)]
         void MandarMensaje(Mensaje mensaje, Jugador jugadorQueMandaMensaje);
 
