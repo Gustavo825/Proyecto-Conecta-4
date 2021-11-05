@@ -55,19 +55,22 @@ namespace ChatJuego.Cliente
                 };
                 try
                 {
-                    bool estado = servidor.Conectarse(jugador);
-                    if (estado)
+                    EstadoDeInicioDeSesion estado = servidor.Conectarse(jugador);
+                    if (estado == EstadoDeInicioDeSesion.Correcto)
                     {
-                        jugador.imagenUsuario = servidor.ObtenerBytesDeImagenDeJugador(jugador.usuario);
                         MenuPrincipal menuPrincipal = new MenuPrincipal(servidor, callBackDelJugador, jugador, contexto);
                         menuPrincipal.Show();
                         musicaDelMenu.Stop();
                         Close();
                     }
-                    else
+                    else if (estado == EstadoDeInicioDeSesion.Fallido)
                     {
                         sonidoDeError.Play();
                         MessageBox.Show("Credenciales incorrectas", "Error en el inicio de sesión", MessageBoxButton.OK);
+                    } else if (estado == EstadoDeInicioDeSesion.FallidoPorUsuarioYaConectado)
+                    {
+                        sonidoDeError.Play();
+                        MessageBox.Show("Ya hay una sesión de este usuario", "Error", MessageBoxButton.OK);
                     }
                 } catch (EndpointNotFoundException endpointNotFoundException)
                 {

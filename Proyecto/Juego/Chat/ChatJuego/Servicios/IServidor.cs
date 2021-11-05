@@ -14,7 +14,10 @@ namespace ChatJuego.Servicios
     {
 
         [OperationContract(IsOneWay = false)]
-        bool Conectarse(Jugador jugador);
+        EstadoDeInicioDeSesion Conectarse(Jugador jugador);
+
+        [OperationContract(IsOneWay = false)]
+        EstadoDeEliminacion EliminarJugador(Jugador jugador);
 
 
         [OperationContract(IsOneWay = false)]
@@ -25,5 +28,28 @@ namespace ChatJuego.Servicios
 
         [OperationContract(IsOneWay = true)]
         void Desconectarse();
+
+        
+    }
+
+    public enum EstadoDeRegistro
+    {
+        Correcto = 0,
+        FallidoPorCorreo,
+        FallidoPorUsuario,
+        Fallido
+    }
+
+    public enum EstadoDeEliminacion
+    {
+        Correcto = 0,
+        Fallido
+    }
+
+    public enum EstadoDeInicioDeSesion
+    {
+        Correcto = 0,
+        FallidoPorUsuarioYaConectado,
+        Fallido
     }
 }

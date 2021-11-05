@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatJuego.Servicios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -72,6 +73,27 @@ namespace ChatJuego.Base_de_datos
                 return builder.ToString();
             }
         }
+
+        internal EstadoDeEliminacion EliminarJugador(string usuario, string contrasenia)
+        {
+            EstadoDeEliminacion estado = EstadoDeEliminacion.Fallido;
+            using (var contexto = new JugadorContexto())
+            {
+                string contraseniaCifrada = ComputeSHA256Hash(contrasenia);
+                var jugadores = (from jugador in contexto.jugadores
+                                 where jugador.usuario == usuario && jugador.contrasenia == contraseniaCifrada
+                                 select jugador).Count();
+                if (jugadores > 0)
+                {
+                    contexto.jugadores.Remove(contexto.jugadores.Single(a => a.usuario == usuario && a.contrasenia == contraseniaCifrada));
+                    contexto.SaveChanges();
+                    estado = EstadoDeEliminacion.Correcto;
+                }
+                else
+                    estado = EstadoDeEliminacion.Fallido;
+            }
+            return estado;
+        }
     }
 
     public enum EstadoDeAutenticacion
@@ -80,12 +102,6 @@ namespace ChatJuego.Base_de_datos
         Failed
     }
 
-    public enum EstadoDeRegistro 
-    { 
-        Correcto = 0,
-        FallidoPorCorreo,
-        FallidoPorUsuario,
-        Fallido
-    }
+ 
 
 }

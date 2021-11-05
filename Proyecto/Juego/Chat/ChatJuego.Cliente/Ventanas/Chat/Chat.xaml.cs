@@ -1,6 +1,7 @@
 ﻿using ChatJuego.Cliente.Proxy;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace ChatJuego.Cliente
         private ChatServicioClient servidorDelChat;
         private bool esMensajePrivado = false;
         private Label jugadorPrivadoSeleccionado;
+        public MenuPrincipal menuPrincipal;
 
         
         public ScrollViewer VistaDeContenidoDeScroll
@@ -51,20 +53,20 @@ namespace ChatJuego.Cliente
             set { Titulo = value; }
         }
 
+
+       
+
         public Chat(Jugador jugador, ChatServicioClient servidorDelChat)
         {
             InitializeComponent();
             this.jugador = jugador;
             this.servidorDelChat = servidorDelChat;
-            Titulo.Content = "Bienvenid@ al chat " + jugador.usuario;
-
         }
 
         public Jugador GetJugador()
         {
             return jugador;
         }
-
 
 
         private void BotonEnviar_Click(object sender, RoutedEventArgs e)
@@ -101,6 +103,20 @@ namespace ChatJuego.Cliente
                     ContenidoDelMensaje.Clear();
                 }
             }
+        }
+
+        public static BitmapImage ConvertirArrayAImagen(byte[] arrayDeImagen)
+        {
+            BitmapImage imagen = new BitmapImage();
+            using (MemoryStream memStream = new MemoryStream(arrayDeImagen))
+            {
+                imagen.BeginInit();
+                imagen.CacheOption = BitmapCacheOption.OnLoad;
+                imagen.StreamSource = memStream;
+                imagen.EndInit();
+                imagen.Freeze();
+            }
+            return imagen;
         }
 
         private void ClickEnLabelDeJugador_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

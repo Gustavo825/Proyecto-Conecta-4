@@ -45,6 +45,7 @@
                                 <Grid Grid.Row="0">
                                     <Border Background="White" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="5,5,5,5">
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Image Source="{Binding ImagenDeJugador}"></Image>
                                             <Label HorizontalContentAlignment="Center" HorizontalAlignment="Center" Content="{Binding UsuarioConectado}" MouseLeftButtonDown="ClickEnLabelDeJugador_MouseLeftButtonDown"></Label>
                                         </StackPanel>
                                     </Border>

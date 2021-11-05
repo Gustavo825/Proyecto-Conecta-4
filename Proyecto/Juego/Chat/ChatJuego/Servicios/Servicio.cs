@@ -18,7 +18,7 @@ namespace ChatJuego.Host
         private const string SMTPServidor = "smtp.gmail.com";
         private const int puerto = 587;
         private const string contrasenia = "gusandreacarlos1*";
-        public bool Conectarse(Jugador jugador)
+        public EstadoDeInicioDeSesion Conectarse(Jugador jugador)
         {
             Autenticacion autenticacion = new Autenticacion();
             EstadoDeAutenticacion estado = autenticacion.IniciarSesion(jugador.usuario, jugador.contrasenia);
@@ -28,18 +28,26 @@ namespace ChatJuego.Host
                 {
                     if (jugador.usuario == jugadorIniciado.usuario)
                     {
-                        MessageBox.Show("Ya hay una sesión de este usuario", "Error", MessageBoxButton.OK);
-                        return false;
+                       
+                        return EstadoDeInicioDeSesion.FallidoPorUsuarioYaConectado;
                     }
                 }
                 var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
                 Console.WriteLine("Jugador Conectado: {0}", jugador.usuario);
                 jugadores.Add(conexion, jugador);
-                return true;
+                //int i = 0;
+                //foreach (Jugador nombre in jugadores.Values)
+                //{
+                  //  nombresDeJugadores[i] = nombre.usuario;
+                   // i++;
+                //}
+                //foreach (var conexiones in jugadores.Keys)
+                //{
+                //conexion.ActualizarJugadoresConectados(null);
+                ////}
+                return EstadoDeInicioDeSesion.Correcto;
             } else
-            {
-            }
-            return false;
+                return EstadoDeInicioDeSesion.Fallido;
         }
 
         public void Desconectarse()
@@ -246,8 +254,17 @@ namespace ChatJuego.Host
                 var bytesDeImagen = (from jugador in contexto.jugadores
                                  where jugador.usuario == usuario
                                  select jugador.imagenUsuario).ToArray();
-                return bytesDeImagen[0];
+                if (bytesDeImagen.Length > 0)
+                    return bytesDeImagen[0];
+                else
+                    return null;
             }
+        }
+
+        public EstadoDeEliminacion EliminarJugador(Jugador jugador)
+        {
+            Autenticacion autenticacion = new Autenticacion();
+            return autenticacion.EliminarJugador(jugador.usuario, jugador.contrasenia);
         }
     }
 }

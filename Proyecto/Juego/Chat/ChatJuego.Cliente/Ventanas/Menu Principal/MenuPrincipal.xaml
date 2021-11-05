@@ -20,7 +20,6 @@
             <ColumnDefinition Width="150"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Image Grid.Column="1" Grid.Row="0" Source="Iconos\conecta 4.png"/>
-        <Image Grid.Column="0" Grid.Row="1"  Name="ImagenJugador"></Image>
         <Button Grid.Column="1" Grid.Row="1" x:Name="BotonCrearParida" BorderThickness="0" Margin="24,10,24,10" Height="80" Width="180" Background = "Transparent" Click="BotonCrearParida_Click">
             <Image Source="Iconos\crear_partida.png" Height="62" Width="176" />
         </Button>

@@ -19,9 +19,6 @@ using System.Windows.Threading;
 
 namespace ChatJuego.Cliente
 {
-    /// <summary>
-    /// Lógica de interacción para MenuPrincipal.xaml
-    /// </summary>
     public partial class MenuPrincipal : Window
     {
         MediaPlayer musicaDeMenu = new MediaPlayer();
@@ -48,7 +45,7 @@ namespace ChatJuego.Cliente
             servidorDelChat = new ChatServicioClient(contexto);
             servidorDeTablaDePuntajes = new TablaDePuntajesClient(contexto);
             InitializeComponent();
-            ImagenJugador.Source = ConvertirArrayAImagen(jugador.imagenUsuario);
+            //ImagenJugador.Source = ConvertirArrayAImagen(jugador.imagenUsuario);
             var timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(1) };
             timer.Tick += delegate
             {
@@ -64,19 +61,7 @@ namespace ChatJuego.Cliente
             };
 
         }
-        public BitmapImage ConvertirArrayAImagen(byte[] arrayDeImagen)
-        {
-            BitmapImage imagen = new BitmapImage();
-            using (MemoryStream memStream = new MemoryStream(arrayDeImagen))
-            {
-                imagen.BeginInit();
-                imagen.CacheOption = BitmapCacheOption.OnLoad;
-                imagen.StreamSource = memStream;
-                imagen.EndInit();
-                imagen.Freeze();
-            }
-            return imagen;
-        }
+        
         private void BotonTablaDePuntajes_Click(object sender, RoutedEventArgs e)
         {
             sonidoDeBoton.Play();
