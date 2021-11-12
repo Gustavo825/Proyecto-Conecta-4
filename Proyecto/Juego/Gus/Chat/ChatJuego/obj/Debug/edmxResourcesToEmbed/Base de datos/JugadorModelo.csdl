@@ -9,6 +9,7 @@
     <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="puntaje" Type="Single" />
+    <Property Name="imagenUsuario" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityContainer Name="JugadorContexto" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Jugadors" EntityType="JugadorModelo.Jugador" />

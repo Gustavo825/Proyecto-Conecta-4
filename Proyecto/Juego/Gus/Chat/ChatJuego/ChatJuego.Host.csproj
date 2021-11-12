@@ -76,6 +76,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JugadorModelo.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Partida.cs" />
     <Compile Include="Servicios\Servicio.cs" />
     <Compile Include="Servicios\IJugadorCallBack.cs" />
     <Compile Include="Servicios\IChatServicio.cs" />
@@ -100,6 +101,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Base de datos\JugadorModelo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -111,9 +113,6 @@
       <DependentUpon>JugadorModelo.edmx</DependentUpon>
       <LastGenOutput>JugadorModelo.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Iconos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

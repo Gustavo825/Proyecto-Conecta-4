@@ -28,7 +28,7 @@ namespace ChatJuego.Cliente
 
         }
 
-        private void btnDialogOk_Click(object sender, RoutedEventArgs e)
+        private void BotonOk_Click(object sender, RoutedEventArgs e)
         {
             if (txtAnswer.Text.Equals(codigoDeRegistro.ToString()))
                 this.DialogResult = true;
@@ -46,7 +46,7 @@ namespace ChatJuego.Cliente
 
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BotonCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
         }

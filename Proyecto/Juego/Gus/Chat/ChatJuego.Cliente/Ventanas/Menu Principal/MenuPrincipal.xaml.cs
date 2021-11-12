@@ -1,7 +1,10 @@
 ﻿using ChatJuego.Cliente.Proxy;
+using ChatJuego.Cliente.Ventanas.Unirse_a_Partida;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,46 +16,67 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ChatJuego.Cliente
 {
-    /// <summary>
-    /// Lógica de interacción para MenuPrincipal.xaml
-    /// </summary>
     public partial class MenuPrincipal : Window
     {
+        MediaPlayer musicaDeMenu = new MediaPlayer();
+        SoundPlayer sonidoDeBoton = new SoundPlayer();
         ServidorClient servidor;
-        ChatServicioClient servidorChat;
-        InvitacionCorreoServicioClient servidorCorreo;
-        TablaDePuntajesClient servidorTablaDePuntajes;
+        ChatServicioClient servidorDelChat = null;
+        TablaDePuntajesClient servidorDeTablaDePuntajes;
         InstanceContext contexto;
-        JugadorCallBack jC;
+        JugadorCallBack callBackDeJugador;
         Jugador jugador;
 
 
-        public MenuPrincipal(ServidorClient servidor, JugadorCallBack jC, Jugador jugador, InstanceContext contexto, ChatServicioClient servidorChat)
+        public MenuPrincipal(ServidorClient servidor, JugadorCallBack callBackDeJugador, Jugador jugador, InstanceContext contexto)
         {
-            this.jC = jC;
+            string ruta = Directory.GetCurrentDirectory();
+            ruta = ruta.Substring(0, ruta.Length - 9);
+            musicaDeMenu.Open(new Uri(ruta + @"Ventanas\Sonidos\MusicaDePartida.wav"));
+            musicaDeMenu.Play();
+            sonidoDeBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
+            this.callBackDeJugador = callBackDeJugador;
             this.servidor = servidor;
             this.jugador = jugador;
             this.contexto = contexto;
-            servidorCorreo = new InvitacionCorreoServicioClient(contexto);
-            this.servidorChat = servidorChat;
-            servidorTablaDePuntajes = new TablaDePuntajesClient(contexto);
+            servidorDelChat = new ChatServicioClient(contexto);
+            servidorDeTablaDePuntajes = new TablaDePuntajesClient(contexto);
             InitializeComponent();
-        }
+            //ImagenJugador.Source = ConvertirArrayAImagen(jugador.imagenUsuario);
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromMinutes(1) };
+            timer.Tick += delegate
+            {
+                timer.Stop();
+                MessageBox.Show("¿Sigues ahí?", "Tiempo de inactividad", MessageBoxButton.OK);
+                timer.Start();
+            };
+            timer.Start();
+            InputManager.Current.PostProcessInput += delegate (object s, ProcessInputEventArgs r)
+            {
+                if (r.StagingItem.Input is MouseButtonEventArgs || r.StagingItem.Input is KeyEventArgs)
+                    timer.Interval = TimeSpan.FromMinutes(1);
+            };
 
-        private void BotonTablaPuntajes_Click(object sender, RoutedEventArgs e)
+        }
+        
+        private void BotonTablaDePuntajes_Click(object sender, RoutedEventArgs e)
         {
-            TablaDePuntajes tablaPuntajes = new TablaDePuntajes(servidorTablaDePuntajes);
-            jC.setTablaDePuntajes(tablaPuntajes);
+            sonidoDeBoton.Play();
+            TablaDePuntajes tablaPuntajes = new TablaDePuntajes(servidorDeTablaDePuntajes);
+            callBackDeJugador.SetTablaDePuntajes(tablaPuntajes);
             tablaPuntajes.Show();
         }
 
         private void BotonSalir_Click(object sender, RoutedEventArgs e)
         {
+            sonidoDeBoton.Play();
+            musicaDeMenu.Stop();
             MainWindow mainWindow = new MainWindow();
-            servidor.desconectarse();
+            servidor.Desconectarse();
             mainWindow.Show();
             this.Close();
 
@@ -60,16 +84,41 @@ namespace ChatJuego.Cliente
 
         private void BotonChat_Click(object sender, RoutedEventArgs e)
         {
-            Chat chat = new Chat(jugador, servidorChat);
-            servidorChat.inicializar();
-            jC.setChat(chat);
-            chat.Show();
+            sonidoDeBoton.Play();
+            Chat chat = new Chat(jugador, servidorDelChat);
+            try
+            {
+                servidorDelChat = new ChatServicioClient(contexto);
+                servidorDelChat.InicializarChat();
+                callBackDeJugador.SetChat(chat);
+                chat.Show();
+            } catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
+            {
+                MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                musicaDeMenu.Stop();
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
         }
 
         private void BotonCrearParida_Click(object sender, RoutedEventArgs e)
         {
-            EnviarInvitacion enviarInvitacion = new EnviarInvitacion(servidorCorreo,jugador, this);
+            sonidoDeBoton.Play();
+            musicaDeMenu.Stop();
+            servidorDelChat = new ChatServicioClient(contexto);
+            EnviarInvitacion enviarInvitacion = new EnviarInvitacion(jugador, this, contexto, servidorDelChat,callBackDeJugador, servidor);
             enviarInvitacion.Show();
+            this.Hide();
+        }
+
+        private void BotonUnirse_Click(object sender, RoutedEventArgs e)
+        {
+            sonidoDeBoton.Play();
+            musicaDeMenu.Stop();
+            servidorDelChat = new ChatServicioClient(contexto);
+            UnirseAPartida unirseAPartida = new UnirseAPartida(jugador, this, contexto, servidorDelChat, callBackDeJugador, servidor);
+            unirseAPartida.Show();
             this.Hide();
         }
 

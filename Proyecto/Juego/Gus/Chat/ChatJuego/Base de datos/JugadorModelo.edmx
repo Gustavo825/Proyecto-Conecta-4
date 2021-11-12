@@ -14,6 +14,7 @@
           <Property Name="correo" Type="nvarchar(max)" />
           <Property Name="contrasenia" Type="nvarchar(max)" />
           <Property Name="puntaje" Type="real" />
+          <Property Name="imagenUsuario" Type="varbinary(max)" />
         </EntityType>
         <EntityContainer Name="JugadorModeloStoreContainer">
           <EntitySet Name="Jugadores" EntityType="Self.Jugadores" Schema="dbo" store:Type="Tables" />
@@ -32,6 +33,7 @@
           <Property Name="correo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="contrasenia" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="puntaje" Type="Single" />
+          <Property Name="imagenUsuario" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityContainer Name="JugadorContexto" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Jugadors" EntityType="JugadorModelo.Jugador" />
@@ -50,6 +52,7 @@
                 <ScalarProperty Name="correo" ColumnName="correo" />
                 <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
                 <ScalarProperty Name="puntaje" ColumnName="puntaje" />
+                <ScalarProperty Name="imagenUsuario" ColumnName="imagenUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

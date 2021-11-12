@@ -9,6 +9,7 @@
           <ScalarProperty Name="correo" ColumnName="correo" />
           <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
           <ScalarProperty Name="puntaje" ColumnName="puntaje" />
+          <ScalarProperty Name="imagenUsuario" ColumnName="imagenUsuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

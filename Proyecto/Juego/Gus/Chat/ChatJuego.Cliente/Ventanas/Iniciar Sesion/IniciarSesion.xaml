@@ -25,8 +25,8 @@
             <Image Source="Iconos\inicio de sesion.png" Height="60"></Image>
 
         </Grid>
-        <Grid Grid.Row="4" Grid.Column="1" Grid.RowSpan="2" >
-            <Image Source="Iconos\Find_Four_Board_2015.png" HorizontalAlignment="Center" Height="150" Margin="0,-84,60,37"/>
+        <Grid Grid.Row="3" Grid.Column="1" Grid.RowSpan="3" >
+            <Image Source="Iconos\Find_Four_Board_2015.png" HorizontalAlignment="Right" Width="177" Margin="-91,-73,64,12"/>
 
         </Grid>
         <Grid Grid.Row="2">
@@ -71,7 +71,7 @@
                 </Button.Resources>
                 <Image Source="Iconos\botonIniciarSesion.png" Height="62" Width="176"/>
             </Button>
-            <Button x:Name="BotonRegistrarseI" BorderThickness="0" Height="62" Width="176" Background = "Transparent" Foreground="Transparent" Click="BotonRegistrarseI_Click"  Grid.Column="1">
+            <Button x:Name="BotonRegistrarseI" BorderThickness="0" Height="62" Width="176" Background = "Transparent" Foreground="Transparent" Click="BotonRegistrarse_Click"  Grid.Column="1">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="60"/>

@@ -13,7 +13,7 @@ namespace ChatJuego.Host
     {
         static void Main(string[] args)
         {
-            JugadorContexto jc = new JugadorContexto();
+            JugadorContexto contextoDelJugador = new JugadorContexto();
             ServiceHost host = new ServiceHost(typeof(Servicio));
             host.Open();
             Console.WriteLine("Servidor corriendo");

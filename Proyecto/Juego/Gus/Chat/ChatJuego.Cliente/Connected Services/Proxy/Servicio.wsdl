@@ -103,7 +103,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_inicializar_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_InicializarChat_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -126,7 +126,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_mandarMensaje_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_MandarMensaje_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -149,7 +149,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_mandarMensajePrivado_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_MandarMensajePrivado_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -172,7 +172,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_recibirMensaje_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_RecibirMensaje_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -195,7 +195,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_actualizarJugadoresConectados_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_ActualizarJugadoresConectados_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -218,7 +218,30 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_mostrarPuntajes_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_MostrarPuntajes_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_IniciarPartida_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -344,7 +367,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_enviarInvitacion_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_EnviarInvitacion_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -367,7 +390,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_enviarInvitacion_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_EnviarInvitacion_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -390,7 +413,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_mandarCodigoDeRegistro_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_MandarCodigoDeRegistro_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -413,7 +436,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_mandarCodigoDeRegistro_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_MandarCodigoDeRegistro_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -436,7 +459,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_recibirMensaje_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_RecibirMensaje_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -459,7 +482,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_actualizarJugadoresConectados_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_ActualizarJugadoresConectados_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -482,7 +505,30 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_mostrarPuntajes_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_MostrarPuntajes_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_IniciarPartida_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -608,7 +654,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_conectarse_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_Conectarse_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -631,7 +677,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_conectarse_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_Conectarse_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -654,7 +700,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_registroJugador_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_EliminarJugador_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -677,7 +723,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_registroJugador_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_EliminarJugador_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -700,7 +746,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_desconectarse_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_RegistroDeJugador_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -723,7 +769,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_recibirMensaje_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_RegistroDeJugador_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -746,7 +792,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_actualizarJugadoresConectados_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_ObtenerBytesDeImagenDeJugador_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -769,7 +815,214 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_mostrarPuntajes_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_ObtenerBytesDeImagenDeJugador_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_Desconectarse_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_UnirseAPartida_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_UnirseAPartida_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_EliminarPartida_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_InicializarPartida_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_RecibirMensaje_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_ActualizarJugadoresConectados_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_MostrarPuntajes_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_IniciarPartida_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -895,7 +1148,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ITablaDePuntajes_recuperarPuntajesDeJugadores_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITablaDePuntajes_RecuperarPuntajesDeJugadores_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -918,7 +1171,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ITablaDePuntajes_recibirMensaje_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITablaDePuntajes_RecibirMensaje_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -941,7 +1194,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ITablaDePuntajes_actualizarJugadoresConectados_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITablaDePuntajes_ActualizarJugadoresConectados_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -964,7 +1217,30 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_ITablaDePuntajes_mostrarPuntajes_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITablaDePuntajes_MostrarPuntajes_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITablaDePuntajes_IniciarPartida_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -997,198 +1273,271 @@
       <xsd:import schemaLocation="http://localhost:9090/?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/ChatJuego.Servicios" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IChatServicio_inicializar_InputMessage">
-    <wsdl:part name="parameters" element="tns:inicializar" />
+  <wsdl:message name="IChatServicio_InicializarChat_InputMessage">
+    <wsdl:part name="parameters" element="tns:InicializarChat" />
   </wsdl:message>
-  <wsdl:message name="IChatServicio_mandarMensaje_InputMessage">
-    <wsdl:part name="parameters" element="tns:mandarMensaje" />
+  <wsdl:message name="IChatServicio_MandarMensaje_InputMessage">
+    <wsdl:part name="parameters" element="tns:MandarMensaje" />
   </wsdl:message>
-  <wsdl:message name="IChatServicio_mandarMensajePrivado_InputMessage">
-    <wsdl:part name="parameters" element="tns:mandarMensajePrivado" />
+  <wsdl:message name="IChatServicio_MandarMensajePrivado_InputMessage">
+    <wsdl:part name="parameters" element="tns:MandarMensajePrivado" />
   </wsdl:message>
-  <wsdl:message name="IChatServicio_recibirMensaje_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:recibirMensaje" />
+  <wsdl:message name="IChatServicio_RecibirMensaje_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RecibirMensaje" />
   </wsdl:message>
-  <wsdl:message name="IChatServicio_actualizarJugadoresConectados_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:actualizarJugadoresConectados" />
+  <wsdl:message name="IChatServicio_ActualizarJugadoresConectados_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarJugadoresConectados" />
   </wsdl:message>
-  <wsdl:message name="IChatServicio_mostrarPuntajes_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:mostrarPuntajes" />
+  <wsdl:message name="IChatServicio_MostrarPuntajes_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarPuntajes" />
   </wsdl:message>
-  <wsdl:message name="IInvitacionCorreoServicio_enviarInvitacion_InputMessage">
-    <wsdl:part name="parameters" element="tns:enviarInvitacion" />
+  <wsdl:message name="IChatServicio_IniciarPartida_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:IniciarPartida" />
   </wsdl:message>
-  <wsdl:message name="IInvitacionCorreoServicio_enviarInvitacion_OutputMessage">
-    <wsdl:part name="parameters" element="tns:enviarInvitacionResponse" />
+  <wsdl:message name="IInvitacionCorreoServicio_EnviarInvitacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnviarInvitacion" />
   </wsdl:message>
-  <wsdl:message name="IInvitacionCorreoServicio_mandarCodigoDeRegistro_InputMessage">
-    <wsdl:part name="parameters" element="tns:mandarCodigoDeRegistro" />
+  <wsdl:message name="IInvitacionCorreoServicio_EnviarInvitacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnviarInvitacionResponse" />
   </wsdl:message>
-  <wsdl:message name="IInvitacionCorreoServicio_mandarCodigoDeRegistro_OutputMessage">
-    <wsdl:part name="parameters" element="tns:mandarCodigoDeRegistroResponse" />
+  <wsdl:message name="IInvitacionCorreoServicio_MandarCodigoDeRegistro_InputMessage">
+    <wsdl:part name="parameters" element="tns:MandarCodigoDeRegistro" />
   </wsdl:message>
-  <wsdl:message name="IInvitacionCorreoServicio_recibirMensaje_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:recibirMensaje" />
+  <wsdl:message name="IInvitacionCorreoServicio_MandarCodigoDeRegistro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MandarCodigoDeRegistroResponse" />
   </wsdl:message>
-  <wsdl:message name="IInvitacionCorreoServicio_actualizarJugadoresConectados_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:actualizarJugadoresConectados" />
+  <wsdl:message name="IInvitacionCorreoServicio_RecibirMensaje_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RecibirMensaje" />
   </wsdl:message>
-  <wsdl:message name="IInvitacionCorreoServicio_mostrarPuntajes_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:mostrarPuntajes" />
+  <wsdl:message name="IInvitacionCorreoServicio_ActualizarJugadoresConectados_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarJugadoresConectados" />
   </wsdl:message>
-  <wsdl:message name="IServidor_conectarse_InputMessage">
-    <wsdl:part name="parameters" element="tns:conectarse" />
+  <wsdl:message name="IInvitacionCorreoServicio_MostrarPuntajes_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarPuntajes" />
   </wsdl:message>
-  <wsdl:message name="IServidor_conectarse_OutputMessage">
-    <wsdl:part name="parameters" element="tns:conectarseResponse" />
+  <wsdl:message name="IInvitacionCorreoServicio_IniciarPartida_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:IniciarPartida" />
   </wsdl:message>
-  <wsdl:message name="IServidor_registroJugador_InputMessage">
-    <wsdl:part name="parameters" element="tns:registroJugador" />
+  <wsdl:message name="IServidor_Conectarse_InputMessage">
+    <wsdl:part name="parameters" element="tns:Conectarse" />
   </wsdl:message>
-  <wsdl:message name="IServidor_registroJugador_OutputMessage">
-    <wsdl:part name="parameters" element="tns:registroJugadorResponse" />
+  <wsdl:message name="IServidor_Conectarse_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConectarseResponse" />
   </wsdl:message>
-  <wsdl:message name="IServidor_desconectarse_InputMessage">
-    <wsdl:part name="parameters" element="tns:desconectarse" />
+  <wsdl:message name="IServidor_EliminarJugador_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarJugador" />
   </wsdl:message>
-  <wsdl:message name="IServidor_recibirMensaje_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:recibirMensaje" />
+  <wsdl:message name="IServidor_EliminarJugador_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarJugadorResponse" />
   </wsdl:message>
-  <wsdl:message name="IServidor_actualizarJugadoresConectados_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:actualizarJugadoresConectados" />
+  <wsdl:message name="IServidor_RegistroDeJugador_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistroDeJugador" />
   </wsdl:message>
-  <wsdl:message name="IServidor_mostrarPuntajes_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:mostrarPuntajes" />
+  <wsdl:message name="IServidor_RegistroDeJugador_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistroDeJugadorResponse" />
   </wsdl:message>
-  <wsdl:message name="ITablaDePuntajes_recuperarPuntajesDeJugadores_InputMessage">
-    <wsdl:part name="parameters" element="tns:recuperarPuntajesDeJugadores" />
+  <wsdl:message name="IServidor_ObtenerBytesDeImagenDeJugador_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerBytesDeImagenDeJugador" />
   </wsdl:message>
-  <wsdl:message name="ITablaDePuntajes_recibirMensaje_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:recibirMensaje" />
+  <wsdl:message name="IServidor_ObtenerBytesDeImagenDeJugador_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerBytesDeImagenDeJugadorResponse" />
   </wsdl:message>
-  <wsdl:message name="ITablaDePuntajes_actualizarJugadoresConectados_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:actualizarJugadoresConectados" />
+  <wsdl:message name="IServidor_Desconectarse_InputMessage">
+    <wsdl:part name="parameters" element="tns:Desconectarse" />
   </wsdl:message>
-  <wsdl:message name="ITablaDePuntajes_mostrarPuntajes_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:mostrarPuntajes" />
+  <wsdl:message name="IServidor_UnirseAPartida_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnirseAPartida" />
+  </wsdl:message>
+  <wsdl:message name="IServidor_UnirseAPartida_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnirseAPartidaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServidor_EliminarPartida_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarPartida" />
+  </wsdl:message>
+  <wsdl:message name="IServidor_InicializarPartida_InputMessage">
+    <wsdl:part name="parameters" element="tns:InicializarPartida" />
+  </wsdl:message>
+  <wsdl:message name="IServidor_RecibirMensaje_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RecibirMensaje" />
+  </wsdl:message>
+  <wsdl:message name="IServidor_ActualizarJugadoresConectados_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarJugadoresConectados" />
+  </wsdl:message>
+  <wsdl:message name="IServidor_MostrarPuntajes_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarPuntajes" />
+  </wsdl:message>
+  <wsdl:message name="IServidor_IniciarPartida_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:IniciarPartida" />
+  </wsdl:message>
+  <wsdl:message name="ITablaDePuntajes_RecuperarPuntajesDeJugadores_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPuntajesDeJugadores" />
+  </wsdl:message>
+  <wsdl:message name="ITablaDePuntajes_RecibirMensaje_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:RecibirMensaje" />
+  </wsdl:message>
+  <wsdl:message name="ITablaDePuntajes_ActualizarJugadoresConectados_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarJugadoresConectados" />
+  </wsdl:message>
+  <wsdl:message name="ITablaDePuntajes_MostrarPuntajes_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:MostrarPuntajes" />
+  </wsdl:message>
+  <wsdl:message name="ITablaDePuntajes_IniciarPartida_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:IniciarPartida" />
   </wsdl:message>
   <wsdl:portType name="IChatServicio">
-    <wsdl:operation name="inicializar">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatServicio/inicializar" message="tns:IChatServicio_inicializar_InputMessage" />
+    <wsdl:operation name="InicializarChat">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatServicio/InicializarChat" message="tns:IChatServicio_InicializarChat_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="mandarMensaje">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatServicio/mandarMensaje" message="tns:IChatServicio_mandarMensaje_InputMessage" />
+    <wsdl:operation name="MandarMensaje">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatServicio/MandarMensaje" message="tns:IChatServicio_MandarMensaje_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="mandarMensajePrivado">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatServicio/mandarMensajePrivado" message="tns:IChatServicio_mandarMensajePrivado_InputMessage" />
+    <wsdl:operation name="MandarMensajePrivado">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatServicio/MandarMensajePrivado" message="tns:IChatServicio_MandarMensajePrivado_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="recibirMensaje">
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatServicio/recibirMensaje" message="tns:IChatServicio_recibirMensaje_OutputCallbackMessage" />
+    <wsdl:operation name="RecibirMensaje">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatServicio/RecibirMensaje" message="tns:IChatServicio_RecibirMensaje_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="actualizarJugadoresConectados">
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatServicio/actualizarJugadoresConectados" message="tns:IChatServicio_actualizarJugadoresConectados_OutputCallbackMessage" />
+    <wsdl:operation name="ActualizarJugadoresConectados">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatServicio/ActualizarJugadoresConectados" message="tns:IChatServicio_ActualizarJugadoresConectados_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="mostrarPuntajes">
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatServicio/mostrarPuntajes" message="tns:IChatServicio_mostrarPuntajes_OutputCallbackMessage" />
+    <wsdl:operation name="MostrarPuntajes">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatServicio/MostrarPuntajes" message="tns:IChatServicio_MostrarPuntajes_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IniciarPartida">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatServicio/IniciarPartida" message="tns:IChatServicio_IniciarPartida_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IInvitacionCorreoServicio">
-    <wsdl:operation name="enviarInvitacion">
-      <wsdl:input wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/enviarInvitacion" message="tns:IInvitacionCorreoServicio_enviarInvitacion_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/enviarInvitacionResponse" message="tns:IInvitacionCorreoServicio_enviarInvitacion_OutputMessage" />
+    <wsdl:operation name="EnviarInvitacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/EnviarInvitacion" message="tns:IInvitacionCorreoServicio_EnviarInvitacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/EnviarInvitacionResponse" message="tns:IInvitacionCorreoServicio_EnviarInvitacion_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="mandarCodigoDeRegistro">
-      <wsdl:input wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/mandarCodigoDeRegistro" message="tns:IInvitacionCorreoServicio_mandarCodigoDeRegistro_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/mandarCodigoDeRegistroResponse" message="tns:IInvitacionCorreoServicio_mandarCodigoDeRegistro_OutputMessage" />
+    <wsdl:operation name="MandarCodigoDeRegistro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/MandarCodigoDeRegistro" message="tns:IInvitacionCorreoServicio_MandarCodigoDeRegistro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/MandarCodigoDeRegistroResponse" message="tns:IInvitacionCorreoServicio_MandarCodigoDeRegistro_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="recibirMensaje">
-      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/recibirMensaje" message="tns:IInvitacionCorreoServicio_recibirMensaje_OutputCallbackMessage" />
+    <wsdl:operation name="RecibirMensaje">
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/RecibirMensaje" message="tns:IInvitacionCorreoServicio_RecibirMensaje_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="actualizarJugadoresConectados">
-      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/actualizarJugadoresConectados" message="tns:IInvitacionCorreoServicio_actualizarJugadoresConectados_OutputCallbackMessage" />
+    <wsdl:operation name="ActualizarJugadoresConectados">
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/ActualizarJugadoresConectados" message="tns:IInvitacionCorreoServicio_ActualizarJugadoresConectados_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="mostrarPuntajes">
-      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/mostrarPuntajes" message="tns:IInvitacionCorreoServicio_mostrarPuntajes_OutputCallbackMessage" />
+    <wsdl:operation name="MostrarPuntajes">
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/MostrarPuntajes" message="tns:IInvitacionCorreoServicio_MostrarPuntajes_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IniciarPartida">
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/IniciarPartida" message="tns:IInvitacionCorreoServicio_IniciarPartida_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServidor">
-    <wsdl:operation name="conectarse">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/conectarse" message="tns:IServidor_conectarse_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/conectarseResponse" message="tns:IServidor_conectarse_OutputMessage" />
+    <wsdl:operation name="Conectarse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/Conectarse" message="tns:IServidor_Conectarse_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/ConectarseResponse" message="tns:IServidor_Conectarse_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="registroJugador">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/registroJugador" message="tns:IServidor_registroJugador_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/registroJugadorResponse" message="tns:IServidor_registroJugador_OutputMessage" />
+    <wsdl:operation name="EliminarJugador">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/EliminarJugador" message="tns:IServidor_EliminarJugador_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/EliminarJugadorResponse" message="tns:IServidor_EliminarJugador_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="desconectarse">
-      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/desconectarse" message="tns:IServidor_desconectarse_InputMessage" />
+    <wsdl:operation name="RegistroDeJugador">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/RegistroDeJugador" message="tns:IServidor_RegistroDeJugador_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/RegistroDeJugadorResponse" message="tns:IServidor_RegistroDeJugador_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="recibirMensaje">
-      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/recibirMensaje" message="tns:IServidor_recibirMensaje_OutputCallbackMessage" />
+    <wsdl:operation name="ObtenerBytesDeImagenDeJugador">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/ObtenerBytesDeImagenDeJugador" message="tns:IServidor_ObtenerBytesDeImagenDeJugador_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/ObtenerBytesDeImagenDeJugadorResponse" message="tns:IServidor_ObtenerBytesDeImagenDeJugador_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="actualizarJugadoresConectados">
-      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/actualizarJugadoresConectados" message="tns:IServidor_actualizarJugadoresConectados_OutputCallbackMessage" />
+    <wsdl:operation name="Desconectarse">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/Desconectarse" message="tns:IServidor_Desconectarse_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="mostrarPuntajes">
-      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/mostrarPuntajes" message="tns:IServidor_mostrarPuntajes_OutputCallbackMessage" />
+    <wsdl:operation name="UnirseAPartida">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/UnirseAPartida" message="tns:IServidor_UnirseAPartida_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/UnirseAPartidaResponse" message="tns:IServidor_UnirseAPartida_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarPartida">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/EliminarPartida" message="tns:IServidor_EliminarPartida_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InicializarPartida">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/InicializarPartida" message="tns:IServidor_InicializarPartida_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecibirMensaje">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/RecibirMensaje" message="tns:IServidor_RecibirMensaje_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarJugadoresConectados">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/ActualizarJugadoresConectados" message="tns:IServidor_ActualizarJugadoresConectados_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MostrarPuntajes">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/MostrarPuntajes" message="tns:IServidor_MostrarPuntajes_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IniciarPartida">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/IniciarPartida" message="tns:IServidor_IniciarPartida_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ITablaDePuntajes">
-    <wsdl:operation name="recuperarPuntajesDeJugadores">
-      <wsdl:input wsaw:Action="http://tempuri.org/ITablaDePuntajes/recuperarPuntajesDeJugadores" message="tns:ITablaDePuntajes_recuperarPuntajesDeJugadores_InputMessage" />
+    <wsdl:operation name="RecuperarPuntajesDeJugadores">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITablaDePuntajes/RecuperarPuntajesDeJugadores" message="tns:ITablaDePuntajes_RecuperarPuntajesDeJugadores_InputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="recibirMensaje">
-      <wsdl:output wsaw:Action="http://tempuri.org/ITablaDePuntajes/recibirMensaje" message="tns:ITablaDePuntajes_recibirMensaje_OutputCallbackMessage" />
+    <wsdl:operation name="RecibirMensaje">
+      <wsdl:output wsaw:Action="http://tempuri.org/ITablaDePuntajes/RecibirMensaje" message="tns:ITablaDePuntajes_RecibirMensaje_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="actualizarJugadoresConectados">
-      <wsdl:output wsaw:Action="http://tempuri.org/ITablaDePuntajes/actualizarJugadoresConectados" message="tns:ITablaDePuntajes_actualizarJugadoresConectados_OutputCallbackMessage" />
+    <wsdl:operation name="ActualizarJugadoresConectados">
+      <wsdl:output wsaw:Action="http://tempuri.org/ITablaDePuntajes/ActualizarJugadoresConectados" message="tns:ITablaDePuntajes_ActualizarJugadoresConectados_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="mostrarPuntajes">
-      <wsdl:output wsaw:Action="http://tempuri.org/ITablaDePuntajes/mostrarPuntajes" message="tns:ITablaDePuntajes_mostrarPuntajes_OutputCallbackMessage" />
+    <wsdl:operation name="MostrarPuntajes">
+      <wsdl:output wsaw:Action="http://tempuri.org/ITablaDePuntajes/MostrarPuntajes" message="tns:ITablaDePuntajes_MostrarPuntajes_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IniciarPartida">
+      <wsdl:output wsaw:Action="http://tempuri.org/ITablaDePuntajes/IniciarPartida" message="tns:ITablaDePuntajes_IniciarPartida_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSDualHttpBinding_IChatServicio" type="tns:IChatServicio">
     <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="inicializar">
-      <soap12:operation soapAction="http://tempuri.org/IChatServicio/inicializar" style="document" />
+    <wsdl:operation name="InicializarChat">
+      <soap12:operation soapAction="http://tempuri.org/IChatServicio/InicializarChat" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_inicializar_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_InicializarChat_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="mandarMensaje">
-      <soap12:operation soapAction="http://tempuri.org/IChatServicio/mandarMensaje" style="document" />
+    <wsdl:operation name="MandarMensaje">
+      <soap12:operation soapAction="http://tempuri.org/IChatServicio/MandarMensaje" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_mandarMensaje_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_MandarMensaje_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="mandarMensajePrivado">
-      <soap12:operation soapAction="http://tempuri.org/IChatServicio/mandarMensajePrivado" style="document" />
+    <wsdl:operation name="MandarMensajePrivado">
+      <soap12:operation soapAction="http://tempuri.org/IChatServicio/MandarMensajePrivado" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_mandarMensajePrivado_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_MandarMensajePrivado_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="recibirMensaje">
-      <soap12:operation soapAction="http://tempuri.org/IChatServicio/recibirMensaje" style="document" />
+    <wsdl:operation name="RecibirMensaje">
+      <soap12:operation soapAction="http://tempuri.org/IChatServicio/RecibirMensaje" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_recibirMensaje_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_RecibirMensaje_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="actualizarJugadoresConectados">
-      <soap12:operation soapAction="http://tempuri.org/IChatServicio/actualizarJugadoresConectados" style="document" />
+    <wsdl:operation name="ActualizarJugadoresConectados">
+      <soap12:operation soapAction="http://tempuri.org/IChatServicio/ActualizarJugadoresConectados" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_actualizarJugadoresConectados_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_ActualizarJugadoresConectados_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="mostrarPuntajes">
-      <soap12:operation soapAction="http://tempuri.org/IChatServicio/mostrarPuntajes" style="document" />
+    <wsdl:operation name="MostrarPuntajes">
+      <soap12:operation soapAction="http://tempuri.org/IChatServicio/MostrarPuntajes" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_mostrarPuntajes_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_MostrarPuntajes_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IniciarPartida">
+      <soap12:operation soapAction="http://tempuri.org/IChatServicio/IniciarPartida" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_IniciarPartida_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -1196,46 +1545,53 @@
   <wsdl:binding name="WSDualHttpBinding_IInvitacionCorreoServicio" type="tns:IInvitacionCorreoServicio">
     <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="enviarInvitacion">
-      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/enviarInvitacion" style="document" />
+    <wsdl:operation name="EnviarInvitacion">
+      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/EnviarInvitacion" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_enviarInvitacion_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_EnviarInvitacion_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_enviarInvitacion_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_EnviarInvitacion_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="mandarCodigoDeRegistro">
-      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/mandarCodigoDeRegistro" style="document" />
+    <wsdl:operation name="MandarCodigoDeRegistro">
+      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/MandarCodigoDeRegistro" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_mandarCodigoDeRegistro_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_MandarCodigoDeRegistro_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_mandarCodigoDeRegistro_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_MandarCodigoDeRegistro_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="recibirMensaje">
-      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/recibirMensaje" style="document" />
+    <wsdl:operation name="RecibirMensaje">
+      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/RecibirMensaje" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_recibirMensaje_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_RecibirMensaje_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="actualizarJugadoresConectados">
-      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/actualizarJugadoresConectados" style="document" />
+    <wsdl:operation name="ActualizarJugadoresConectados">
+      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/ActualizarJugadoresConectados" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_actualizarJugadoresConectados_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_ActualizarJugadoresConectados_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="mostrarPuntajes">
-      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/mostrarPuntajes" style="document" />
+    <wsdl:operation name="MostrarPuntajes">
+      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/MostrarPuntajes" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_mostrarPuntajes_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_MostrarPuntajes_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IniciarPartida">
+      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/IniciarPartida" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_IniciarPartida_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -1243,53 +1599,107 @@
   <wsdl:binding name="WSDualHttpBinding_IServidor" type="tns:IServidor">
     <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="conectarse">
-      <soap12:operation soapAction="http://tempuri.org/IServidor/conectarse" style="document" />
+    <wsdl:operation name="Conectarse">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/Conectarse" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_conectarse_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_Conectarse_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_conectarse_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_Conectarse_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="registroJugador">
-      <soap12:operation soapAction="http://tempuri.org/IServidor/registroJugador" style="document" />
+    <wsdl:operation name="EliminarJugador">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/EliminarJugador" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_registroJugador_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_EliminarJugador_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_registroJugador_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_EliminarJugador_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="desconectarse">
-      <soap12:operation soapAction="http://tempuri.org/IServidor/desconectarse" style="document" />
+    <wsdl:operation name="RegistroDeJugador">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/RegistroDeJugador" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_desconectarse_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_RegistroDeJugador_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_RegistroDeJugador_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerBytesDeImagenDeJugador">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/ObtenerBytesDeImagenDeJugador" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_ObtenerBytesDeImagenDeJugador_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_ObtenerBytesDeImagenDeJugador_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Desconectarse">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/Desconectarse" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_Desconectarse_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="recibirMensaje">
-      <soap12:operation soapAction="http://tempuri.org/IServidor/recibirMensaje" style="document" />
+    <wsdl:operation name="UnirseAPartida">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/UnirseAPartida" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_UnirseAPartida_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_recibirMensaje_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_UnirseAPartida_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="actualizarJugadoresConectados">
-      <soap12:operation soapAction="http://tempuri.org/IServidor/actualizarJugadoresConectados" style="document" />
+    <wsdl:operation name="EliminarPartida">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/EliminarPartida" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_EliminarPartida_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="InicializarPartida">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/InicializarPartida" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_InicializarPartida_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="RecibirMensaje">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/RecibirMensaje" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_actualizarJugadoresConectados_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_RecibirMensaje_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="mostrarPuntajes">
-      <soap12:operation soapAction="http://tempuri.org/IServidor/mostrarPuntajes" style="document" />
+    <wsdl:operation name="ActualizarJugadoresConectados">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/ActualizarJugadoresConectados" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_mostrarPuntajes_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_ActualizarJugadoresConectados_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MostrarPuntajes">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/MostrarPuntajes" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_MostrarPuntajes_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IniciarPartida">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/IniciarPartida" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_IniciarPartida_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -1297,31 +1707,38 @@
   <wsdl:binding name="WSDualHttpBinding_ITablaDePuntajes" type="tns:ITablaDePuntajes">
     <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="recuperarPuntajesDeJugadores">
-      <soap12:operation soapAction="http://tempuri.org/ITablaDePuntajes/recuperarPuntajesDeJugadores" style="document" />
+    <wsdl:operation name="RecuperarPuntajesDeJugadores">
+      <soap12:operation soapAction="http://tempuri.org/ITablaDePuntajes/RecuperarPuntajesDeJugadores" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_recuperarPuntajesDeJugadores_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_RecuperarPuntajesDeJugadores_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="recibirMensaje">
-      <soap12:operation soapAction="http://tempuri.org/ITablaDePuntajes/recibirMensaje" style="document" />
+    <wsdl:operation name="RecibirMensaje">
+      <soap12:operation soapAction="http://tempuri.org/ITablaDePuntajes/RecibirMensaje" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_recibirMensaje_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_RecibirMensaje_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="actualizarJugadoresConectados">
-      <soap12:operation soapAction="http://tempuri.org/ITablaDePuntajes/actualizarJugadoresConectados" style="document" />
+    <wsdl:operation name="ActualizarJugadoresConectados">
+      <soap12:operation soapAction="http://tempuri.org/ITablaDePuntajes/ActualizarJugadoresConectados" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_actualizarJugadoresConectados_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_ActualizarJugadoresConectados_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="mostrarPuntajes">
-      <soap12:operation soapAction="http://tempuri.org/ITablaDePuntajes/mostrarPuntajes" style="document" />
+    <wsdl:operation name="MostrarPuntajes">
+      <soap12:operation soapAction="http://tempuri.org/ITablaDePuntajes/MostrarPuntajes" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_mostrarPuntajes_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_MostrarPuntajes_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IniciarPartida">
+      <soap12:operation soapAction="http://tempuri.org/ITablaDePuntajes/IniciarPartida" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_IniciarPartida_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

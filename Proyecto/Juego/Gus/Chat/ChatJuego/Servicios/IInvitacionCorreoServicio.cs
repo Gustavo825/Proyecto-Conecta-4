@@ -15,9 +15,9 @@ namespace ChatJuego.Servicios
     public interface IInvitacionCorreoServicio
     {
         [OperationContract(IsOneWay = false)]
-        EstadoDeEnvio enviarInvitacion(Jugador jugadorInvitado, string codigoPartida, Jugador jugadorInvitador);
+        EstadoDeEnvio EnviarInvitacion(Jugador jugadorInvitado, string codigoPartida, Jugador jugadorInvitador);
         [OperationContract(IsOneWay = false)]
-        EstadoDeEnvio mandarCodigoDeRegistro(string codigoDeRegistro, string correo);
+        EstadoDeEnvio MandarCodigoDeRegistro(string codigoDeRegistro, string correo);
     }
 
     public enum EstadoDeEnvio

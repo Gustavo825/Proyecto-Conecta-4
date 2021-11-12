@@ -1,6 +1,7 @@
 ﻿using ChatJuego.Cliente.Proxy;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,12 @@ namespace ChatJuego.Cliente
     public partial class Chat : Window
     {
         private Jugador jugador;
-        private ChatServicioClient servidorChat;
-        private bool mensajePrivado = false;
+        private ChatServicioClient servidorDelChat;
+        private bool esMensajePrivado = false;
         private Label jugadorPrivadoSeleccionado;
+        public MenuPrincipal menuPrincipal;
+        public bool chatDePartida { get; set; }
+        public string nombreJugadorInvitado { get; set; }
 
         
         public ScrollViewer VistaDeContenidoDeScroll
@@ -51,20 +55,30 @@ namespace ChatJuego.Cliente
             set { Titulo = value; }
         }
 
-        public Chat(Jugador jugador, ChatServicioClient servidorChat)
+
+       
+
+        public Chat(Jugador jugador, ChatServicioClient servidorDelChat)
         {
             InitializeComponent();
             this.jugador = jugador;
-            this.servidorChat = servidorChat;
-            Titulo.Content = "Bienvenid@ al chat " + jugador.usuario;
-
+            this.servidorDelChat = servidorDelChat;
+            chatDePartida = false;
         }
 
-        public Jugador getJugador()
+        public Chat(Jugador jugador, ChatServicioClient servidorDelChat, string oponente)
+        {
+            InitializeComponent();
+            this.jugador = jugador;
+            this.servidorDelChat = servidorDelChat;
+            this.nombreJugadorInvitado = oponente;
+            chatDePartida = false;
+        }
+
+        public Jugador GetJugador()
         {
             return jugador;
         }
-
 
 
         private void BotonEnviar_Click(object sender, RoutedEventArgs e)
@@ -84,31 +98,52 @@ namespace ChatJuego.Cliente
                 {
                     mensajeFinal = ContenedorDelMensaje.Text;
                 }
-                if (mensajePrivado)
+                if (esMensajePrivado && !chatDePartida)
                 {
                     string mensaje = "Mensaje privado: " + mensajeFinal;
                     PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
-                    servidorChat.mandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
-                    mensajePrivado = false;
+                    servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
+                    esMensajePrivado = false;
                     jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
                     ContenidoDelMensaje.Clear();
                 }
-                else
+                else if (!chatDePartida)
                 {
+                    
                     Mensaje mensaje = new Mensaje() { ContenidoMensaje = mensajeFinal, TiempoDeEnvio = DateTime.Now };
                     PlantillaMensaje.Items.Add(new {Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = mensaje.TiempoDeEnvio.ToString(), MensajeEnviado = mensaje.ContenidoMensaje });
-                    servidorChat.mandarMensaje(mensaje, jugador);
+                    servidorDelChat.MandarMensaje(mensaje, jugador);
+                    ContenidoDelMensaje.Clear();
+                } else if (chatDePartida)
+                {
+                    string mensaje = "Mensaje de partida: " + mensajeFinal;
+                    PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
+                    servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, nombreJugadorInvitado, jugador);
                     ContenidoDelMensaje.Clear();
                 }
             }
         }
 
-        private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        public static BitmapImage ConvertirArrayAImagen(byte[] arrayDeImagen)
+        {
+            BitmapImage imagen = new BitmapImage();
+            using (MemoryStream memStream = new MemoryStream(arrayDeImagen))
+            {
+                imagen.BeginInit();
+                imagen.CacheOption = BitmapCacheOption.OnLoad;
+                imagen.StreamSource = memStream;
+                imagen.EndInit();
+                imagen.Freeze();
+            }
+            return imagen;
+        }
+
+        private void ClickEnLabelDeJugador_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Label texto = sender as Label;
             jugadorPrivadoSeleccionado = texto;
             texto.Foreground = new SolidColorBrush(Colors.Red);
-            mensajePrivado = true;
+            esMensajePrivado = true;
         }
 
       
