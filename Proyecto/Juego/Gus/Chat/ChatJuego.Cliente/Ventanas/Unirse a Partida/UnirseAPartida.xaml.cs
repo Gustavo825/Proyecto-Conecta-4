@@ -29,7 +29,7 @@ namespace ChatJuego.Cliente.Ventanas.Unirse_a_Partida
         private Jugador jugador;
         private MenuPrincipal menuPrincipal;
         bool unionCorrectaAPartida = false;
-        public UnirseAPartida(Jugador jugador, MenuPrincipal menuPrincipal, System.ServiceModel.InstanceContext contexto, Proxy.ChatServicioClient servidorDelChat, JugadorCallBack callBackDeJugador, ServidorClient servidor)
+        public UnirseAPartida(Jugador jugador, MenuPrincipal menuPrincipal, InstanceContext contexto, ChatServicioClient servidorDelChat, JugadorCallBack callBackDeJugador, ServidorClient servidor)
         {
             this.jugador = jugador;
             this.servidorDelChat = servidorDelChat;
@@ -51,6 +51,7 @@ namespace ChatJuego.Cliente.Ventanas.Unirse_a_Partida
                     VentanaDeJuego ventanDeJuego = new VentanaDeJuego(contexto, menuPrincipal, jugador, servidorDelChat, TBUsuarioInvitacion.Text, jugadorCallBack, servidor);
                     jugadorCallBack.SetVentanaDeJuego(ventanDeJuego);
                     ventanDeJuego.Show();
+                    unionCorrectaAPartida = true;
                     servidor.InicializarPartida(TBUsuarioInvitacion.Text);
                     this.Close();
                 } else if (estado == EstadoUnirseAPartida.FallidoPorPartidaNoEncontrada)
@@ -65,6 +66,12 @@ namespace ChatJuego.Cliente.Ventanas.Unirse_a_Partida
             {
                 MessageBox.Show("Ingrese la información requerida", "Campos vacíos", MessageBoxButton.OK);
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (unionCorrectaAPartida == false)
+                menuPrincipal.Show();
         }
     }
 }

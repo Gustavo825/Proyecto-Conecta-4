@@ -77,5 +77,11 @@ namespace ChatJuego.Cliente
                 ventanaDeJuego.oponenteConectado = true;
             }
         }
+
+        public void DesconectarDePartida(EstadoPartida estadoPartida)
+        {
+            if (ventanaDeJuego != null)
+                ventanaDeJuego.Desconectarse(estadoPartida);
+        }
     }
 }

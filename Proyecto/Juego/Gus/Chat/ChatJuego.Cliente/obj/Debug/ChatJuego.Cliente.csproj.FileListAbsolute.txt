@@ -23,6 +23,7 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.Vi
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Chat\Chat.g.cs
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Juego\ConfirmacionDePresencia.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Juego\VentanaDeJuego.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Registro de Jugador\RegistroDeJugadorInputDeCodigo.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Enviar Invitacion\EnviarInvitacion.g.cs
@@ -36,6 +37,7 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cl
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente_MarkupCompile.cache
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente_MarkupCompile.lref
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Chat\Chat.baml
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Juego\ConfirmacionDePresencia.baml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Juego\VentanaDeJuego.baml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Registro de Jugador\RegistroDeJugadorInputDeCodigo.baml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Enviar Invitacion\EnviarInvitacion.baml

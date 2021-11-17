@@ -55,6 +55,7 @@ namespace ChatJuego.Host
         public void Desconectarse()
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
+            Console.WriteLine("Jugador desconectado: {0}",jugadores[conexion].usuario);
             jugadores.Remove(conexion);
             string[] nombresDeJugadores = new string[jugadores.Count()];
             var i = 0;
@@ -314,16 +315,99 @@ namespace ChatJuego.Host
             }
         }
 
-        public void EliminarPartida(string codigoDePartida)
+        public void EliminarPartida(string codigoDePartida, string usuarioQueFinaliza, EstadoPartida estadoPartida)
         {
             foreach (Partida partida in partidas)
             {
                 if (partida.codigoDePartida == codigoDePartida)
                 {
+                    if (partida.jugadores[1] != null && usuarioQueFinaliza == partida.jugadores[0].usuario)
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == partida.jugadores[1].usuario)
+                            {
+                                conexiones.DesconectarDePartida(estadoPartida);
+                            }
+                        }
+                    } else if (partida.jugadores[1] != null && usuarioQueFinaliza == partida.jugadores[1].usuario  )
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == partida.jugadores[0].usuario)
+                            {
+                                conexiones.DesconectarDePartida(estadoPartida);
+                            }
+                        }
+                    }
                     partidas.Remove(partida);
                     break;
                 }
             }
+        }
+
+        public void EliminarPartidaConGanador(string codigoDePartida, string usuarioQueFinaliza, EstadoPartida estadoPartida, float puntaje, string ganador)
+        {
+            foreach (Partida partida in partidas)
+            {
+                if (partida.codigoDePartida == codigoDePartida)
+                {
+                    var estadoAgregarPuntaje = AgregarPuntajeAJugador(ganador, puntaje);
+                    if (estadoAgregarPuntaje == EstadoAgregarPuntuacion.Correcto)
+                        Console.WriteLine("Puntaje agregado");
+                    else
+                        Console.WriteLine("Puntaje no agregado");
+                    if (partida.jugadores[1] != null && usuarioQueFinaliza == partida.jugadores[0].usuario)
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == partida.jugadores[1].usuario)
+                            {
+                                conexiones.DesconectarDePartida(estadoPartida);
+                            }
+                        }
+                    }
+                    else if (partida.jugadores[1] != null && usuarioQueFinaliza == partida.jugadores[1].usuario)
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == partida.jugadores[0].usuario)
+                            {
+                                conexiones.DesconectarDePartida(estadoPartida);
+                            }
+                        }
+                    }
+                    partidas.Remove(partida);
+                    break;
+                }
+            }
+        }
+
+        public EstadoAgregarPuntuacion AgregarPuntajeAJugador(string usuario, float puntaje)
+        {
+            foreach (var conexiones in jugadores.Keys)
+            {
+                if (jugadores[conexiones].usuario == usuario)
+                {
+                    using (var contexto = new JugadorContexto())
+                    {
+                        float puntajeDelJugador = (from jugador in contexto.jugadores
+                                         where jugador.usuario == usuario
+                                         select jugador.puntaje).First().Value;
+
+                        puntajeDelJugador += puntaje;
+                        var jugadorBD = contexto.jugadores.Where(j => j.usuario == usuario).FirstOrDefault();
+                        Jugador copia = new Jugador() { usuario = jugadorBD.usuario, contrasenia = jugadorBD.contrasenia, correo = jugadorBD.correo, imagenUsuario = jugadorBD.imagenUsuario, JugadorId = jugadorBD.JugadorId, puntaje = puntajeDelJugador };
+                        if (jugadorBD != null)
+                        {
+                            contexto.Entry(jugadorBD).CurrentValues.SetValues(copia);
+                        }
+                        contexto.SaveChanges();
+                    }
+                    return EstadoAgregarPuntuacion.Correcto;
+                }
+            }
+            return EstadoAgregarPuntuacion.Fallido;
         }
     }
 }

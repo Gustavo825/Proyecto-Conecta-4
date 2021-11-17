@@ -55,38 +55,44 @@ namespace ChatJuego.Cliente
             sonidoDeBoton.Play();
             if (!string.IsNullOrEmpty(TBUsuarioInvitacion.Text))
             {
-                try
+                if (jugador.usuario != TBUsuarioInvitacion.Text)
                 {
-                    servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
-                    string codigoDePartida = GenerarCodigoDePartida().ToString();
-                    var estado = servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = TBUsuarioInvitacion.Text }, codigoDePartida , jugador);
-                    if (estado == EstadoDeEnvio.UsuarioNoEncontrado)
+                    try
                     {
-                        MessageBox.Show("El usuario ingresado no existe", "Usuario no encontrado", MessageBoxButton.OK);
-                    }
-                    else if (estado == EstadoDeEnvio.Fallido)
-                    {
-                        MessageBox.Show("Ocurrió un error y no se pudo mandar la invitación", "Error", MessageBoxButton.OK);
-                    }
-                    else
-                    {
+                        servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
+                        string codigoDePartida = GenerarCodigoDePartida().ToString();
+                        var estado = servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = TBUsuarioInvitacion.Text }, codigoDePartida, jugador);
+                        if (estado == EstadoDeEnvio.UsuarioNoEncontrado)
+                        {
+                            MessageBox.Show("El usuario ingresado no existe", "Usuario no encontrado", MessageBoxButton.OK);
+                        }
+                        else if (estado == EstadoDeEnvio.Fallido)
+                        {
+                            MessageBox.Show("Ocurrió un error y no se pudo mandar la invitación", "Error", MessageBoxButton.OK);
+                        }
+                        else
+                        {
 
-                        MessageBox.Show("Invitación enviada", "Correcto", MessageBoxButton.OK);
-                        VentanaDeJuego ventanaDeJuego = new VentanaDeJuego(contexto,menuPrincipal,jugador, servidorDelChat, codigoDePartida, jugadorCallBack,servidor);
-                        ventanaDeJuego.Show();
-                        jugadorCallBack.SetVentanaDeJuego(ventanaDeJuego);
-                        juegoIniciado = true;
+                            MessageBox.Show("Invitación enviada", "Correcto", MessageBoxButton.OK);
+                            VentanaDeJuego ventanaDeJuego = new VentanaDeJuego(contexto, menuPrincipal, jugador, servidorDelChat, codigoDePartida, jugadorCallBack, servidor);
+                            ventanaDeJuego.Show();
+                            jugadorCallBack.SetVentanaDeJuego(ventanaDeJuego);
+                            juegoIniciado = true;
+                            this.Close();
+                        }
+                    }
+                    catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
+                    {
+                        MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        perdidaDeConexion = true;
+                        menuPrincipal.Close();
                         this.Close();
                     }
-                }
-                catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
+                } else
                 {
-                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
-                    perdidaDeConexion = true;
-                    menuPrincipal.Close();
-                    this.Close();
+                    MessageBox.Show("No te puedes invitar a ti mismo", "Usuario inválido", MessageBoxButton.OK);
                 }
             } else
             {

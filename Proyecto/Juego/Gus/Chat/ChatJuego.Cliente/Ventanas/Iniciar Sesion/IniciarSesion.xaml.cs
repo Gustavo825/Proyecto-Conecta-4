@@ -42,6 +42,7 @@ namespace ChatJuego.Cliente
             musicaDelMenu.Play();
             sonidoDeBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
             sonidoDeError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
+
         }
 
         private void BotonIniciarSesion_Click(object sender, RoutedEventArgs e)
@@ -99,5 +100,7 @@ namespace ChatJuego.Cliente
                 BotonIniciarSesion_Click(new object(),new RoutedEventArgs());
             }
         }
+
+        
     }
 }

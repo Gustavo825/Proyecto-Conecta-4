@@ -33,11 +33,17 @@ namespace ChatJuego.Servicios
         EstadoUnirseAPartida UnirseAPartida(Jugador jugador, string codigoDePartida);
 
         [OperationContract(IsOneWay = true)]
-        void EliminarPartida(string codigoDePartida);
+        void EliminarPartida(string codigoDePartida, string usuarioQueFinaliza, EstadoPartida estadoPartida);
+
+        [OperationContract(IsOneWay = true)]
+        void EliminarPartidaConGanador(string codigoDePartida, string usuarioQueFinaliza, EstadoPartida estadoPartida, float puntaje, string ganador);
+
 
         [OperationContract(IsOneWay = true)]
         void InicializarPartida(string codigoDePartida);
 
+        [OperationContract(IsOneWay = false)]
+        EstadoAgregarPuntuacion AgregarPuntajeAJugador(string usuario, float puntaje);
         
     }
 
@@ -67,5 +73,18 @@ namespace ChatJuego.Servicios
         Correcto = 0,
         FallidoPorPartidaNoEncontrada,
         FallidoPorMaximoDeJugadores
+    }
+
+    public enum EstadoPartida
+    {
+        FinDePartidaGanada = 0,
+        FinDePartidaSalir,
+        FinDePartidaPorTiempoDeEsperaLimite
+    }
+
+    public enum EstadoAgregarPuntuacion
+    {
+        Correcto = 0,
+        Fallido
     }
 }

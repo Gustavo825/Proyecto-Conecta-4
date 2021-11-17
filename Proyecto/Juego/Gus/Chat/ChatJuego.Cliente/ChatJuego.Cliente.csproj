@@ -68,6 +68,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Juego\ConfirmacionDePresencia.xaml.cs">
+      <DependentUpon>ConfirmacionDePresencia.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Juego\VentanaDeJuego.xaml.cs">
       <DependentUpon>VentanaDeJuego.xaml</DependentUpon>
     </Compile>
@@ -90,6 +93,10 @@
       <DependentUpon>UnirseAPartida.xaml</DependentUpon>
     </Compile>
     <Page Include="Ventanas\Chat\Chat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Juego\ConfirmacionDePresencia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,6 +163,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\Proxy\ChatJuego.Cliente.Proxy.EstadoAgregarPuntuacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\Proxy\ChatJuego.Cliente.Proxy.EstadoDeEliminacion.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

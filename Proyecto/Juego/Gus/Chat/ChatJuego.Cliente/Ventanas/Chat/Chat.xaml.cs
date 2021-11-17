@@ -124,19 +124,7 @@ namespace ChatJuego.Cliente
             }
         }
 
-        public static BitmapImage ConvertirArrayAImagen(byte[] arrayDeImagen)
-        {
-            BitmapImage imagen = new BitmapImage();
-            using (MemoryStream memStream = new MemoryStream(arrayDeImagen))
-            {
-                imagen.BeginInit();
-                imagen.CacheOption = BitmapCacheOption.OnLoad;
-                imagen.StreamSource = memStream;
-                imagen.EndInit();
-                imagen.Freeze();
-            }
-            return imagen;
-        }
+       
 
         private void ClickEnLabelDeJugador_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

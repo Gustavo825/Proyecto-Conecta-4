@@ -1,4 +1,5 @@
 ﻿using ChatJuego.Base_de_datos;
+using ChatJuego.Servicios;
 using System.Collections.Generic;
 using System.ServiceModel;
 
@@ -18,5 +19,8 @@ namespace ChatJuego.Host
 
         [OperationContract(IsOneWay = true)]
         void IniciarPartida(string nombreOponente);
+
+        [OperationContract(IsOneWay = true)]
+        void DesconectarDePartida(EstadoPartida estadoPartida);
     }
 }

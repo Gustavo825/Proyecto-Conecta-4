@@ -1,0 +1,29 @@
+﻿<Window x:Class="ChatJuego.Cliente.Ventanas.Juego.ConfirmacionDePresencia"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatJuego.Cliente.Ventanas.Juego"
+        mc:Ignorable="d"
+       Title="¿Estás ahí?" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"
+       >
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Image Width="60" Height="32" Grid.RowSpan="2"  />
+
+        <Label Name="lblQuestion" Content="De clic en Ok para confirmar su presencia, de lo contrario, finalizará la partida" Grid.Column="1"></Label>
+
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button IsDefault="True" Name="btnDialogOk" Click="BotonOk_Click" MinWidth="60" Margin="0,0,10,0">Sigo aquí</Button>
+        </WrapPanel>
+    </Grid>
+</Window>
