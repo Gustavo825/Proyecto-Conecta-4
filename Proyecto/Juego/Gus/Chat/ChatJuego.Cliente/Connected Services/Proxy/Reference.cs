@@ -366,6 +366,9 @@ namespace ChatJuego.Cliente.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/DesconectarDePartida")]
         void DesconectarDePartida(ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/InsertarFichaEnTablero")]
+        void InsertarFichaEnTablero(int columna);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -455,6 +458,9 @@ namespace ChatJuego.Cliente.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IInvitacionCorreoServicio/DesconectarDePartida")]
         void DesconectarDePartida(ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IInvitacionCorreoServicio/InsertarFichaEnTablero")]
+        void InsertarFichaEnTablero(int columna);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -565,6 +571,12 @@ namespace ChatJuego.Cliente.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/AgregarPuntajeAJugador", ReplyAction="http://tempuri.org/IServidor/AgregarPuntajeAJugadorResponse")]
         System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoAgregarPuntuacion> AgregarPuntajeAJugadorAsync(string usuario, float puntaje);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/InsertarFichaEnOponente")]
+        void InsertarFichaEnOponente(int columna, string codigoDePartida, string oponente);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/InsertarFichaEnOponente")]
+        System.Threading.Tasks.Task InsertarFichaEnOponenteAsync(int columna, string codigoDePartida, string oponente);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -584,6 +596,9 @@ namespace ChatJuego.Cliente.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/DesconectarDePartida")]
         void DesconectarDePartida(ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/InsertarFichaEnTablero")]
+        void InsertarFichaEnTablero(int columna);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -693,6 +708,14 @@ namespace ChatJuego.Cliente.Proxy {
         public System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoAgregarPuntuacion> AgregarPuntajeAJugadorAsync(string usuario, float puntaje) {
             return base.Channel.AgregarPuntajeAJugadorAsync(usuario, puntaje);
         }
+        
+        public void InsertarFichaEnOponente(int columna, string codigoDePartida, string oponente) {
+            base.Channel.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
+        }
+        
+        public System.Threading.Tasks.Task InsertarFichaEnOponenteAsync(int columna, string codigoDePartida, string oponente) {
+            return base.Channel.InsertarFichaEnOponenteAsync(columna, codigoDePartida, oponente);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -723,6 +746,9 @@ namespace ChatJuego.Cliente.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITablaDePuntajes/DesconectarDePartida")]
         void DesconectarDePartida(ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITablaDePuntajes/InsertarFichaEnTablero")]
+        void InsertarFichaEnTablero(int columna);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

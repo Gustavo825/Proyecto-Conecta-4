@@ -22,5 +22,8 @@ namespace ChatJuego.Host
 
         [OperationContract(IsOneWay = true)]
         void DesconectarDePartida(EstadoPartida estadoPartida);
+
+        [OperationContract(IsOneWay = true)]
+        void InsertarFichaEnTablero(int columna);
     }
 }

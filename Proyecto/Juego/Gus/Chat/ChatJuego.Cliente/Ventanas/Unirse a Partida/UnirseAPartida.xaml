@@ -14,19 +14,19 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Image Height="50" Source="Iconos\envioInvitacion.png" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
+                <Image Height="50" Source="Iconos\tituloUnirseAPartida.png" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
             </Grid>
             <Grid Grid.Row="1">
-                <Image Height="30" Source="Iconos\ingresarUsuario.png" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
+                <Image Height="30" Source="Iconos\textoIngresarCodigo.png" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
             </Grid>
             <Grid Grid.Row="2">
                 <TextBox Name="TBUsuarioInvitacion" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120"></TextBox>
             </Grid>
             <Grid Grid.Row="3">
             <Button VerticalAlignment="Center" HorizontalAlignment="Center" Height="62" Width="176"  BorderThickness="0" Background = "Transparent"  Foreground="Transparent" Click="BotonDeUnirseAPartida_Click" >
-                    <Image Height="62" Width="176" Source="Iconos\botonEnviarInvitacion.png"></Image>
+                <Image Height="62" Width="176" Source="Iconos\unirse_a_partida.png"></Image>
                 </Button>
-                <Image Source="/Iconos/Penguins_playign_find_four.png" HorizontalAlignment="Right" Width="150" Margin="0,-122,89,122"></Image>
+                <Image Source="/Iconos/Penguins_playign_find_four.png" HorizontalAlignment="Right" Width="150" Margin="0,-60,89,122"></Image>
             </Grid>
         </Grid>
     </Window>

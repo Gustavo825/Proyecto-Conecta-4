@@ -83,5 +83,11 @@ namespace ChatJuego.Cliente
             if (ventanaDeJuego != null)
                 ventanaDeJuego.Desconectarse(estadoPartida);
         }
+
+        public void InsertarFichaEnTablero(int columna)
+        {
+            if (ventanaDeJuego != null)
+                ventanaDeJuego.IntroducirFicha(columna, VentanaDeJuego.TIROOPONENTE);
+        }
     }
 }

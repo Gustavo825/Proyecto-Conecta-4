@@ -73,7 +73,11 @@ namespace ChatJuego.Cliente
                         sonidoDeError.Play();
                         MessageBox.Show("Ya hay una sesión de este usuario", "Error", MessageBoxButton.OK);
                     }
-                } catch (EndpointNotFoundException endpointNotFoundException)
+                } catch (EndpointNotFoundException endpointNotFoundException )
+                {
+                    MessageBox.Show("No se ha podido conectar con el servidor", "Error de conexión", MessageBoxButton.OK);
+                    servidor = new ServidorClient(contexto);
+                } catch (TimeoutException timeOutException)
                 {
                     MessageBox.Show("No se ha podido conectar con el servidor", "Error de conexión", MessageBoxButton.OK);
                     servidor = new ServidorClient(contexto);

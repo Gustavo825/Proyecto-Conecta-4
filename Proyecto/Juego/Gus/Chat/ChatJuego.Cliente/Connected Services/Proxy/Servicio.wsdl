@@ -287,6 +287,29 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IChatServicio_InsertarFichaEnTablero_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -575,6 +598,29 @@
     </wsp:ExactlyOne>
   </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_DesconectarDePartida_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IInvitacionCorreoServicio_InsertarFichaEnTablero_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1068,6 +1114,29 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_InsertarFichaEnOponente_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_RecibirMensaje_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -1161,6 +1230,29 @@
     </wsp:ExactlyOne>
   </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_DesconectarDePartida_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IServidor_InsertarFichaEnTablero_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1424,6 +1516,29 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_ITablaDePuntajes_InsertarFichaEnTablero_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:9090/?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -1458,6 +1573,9 @@
   <wsdl:message name="IChatServicio_DesconectarDePartida_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:DesconectarDePartida" />
   </wsdl:message>
+  <wsdl:message name="IChatServicio_InsertarFichaEnTablero_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:InsertarFichaEnTablero" />
+  </wsdl:message>
   <wsdl:message name="IInvitacionCorreoServicio_EnviarInvitacion_InputMessage">
     <wsdl:part name="parameters" element="tns:EnviarInvitacion" />
   </wsdl:message>
@@ -1484,6 +1602,9 @@
   </wsdl:message>
   <wsdl:message name="IInvitacionCorreoServicio_DesconectarDePartida_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:DesconectarDePartida" />
+  </wsdl:message>
+  <wsdl:message name="IInvitacionCorreoServicio_InsertarFichaEnTablero_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:InsertarFichaEnTablero" />
   </wsdl:message>
   <wsdl:message name="IServidor_Conectarse_InputMessage">
     <wsdl:part name="parameters" element="tns:Conectarse" />
@@ -1533,6 +1654,9 @@
   <wsdl:message name="IServidor_AgregarPuntajeAJugador_OutputMessage">
     <wsdl:part name="parameters" element="tns:AgregarPuntajeAJugadorResponse" />
   </wsdl:message>
+  <wsdl:message name="IServidor_InsertarFichaEnOponente_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertarFichaEnOponente" />
+  </wsdl:message>
   <wsdl:message name="IServidor_RecibirMensaje_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:RecibirMensaje" />
   </wsdl:message>
@@ -1547,6 +1671,9 @@
   </wsdl:message>
   <wsdl:message name="IServidor_DesconectarDePartida_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:DesconectarDePartida" />
+  </wsdl:message>
+  <wsdl:message name="IServidor_InsertarFichaEnTablero_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:InsertarFichaEnTablero" />
   </wsdl:message>
   <wsdl:message name="ITablaDePuntajes_RecuperarPuntajesDeJugadores_InputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarPuntajesDeJugadores" />
@@ -1565,6 +1692,9 @@
   </wsdl:message>
   <wsdl:message name="ITablaDePuntajes_DesconectarDePartida_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:DesconectarDePartida" />
+  </wsdl:message>
+  <wsdl:message name="ITablaDePuntajes_InsertarFichaEnTablero_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:InsertarFichaEnTablero" />
   </wsdl:message>
   <wsdl:portType name="IChatServicio">
     <wsdl:operation name="InicializarChat">
@@ -1591,6 +1721,9 @@
     <wsdl:operation name="DesconectarDePartida">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatServicio/DesconectarDePartida" message="tns:IChatServicio_DesconectarDePartida_OutputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation name="InsertarFichaEnTablero">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatServicio/InsertarFichaEnTablero" message="tns:IChatServicio_InsertarFichaEnTablero_OutputCallbackMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IInvitacionCorreoServicio">
     <wsdl:operation name="EnviarInvitacion">
@@ -1615,6 +1748,9 @@
     </wsdl:operation>
     <wsdl:operation name="DesconectarDePartida">
       <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/DesconectarDePartida" message="tns:IInvitacionCorreoServicio_DesconectarDePartida_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarFichaEnTablero">
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvitacionCorreoServicio/InsertarFichaEnTablero" message="tns:IInvitacionCorreoServicio_InsertarFichaEnTablero_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IServidor">
@@ -1654,6 +1790,9 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServidor/AgregarPuntajeAJugador" message="tns:IServidor_AgregarPuntajeAJugador_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServidor/AgregarPuntajeAJugadorResponse" message="tns:IServidor_AgregarPuntajeAJugador_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="InsertarFichaEnOponente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServidor/InsertarFichaEnOponente" message="tns:IServidor_InsertarFichaEnOponente_InputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="RecibirMensaje">
       <wsdl:output wsaw:Action="http://tempuri.org/IServidor/RecibirMensaje" message="tns:IServidor_RecibirMensaje_OutputCallbackMessage" />
     </wsdl:operation>
@@ -1668,6 +1807,9 @@
     </wsdl:operation>
     <wsdl:operation name="DesconectarDePartida">
       <wsdl:output wsaw:Action="http://tempuri.org/IServidor/DesconectarDePartida" message="tns:IServidor_DesconectarDePartida_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarFichaEnTablero">
+      <wsdl:output wsaw:Action="http://tempuri.org/IServidor/InsertarFichaEnTablero" message="tns:IServidor_InsertarFichaEnTablero_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ITablaDePuntajes">
@@ -1688,6 +1830,9 @@
     </wsdl:operation>
     <wsdl:operation name="DesconectarDePartida">
       <wsdl:output wsaw:Action="http://tempuri.org/ITablaDePuntajes/DesconectarDePartida" message="tns:ITablaDePuntajes_DesconectarDePartida_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertarFichaEnTablero">
+      <wsdl:output wsaw:Action="http://tempuri.org/ITablaDePuntajes/InsertarFichaEnTablero" message="tns:ITablaDePuntajes_InsertarFichaEnTablero_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSDualHttpBinding_IChatServicio" type="tns:IChatServicio">
@@ -1749,6 +1894,13 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InsertarFichaEnTablero">
+      <soap12:operation soapAction="http://tempuri.org/IChatServicio/InsertarFichaEnTablero" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IChatServicio_InsertarFichaEnTablero_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WSDualHttpBinding_IInvitacionCorreoServicio" type="tns:IInvitacionCorreoServicio">
     <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_policy" />
@@ -1807,6 +1959,13 @@
       <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/DesconectarDePartida" style="document" />
       <wsdl:output>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_DesconectarDePartida_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarFichaEnTablero">
+      <soap12:operation soapAction="http://tempuri.org/IInvitacionCorreoServicio/InsertarFichaEnTablero" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IInvitacionCorreoServicio_InsertarFichaEnTablero_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -1908,6 +2067,13 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="InsertarFichaEnOponente">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/InsertarFichaEnOponente" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_InsertarFichaEnOponente_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="RecibirMensaje">
       <soap12:operation soapAction="http://tempuri.org/IServidor/RecibirMensaje" style="document" />
       <wsdl:output>
@@ -1940,6 +2106,13 @@
       <soap12:operation soapAction="http://tempuri.org/IServidor/DesconectarDePartida" style="document" />
       <wsdl:output>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_DesconectarDePartida_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarFichaEnTablero">
+      <soap12:operation soapAction="http://tempuri.org/IServidor/InsertarFichaEnTablero" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IServidor_InsertarFichaEnTablero_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -1986,6 +2159,13 @@
       <soap12:operation soapAction="http://tempuri.org/ITablaDePuntajes/DesconectarDePartida" style="document" />
       <wsdl:output>
         <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_DesconectarDePartida_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertarFichaEnTablero">
+      <soap12:operation soapAction="http://tempuri.org/ITablaDePuntajes/InsertarFichaEnTablero" style="document" />
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_ITablaDePuntajes_InsertarFichaEnTablero_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

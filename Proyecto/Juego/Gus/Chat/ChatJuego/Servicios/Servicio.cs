@@ -409,5 +409,34 @@ namespace ChatJuego.Host
             }
             return EstadoAgregarPuntuacion.Fallido;
         }
+
+        public void InsertarFichaEnOponente(int columna, string codigoDePartida, string oponente)
+        {
+            foreach (Partida partida in partidas)
+            {
+                if (partida.codigoDePartida == codigoDePartida)
+                {
+                   if (partida.jugadores[0].usuario == oponente)
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == oponente)
+                            {
+                                conexiones.InsertarFichaEnTablero(columna);
+                            }
+                        }
+                    } else
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == partida.jugadores[1].usuario)
+                            {
+                                conexiones.InsertarFichaEnTablero(columna);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

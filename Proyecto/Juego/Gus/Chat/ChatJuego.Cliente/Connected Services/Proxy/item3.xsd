@@ -63,6 +63,13 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="InsertarFichaEnTablero">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="columna" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="EnviarInvitacion">
     <xs:complexType>
       <xs:sequence>
@@ -212,6 +219,15 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/ChatJuego.Servicios" minOccurs="0" name="AgregarPuntajeAJugadorResult" type="q24:EstadoAgregarPuntuacion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertarFichaEnOponente">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="columna" type="xs:int" />
+        <xs:element minOccurs="0" name="codigoDePartida" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="oponente" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

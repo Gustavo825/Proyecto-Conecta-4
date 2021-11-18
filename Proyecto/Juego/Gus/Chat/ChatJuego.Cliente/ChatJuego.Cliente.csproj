@@ -312,11 +312,14 @@
     <Resource Include="Ventanas\Registro de Jugador\Iconos\imagenPredeterminada.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ventanas\Unirse a Partida\Iconos\ingresarUsuario.png" />
-    <Resource Include="Ventanas\Unirse a Partida\Iconos\envioInvitacion.png" />
-    <Resource Include="Ventanas\Unirse a Partida\Iconos\botonEnviarInvitacion.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\unirse_a_partida.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\textoIngresarCodigo.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\tituloUnirseAPartida.png" />
     <Resource Include="Ventanas\Juego\Iconos\chat.png" />
     <Resource Include="Ventanas\Juego\Iconos\salir.png" />
+    <Resource Include="Ventanas\Juego\Iconos\fichaAzul.png" />
+    <Resource Include="Ventanas\Juego\Iconos\fichaRoja.png" />
+    <Resource Include="Ventanas\Juego\Iconos\tablero.png" />
     <Content Include="Ventanas\Sonidos\ClicEnBoton.wav" />
     <Content Include="Ventanas\Sonidos\Error.wav" />
     <Content Include="Ventanas\Sonidos\MusicaDeMenu.wav" />

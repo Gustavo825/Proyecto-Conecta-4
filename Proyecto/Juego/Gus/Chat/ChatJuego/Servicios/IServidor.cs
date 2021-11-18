@@ -44,6 +44,9 @@ namespace ChatJuego.Servicios
 
         [OperationContract(IsOneWay = false)]
         EstadoAgregarPuntuacion AgregarPuntajeAJugador(string usuario, float puntaje);
+
+        [OperationContract(IsOneWay = true)]
+        void InsertarFichaEnOponente(int columna, string codigoDePartida, string oponente);
         
     }
 
