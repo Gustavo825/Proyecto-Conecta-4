@@ -35,32 +35,32 @@
 
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0" Margin="17,9,-17,119" Grid.RowSpan="2">
-                    <Button Name="b11" Background="Transparent" Click="ClicEnTablero">
+                    <Button Name="b11" Background="Transparent" Click="ClicEnTablero" BorderThickness= "0">
                         <Image Name="f11"  Width="115" Margin="11,2,-1,-2"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1" Margin="17,9,-17,119" Grid.RowSpan="2">
-                    <Button Name="b12" Background="Transparent" Click="ClicEnTablero" HorizontalAlignment="Left" Width="129">
+                    <Button Name="b12" Background="Transparent" Click="ClicEnTablero" HorizontalAlignment="Left" Width="129" BorderThickness= "0">
                         <Image Name="f12"  Width="115" Margin="11 0 0 0"/>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="2" Margin="17,9,-17,119" Grid.RowSpan="2">
-                    <Button Name="b13" Background="Transparent" Click="ClicEnTablero">
+                    <Button Name="b13" Background="Transparent" Click="ClicEnTablero" BorderThickness= "0">
                         <Image Name="f13"  Width="115" Margin="11 -10 0 0"/>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="3" Margin="17,9,-17,119" Grid.RowSpan="2">
-                    <Button Name="b14" Background="Transparent" Click="ClicEnTablero">
+                    <Button Name="b14" Background="Transparent" Click="ClicEnTablero" BorderThickness= "0">
                         <Image Name="f14"  Width="115" Margin="11 -30 0 0"/>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="4" Margin="17,9,-17,119" Grid.RowSpan="2">
-                    <Button Name="b15" Background="Transparent" Click="ClicEnTablero">
+                    <Button Name="b15" Background="Transparent" Click="ClicEnTablero" BorderThickness= "0">
                         <Image Name="f15"  Width="115" Margin="11 -45 0 0"/>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="5"  Grid.RowSpan="2">
-                    <Button Name="b16" Background="Transparent" Click="ClicEnTablero" Margin="0,0,-20,0">
+                    <Button Name="b16" Background="Transparent" Click="ClicEnTablero" Margin="0,0,-20,0" BorderThickness= "0">
                         <Image Name="f16"  Width="115" Margin="30 -45 0 0"/>
                     </Button>
                 </Grid>
@@ -77,32 +77,32 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <Button Name="b21" Background="Transparent" Click="ClicEnTablero" Margin="16,0,-10,-9">
+                    <Button Name="b21" Background="Transparent" Click="ClicEnTablero" Margin="16,0,-10,-9" BorderThickness= "0">
                         <Image Name="f21"  Width="112" Margin="0 15 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Name="b22" Background="Transparent" Click="ClicEnTablero" Margin="19,10,-9,-9">
+                    <Button Name="b22" Background="Transparent" Click="ClicEnTablero" Margin="19,10,-9,-9" BorderThickness= "0">
                         <Image Name="f22"  Width="112" Margin="0 -4 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <Button Name="b23" Background="Transparent" Click="ClicEnTablero" Margin="19,10,-9,-9">
+                    <Button Name="b23" Background="Transparent" Click="ClicEnTablero" Margin="19,10,-9,-9" BorderThickness= "0">
                         <Image Name="f23"  Width="112" Margin="0 -20 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="3">
-                    <Button Name="b24" Background="Transparent" Click="ClicEnTablero" Margin="19,10,-9,-9">
+                    <Button Name="b24" Background="Transparent" Click="ClicEnTablero" Margin="19,10,-9,-9" BorderThickness= "0">
                         <Image Name="f24"  Width="112" Margin="0 -25 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="4">
-                    <Button Name="b25" Background="Transparent" Click="ClicEnTablero" Margin="19,10,-9,-9">
+                    <Button Name="b25" Background="Transparent" Click="ClicEnTablero" Margin="19,10,-9,-9" BorderThickness= "0">
                         <Image Name="f25"  Width="112" Margin="0 -45 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="5">
-                    <Button Name="b26" Background="Transparent" Click="ClicEnTablero" Margin="19,10,-9,-9">
+                    <Button Name="b26" Background="Transparent" Click="ClicEnTablero" Margin="19,10,-9,-9" BorderThickness= "0">
                         <Image Name="f26"  Width="112" Margin="0 -60 0 0"></Image>
                     </Button>
                 </Grid>
@@ -117,32 +117,32 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Button Name="b31" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9">
+                    <Button Name="b31" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9" BorderThickness= "0">
                         <Image Name="f31"  Width="112" Margin="0 15 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Name="b32" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9">
+                    <Button Name="b32" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9" BorderThickness= "0">
                         <Image Name="f32"  Width="112" Margin="0 5 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <Button Name="b33" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9">
+                    <Button Name="b33" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9" BorderThickness= "0">
                         <Image Name="f33"  Width="112" Margin="0 -12 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="3">
-                    <Button Name="b34" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9">
+                    <Button Name="b34" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9" BorderThickness= "0">
                         <Image Name="f34"  Width="112" Margin="0 -20 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="4">
-                    <Button Name="b35" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9">
+                    <Button Name="b35" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9" BorderThickness= "0">
                         <Image Name="f35"  Width="112" Margin="0 -35 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="5">
-                    <Button Name="b36" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9">
+                    <Button Name="b36" Background="Transparent" Click="ClicEnTablero" Margin="10,0,0,-9" BorderThickness= "0">
                         <Image Name="f36"  Width="112" Margin="0 -49 0 0"></Image>
                     </Button>
                 </Grid>
@@ -158,32 +158,32 @@
 
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Button Name="b41" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9">
+                    <Button Name="b41" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9" BorderThickness= "0">
                         <Image Name="f41"  Width="112" Margin="0 15 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Name="b42" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9">
+                    <Button Name="b42" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9" BorderThickness= "0">
                         <Image Name="f42"  Width="112" Margin="0 5 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <Button Name="b43" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9">
+                    <Button Name="b43" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9" BorderThickness= "0">
                         <Image Name="f43"  Width="112" Margin="-4 -9 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="3">
-                    <Button Name="b44" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9">
+                    <Button Name="b44" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9" BorderThickness= "0">
                         <Image Name="f44"  Width="112" Margin="-5 -20 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="4">
-                    <Button Name="b45" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9">
+                    <Button Name="b45" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9" BorderThickness= "0">
                         <Image Name="f45"  Width="112" Margin="-5 -30 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="5">
-                    <Button Name="b46" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9">
+                    <Button Name="b46" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-9" BorderThickness= "0">
                         <Image Name="f46"  Width="112" Margin="-5 -45 0 0"></Image>
                     </Button>
                 </Grid>
@@ -200,32 +200,32 @@
 
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Button Name="b51" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12">
+                    <Button Name="b51" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12" BorderThickness= "0">
                         <Image Name="f51"  Width="112" Margin="-24 10 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Name="b52" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12">
+                    <Button Name="b52" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12" BorderThickness= "0">
                         <Image Name="f52"  Width="112" Margin="-24 0 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <Button Name="b53" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12">
+                    <Button Name="b53" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12" BorderThickness= "0">
                         <Image Name="f53"  Width="112" Margin="-24 -10 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="3">
-                    <Button Name="b54" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12">
+                    <Button Name="b54" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12" BorderThickness= "0">
                         <Image Name="f54"  Width="112" Margin="-24 -25 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="4">
-                    <Button Name="b55" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12">
+                    <Button Name="b55" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12" BorderThickness= "0">
                         <Image Name="f55"  Width="112" Margin="-24 -35 0 0"></Image>
                     </Button>
                 </Grid>
                 <Grid Grid.Row="5">
-                    <Button Name="b56" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12">
+                    <Button Name="b56" Background="Transparent" Click="ClicEnTablero" Margin="0,0,0,-12" BorderThickness= "0">
                         <Image Name="f56"  Width="112" Margin="-24 -45 0 0"></Image>
                     </Button>
                 </Grid>
@@ -242,32 +242,32 @@
 
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Button Name="b61" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12">
+                    <Button Name="b61" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12" BorderThickness= "0">
                         <Image Name="f61"  Width="115" Margin="-5 15 0 0" />
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Name="b62" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12">
+                    <Button Name="b62" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12" BorderThickness= "0">
                         <Image Name="f62"  Width="115" Margin="-10 0 0 0" />
                     </Button>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <Button Name="b63" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12">
+                    <Button Name="b63" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12" BorderThickness= "0">
                         <Image Name="f63"  Width="115" Margin="-10 -10 0 0" />
                     </Button>
                 </Grid>
                 <Grid Grid.Row="3">
-                    <Button Name="b64" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12">
+                    <Button Name="b64" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12" BorderThickness= "0">
                         <Image Name="f64"  Width="115" Margin="-10 -25 0 0" />
                     </Button>
                 </Grid>
                 <Grid Grid.Row="4">
-                    <Button Name="b65" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12">
+                    <Button Name="b65" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12" BorderThickness= "0">
                         <Image Name="f65"  Width="115" Margin="-10 -35 0 0" />
                     </Button>
                 </Grid>
                 <Grid Grid.Row="5">
-                    <Button Name="b66" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12">
+                    <Button Name="b66" Background="Transparent" Click="ClicEnTablero" Margin="-12,0,19,-12" BorderThickness= "0">
                         <Image Name="f66"  Width="115" Margin="-10 -50 0 0" />
                     </Button>
                 </Grid>
@@ -284,32 +284,32 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
-                    <Button Name="b71" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15">
+                    <Button Name="b71" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15" BorderThickness= "0">
                         <Image Name="f71"  Width="115" Margin="-30 10 0 0" />
                     </Button>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <Button Name="b72" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15">
+                    <Button Name="b72" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15" BorderThickness= "0">
                         <Image Name="f72"  Width="115" Margin="-30 -5 0 0" />
                     </Button>
                 </Grid>
                 <Grid Grid.Row="2">
-                    <Button Name="b73" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15">
+                    <Button Name="b73" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15" BorderThickness= "0">
                         <Image Name="f73"  Width="115" Margin="-30 -15 0 0" />
                     </Button>
                 </Grid>
                 <Grid Grid.Row="3">
-                    <Button Name="b74" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15">
+                    <Button Name="b74" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15" BorderThickness= "0">
                         <Image Name="f74"  Width="115" Margin="-30 -30 0 0" />
                     </Button>
                 </Grid>
                 <Grid Grid.Row="4">
-                    <Button Name="b75" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15">
+                    <Button Name="b75" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15" BorderThickness= "0">
                         <Image Name="f75"  Width="115" Margin="-30 -40 0 0" />
                     </Button>
                 </Grid>
                 <Grid Grid.Row="5">
-                    <Button Name="b76" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15">
+                    <Button Name="b76" Background="Transparent" Click="ClicEnTablero" Margin="-21,0,0,-15" BorderThickness= "0">
                         <Image Name="f76"  Width="115" Margin="-30 -50 0 0" />
                     </Button>
                 </Grid>

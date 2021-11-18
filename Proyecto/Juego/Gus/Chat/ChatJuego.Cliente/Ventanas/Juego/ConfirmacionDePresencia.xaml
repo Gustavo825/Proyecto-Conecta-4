@@ -20,7 +20,7 @@
 
         <Image Width="60" Height="32" Grid.RowSpan="2"  />
 
-        <Label Name="lblQuestion" Content="De clic en Ok para confirmar su presencia, de lo contrario, finalizará la partida" Grid.Column="1"></Label>
+        <Label Name="lblQuestion" Content="De clic en &quot;Sigo aquí&quot; para confirmar su presencia, de lo contrario, finalizará la partida" Grid.Column="1"></Label>
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
             <Button IsDefault="True" Name="btnDialogOk" Click="BotonOk_Click" MinWidth="60" Margin="0,0,10,0">Sigo aquí</Button>

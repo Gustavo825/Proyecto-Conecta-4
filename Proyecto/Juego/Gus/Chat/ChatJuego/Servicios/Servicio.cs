@@ -363,7 +363,10 @@ namespace ChatJuego.Host
                         {
                             if (jugadores[conexiones].usuario == partida.jugadores[1].usuario)
                             {
-                                conexiones.DesconectarDePartida(estadoPartida);
+                                if (jugadores[conexiones].usuario != ganador && estadoPartida == EstadoPartida.FinDePartidaGanada)
+                                    conexiones.DesconectarDePartida(EstadoPartida.FinDePartidaPerdida);
+                                else
+                                    conexiones.DesconectarDePartida(estadoPartida);
                             }
                         }
                     }
@@ -373,7 +376,10 @@ namespace ChatJuego.Host
                         {
                             if (jugadores[conexiones].usuario == partida.jugadores[0].usuario)
                             {
-                                conexiones.DesconectarDePartida(estadoPartida);
+                                if (jugadores[conexiones].usuario != ganador && estadoPartida == EstadoPartida.FinDePartidaGanada)
+                                    conexiones.DesconectarDePartida(EstadoPartida.FinDePartidaPerdida);
+                                else
+                                    conexiones.DesconectarDePartida(estadoPartida);
                             }
                         }
                     }

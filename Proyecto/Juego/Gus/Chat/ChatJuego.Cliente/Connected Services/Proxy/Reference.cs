@@ -243,6 +243,9 @@ namespace ChatJuego.Cliente.Proxy {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         FinDePartidaPorTiempoDeEsperaLimite = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        FinDePartidaPerdida = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]

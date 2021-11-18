@@ -87,7 +87,10 @@ namespace ChatJuego.Cliente
         public void InsertarFichaEnTablero(int columna)
         {
             if (ventanaDeJuego != null)
+            {
                 ventanaDeJuego.IntroducirFicha(columna, VentanaDeJuego.TIROOPONENTE);
+                ventanaDeJuego.turnoDeJuego = true;
+            }
         }
     }
 }

@@ -51,6 +51,7 @@ namespace ChatJuego.Cliente.Ventanas.Unirse_a_Partida
                     VentanaDeJuego ventanDeJuego = new VentanaDeJuego(contexto, menuPrincipal, jugador, servidorDelChat, TBUsuarioInvitacion.Text, jugadorCallBack, servidor);
                     jugadorCallBack.SetVentanaDeJuego(ventanDeJuego);
                     ventanDeJuego.Show();
+                    ventanDeJuego.turnoDeJuego = false;
                     unionCorrectaAPartida = true;
                     servidor.InicializarPartida(TBUsuarioInvitacion.Text);
                     this.Close();

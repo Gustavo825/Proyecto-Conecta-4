@@ -5,6 +5,7 @@
       <xs:enumeration value="FinDePartidaGanada" />
       <xs:enumeration value="FinDePartidaSalir" />
       <xs:enumeration value="FinDePartidaPorTiempoDeEsperaLimite" />
+      <xs:enumeration value="FinDePartidaPerdida" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="EstadoPartida" nillable="true" type="tns:EstadoPartida" />

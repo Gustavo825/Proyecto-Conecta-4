@@ -76,6 +76,7 @@ namespace ChatJuego.Cliente
                             MessageBox.Show("Invitación enviada", "Correcto", MessageBoxButton.OK);
                             VentanaDeJuego ventanaDeJuego = new VentanaDeJuego(contexto, menuPrincipal, jugador, servidorDelChat, codigoDePartida, jugadorCallBack, servidor);
                             ventanaDeJuego.Show();
+                            ventanaDeJuego.turnoDeJuego = true;
                             jugadorCallBack.SetVentanaDeJuego(ventanaDeJuego);
                             juegoIniciado = true;
                             this.Close();
