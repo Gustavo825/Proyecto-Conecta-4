@@ -334,7 +334,7 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Image Name="ImagenJugadorIzquiero" VerticalAlignment="Center" HorizontalAlignment="Right" Height="80" Width="80" Grid.Column="0"></Image>
-                <Image Name="ImagenJugadorDerecho" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="2" Height="80" Width="80"></Image>
+                <Image Name="ImagenJugadorDerecho" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="2" Height="80" Width="80"></Image>
                 <Label Grid.Column="1" Name="Titulo" Content="VS" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="A.C.M.E. Explosive" FontSize="20"></Label>
             </Grid>
             <Grid Grid.Row="2">

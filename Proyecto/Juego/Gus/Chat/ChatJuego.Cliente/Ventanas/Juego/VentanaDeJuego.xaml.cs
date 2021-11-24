@@ -41,6 +41,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         const string RUTAFICHAROJA = "Iconos/fichaRoja.png";
         public const int TIROPROPIO = 1;
         public const int TIROOPONENTE = 2;
+        public const int EMPATE = 3;
         private bool partidaFinalizada;
 
         int[,] tablero = new int[6, 7]
@@ -96,69 +97,101 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     {
                         return TIROPROPIO;
                     }
-                    if (tablero[fila, columna] == 1 && tablero[fila - 1, columna] == 1 && tablero[fila - 2, columna] == 1 && tablero[fila - 3, columna] == 1)
+                    if (tablero[fila, columna] == 2 && tablero[fila - 1, columna] == 2 && tablero[fila - 2, columna] == 2 && tablero[fila - 3, columna] == 2)
                     {
                         return TIROOPONENTE;
                     }
                 }
             }
-            //Diagonal ascendente
-            int fichas = 4, fichasNoRevisadas = 0, filaOriginal;
-            for (int fila = 2; fila >= 1; fila--)
+            //diagonal izquierda-derecha
+            int numeroDeComprobaciones = 1;
+            int columnaDeTablero = 0;
+            for (int fila = 2; fila >= 0; fila--)
             {
-                filaOriginal = fila;
-                fichasNoRevisadas = fichas;
-                for (int columna = 0; fichasNoRevisadas > 0; columna++)
+                for (int comprobacion = numeroDeComprobaciones; comprobacion > 0; comprobacion--)
                 {
-                    if (tablero[fila,columna] == 1 && tablero[fila + 1, columna + 1] == 1 && tablero[fila + 2, columna + 2] == 1 && tablero[fila + 3, columna + 3] == 1)
+                    if (tablero[fila, columnaDeTablero] == 1 && tablero[fila + 1, columnaDeTablero + 1] == 1 && tablero[fila + 2, columnaDeTablero + 2] == 1 && tablero[fila + 3, columnaDeTablero + 3] == 1)
                     {
                         return TIROPROPIO;
-                    } else
-                    {
-                        fichasNoRevisadas -= 4;
                     }
-                    if (tablero[fila, columna] == 2 && tablero[fila + 1, columna + 1] == 2 && tablero[fila + 2, columna + 2] == 2 && tablero[fila + 3, columna + 3] == 2)
+                    if (tablero[fila, columnaDeTablero] == 2 && tablero[fila + 1, columnaDeTablero + 1] == 2 && tablero[fila + 2, columnaDeTablero + 2] == 2 && tablero[fila + 3, columnaDeTablero + 3] == 2)
                     {
                         return TIROOPONENTE;
                     }
+                    columnaDeTablero++;
+                }
+                numeroDeComprobaciones++;
+                columnaDeTablero = 0;
+            }
+
+            int filaDeTablero = 0;
+            numeroDeComprobaciones = 3;
+            for (int columna = 1; columna < 4; columna++)
+            {
+                int columnaOriginal = columna;
+                for (int comprobacion = numeroDeComprobaciones; comprobacion > 0; comprobacion--)
+                {
+                    if (tablero[filaDeTablero, columna] == 1 && tablero[filaDeTablero + 1, columna + 1] == 1 && tablero[filaDeTablero + 2, columna + 2] == 1 && tablero[filaDeTablero + 3, columna + 3] == 1)
+                    {
+                        return TIROPROPIO;
+                    }
+                    if (tablero[filaDeTablero, columna] == 2 && tablero[filaDeTablero + 1, columna + 1] == 2 && tablero[filaDeTablero + 2, columna + 2] == 2 && tablero[filaDeTablero + 3, columna + 3] == 2)
+                    {
+                        return TIROOPONENTE;
+                    }
+                    filaDeTablero++;
+                    columna++;
+                }
+                columna = columnaOriginal;
+                filaDeTablero = 0;
+                numeroDeComprobaciones--;
+            }
+            //Diagonal derecha-izquierda
+            numeroDeComprobaciones = 1;
+            columnaDeTablero = 6;
+            for (int fila = 2; fila >= 0; fila--)
+            {
+                int filaOriginal = fila;
+                for (int comprobacion = numeroDeComprobaciones; comprobacion > 0; comprobacion--)
+                {
+                    if (tablero[fila, columnaDeTablero] == 1 && tablero[fila + 1, columnaDeTablero - 1] == 1 && tablero[fila + 2, columnaDeTablero - 2] == 1 && tablero[fila + 3, columnaDeTablero - 3] == 1)
+                    {
+                        return TIROPROPIO;
+                    }
+                    if (tablero[fila, columnaDeTablero] == 2 && tablero[fila + 1, columnaDeTablero - 1] == 2 && tablero[fila + 2, columnaDeTablero - 2] == 2 && tablero[fila + 3, columnaDeTablero - 3] == 2)
+                    {
+                        return TIROOPONENTE;
+                    }
+                    columnaDeTablero--;
                     fila++;
                 }
-                fichas++;
                 fila = filaOriginal;
+                numeroDeComprobaciones++;
+                columnaDeTablero = 6;
             }
-            for (int fila = 0; fila >= 0; fila--)
+
+            filaDeTablero = 0;
+            numeroDeComprobaciones = 3;
+            for (int columna = 5; columna > 2; columna--)
             {
-                for (int columna = 0; columna <= 2; columna++)
+                int columnaOriginal = columna;
+                for (int comprobacion = numeroDeComprobaciones; comprobacion > 0; comprobacion--)
                 {
-                    if (tablero[fila, columna] == 1 && tablero[fila + 1, columna + 1] == 1 && tablero[fila + 2, columna + 2] == 1 && tablero[fila + 3, columna + 3] == 1)
+                    if (tablero[filaDeTablero, columna] == 1 && tablero[filaDeTablero + 1, columna - 1] == 1 && tablero[filaDeTablero + 2, columna - 2] == 1 && tablero[filaDeTablero + 3, columna - 3] == 1)
                     {
                         return TIROPROPIO;
                     }
-                    if (tablero[fila, columna] == 2 && tablero[fila + 1, columna + 1] == 2 && tablero[fila + 2, columna + 2] == 2 && tablero[fila + 3, columna + 3] == 2)
+                    if (tablero[filaDeTablero, columna] == 2 && tablero[filaDeTablero + 1, columna - 1] == 2 && tablero[filaDeTablero + 2, columna - 2] == 2 && tablero[filaDeTablero + 3, columna - 3] == 2)
                     {
                         return TIROOPONENTE;
                     }
-                    fila++;
+                    filaDeTablero++;
+                    columna--;
                 }
-                fila = -1;
+                columna = columnaOriginal;
+                numeroDeComprobaciones--;
+                filaDeTablero = 0;
             }
-            for (int fila = 0; fila >= 0; fila--)
-            {
-                for (int columna = 1; columna <= 3; columna++)
-                {
-                    if (tablero[fila, columna] == 1 && tablero[fila + 1, columna + 1] == 1 && tablero[fila + 2, columna + 2] == 1 && tablero[fila + 3, columna + 3] == 1)
-                    {
-                        return TIROPROPIO;
-                    }
-                    if (tablero[fila, columna] == 2 && tablero[fila + 1, columna + 1] == 2 && tablero[fila + 2, columna + 2] == 2 && tablero[fila + 3, columna + 3] == 2)
-                    {
-                        return TIROOPONENTE;
-                    }
-                    fila++;
-                }
-                fila = -1;
-            }
-            
 
             return 0;
         }
@@ -587,8 +620,28 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             } else if (ganadorDePartida == TIROOPONENTE)
             {
                 partidaFinalizada = true;
+                return;
             }
-           
+            int empate = VerificarTableroLleno();
+            if (empate == EMPATE) {
+                servidor.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
+                FinalizarPartida(EstadoPartida.FinDePartidaPorEmpate);
+                partidaFinalizada = true;
+            }
+
+        }
+
+        private int VerificarTableroLleno()
+        {
+            for (int fila = 0; fila < 6; fila++)
+            {
+                for (int columna = 0; columna < 7; columna++)
+                {
+                    if (tablero[fila, columna] == 0)
+                        return 0;
+                }
+            }
+            return EMPATE;
         }
 
         private void ClicEnTablero(object sender, RoutedEventArgs e)
@@ -599,9 +652,15 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 {
                     Button boton = (Button)sender;
                     int columna = int.Parse(boton.Name[1].ToString());
-                    IntroducirFicha(columna, TIROPROPIO);
-                    turnoDeJuego = false;
-                    servidor.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
+                    bool lleno = VerificarColumnaLlena(columna);
+                    if (!lleno)
+                    {
+                        IntroducirFicha(columna, TIROPROPIO);
+                        turnoDeJuego = false;
+                        servidor.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
+                    } else {
+                        MessageBox.Show("Columna llena, seleccione otra columna", "Columna llena", MessageBoxButton.OK);
+                    }
                 }
             }
             catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
@@ -612,6 +671,15 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 CerrarConfirmacionDePresencia();
                 this.Close();
             }
+        }
+
+        private bool VerificarColumnaLlena(int columna)
+        {
+            if (tablero[0,columna - 1] != 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         private void BotonChat_Click(object sender, RoutedEventArgs e)
@@ -657,6 +725,10 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 {
                     servidor.EliminarPartidaConGanador(codigoDePartida, jugador.usuario, estadoDePartida, 50, jugador.usuario);
                     Desconectarse(estadoDePartida);
+                } else if (estadoDePartida == EstadoPartida.FinDePartidaPorEmpate)
+                {
+                    servidor.EliminarPartida(codigoDePartida, jugador.usuario, estadoDePartida);
+                    Desconectarse(estadoDePartida);
                 }
             }
             catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
@@ -693,6 +765,9 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             } else if (estadoPartida == EstadoPartida.FinDePartidaPerdida)
             {
                 MessageBox.Show("¡Has perdido!", "Partida finalizada", MessageBoxButton.OK);
+            } else if (estadoPartida == EstadoPartida.FinDePartidaPorEmpate)
+            {
+                MessageBox.Show("¡Empate!", "Partida finalizada", MessageBoxButton.OK);
             }
             this.Close();
 

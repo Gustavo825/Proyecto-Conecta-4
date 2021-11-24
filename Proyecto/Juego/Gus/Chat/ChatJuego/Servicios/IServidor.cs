@@ -83,7 +83,8 @@ namespace ChatJuego.Servicios
         FinDePartidaGanada = 0,
         FinDePartidaSalir,
         FinDePartidaPorTiempoDeEsperaLimite,
-        FinDePartidaPerdida
+        FinDePartidaPerdida,
+        FinDePartidaPorEmpate
     }
 
     public enum EstadoAgregarPuntuacion
