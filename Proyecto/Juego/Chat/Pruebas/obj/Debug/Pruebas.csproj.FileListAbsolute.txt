@@ -26,4 +26,3 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\obj\Debug\Pruebas.csproj.Assembl
 C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\obj\Debug\Pruebas.csproj.CoreCompileInputs.cache
 C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\obj\Debug\Pruebas.dll
 C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\obj\Debug\Pruebas.pdb
-C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\obj\Debug\Pruebas.csproj.CopyComplete

@@ -76,6 +76,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JugadorModelo.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Partida.cs" />
     <Compile Include="Servicios\Servicio.cs" />
     <Compile Include="Servicios\IJugadorCallBack.cs" />
     <Compile Include="Servicios\IChatServicio.cs" />

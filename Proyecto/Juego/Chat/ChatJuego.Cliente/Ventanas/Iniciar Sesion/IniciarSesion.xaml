@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatJuego.Cliente"
         mc:Ignorable="d"
+        x:Name="Ventana_Iniciar_Sesion"
         Title="Inicio de Sesión" Height="450" Width="800">
     <Grid Background="#214CAE">
         <Grid.ColumnDefinitions>
@@ -22,7 +23,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.ColumnSpan="2">
-            <Image Source="Iconos\inicio de sesion.png" Height="60"></Image>
+            <Image Source="Iconos\inicio de sesion.png" x:Name="TextoInicioDeSesion" Height="60"></Image>
 
         </Grid>
         <Grid Grid.Row="3" Grid.Column="1" Grid.RowSpan="3" >
@@ -36,7 +37,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Column="0" Source="Iconos\usuario.png" Height="30" HorizontalAlignment="Right"/>
+            <Image Grid.Column="0" Source="Iconos\usuario.png" Height="30" x:Name="TextoUsuario" HorizontalAlignment="Right"/>
             <TextBox Grid.Column="2" Name="TBUsuario"  HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  Width="190" />
 
         </Grid>
@@ -50,7 +51,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="0"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" Source="Iconos\contrasenia.png"  Height="30" HorizontalAlignment="Right"></Image>
+            <Image Grid.Column="0" Source="Iconos\contrasenia.png" x:Name="TextoContrasenia" Height="30" HorizontalAlignment="Right"></Image>
             <PasswordBox Grid.Column="2" Name="TBContrasenia" HorizontalAlignment="Left" Height="23" Width="190" KeyDown="TBContrasenia_KeyDown" />
 
         </Grid>
@@ -69,7 +70,7 @@
                         <Setter Property="CornerRadius" Value="60"/>
                     </Style>
                 </Button.Resources>
-                <Image Source="Iconos\botonIniciarSesion.png" Height="62" Width="176"/>
+                <Image Source="Iconos\botonIniciarSesion.png" x:Name="Boton_IniciarSesion" Height="62" Width="176"/>
             </Button>
             <Button x:Name="BotonRegistrarseI" BorderThickness="0" Height="62" Width="176" Background = "Transparent" Foreground="Transparent" Click="BotonRegistrarse_Click"  Grid.Column="1">
                 <Button.Resources>
@@ -77,7 +78,7 @@
                         <Setter Property="CornerRadius" Value="60"/>
                     </Style>
                 </Button.Resources>
-                <Image Source="Iconos\botonRegistrarse.png" Height="62" Width="176"/>
+                <Image Source="Iconos\botonRegistrarse.png" x:Name="Boton_Registrarse" Height="62" Width="176"/>
             </Button>
 
         </Grid>

@@ -24,6 +24,5 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\bin\Debug\System.Runtime.Compile
 C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\obj\Debug\Pruebas.csproj.AssemblyReference.cache
 C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\obj\Debug\Pruebas.csproj.CoreCompileInputs.cache
-C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\obj\Debug\Pruebas.csproj.CopyComplete
 C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\obj\Debug\Pruebas.dll
 C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\obj\Debug\Pruebas.pdb

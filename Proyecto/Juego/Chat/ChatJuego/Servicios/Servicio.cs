@@ -7,6 +7,7 @@ using System.Linq;
 using ChatJuego.Servicios;
 using System.Net.Mail;
 using System.Net;
+using ChatJuego.Dominio;
 
 namespace ChatJuego.Host
 {
@@ -14,6 +15,7 @@ namespace ChatJuego.Host
     public class Servicio : IChatServicio, IInvitacionCorreoServicio, ITablaDePuntajes, IServidor
     {
         public static Dictionary<IJugadorCallBack, Jugador> jugadores = new Dictionary<IJugadorCallBack, Jugador>();
+        public static List<Partida> partidas = new List<Partida>();
         private const string correo = "juegocontecta4equipo1@gmail.com";
         private const string SMTPServidor = "smtp.gmail.com";
         private const int puerto = 587;
@@ -53,6 +55,7 @@ namespace ChatJuego.Host
         public void Desconectarse()
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
+            Console.WriteLine("Jugador desconectado: {0}",jugadores[conexion].usuario);
             jugadores.Remove(conexion);
             string[] nombresDeJugadores = new string[jugadores.Count()];
             var i = 0;
@@ -107,6 +110,7 @@ namespace ChatJuego.Host
                         {
                             smtpCliente.Send(mensaje);
                             estado = EstadoDeEnvio.Correcto;
+                            partidas.Add(new Partida(codigoPartida,jugadorInvitador));
                         }
                         catch
                         {
@@ -265,6 +269,180 @@ namespace ChatJuego.Host
         {
             Autenticacion autenticacion = new Autenticacion();
             return autenticacion.EliminarJugador(jugador.usuario, jugador.contrasenia);
+        }
+
+        public EstadoUnirseAPartida UnirseAPartida(Jugador jugador, string codigoDePartida)
+        {
+            bool encontroPartida = false;
+            foreach (Partida partida in partidas)
+            {
+                if (partida.codigoDePartida == codigoDePartida)
+                {
+                    encontroPartida = true;
+                    if (partida.jugadores[1] != null)
+                    {
+                        return EstadoUnirseAPartida.FallidoPorMaximoDeJugadores;
+                    } else {
+                        partida.jugadores[1] = jugador;
+                        break;
+                    }
+                }
+            }
+            if (!encontroPartida)
+                return EstadoUnirseAPartida.FallidoPorPartidaNoEncontrada;
+            return EstadoUnirseAPartida.Correcto;
+        }
+
+        public void InicializarPartida(string codigoDePartida)
+        {
+            foreach (Partida partida in partidas)
+            {
+                if (partida.codigoDePartida == codigoDePartida)
+                {
+                    foreach (var conexiones in jugadores.Keys)
+                    {
+                        if (jugadores[conexiones].usuario == partida.jugadores[1].usuario)
+                        {
+                            conexiones.IniciarPartida(partida.jugadores[0].usuario);
+                        }
+                        if (jugadores[conexiones].usuario == partida.jugadores[0].usuario)
+                        {
+                            conexiones.IniciarPartida(partida.jugadores[1].usuario);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+        public void EliminarPartida(string codigoDePartida, string usuarioQueFinaliza, EstadoPartida estadoPartida)
+        {
+            foreach (Partida partida in partidas)
+            {
+                if (partida.codigoDePartida == codigoDePartida)
+                {
+                    if (partida.jugadores[1] != null && usuarioQueFinaliza == partida.jugadores[0].usuario)
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == partida.jugadores[1].usuario)
+                            {
+                                conexiones.DesconectarDePartida(estadoPartida);
+                            }
+                        }
+                    } else if (partida.jugadores[1] != null && usuarioQueFinaliza == partida.jugadores[1].usuario  )
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == partida.jugadores[0].usuario)
+                            {
+                                conexiones.DesconectarDePartida(estadoPartida);
+                            }
+                        }
+                    }
+                    partidas.Remove(partida);
+                    break;
+                }
+            }
+        }
+
+        public void EliminarPartidaConGanador(string codigoDePartida, string usuarioQueFinaliza, EstadoPartida estadoPartida, float puntaje, string ganador)
+        {
+            foreach (Partida partida in partidas)
+            {
+                if (partida.codigoDePartida == codigoDePartida)
+                {
+                    var estadoAgregarPuntaje = AgregarPuntajeAJugador(ganador, puntaje);
+                    if (estadoAgregarPuntaje == EstadoAgregarPuntuacion.Correcto)
+                        Console.WriteLine("Puntaje agregado");
+                    else
+                        Console.WriteLine("Puntaje no agregado");
+                    if (partida.jugadores[1] != null && usuarioQueFinaliza == partida.jugadores[0].usuario)
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == partida.jugadores[1].usuario)
+                            {
+                                if (jugadores[conexiones].usuario != ganador && estadoPartida == EstadoPartida.FinDePartidaGanada)
+                                    conexiones.DesconectarDePartida(EstadoPartida.FinDePartidaPerdida);
+                                else
+                                    conexiones.DesconectarDePartida(estadoPartida);
+                            }
+                        }
+                    }
+                    else if (partida.jugadores[1] != null && usuarioQueFinaliza == partida.jugadores[1].usuario)
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == partida.jugadores[0].usuario)
+                            {
+                                if (jugadores[conexiones].usuario != ganador && estadoPartida == EstadoPartida.FinDePartidaGanada)
+                                    conexiones.DesconectarDePartida(EstadoPartida.FinDePartidaPerdida);
+                                else
+                                    conexiones.DesconectarDePartida(estadoPartida);
+                            }
+                        }
+                    }
+                    partidas.Remove(partida);
+                    break;
+                }
+            }
+        }
+
+        public EstadoAgregarPuntuacion AgregarPuntajeAJugador(string usuario, float puntaje)
+        {
+            foreach (var conexiones in jugadores.Keys)
+            {
+                if (jugadores[conexiones].usuario == usuario)
+                {
+                    using (var contexto = new JugadorContexto())
+                    {
+                        float puntajeDelJugador = (from jugador in contexto.jugadores
+                                         where jugador.usuario == usuario
+                                         select jugador.puntaje).First().Value;
+
+                        puntajeDelJugador += puntaje;
+                        var jugadorBD = contexto.jugadores.Where(j => j.usuario == usuario).FirstOrDefault();
+                        Jugador copia = new Jugador() { usuario = jugadorBD.usuario, contrasenia = jugadorBD.contrasenia, correo = jugadorBD.correo, imagenUsuario = jugadorBD.imagenUsuario, JugadorId = jugadorBD.JugadorId, puntaje = puntajeDelJugador };
+                        if (jugadorBD != null)
+                        {
+                            contexto.Entry(jugadorBD).CurrentValues.SetValues(copia);
+                        }
+                        contexto.SaveChanges();
+                    }
+                    return EstadoAgregarPuntuacion.Correcto;
+                }
+            }
+            return EstadoAgregarPuntuacion.Fallido;
+        }
+
+        public void InsertarFichaEnOponente(int columna, string codigoDePartida, string oponente)
+        {
+            foreach (Partida partida in partidas)
+            {
+                if (partida.codigoDePartida == codigoDePartida)
+                {
+                   if (partida.jugadores[0].usuario == oponente)
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == oponente)
+                            {
+                                conexiones.InsertarFichaEnTablero(columna);
+                            }
+                        }
+                    } else
+                    {
+                        foreach (var conexiones in jugadores.Keys)
+                        {
+                            if (jugadores[conexiones].usuario == partida.jugadores[1].usuario)
+                            {
+                                conexiones.InsertarFichaEnTablero(columna);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
