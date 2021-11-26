@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static ChatJuego.Cliente.Ventanas.Configuracion.Configuracion;
 
 namespace ChatJuego.Cliente
 {
@@ -24,8 +25,8 @@ namespace ChatJuego.Cliente
         public RegistroDeJugador_InputDeCodigo(int codigoDeRegistro)
         {
             InitializeComponent();
+            Actualizar_Idioma();
             this.codigoDeRegistro = codigoDeRegistro;
-
         }
 
         private void BotonOk_Click(object sender, RoutedEventArgs e)
@@ -49,6 +50,38 @@ namespace ChatJuego.Cliente
         private void BotonCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
+        }
+        private void Actualizar_Idioma()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                TituloConfirmacion.Title = "Confirmación de registro";
+                lblQuestion.Content = "Ingrese el código de confirmación que se le envió al correo";
+                btnDialogOk.Content = "OK";
+                Boton_Cancelar.Content = "Cancelar";
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                TituloConfirmacion.Title = "Confirmation de l'enregistrement";
+                lblQuestion.Content = "Entrer le code d'confirmation qui vous a été envoyé par se courriel";
+                btnDialogOk.Content = "OK";
+                Boton_Cancelar.Content = "Annuler";
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                TituloConfirmacion.Title = "Confirmação de registro";
+                lblQuestion.Content = "Digite o código de confirmação que foi enviado ao seu correio";
+                btnDialogOk.Content = "OK";
+                Boton_Cancelar.Content = "Cancelar";
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+
+                TituloConfirmacion.Title = "Register Confirmation";
+                lblQuestion.Content = "Enter the confirmation code that was sent to your email";
+                btnDialogOk.Content = "OK";
+                Boton_Cancelar.Content = "Cancel";
+            }
         }
     }
 }

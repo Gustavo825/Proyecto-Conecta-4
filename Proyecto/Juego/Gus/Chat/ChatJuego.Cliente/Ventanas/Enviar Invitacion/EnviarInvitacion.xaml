@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatJuego.Cliente"
         mc:Ignorable="d"
-        Title="EnviarInvitacion" Height="450" Width="800" Background="#214CAE">
+        x:Name="Ventana_Envio_Invitacion"
+        Title="Enviar Invitacion" Height="450" Width="800" Background="#214CAE">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"></RowDefinition>
@@ -14,17 +15,17 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Image Height="50" Source="Iconos\envioInvitacion.png" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
+            <Image Height="50" x:Name="Envio_De_Invitacion" Source="Iconos\envioInvitacion.png" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
         </Grid>
         <Grid Grid.Row="1">
-            <Image Height="30" Source="Iconos\ingresarUsuario.png" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
+            <Image Height="30" x:Name="Ingrese_Usuario" Source="Iconos\ingresarUsuario.png" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
         </Grid>
         <Grid Grid.Row="2">
             <TextBox Name="TBUsuarioInvitacion" VerticalAlignment="Center" HorizontalAlignment="Center" Width="120"></TextBox>
         </Grid>
         <Grid Grid.Row="3">
             <Button VerticalAlignment="Center" HorizontalAlignment="Center" Height="62" Width="176"  BorderThickness="0" Background = "Transparent"  Foreground="Transparent" Click="BotonDeEnviarInvitacion_Click" >
-                <Image Height="62" Width="176" Source="Iconos\botonEnviarInvitacion.png"></Image>
+                <Image x:Name="Boton_Enviar_Invitacion" Height="62" Width="176" Source="Iconos\botonEnviarInvitacion.png"></Image>
             </Button>
             <Image Source="/Iconos/Penguins_playign_find_four.png" HorizontalAlignment="Right" Width="150" Margin="0,-122,89,122"></Image>
         </Grid>

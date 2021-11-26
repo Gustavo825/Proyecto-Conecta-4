@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatJuego.Cliente"
         mc:Ignorable="d"
+        x:Name="Ventana_Registro_De_Jugador"
         Title="Registro De Jugador" Height="500" Width="800">
     <Grid Background="#214CAE">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="61*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="60"/>
@@ -22,7 +27,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Grid.ColumnSpan="2">
-            <Image Source="Iconos\registro.png" Height="75"></Image>
+            <Image x:Name="Titulo_Registro" Source="Iconos\registro.png" Height="75"></Image>
 
         </Grid>
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
@@ -32,10 +37,10 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Image Name="imagenJugador" Source="Iconos/imagenPredeterminada.png" Height="60" Width="60" Grid.Column="1" HorizontalAlignment="Center"></Image>
-            <Button Content="Imagen" Height="30" Width="60" Grid.Column="2" HorizontalAlignment="Left" Click="Button_Click"></Button>
+            <Button x:Name="Boton_Imagen" Content="Imagen" Height="30" Width="60" Grid.Column="2" HorizontalAlignment="Left" Click="Button_Click"></Button>
         </Grid>
         <Grid Grid.Row="3" Grid.ColumnSpan="2">
-            <Image Source="Iconos\usuario.png" Margin="-57,0,57,0"></Image>
+            <Image x:Name="Texto_Usuario" Source="Iconos\usuario.png" Margin="177,0,394,0"></Image>
             <TextBox x:Name="TBUsuarioR" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"/>
 
         </Grid>
@@ -43,7 +48,7 @@
 
         </Grid>
         <Grid Grid.Row="5" Grid.ColumnSpan="2">
-            <Image Source="Iconos\correo.png" Margin="-57,0,57,0"></Image>
+            <Image x:Name="Texto_Correo" Source="Iconos\correo.png" Margin="165,0,394,0"></Image>
             <TextBox Name="TBCorreoR" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"></TextBox>
 
         </Grid>
@@ -51,19 +56,23 @@
 
         </Grid>
         <Grid Grid.Row="7" Grid.ColumnSpan="2">
-            <Image Source="Iconos\contrasenia.png" Margin="-77,0,77,0"></Image>
+            <Image x:Name="Texto_Contrasenia" Source="Iconos\contrasenia.png" Margin="159,0,394,0"></Image>
             <PasswordBox Name="TBContraseniaRegistro" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"></PasswordBox>
 
         </Grid>
         <Grid Grid.Row="8" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="43*"/>
+                <ColumnDefinition Width="353*"/>
+            </Grid.ColumnDefinitions>
 
         </Grid>
         <Grid Grid.Row="9" Grid.ColumnSpan="2">
-            <Image Source="Iconos\confirmarContrasenia.png" Margin="-144,0,144,0"></Image>
+            <Image x:Name="Texto_Confirmar_Contrasenia" Source="Iconos\confirmarContrasenia.png" Margin="26,0,389,0"></Image>
             <PasswordBox x:Name="TBContraseniaRegistroConfirmacion" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"/>
 
         </Grid>
-        <Grid Grid.Row="10">
+        <Grid Grid.Row="10" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="20"></ColumnDefinition>
@@ -75,7 +84,7 @@
                         <Setter Property="CornerRadius" Value="60"/>
                     </Style>
                 </Button.Resources>
-                <Image Source="Iconos\botonRegistrarse.png" Height="62" Width="176"/>
+                <Image x:Name="Boton_Registrarse" Source="Iconos\botonRegistrarse.png" Height="62" Width="176"/>
             </Button>
             <Button Grid.Column="2" Height="62" Width="176" x:Name="BotonCancelarR" BorderThickness="0" Background = "Transparent" Foreground="Transparent" Click="BotonCancelar" HorizontalAlignment="Left" >
                 <Button.Resources>
@@ -83,7 +92,7 @@
                         <Setter Property="CornerRadius" Value="60"/>
                     </Style>
                 </Button.Resources>
-                <Image Source="Iconos\botonCancelar.png" Height="62" Width="176"/>
+                <Image x:Name="Boton_Cancelar" Source="Iconos\botonCancelar.png" Height="62" Width="176"/>
             </Button>
 
         </Grid>

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatJuego.Cliente"
         mc:Ignorable="d"
-       Title="Confirmación de registro" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"
+        x:Name="TituloConfirmacion"
+        Title="Confirmación de registro" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"
         ContentRendered="Window_ContentRendered">
     <Grid Margin="15">
         <Grid.ColumnDefinitions>
@@ -21,11 +22,11 @@
         <Image Source="Iconos\FindFourBoard.png" Width="60" Height="32" Grid.RowSpan="2"  />
 
         <Label Name="lblQuestion" Content="Ingrese el código de confirmación que se le envió al correo" Grid.Column="1"></Label>
-        <TextBox Name="txtAnswer" Grid.Column="1" Grid.Row="1" MinWidth="250">Código</TextBox>
+        <TextBox Name="txtAnswer" Grid.Column="1" Grid.Row="1" MinWidth="250"></TextBox>
 
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
-            <Button IsDefault="True" Name="btnDialogOk" Click="BotonOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
-            <Button IsCancel="True" MinWidth="60" Click="BotonCancelar_Click">_Cancel</Button>
+            <Button IsDefault="True" Content="OK" Name="btnDialogOk" Click="BotonOk_Click" MinWidth="60" Margin="0,0,10,0"></Button>
+            <Button IsCancel="True" Content="Cancelar" MinWidth="60" x:Name="Boton_Cancelar" Click="BotonCancelar_Click"></Button>
         </WrapPanel>
     </Grid>
 </Window>

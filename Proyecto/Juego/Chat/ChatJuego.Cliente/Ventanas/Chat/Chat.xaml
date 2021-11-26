@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Chat" Height="450" Width="800"
         Background="#F2F5FF">
-    
-    
+
+
     <Grid Background="AntiqueWhite">
         <Grid.RowDefinitions>
             <RowDefinition Height="31"></RowDefinition>
@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Label Grid.Column ="0" Content="Jugadores conectados" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#D2DFFF" FontFamily="A.C.M.E. Explosive" FontSize="10"/>
+            <Label Grid.Column ="0" x:Name="Jugadores_Conectados" Content="Jugadores conectados" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="#D2DFFF" FontFamily="A.C.M.E. Explosive" FontSize="10"/>
             <Label Grid.Column="1" x:Name="Titulo" Content="Conectado" Background="#D2DFFF" Foreground="Black" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="A.C.M.E. Explosive"></Label>
         </Grid>
         <Grid Grid.Row="1">
@@ -119,7 +119,7 @@
                         <Setter Property="CornerRadius" Value="60"/>
                     </Style>
                 </Button.Resources>
-                <Image Source="Iconos\Enviar.png" Height="30" Width="65"/>
+                <Image Source="Iconos\Enviar.png" x:Name="Boton_Enviar" Height="30" Width="65"/>
             </Button>
         </Grid>
     </Grid>
