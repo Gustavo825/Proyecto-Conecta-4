@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ChatJuego.Servicios" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ChatJuego.Servicios" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="EstadoPartida">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FinDePartidaGanada" />
+      <xs:enumeration value="FinDePartidaSalir" />
+      <xs:enumeration value="FinDePartidaPorTiempoDeEsperaLimite" />
+      <xs:enumeration value="FinDePartidaPerdida" />
+      <xs:enumeration value="FinDePartidaPorEmpate" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EstadoPartida" nillable="true" type="tns:EstadoPartida" />
+  <xs:simpleType name="EstadoDeEnvio">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Correcto" />
+      <xs:enumeration value="UsuarioNoEncontrado" />
+      <xs:enumeration value="Fallido" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EstadoDeEnvio" nillable="true" type="tns:EstadoDeEnvio" />
+  <xs:simpleType name="EstadoDeInicioDeSesion">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Correcto" />
+      <xs:enumeration value="FallidoPorUsuarioYaConectado" />
+      <xs:enumeration value="Fallido" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EstadoDeInicioDeSesion" nillable="true" type="tns:EstadoDeInicioDeSesion" />
+  <xs:simpleType name="EstadoDeEliminacion">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Correcto" />
+      <xs:enumeration value="Fallido" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EstadoDeEliminacion" nillable="true" type="tns:EstadoDeEliminacion" />
+  <xs:simpleType name="EstadoDeRegistro">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Correcto" />
+      <xs:enumeration value="FallidoPorCorreo" />
+      <xs:enumeration value="FallidoPorUsuario" />
+      <xs:enumeration value="Fallido" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EstadoDeRegistro" nillable="true" type="tns:EstadoDeRegistro" />
+  <xs:simpleType name="EstadoUnirseAPartida">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Correcto" />
+      <xs:enumeration value="FallidoPorPartidaNoEncontrada" />
+      <xs:enumeration value="FallidoPorMaximoDeJugadores" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EstadoUnirseAPartida" nillable="true" type="tns:EstadoUnirseAPartida" />
+  <xs:simpleType name="EstadoAgregarPuntuacion">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Correcto" />
+      <xs:enumeration value="Fallido" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EstadoAgregarPuntuacion" nillable="true" type="tns:EstadoAgregarPuntuacion" />
+</xs:schema>
