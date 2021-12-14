@@ -102,5 +102,35 @@ namespace Pruebas
             servidor.Conectarse(new Jugador() { usuario = "Gustavo825", contrasenia = "61245" });
             servidor.Desconectarse();
         }
+
+        [TestMethod]
+        public void TestUnirseAPartidaCorrecto()
+        {
+            InvitacionCorreoServicioClient servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
+            servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = "Gustavo825" }, "0000", new Jugador() { usuario = "Prueba" });
+            Assert.AreEqual(EstadoUnirseAPartida.Correcto, servidor.UnirseAPartida(new Jugador() { usuario = "Prueba" }, "0000"));
+            servidor.EliminarPartida("0000", "Prueba", EstadoPartida.FinDePartidaGanada);
+        }
+
+        [TestMethod]
+        public void TestUnirseAPartidaNoEncontrada()
+        {
+            InvitacionCorreoServicioClient servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
+            servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = "Gustavo825" }, "0000", new Jugador() { usuario = "Prueba" });
+            Assert.AreEqual(EstadoUnirseAPartida.FallidoPorPartidaNoEncontrada, servidor.UnirseAPartida(new Jugador() { usuario = "Prueba" }, "1111"));
+            servidor.EliminarPartida("0000", "Prueba", EstadoPartida.FinDePartidaGanada);
+
+        }
+
+        [TestMethod]
+        public void TestUnirseAPartidaNoPosiblePorNumeroDeJugadores()
+        {
+            InvitacionCorreoServicioClient servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
+            servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = "Gustavo825" }, "0000", new Jugador() { usuario = "Prueba" });
+            servidor.UnirseAPartida(new Jugador() { usuario = "Prueba" }, "0000");
+            Assert.AreEqual(EstadoUnirseAPartida.FallidoPorMaximoDeJugadores, servidor.UnirseAPartida(new Jugador() { usuario = "Prueba2" }, "0000"));
+            servidor.EliminarPartida("0000", "Prueba", EstadoPartida.FinDePartidaGanada);
+
+        }
     }
 }

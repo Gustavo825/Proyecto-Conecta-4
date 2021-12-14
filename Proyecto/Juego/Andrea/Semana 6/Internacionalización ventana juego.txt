@@ -1,0 +1,14 @@
+MessageBox.Show(“You were inactive for too long, you will be taken to the main menu”, “Inactive”, MessageBoxButton.OK);
+MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
+MessageBox.Show(“The opponent has not joined yet”, "Error", MessageBoxButton.OK);
+MessageBox.Show(“The opponent left the game, You win!”, “Opponent left”, MessageBoxButton.OK);
+MessageBox.Show(“The opponent was inactive for too long, You win!”, “Opponent inactive”, MessageBoxButton.OK);
+MessageBox.Show(“You win!”, “Game finished”, MessageBoxButton.OK);
+MessageBox.Show(“You lose!”, “Game finished”, MessageBoxButton.OK);
+MessageBox.Show(“Tie!”, “Game finished”, MessageBoxButton.OK);
+MessageBox.Show(“The opponent never joined the game yet”, "Error", MessageBoxButton.OK);
+
+else if (idioma == Idioma.Ingles)	
+	{
+	Title = “Game”;
+	}

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatJuego.Cliente"
         mc:Ignorable="d"
-        Title="TablaDePuntajes" Height="450" Width="800">
+        x:Name="Ventana_Puntajes"
+        Title="Tabla de Puntajes" Height="450" Width="800">
     <Grid Background="AntiqueWhite">
         <Grid.RowDefinitions>
             <RowDefinition Height="31"></RowDefinition>
@@ -50,7 +51,7 @@
 
                                         <StackPanel Orientation="Horizontal">
                                             <Label HorizontalContentAlignment="Right" HorizontalAlignment="Center" Content="{Binding Puntaje}" FontFamily="A.C.M.E. Explosive"></Label>
-                                    </StackPanel>
+                                        </StackPanel>
                                     </Border>
 
                                 </Grid>
