@@ -1,0 +1,49 @@
+﻿<Window x:Class="ChatJuego.Cliente.Ventanas.Configuracion.Configuracion"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatJuego.Cliente.Ventanas.Configuracion"
+        x:Name="Ventana_Configuracion"
+        mc:Ignorable="d"
+        Title="Configuracion" Height="450" Width="800">
+    <Grid Background="#214CAE">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="180"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="150"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="1" Grid.Row="0" x:Name="TituloVentana" Source="Iconos\configuracion.png"/>
+        <Image Grid.Column="1" Grid.Row="1" Source="Iconos\pinguinoConfig.png" Grid.ColumnSpan="2" Margin="427,12,2,10" Grid.RowSpan="2"/>
+        <Button x:Name="BotonEliminarCuenta" BorderThickness="0" Margin="434,28,28,72" Height="80" Width="180" Background = "Transparent" Click="EliminarCuenta_Click" Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="1">
+            <Image Source="Iconos\botonEliminarCuenta.png" x:Name="Boton_EliminarCuenta" Height="62" Width="176"/>
+        </Button>
+        <Button x:Name="BotonIngles" BorderThickness="0" Margin="1,41,260,1" Background = "Transparent" Click="Ingles_Click" Grid.Row="1" Grid.Column="1">
+            <Image Source="Iconos\textoIngles.png" x:Name="Boton_Ingles" Height="48" Width="221"/>
+        </Button>
+        <Button x:Name="BotonPortugues" BorderThickness="0" Margin="1,1,260,41" Background = "Transparent" Click="Portugues_Click" Grid.Row="2" Grid.Column="1">
+            <Image Source="Iconos\textoPortugues.png" x:Name="Boton_Portugues" Height="48" Width="221"/>
+        </Button>
+        <Button x:Name="BotonEspaniol" BorderThickness="0" Margin="261,41,0,1" Background = "Transparent" Click="Espaniol_Click" Grid.Row="1" Grid.Column="1">
+            <Image Source="Iconos\textoEspaniolON.png" x:Name="Boton_Espaniol" Height="48" Width="221"/>
+        </Button>
+        <Button x:Name="BotonFrances" BorderThickness="0" Margin="261,1,0,41" Background = "Transparent" Click="Frances_Click" Grid.Row="2" Grid.Column="1">
+            <Image Source="Iconos\textoFrances.png" x:Name="Boton_Frances" Height="48" Width="221"/>
+        </Button>
+        <Image Grid.Row="1" x:Name="TextoIdioma" Source="Iconos\textoIdioma.png" Margin="0,0,0,49" Grid.Column="1"/>
+        <Image Grid.Row="3" x:Name="ConfigMusica" Source="Iconos\musica.png" Margin="50,12,178,127" Grid.ColumnSpan="2"/>
+        <Image Grid.Row="3" x:Name="ConfigSFX" Source="Iconos\SFX.png" Margin="49,77,194,64" Grid.ColumnSpan="2"/>
+        <Button Grid.Column="1" Grid.Row="3" x:Name="BotonMusica" BorderThickness="0" Margin="291,5,60,115" Background = "Transparent" Click="Musica_Click">
+            <Image Source="Iconos\botonONES.png" x:Name="Boton_Musica" Height="56" Width="148"/>
+        </Button>
+        <Button Grid.Column="1" Grid.Row="3" x:Name="BotonSFX" BorderThickness="0" Margin="291,68,60,51" Background = "Transparent" Click="SFX_Click">
+            <Image Source="Iconos\botonONES.png" x:Name="Boton_SFX" Height="56" Width="148"/>
+        </Button>
+    </Grid>
+</Window>
