@@ -2,19 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
+using static ChatJuego.Cliente.Ventanas.Configuracion.Configuracion;
 
 namespace ChatJuego.Cliente.Ventanas.Juego
 {
@@ -57,6 +51,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         public VentanaDeJuego(InstanceContext contexto, MenuPrincipal menuPrincipal, Jugador jugador, ChatServicioClient servidorDelChat, string codigoDePartida, JugadorCallBack jugadorCallBack, ServidorClient servidor)
         {
             InitializeComponent();
+            ActualizarIdiomaDeVentana();
             ImagenJugadorDerecho.Source = ConvertirArrayAImagen(servidor.ObtenerBytesDeImagenDeJugador(jugador.usuario));
             imagenesCargadas = false;
             partidaFinalizada = false;
@@ -71,6 +66,11 @@ namespace ChatJuego.Cliente.Ventanas.Juego
 
         }
 
+        /// <summary>
+        /// Verifica si algún jugador ya ganó. Verifica que existan 4 fichas consecutivas de forma horizontal,
+        /// vertical y en las diagonales
+        /// </summary>
+        /// <returns>Si hay un ganador, regresa TIROPROPIO si el ganador es uno mismo, o TIROOPONENTE si el ganador es el oponente. Si nadie gana, regresa un 0</returns>
         public int VerificarTablero()
         {
             //Horizontal
@@ -196,11 +196,9 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             return 0;
         }
 
-        public VentanaDeJuego()
-        {
-            InitializeComponent();
-        }
-
+        /// <summary>
+        /// Inicia el contador para el monitoreo de presencia del jugador.
+        /// </summary>
         private void IniciarTiempoDeEspera()
         {
 
@@ -221,7 +219,22 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     {
                         confirmacionDePresencia.Close();
                         FinalizarPartida(EstadoPartida.FinDePartidaPorTiempoDeEsperaLimite);
-                        MessageBox.Show("Te austentaste demasiado tiempo, serás llevado al menú principal", "Ausente", MessageBoxButton.OK);
+                        if (idioma == Idioma.Espaniol)
+                        {
+                            MessageBox.Show("Te austentaste demasiado tiempo, serás llevado al menú principal", "Ausente", MessageBoxButton.OK);
+                        }
+                        else if (idioma == Idioma.Frances)
+                        {
+                            MessageBox.Show("Vous avez été absent trop longtemps, vous serez ramené au menu principal", "Absent", MessageBoxButton.OK);
+                        }
+                        else if (idioma == Idioma.Portugues)
+                        {
+                            MessageBox.Show("Você esteve ausente por muito tempo, você será levado ao menu principal", "Ausente", MessageBoxButton.OK);
+                        }
+                        else if (idioma == Idioma.Ingles)
+                        {
+                           MessageBox.Show("You were inactive for too long, you will be taken to the main menu", "Inactive", MessageBoxButton.OK) ;
+                        }
                         menuPrincipal.Show();
                         CerrarConfirmacionDePresencia();
                         timer.Stop();
@@ -242,6 +255,9 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             };
         }
 
+        /// <summary>
+        /// Recupera la imagen de jugador del oponente para mostrarla en la Ventana de Juego
+        /// </summary>
         public void CargarImagenesDeJugadores()
         {
             try
@@ -250,7 +266,22 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             }
             catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
             {
-                MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                if (idioma == Idioma.Espaniol)
+                {
+                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Ingles)
+                {
+                    MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
+                }
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 CerrarConfirmacionDePresencia();
@@ -258,6 +289,10 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             }
         }
 
+        /// <summary>
+        /// Verifica que la posición seleccionada para ingresar la ficha sea posible.
+        /// Si es posible, introduce la ficha y también llama a la función de VerificarTablero para checar si hay ya un ganador.
+        /// </summary>
         public void IntroducirFicha(int columna, int quienTira)
         {
 
@@ -631,6 +666,10 @@ namespace ChatJuego.Cliente.Ventanas.Juego
 
         }
 
+        /// <summary>
+        /// Verifica si el tablero se llenó para declarar un empate
+        /// </summary>
+        /// <returns>Si el tablero está lleno, regresa el valor EMPATE, si no, regresa un 0</returns>
         private int VerificarTableroLleno()
         {
             for (int fila = 0; fila < 6; fila++)
@@ -644,6 +683,10 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             return EMPATE;
         }
 
+        /// <summary>
+        /// Detecta en qué columna se introduce la ficha para verificar si se puede ingresar o no la ficha.
+        /// También se encarga de ingresar la ficha en el juego del oponente.
+        /// </summary>
         private void ClicEnTablero(object sender, RoutedEventArgs e)
         {
             try
@@ -659,13 +702,43 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                         turnoDeJuego = false;
                         servidor.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
                     } else {
-                        MessageBox.Show("Columna llena, seleccione otra columna", "Columna llena", MessageBoxButton.OK);
+                        if (idioma == Idioma.Espaniol)
+                        {
+                            MessageBox.Show("Columna llena, seleccione otra columna", "Columna llena", MessageBoxButton.OK);
+                        }
+                        else if (idioma == Idioma.Frances)
+                        {
+                            MessageBox.Show("Colonne pleine, sélectionnez une autre colonne", "Colonne pleine", MessageBoxButton.OK);
+                        }
+                        else if (idioma == Idioma.Portugues)
+                        {
+                            MessageBox.Show("Coluna cheia, selecione outra coluna", "Coluna cheia", MessageBoxButton.OK);
+                        }
+                        else if (idioma == Idioma.Ingles)
+                        {
+                            MessageBox.Show("Full column, selecto another one", "Full column", MessageBoxButton.OK);
+                        }
                     }
                 }
             }
             catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
             {
-                MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                if (idioma == Idioma.Espaniol)
+                {
+                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Ingles)
+                {
+                    MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
+                }
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 CerrarConfirmacionDePresencia();
@@ -673,6 +746,11 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             }
         }
 
+        /// <summary>
+        /// Verifica que la columna a la que se le quiere ingresar la ficha no se encuentre llena.
+        /// </summary>
+        /// <param name="columna">La columna a la que se quiere ingresar la ficha</param>
+        /// <returns>Regresa un booleano, true si la columna está llena, y false si sí se pueden meter fichas en esa columna</returns>
         private bool VerificarColumnaLlena(int columna)
         {
             if (tablero[0,columna - 1] != 0)
@@ -682,6 +760,10 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             return false;
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón del Chat.
+        /// Abre un chat donde los mensajes son privados entre el jugador de la partida y el oponente.
+        /// </summary>
         private void BotonChat_Click(object sender, RoutedEventArgs e)
         {
             if (oponenteConectado)
@@ -696,7 +778,22 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 }
                 catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
                 {
-                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                    if (idioma == Idioma.Espaniol)
+                    {
+                        MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                    }
+                    else if (idioma == Idioma.Frances)
+                    {
+                        MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
+                    }
+                    else if (idioma == Idioma.Portugues)
+                    {
+                        MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
+                    }
+                    else if (idioma == Idioma.Ingles)
+                    {
+                        MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
+                    }
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                     CerrarConfirmacionDePresencia();
@@ -705,10 +802,29 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             }
             else
             {
-                MessageBox.Show("El oponente aún no se conecta a la partida", "Error", MessageBoxButton.OK);
+                if (idioma == Idioma.Espaniol)
+                {
+                    MessageBox.Show("El oponente aún no se conecta a la partida", "Error", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    MessageBox.Show("Adversaire non encore connecté au jeu", "Erreur", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    MessageBox.Show("Oponente ainda não conectado ao jogo", "Error", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Ingles)
+                {
+                    MessageBox.Show("The opponent has not joined yet", "Error", MessageBoxButton.OK);
+                }
             }
         }
 
+        /// <summary>
+        /// Finaliza la partida, y elimina la partida del servidor.
+        /// </summary>
+        /// <param name="estadoDePartida">Recibe el estado de la partidam; si se ganó, se perdió, se empató, etc.</param>
         private void FinalizarPartida(EstadoPartida estadoDePartida)
         {
             timer.Stop();
@@ -733,7 +849,22 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             }
             catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
             {
-                MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                if (idioma == Idioma.Espaniol)
+                {
+                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Ingles)
+                {
+                    MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
+                }
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 CerrarConfirmacionDePresencia();
@@ -741,45 +872,135 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             }
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón de Salir.
+        /// </summary>
         private void BotonSalir_Click(object sender, RoutedEventArgs e)
         {
             
             this.Close();
         }
 
+        /// <summary>
+        /// Muestra un mensaje dependiendo del valor del parámetro de estado de partida.
+        /// Termina el juego completamente y detiene el monitoreo de presencia.
+        /// </summary>
+        /// <param name="estadoPartida">Contiene el estado de la partida, si se ganó, perdió, empató, etc.</param>
         public void Desconectarse(EstadoPartida estadoPartida)
         {
             timer.Stop();
             CerrarConfirmacionDePresencia();
             if (estadoPartida == EstadoPartida.FinDePartidaSalir)
             {
-                MessageBox.Show("El oponente salió de la partida, ¡Tú ganas!", "Oponente salió", MessageBoxButton.OK);
+                if (idioma == Idioma.Espaniol)
+                {
+                    MessageBox.Show("El oponente salió de la partida, ¡Tú ganas!", "Oponente salió", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    MessageBox.Show("L'adversaire est hors partie, vous gagnez!", "L'adversaire est parti", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    MessageBox.Show("O adversário está fora do jogo, você ganha!", "O oponente partiu", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Ingles)
+                {
+                    MessageBox.Show("The opponent left the game, You win!", "Opponent left", MessageBoxButton.OK);
+                }
             }
             else if (estadoPartida == EstadoPartida.FinDePartidaPorTiempoDeEsperaLimite)
             {
-                MessageBox.Show("El oponente se ausentó más del tiempo límite, ¡Tú ganas!", "Oponente ausente", MessageBoxButton.OK);
-
+                if (idioma == Idioma.Espaniol)
+                {
+                    MessageBox.Show("El oponente se ausentó más del tiempo límite, ¡Tú ganas!", "Oponente ausente", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    MessageBox.Show("L'adversaire était absent au-delà du temps imparti, vous gagnez!", "Absent Opposant", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    MessageBox.Show("O adversário estava ausente além do tempo limite, você ganha!", "Oponente ausentado", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Ingles)
+                {
+                    MessageBox.Show("The opponent was inactive for too long, You win!", "Opponent inactive", MessageBoxButton.OK);
+                }
             } else if (estadoPartida == EstadoPartida.FinDePartidaGanada)
             {
-                MessageBox.Show("¡Tú ganas!", "Partida finalizada", MessageBoxButton.OK);
+                if (idioma == Idioma.Espaniol)
+                {
+                    MessageBox.Show("¡Tú ganas!", "Partida finalizada", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    MessageBox.Show("Vous avez gagné!", "Partie terminé", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    MessageBox.Show("Você ganhou!", "Jogo concluído", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Ingles)
+                {
+                    MessageBox.Show("You win!", "Game finished", MessageBoxButton.OK);
+                }
             } else if (estadoPartida == EstadoPartida.FinDePartidaPerdida)
             {
-                MessageBox.Show("¡Has perdido!", "Partida finalizada", MessageBoxButton.OK);
+                if (idioma == Idioma.Espaniol)
+                {
+                    MessageBox.Show("¡Has perdido!", "Partida finalizada", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    MessageBox.Show("Vous avez perdu!", "Partie terminé", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    MessageBox.Show("Você perdeu!", "Jogo concluído", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Ingles)
+                {
+                    MessageBox.Show("You lose!", "Game finished", MessageBoxButton.OK);
+                }
             } else if (estadoPartida == EstadoPartida.FinDePartidaPorEmpate)
             {
-                MessageBox.Show("¡Empate!", "Partida finalizada", MessageBoxButton.OK);
+                if (idioma == Idioma.Espaniol)
+                {
+                    MessageBox.Show("¡Empate!", "Partida finalizada", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    MessageBox.Show("Cravate!", "Partie terminé", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    MessageBox.Show("Empate!", "Jogo concluído", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Ingles)
+                {
+                    MessageBox.Show("Tie!", "Game finished", MessageBoxButton.OK);
+                }
             }
             this.Close();
 
 
         }
 
+        /// <summary>
+        /// Cierra la ventana de confirmación de presencia
+        /// </summary>
         private void CerrarConfirmacionDePresencia()
         {
             if (confirmacionDePresencia != null && confirmacionDePresencia.IsActive)
                 confirmacionDePresencia.Close();
         }
 
+        /// <summary>
+        /// Convierte un arreglo de bytes en una imagen para mostrarla en la Ventana de Juego.
+        /// </summary>
+        /// <param name="arrayDeImagen">Arreglo con los bytes de la imagen.</param>
+        /// <returns></returns>
         public static BitmapImage ConvertirArrayAImagen(byte[] arrayDeImagen)
         {
             BitmapImage imagen = new BitmapImage();
@@ -794,12 +1015,31 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             return imagen;
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se cierra la ventana.
+        /// Nos regresa al menú princpal y puede mostrar un mensaje dependiendo si se cumplen ciertos valores (oponente no se conectó)
+        /// </summary>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             timer.Stop();
             if (oponenteConectado == false)
             {
-                MessageBox.Show("El oponente nunca se unió a la partida", "Error", MessageBoxButton.OK);
+                if (idioma == Idioma.Espaniol)
+                {
+                    MessageBox.Show("El oponente nunca se unió a la partida", "Error", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    MessageBox.Show("L'adversaire n'a jamais rejoint le partie", "Erreur", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    MessageBox.Show("O oponente nunca se juntou ao jogo", "Error", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Ingles)
+                {
+                    MessageBox.Show("The opponent never joined the game", "Error", MessageBoxButton.OK);
+                }
             }
             if (partidaFinalizada != true)
             {
@@ -809,6 +1049,31 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             CerrarConfirmacionDePresencia();
         }
 
-        
+        /// <summary>
+        /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
+        /// </summary>
+        public void ActualizarIdiomaDeVentana()
+        {
+            if (idioma == Idioma.Frances)
+            {
+                Title = "Jeu";
+                BotonSalirImagen.Source = new BitmapImage(new Uri("Iconos/salirFR.png", UriKind.Relative));
+            }
+            else if (idioma == Idioma.Espaniol)
+            {
+                Title = "Juego";
+                BotonSalirImagen.Source = new BitmapImage(new Uri("Iconos/salir.png", UriKind.Relative));
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                Title = "Jogo";
+                BotonSalirImagen.Source = new BitmapImage(new Uri("Iconos/salirPO.png", UriKind.Relative));
+            }
+            if (idioma == Idioma.Ingles)
+            {
+                Title = "Game";
+                BotonSalirImagen.Source = new BitmapImage(new Uri("Iconos/salirEN.png", UriKind.Relative));
+            }
+        }
     }
 }

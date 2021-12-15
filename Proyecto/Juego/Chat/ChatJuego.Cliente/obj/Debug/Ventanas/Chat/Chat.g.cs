@@ -124,7 +124,7 @@ namespace ChatJuego.Cliente {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ChatJuego.Cliente;component/ventanas/chat/chat.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Conecta 4;component/ventanas/chat/chat.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Ventanas\Chat\Chat.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

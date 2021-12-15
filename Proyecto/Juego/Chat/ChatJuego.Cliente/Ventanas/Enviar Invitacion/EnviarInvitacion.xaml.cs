@@ -1,20 +1,10 @@
 ﻿using ChatJuego.Cliente.Proxy;
 using ChatJuego.Cliente.Ventanas.Juego;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Media;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using static ChatJuego.Cliente.Ventanas.Configuracion.Configuracion;
 
 namespace ChatJuego.Cliente
@@ -24,20 +14,20 @@ namespace ChatJuego.Cliente
     /// </summary>
     public partial class EnviarInvitacion : Window
     {
-        SoundPlayer sonidoDeBoton = new SoundPlayer();
-        SoundPlayer sonidoDeError = new SoundPlayer();
-        InvitacionCorreoServicioClient servidorDeCorreo;
-        ChatServicioClient servidorDelChat;
-        InstanceContext contexto;
-        JugadorCallBack jugadorCallBack;
-        ServidorClient servidor;
+        private SoundPlayer sonidoDeBoton = new SoundPlayer();
+        private SoundPlayer sonidoDeError = new SoundPlayer();
+        private InvitacionCorreoServicioClient servidorDeCorreo;
+        private ChatServicioClient servidorDelChat;
+        private InstanceContext contexto;
+        private JugadorCallBack jugadorCallBack;
+        private ServidorClient servidor;
         private Jugador jugador;
         private MenuPrincipal menuPrincipal;
-        bool perdidaDeConexion = false;
-        bool juegoIniciado = false;
+        private bool perdidaDeConexion = false;
+        private bool juegoIniciado = false;
 
 
-        public EnviarInvitacion(Jugador jugador, MenuPrincipal menuPrincipal, InstanceContext contexto, ChatServicioClient servidorDelChat, JugadorCallBack callBackDeJugador, ServidorClient servidor)
+        public EnviarInvitacion(Jugador jugador, MenuPrincipal menuPrincipal, InstanceContext contexto, ChatServicioClient servidorDelChat, JugadorCallBack jugadorCallBack, ServidorClient servidor)
         {
             string ruta = System.IO.Directory.GetCurrentDirectory();
             ruta = ruta.Substring(0, ruta.Length - 9);
@@ -49,10 +39,16 @@ namespace ChatJuego.Cliente
             this.menuPrincipal = menuPrincipal;
             this.contexto = contexto;
             this.servidorDelChat = servidorDelChat;
-            this.jugadorCallBack = callBackDeJugador;
+            this.jugadorCallBack = jugadorCallBack;
             this.servidor = servidor;
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón de Enviar Invitación.
+        /// Verifica que el usuario sea correcto, que no esté vacío, entre otras cosas para luego mandar la invitación.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BotonDeEnviarInvitacion_Click(object sender, RoutedEventArgs e)
         {
             sonidoDeBoton.Play();
@@ -195,11 +191,18 @@ namespace ChatJuego.Cliente
             }
         }
 
+        /// <summary>
+        /// Genera un código de partida
+        /// </summary>
+        /// <returns>Regresa un entero generado para la partida</returns>
         public static int GenerarCodigoDePartida()
         {
             return new Random().Next(1000, 3000);
         }
 
+        /// <summary>
+        /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
+        /// </summary>
         private void Actualizar_Idioma()
         {
             if (idioma == Idioma.Espaniol)
@@ -231,6 +234,10 @@ namespace ChatJuego.Cliente
                 Boton_Enviar_Invitacion.Source = new BitmapImage(new Uri("Iconos/botonEnviarInvitacionIN.png", UriKind.Relative));
             }
         }
+
+        /// <summary>
+        /// Se ejecuta cuando se cierra la ventana. Si no se inicia la partida o si no se perdió la conexión, regresa al menú principal
+        /// </summary>
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

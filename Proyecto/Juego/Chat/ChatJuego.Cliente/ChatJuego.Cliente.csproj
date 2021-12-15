@@ -7,7 +7,7 @@
     <ProjectGuid>{A59A5CC1-E8A5-4A2E-9A93-31B17621BE41}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>ChatJuego.Cliente</RootNamespace>
-    <AssemblyName>ChatJuego.Cliente</AssemblyName>
+    <AssemblyName>Conecta 4</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -33,6 +33,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>JuegoIcono.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -319,6 +322,18 @@
     <Resource Include="Ventanas\Registro de Jugador\Iconos\imagenPredeterminada.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\textoIngresarCodigoEN.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\textoIngresarCodigoES.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\textoIngresarCodigoFR.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\textoIngresarCodigoPO.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\tituloUnirseAPartidaEN.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\tituloUnirseAPartidaES.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\tituloUnirseAPartidaFR.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\tituloUnirseAPartidaPO.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\unirse_a_partidaEN.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\unirse_a_partidaES.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\unirse_a_partidaFR.png" />
+    <Resource Include="Ventanas\Unirse a Partida\Iconos\unirse_a_partidaPO.png" />
     <Resource Include="Ventanas\Unirse a Partida\Iconos\unirse_a_partida.png" />
     <Resource Include="Ventanas\Unirse a Partida\Iconos\textoIngresarCodigo.png" />
     <Resource Include="Ventanas\Unirse a Partida\Iconos\tituloUnirseAPartida.png" />
@@ -431,6 +446,10 @@
     <Resource Include="Ventanas\Registro de Jugador\Iconos\tituloRegistrarsePO.png" />
     <Resource Include="Ventanas\Registro de Jugador\Iconos\tituloRegistroFR.png" />
     <Resource Include="Ventanas\Registro de Jugador\Iconos\usuarioIN.png" />
+    <Resource Include="JuegoIcono.ico" />
+    <Resource Include="Ventanas\Juego\Iconos\salirEN.png" />
+    <Resource Include="Ventanas\Juego\Iconos\salirFR.png" />
+    <Resource Include="Ventanas\Juego\Iconos\salirPO.png" />
     <Content Include="Ventanas\Sonidos\ClicEnBoton.wav" />
     <Content Include="Ventanas\Sonidos\Error.wav" />
     <Content Include="Ventanas\Sonidos\MusicaDeMenu.wav" />

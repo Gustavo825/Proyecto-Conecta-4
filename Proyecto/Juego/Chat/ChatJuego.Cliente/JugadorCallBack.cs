@@ -1,8 +1,5 @@
 ﻿using ChatJuego.Cliente.Proxy;
 using ChatJuego.Cliente.Ventanas.Juego;
-using System;
-using System.Collections.Generic;
-using System.Windows;
 
 namespace ChatJuego.Cliente
 {
@@ -12,6 +9,10 @@ namespace ChatJuego.Cliente
         private VentanaDeJuego ventanaDeJuego;
         private TablaDePuntajes tabla;
 
+        /// <summary>
+        /// Método que actualiza los jugadores conectados.
+        /// </summary>
+        /// <param name="nombresDeJugadores">Arreglo que contiene los nombres de los jugadores conectados</param>
         public virtual void ActualizarJugadoresConectados(string[] nombresDeJugadores)
         {
             if (chat != null)
@@ -27,6 +28,10 @@ namespace ChatJuego.Cliente
             }
         }
 
+        /// <summary>
+        /// Método que muestra los puntajes de los jugadores.
+        /// </summary>
+        /// <param name="jugadores">Arreglo que contiene los Jugadores con sus puntuaciones.</param>
         public virtual void MostrarPuntajes(Jugador[] jugadores)
         {
             if (tabla != null)
@@ -40,6 +45,12 @@ namespace ChatJuego.Cliente
             }
         }
 
+        /// <summary>
+        /// Método que recibe el mensaje para mostrarlo en la ventana del Chat.
+        /// </summary>
+        /// <param name="jugador">Jugador que envía el mensaje.</param>
+        /// <param name="mensaje">Contiene el mensaje y su información.</param>
+        /// <param name="nombresDeJugadores">Arreglo que contiene los jugadores conectados.</param>
         public virtual void RecibirMensaje(Jugador jugador, Mensaje mensaje, string[] nombresDeJugadores)
         {
             if (chat != null)
@@ -50,25 +61,37 @@ namespace ChatJuego.Cliente
             }
         }
 
-
+        /// <summary>
+        /// Asigna la tabla de puntajes al CallBack.
+        /// </summary>
+        /// <param name="tabla">Instancia de la tabla de puntajes.</param>
         public void SetTablaDePuntajes(TablaDePuntajes tabla)
         {
             this.tabla = tabla;
         }
 
-
-     
-
+        /// <summary>
+        /// Asigna el chat al CallBack.
+        /// </summary>
+        /// <param name="chat">Instancia del chat.</param>
         public void SetChat(Chat chat)
         {
             this.chat = chat;
         }
 
+        /// <summary>
+        /// Asigna la ventana del juego al CallBack.
+        /// </summary>
+        /// <param name="ventanaDeJuego">Instancia de la ventana de juego.</param>
         public void SetVentanaDeJuego(VentanaDeJuego ventanaDeJuego)
         {
             this.ventanaDeJuego = ventanaDeJuego;
         }
 
+        /// <summary>
+        /// Método que inica la partida solo si ya se asignó una ventana de juego.
+        /// </summary>
+        /// <param name="nombreOponente">Nombre del oponente.</param>
         public void IniciarPartida(string nombreOponente)
         {
             if (ventanaDeJuego != null)
@@ -78,12 +101,21 @@ namespace ChatJuego.Cliente
             }
         }
 
+        /// <summary>
+        /// Método que desconecta de la partida y la finaliza.
+        /// Manda el estado de la partida para saber cómo finalizó.
+        /// </summary>
+        /// <param name="estadoPartida">Estado de la partida, ya sea ganada, empate, etc.</param>
         public void DesconectarDePartida(EstadoPartida estadoPartida)
         {
             if (ventanaDeJuego != null)
                 ventanaDeJuego.Desconectarse(estadoPartida);
         }
 
+        /// <summary>
+        /// Método que inserta la ficha del oponente en el tablero, solo si existe ya una instancia de la ventana de juego.
+        /// </summary>
+        /// <param name="columna">Entero que contiene la columna donde tiró el oponente.</param>
         public void InsertarFichaEnTablero(int columna)
         {
             if (ventanaDeJuego != null)

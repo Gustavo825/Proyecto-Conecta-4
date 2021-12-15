@@ -45,6 +45,15 @@ namespace Pruebas.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/MostrarPuntajes")]
         void MostrarPuntajes(ChatJuego.Cliente.Proxy.Jugador[] jugadores);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/IniciarPartida")]
+        void IniciarPartida(string nombreOponente);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/DesconectarDePartida")]
+        void DesconectarDePartida(ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatServicio/InsertarFichaEnTablero")]
+        void InsertarFichaEnTablero(int columna);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -128,6 +137,15 @@ namespace Pruebas.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IInvitacionCorreoServicio/MostrarPuntajes")]
         void MostrarPuntajes(ChatJuego.Cliente.Proxy.Jugador[] jugadores);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IInvitacionCorreoServicio/IniciarPartida")]
+        void IniciarPartida(string nombreOponente);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IInvitacionCorreoServicio/DesconectarDePartida")]
+        void DesconectarDePartida(ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IInvitacionCorreoServicio/InsertarFichaEnTablero")]
+        void InsertarFichaEnTablero(int columna);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -208,6 +226,42 @@ namespace Pruebas.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/Desconectarse")]
         System.Threading.Tasks.Task DesconectarseAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/UnirseAPartida", ReplyAction="http://tempuri.org/IServidor/UnirseAPartidaResponse")]
+        ChatJuego.Cliente.Proxy.EstadoUnirseAPartida UnirseAPartida(ChatJuego.Cliente.Proxy.Jugador jugador, string codigoDePartida);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/UnirseAPartida", ReplyAction="http://tempuri.org/IServidor/UnirseAPartidaResponse")]
+        System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoUnirseAPartida> UnirseAPartidaAsync(ChatJuego.Cliente.Proxy.Jugador jugador, string codigoDePartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/EliminarPartida")]
+        void EliminarPartida(string codigoDePartida, string usuarioQueFinaliza, ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/EliminarPartida")]
+        System.Threading.Tasks.Task EliminarPartidaAsync(string codigoDePartida, string usuarioQueFinaliza, ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/EliminarPartidaConGanador")]
+        void EliminarPartidaConGanador(string codigoDePartida, string usuarioQueFinaliza, ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida, float puntaje, string ganador);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/EliminarPartidaConGanador")]
+        System.Threading.Tasks.Task EliminarPartidaConGanadorAsync(string codigoDePartida, string usuarioQueFinaliza, ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida, float puntaje, string ganador);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/InicializarPartida")]
+        void InicializarPartida(string codigoDePartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/InicializarPartida")]
+        System.Threading.Tasks.Task InicializarPartidaAsync(string codigoDePartida);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/AgregarPuntajeAJugador", ReplyAction="http://tempuri.org/IServidor/AgregarPuntajeAJugadorResponse")]
+        ChatJuego.Cliente.Proxy.EstadoAgregarPuntuacion AgregarPuntajeAJugador(string usuario, float puntaje);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServidor/AgregarPuntajeAJugador", ReplyAction="http://tempuri.org/IServidor/AgregarPuntajeAJugadorResponse")]
+        System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoAgregarPuntuacion> AgregarPuntajeAJugadorAsync(string usuario, float puntaje);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/InsertarFichaEnOponente")]
+        void InsertarFichaEnOponente(int columna, string codigoDePartida, string oponente);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/InsertarFichaEnOponente")]
+        System.Threading.Tasks.Task InsertarFichaEnOponenteAsync(int columna, string codigoDePartida, string oponente);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -221,6 +275,15 @@ namespace Pruebas.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/MostrarPuntajes")]
         void MostrarPuntajes(ChatJuego.Cliente.Proxy.Jugador[] jugadores);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/IniciarPartida")]
+        void IniciarPartida(string nombreOponente);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/DesconectarDePartida")]
+        void DesconectarDePartida(ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServidor/InsertarFichaEnTablero")]
+        void InsertarFichaEnTablero(int columna);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -290,6 +353,54 @@ namespace Pruebas.Proxy {
         public System.Threading.Tasks.Task DesconectarseAsync() {
             return base.Channel.DesconectarseAsync();
         }
+        
+        public ChatJuego.Cliente.Proxy.EstadoUnirseAPartida UnirseAPartida(ChatJuego.Cliente.Proxy.Jugador jugador, string codigoDePartida) {
+            return base.Channel.UnirseAPartida(jugador, codigoDePartida);
+        }
+        
+        public System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoUnirseAPartida> UnirseAPartidaAsync(ChatJuego.Cliente.Proxy.Jugador jugador, string codigoDePartida) {
+            return base.Channel.UnirseAPartidaAsync(jugador, codigoDePartida);
+        }
+        
+        public void EliminarPartida(string codigoDePartida, string usuarioQueFinaliza, ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida) {
+            base.Channel.EliminarPartida(codigoDePartida, usuarioQueFinaliza, estadoPartida);
+        }
+        
+        public System.Threading.Tasks.Task EliminarPartidaAsync(string codigoDePartida, string usuarioQueFinaliza, ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida) {
+            return base.Channel.EliminarPartidaAsync(codigoDePartida, usuarioQueFinaliza, estadoPartida);
+        }
+        
+        public void EliminarPartidaConGanador(string codigoDePartida, string usuarioQueFinaliza, ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida, float puntaje, string ganador) {
+            base.Channel.EliminarPartidaConGanador(codigoDePartida, usuarioQueFinaliza, estadoPartida, puntaje, ganador);
+        }
+        
+        public System.Threading.Tasks.Task EliminarPartidaConGanadorAsync(string codigoDePartida, string usuarioQueFinaliza, ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida, float puntaje, string ganador) {
+            return base.Channel.EliminarPartidaConGanadorAsync(codigoDePartida, usuarioQueFinaliza, estadoPartida, puntaje, ganador);
+        }
+        
+        public void InicializarPartida(string codigoDePartida) {
+            base.Channel.InicializarPartida(codigoDePartida);
+        }
+        
+        public System.Threading.Tasks.Task InicializarPartidaAsync(string codigoDePartida) {
+            return base.Channel.InicializarPartidaAsync(codigoDePartida);
+        }
+        
+        public ChatJuego.Cliente.Proxy.EstadoAgregarPuntuacion AgregarPuntajeAJugador(string usuario, float puntaje) {
+            return base.Channel.AgregarPuntajeAJugador(usuario, puntaje);
+        }
+        
+        public System.Threading.Tasks.Task<ChatJuego.Cliente.Proxy.EstadoAgregarPuntuacion> AgregarPuntajeAJugadorAsync(string usuario, float puntaje) {
+            return base.Channel.AgregarPuntajeAJugadorAsync(usuario, puntaje);
+        }
+        
+        public void InsertarFichaEnOponente(int columna, string codigoDePartida, string oponente) {
+            base.Channel.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
+        }
+        
+        public System.Threading.Tasks.Task InsertarFichaEnOponenteAsync(int columna, string codigoDePartida, string oponente) {
+            return base.Channel.InsertarFichaEnOponenteAsync(columna, codigoDePartida, oponente);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -314,6 +425,15 @@ namespace Pruebas.Proxy {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITablaDePuntajes/MostrarPuntajes")]
         void MostrarPuntajes(ChatJuego.Cliente.Proxy.Jugador[] jugadores);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITablaDePuntajes/IniciarPartida")]
+        void IniciarPartida(string nombreOponente);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITablaDePuntajes/DesconectarDePartida")]
+        void DesconectarDePartida(ChatJuego.Cliente.Proxy.EstadoPartida estadoPartida);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/ITablaDePuntajes/InsertarFichaEnTablero")]
+        void InsertarFichaEnTablero(int columna);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

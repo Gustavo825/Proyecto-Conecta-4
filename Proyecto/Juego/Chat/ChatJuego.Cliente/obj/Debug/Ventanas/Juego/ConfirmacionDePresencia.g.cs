@@ -68,7 +68,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ChatJuego.Cliente;component/ventanas/juego/confirmaciondepresencia.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Conecta 4;component/ventanas/juego/confirmaciondepresencia.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Ventanas\Juego\ConfirmacionDePresencia.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

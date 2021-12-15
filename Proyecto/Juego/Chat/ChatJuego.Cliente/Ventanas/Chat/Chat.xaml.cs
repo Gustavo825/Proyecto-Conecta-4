@@ -1,18 +1,10 @@
 ﻿using ChatJuego.Cliente.Proxy;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using static ChatJuego.Cliente.Ventanas.Configuracion.Configuracion;
 
 namespace ChatJuego.Cliente
@@ -31,31 +23,12 @@ namespace ChatJuego.Cliente
         public string nombreJugadorInvitado { get; set; }
 
 
-        public ScrollViewer VistaDeContenidoDeScroll
-        {
-            get { return ScrollerContenido; }
-            set { ScrollerContenido = value; }
-        }
 
         public TextBox ContenedorDelMensaje
         {
             get { return ContenidoDelMensaje; }
             set { ContenidoDelMensaje = value; }
         }
-
-        public ItemsControl PantallaDeMensajes
-        {
-            get { return PlantillaMensaje; }
-            set { PlantillaMensaje = value; }
-        }
-
-
-        public Label TituloDeMensaje
-        {
-            get { return Titulo; }
-            set { Titulo = value; }
-        }
-
 
 
 
@@ -79,12 +52,18 @@ namespace ChatJuego.Cliente
             Actualizar_Idioma();
         }
 
+        /// <summary>
+        /// Método para obtener el Jugador recibido en el Chat
+        /// </summary>
+        /// <returns>Regresa el jugador</returns>
         public Jugador GetJugador()
         {
             return jugador;
         }
 
-
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón Enviar de la GUI y envía el mensaje escrito en la caja de texto
+        /// </summary>
         private void BotonEnviar_Click(object sender, RoutedEventArgs e)
         {
             ScrollerContenido.ScrollToBottom();
@@ -161,6 +140,9 @@ namespace ChatJuego.Cliente
         }
 
 
+        /// <summary>
+        /// Activa el envío de mensajes privados al usuario seleccionado
+        /// </summary>
 
         private void ClickEnLabelDeJugador_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -170,6 +152,9 @@ namespace ChatJuego.Cliente
             esMensajePrivado = true;
         }
 
+        /// <summary>
+        /// Detecta cuando se presiona la tecla "Enter" para enviar el mensaje
+        /// </summary>
 
         private void ContenidoDelMensaje_KeyDown(object sender, KeyEventArgs e)
         {
@@ -177,6 +162,9 @@ namespace ChatJuego.Cliente
                 BotonEnviar_Click(new object(), new RoutedEventArgs());
         }
 
+        /// <summary>
+        /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
+        /// </summary>
         private void Actualizar_Idioma()
         {
             if (idioma == Idioma.Espaniol)

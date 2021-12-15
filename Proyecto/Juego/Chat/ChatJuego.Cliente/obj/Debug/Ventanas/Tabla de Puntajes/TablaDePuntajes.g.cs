@@ -84,7 +84,7 @@ namespace ChatJuego.Cliente {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ChatJuego.Cliente;component/ventanas/tabla%20de%20puntajes/tabladepuntajes.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Conecta 4;component/ventanas/tabla%20de%20puntajes/tabladepuntajes.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Ventanas\Tabla de Puntajes\TablaDePuntajes.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

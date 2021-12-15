@@ -324,7 +324,7 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Button x:Name="BotonSalir" BorderThickness="0" Height="40" Width="100" Background = "Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,20,0" Click="BotonSalir_Click">
-                    <Image Source="Iconos\salir.png" Height="40" Width="100"/>
+                    <Image x:Name="BotonSalirImagen" Source="Iconos\salir.png" Height="40" Width="100"/>
                 </Button>
             </Grid>
             <Grid Grid.Row="1">

@@ -1,17 +1,5 @@
 ﻿using ChatJuego.Cliente.Proxy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using static ChatJuego.Cliente.Ventanas.Configuracion.Configuracion;
 
 namespace ChatJuego.Cliente
@@ -23,11 +11,6 @@ namespace ChatJuego.Cliente
     {
         private TablaDePuntajesClient servidorTablaDePuntajes;
 
-        public ItemsControl PantallaDePuntuaciones
-        {
-            get { return PlantillaTablaDePuntuaciones; }
-            set { PlantillaTablaDePuntuaciones = value; }
-        }
         public TablaDePuntajes(TablaDePuntajesClient servidorTablaDePuntajes)
         {
             InitializeComponent();
@@ -36,6 +19,9 @@ namespace ChatJuego.Cliente
             this.servidorTablaDePuntajes.RecuperarPuntajesDeJugadores();
         }
 
+        /// <summary>
+        /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
+        /// </summary>
         private void Actualizar_Idioma()
         {
             if (idioma == Idioma.Espaniol)

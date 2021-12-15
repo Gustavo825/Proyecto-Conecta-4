@@ -1,21 +1,11 @@
 ﻿using ChatJuego.Cliente.Proxy;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Media;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using static ChatJuego.Cliente.Ventanas.Configuracion.Configuracion;
 
 namespace ChatJuego.Cliente
@@ -49,6 +39,11 @@ namespace ChatJuego.Cliente
             codigoDeRegistro = EnviarInvitacion.GenerarCodigoDePartida();
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón de Registrarse.
+        /// Se crea un código de registro que se envía por correo para ser ingresado por el usuario a registrarse.
+        /// Verifica que el código ingresado sea el correcto.
+        /// </summary>
         private void BotonRegistrarse_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(TBCorreoR.Text) && !string.IsNullOrEmpty(TBContraseniaRegistro.Password) && 
@@ -213,8 +208,10 @@ namespace ChatJuego.Cliente
 
         }
 
-       
-
+       /// <summary>
+       /// Método que se ejecuta cuando se da click en el botó de Cancelar.
+       /// Se regresa a la ventana de Iniciar Sesión.
+       /// </summary>
         private void BotonCancelar(object sender, RoutedEventArgs e)
         {
             sonidoDeBoton.Play();
@@ -223,11 +220,19 @@ namespace ChatJuego.Cliente
 
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se cierra la ventana.
+        /// Se vuelve a mostrar la ventana de Iniciar Sesión.
+        /// </summary>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             inicioDeSesion.Show();
         }
 
+        /// <summary>
+        /// Convierte una imagen en un arreglo de bytes para ser almacenado en la base de datos.
+        /// </summary>
+        /// <returns>Regresa un arerglo con los bytes de la imagen</returns>
         private byte[] ConvertirImagenABytes()
         {
             MemoryStream ms = new MemoryStream();
@@ -243,8 +248,11 @@ namespace ChatJuego.Cliente
             return ms.ToArray();
         }
 
-        
-
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón de selección de Imagen.
+        /// Se abre una ventana del explorador de Windows para seleccionar la imagen que quiere el jugador como
+        /// imagen de perfil.
+        /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             sonidoDeBoton.Play();
@@ -310,6 +318,9 @@ namespace ChatJuego.Cliente
             }
         }
 
+        /// <summary>
+        /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
+        /// </summary>
         private void Actualizar_Idioma()
         {
             if (idioma == Idioma.Espaniol)

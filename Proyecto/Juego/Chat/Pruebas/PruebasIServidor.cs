@@ -132,5 +132,52 @@ namespace Pruebas
             servidor.EliminarPartida("0000", "Prueba", EstadoPartida.FinDePartidaGanada);
 
         }
+
+        [TestMethod]
+        public void TestInicializarPartida()
+        {
+            servidor.InicializarPartida("0000");
+        }
+        
+        [TestMethod]
+        public void TestEliminarPartida()
+        {
+            InvitacionCorreoServicioClient servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
+            servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = "Gustavo825" }, "0000", new Jugador() { usuario = "Prueba" });
+            servidor.EliminarPartida("0000", "Gustavo825", EstadoPartida.FinDePartidaPorEmpate);
+        }
+
+        [TestMethod]
+        public void TestEliminarPartidaConGanador()
+        {
+            InvitacionCorreoServicioClient servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
+            servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = "Gustavo825" }, "0000", new Jugador() { usuario = "Prueba" });
+            servidor.EliminarPartidaConGanador("0000", "Gustavo825", EstadoPartida.FinDePartidaGanada,1,"Gustavo825");
+        }
+
+        [TestMethod]
+        public void TestAgregarPuntajeCorrecto()
+        {
+            servidor.Conectarse(new Jugador() { usuario = "Gustavo825", contrasenia = "61245" });
+            Assert.AreEqual(EstadoAgregarPuntuacion.Correcto,servidor.AgregarPuntajeAJugador("Gustavo825", 1));
+            servidor.Desconectarse();
+        }
+
+        [TestMethod]
+        public void TestAgregarPuntajeFallido()
+        {
+            Assert.AreEqual(EstadoAgregarPuntuacion.Fallido, servidor.AgregarPuntajeAJugador("Gustavo825", 1));
+
+        }
+
+        [TestMethod]
+        public void TestInsertarFichaEnOponente()
+        {
+            InvitacionCorreoServicioClient servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
+            servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = "Gustavo825" }, "0000", new Jugador() { usuario = "Prueba" });
+            servidor.UnirseAPartida(new Jugador() { usuario = "Prueba" }, "0000");
+            servidor.InsertarFichaEnOponente(1, "0000", "Prueba");
+        }
+
     }
 }

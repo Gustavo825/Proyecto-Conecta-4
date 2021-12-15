@@ -92,8 +92,8 @@ namespace ChatJuego.Cliente {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ChatJuego.Cliente;component/ventanas/registro%20de%20jugador/registrodejugadorin" +
-                    "putdecodigo.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Conecta 4;component/ventanas/registro%20de%20jugador/registrodejugadorinputdecod" +
+                    "igo.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Ventanas\Registro de Jugador\RegistroDeJugadorInputDeCodigo.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -36,7 +36,7 @@
         <Button x:Name="BotonFrances" BorderThickness="0" Margin="261,1,0,41" Background = "Transparent" Click="Frances_Click" Grid.Row="2" Grid.Column="1">
             <Image Source="Iconos\textoFrances.png" x:Name="Boton_Frances" Height="48" Width="221"/>
         </Button>
-        <Image Grid.Row="1" x:Name="TextoIdioma" Source="Iconos\textoIdioma.png" Margin="176,0,177,49" Grid.Column="1"/>
+        <Image Grid.Row="1" x:Name="TextoIdioma" Source="Iconos\textoIdioma.png" Margin="0,0,0,49" Grid.Column="1"/>
         <Image Grid.Row="3" x:Name="ConfigMusica" Source="Iconos\musica.png" Margin="50,12,178,127" Grid.ColumnSpan="2"/>
         <Image Grid.Row="3" x:Name="ConfigSFX" Source="Iconos\SFX.png" Margin="49,77,194,64" Grid.ColumnSpan="2"/>
         <Button Grid.Column="1" Grid.Row="3" x:Name="BotonMusica" BorderThickness="0" Margin="291,5,60,115" Background = "Transparent" Click="Musica_Click">

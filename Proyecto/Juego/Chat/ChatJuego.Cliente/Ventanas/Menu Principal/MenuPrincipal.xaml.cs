@@ -2,22 +2,12 @@
 using ChatJuego.Cliente.Ventanas.Configuracion;
 using ChatJuego.Cliente.Ventanas.Unirse_a_Partida;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Media;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using static ChatJuego.Cliente.Ventanas.Configuracion.Configuracion;
 
 namespace ChatJuego.Cliente
@@ -26,15 +16,15 @@ namespace ChatJuego.Cliente
     {
         private static MediaPlayer musicaDeMenu = new MediaPlayer();
         private static SoundPlayer sonidoDeBoton = new SoundPlayer();
-        ServidorClient servidor;
+        private ServidorClient servidor;
         ChatServicioClient servidorDelChat = null;
         TablaDePuntajesClient servidorDeTablaDePuntajes;
         InstanceContext contexto;
         JugadorCallBack callBackDeJugador;
         Jugador jugador;
-        bool desconexionDelServidor = false;
-        const int MUSICAENCENDIDA = 1;
-        const int EFECTOSENCENDIDO = 1;
+        private bool desconexionDelServidor = false;
+        private const int MUSICAENCENDIDA = 1;
+        private const int EFECTOSENCENDIDO = 1;
         private static int estadoMusica = MUSICAENCENDIDA;
         private static int estadoSFX = EFECTOSENCENDIDO;
 
@@ -66,23 +56,35 @@ namespace ChatJuego.Cliente
             //ImagenJugador.Source = ConvertirArrayAImagen(jugador.imagenUsuario);
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón de Tabla de Puntajes.
+        /// Abre la ventana de Tabla de Púntajes.
+        /// </summary>
         private void BotonTablaDePuntajes_Click(object sender, RoutedEventArgs e)
         {
-            reproducirBoton();
+            ReproducirBoton();
             musicaDeMenu.Stop();
             TablaDePuntajes tablaPuntajes = new TablaDePuntajes(servidorDeTablaDePuntajes);
             callBackDeJugador.SetTablaDePuntajes(tablaPuntajes);
             tablaPuntajes.Show();
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón de Salir.
+        /// Se cierra la ventana.
+        /// </summary>
         private void BotonSalir_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón de Chat.
+        /// Se abre la ventana de Chat.
+        /// </summary>
         private void BotonChat_Click(object sender, RoutedEventArgs e)
         {
-            reproducirBoton();
+            ReproducirBoton();
             Chat chat = new Chat(jugador, servidorDelChat);
             try
             {
@@ -113,25 +115,37 @@ namespace ChatJuego.Cliente
             }
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón de Configuración.
+        /// Se abre la ventana de Configuración.
+        /// </summary>
         private void BotonConfiguracion_Click(object sender, RoutedEventArgs e)
         {
-            reproducirBoton();
-            Configuracion configuracion = new Configuracion(this);
+            ReproducirBoton();
+            Configuracion configuracion = new Configuracion(this,servidor,jugador);
             configuracion.Show();
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón de Crear Partida.
+        /// Abre la ventana de Enviar Invitación.
+        /// </summary>
         private void BotonCrearParida_Click(object sender, RoutedEventArgs e)
         {
-            reproducirBoton();
+            ReproducirBoton();
             servidorDelChat = new ChatServicioClient(contexto);
             EnviarInvitacion enviarInvitacion = new EnviarInvitacion(jugador, this, contexto, servidorDelChat,callBackDeJugador, servidor);
             enviarInvitacion.Show();
             this.Hide();
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón de Unirse a Partida.
+        /// Se abre la ventana de Unirse a Partida.
+        /// </summary>
         private void BotonUnirse_Click(object sender, RoutedEventArgs e)
         {
-            reproducirBoton();
+            ReproducirBoton();
             musicaDeMenu.Stop();
             servidorDelChat = new ChatServicioClient(contexto);
             UnirseAPartida unirseAPartida = new UnirseAPartida(jugador, this, contexto, servidorDelChat, callBackDeJugador, servidor);
@@ -139,6 +153,9 @@ namespace ChatJuego.Cliente
             this.Hide();
         }
 
+        /// <summary>
+        /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
+        /// </summary>
         public void ActualizarIdiomaDeVentana()
         {
             if (idioma == Idioma.Frances)
@@ -175,7 +192,10 @@ namespace ChatJuego.Cliente
             }
         }
 
-        public static void reproducirBoton()
+       /// <summary>
+       /// Método que reproduce el sonido cuando se da click en un botón.
+       /// </summary>
+        public static void ReproducirBoton()
         {
             if (estadoSFX == 0)
             {
@@ -187,15 +207,22 @@ namespace ChatJuego.Cliente
             }
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se activa la música.
+        /// </summary>
         private void Media_Ended(object sender, EventArgs e)
         {
             MusicaDeMenu.Position = TimeSpan.Zero;
             MusicaDeMenu.Play();
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se cierra el menú principal.
+        /// Se desconecta del servidor y nos regresas a la ventana de Iniciar Sesión.
+        /// </summary>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            reproducirBoton();
+            ReproducirBoton();
             MainWindow mainWindow = new MainWindow();
             try
             {

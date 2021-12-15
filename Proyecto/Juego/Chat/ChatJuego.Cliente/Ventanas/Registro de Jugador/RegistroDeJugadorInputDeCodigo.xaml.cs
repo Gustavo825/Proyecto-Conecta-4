@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using static ChatJuego.Cliente.Ventanas.Configuracion.Configuracion;
 
 namespace ChatJuego.Cliente
@@ -29,6 +18,11 @@ namespace ChatJuego.Cliente
             this.codigoDeRegistro = codigoDeRegistro;
         }
 
+        /// <summary>
+        /// Método que verifica que el texto ingresado coincida con el código enviado al correo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BotonOk_Click(object sender, RoutedEventArgs e)
         {
             if (txtAnswer.Text.Equals(codigoDeRegistro.ToString()))
@@ -46,11 +40,17 @@ namespace ChatJuego.Cliente
         }
 
 
-
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón Cancelar.
+        /// </summary>
         private void BotonCancelar_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
         }
+
+        /// <summary>
+        /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
+        /// </summary>
         private void Actualizar_Idioma()
         {
             if (idioma == Idioma.Espaniol)

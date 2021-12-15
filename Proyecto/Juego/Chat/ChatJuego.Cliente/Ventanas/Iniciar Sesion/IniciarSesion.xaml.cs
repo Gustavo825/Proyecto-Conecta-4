@@ -1,21 +1,11 @@
 ﻿using ChatJuego.Cliente.Proxy;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Media;
-using System.Reflection;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using static ChatJuego.Cliente.Ventanas.Configuracion.Configuracion;
 
 namespace ChatJuego.Cliente
@@ -25,12 +15,12 @@ namespace ChatJuego.Cliente
     /// </summary>
     public partial class MainWindow : Window
     {
-        MediaPlayer musicaDelMenu = new MediaPlayer();
-        SoundPlayer sonidoDeBoton = new SoundPlayer();
-        SoundPlayer sonidoDeError = new SoundPlayer();
-        ServidorClient servidor;
-        JugadorCallBack callBackDelJugador;
-        InstanceContext contexto;
+        private MediaPlayer musicaDelMenu = new MediaPlayer();
+        private SoundPlayer sonidoDeBoton = new SoundPlayer();
+        private SoundPlayer sonidoDeError = new SoundPlayer();
+        private ServidorClient servidor;
+        private JugadorCallBack callBackDelJugador;
+        private InstanceContext contexto;
 
         public MainWindow()
         {
@@ -50,6 +40,11 @@ namespace ChatJuego.Cliente
             sonidoDeError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
 
         }
+
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón de Iniciar Sesión.
+        /// Valida que la información de inicio de sesión sea correcta y nos manda al menú principal
+        /// </summary>
 
         private void BotonIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
@@ -115,7 +110,7 @@ namespace ChatJuego.Cliente
                             MessageBox.Show("There's already a session with this user", "Error", MessageBoxButton.OK);
                         }
                     }
-                } catch (EndpointNotFoundException endpointNotFoundException )
+                } catch (EndpointNotFoundException)
                 {
                     if (MenuPrincipal.EstadoSFX == 1)
                     {
@@ -138,7 +133,7 @@ namespace ChatJuego.Cliente
                         MessageBox.Show("The game was unable to connect with the server", "Connection error", MessageBoxButton.OK);
                     }
                     servidor = new ServidorClient(contexto);
-                } catch (TimeoutException timeOutException)
+                } catch (TimeoutException)
                 {
                     if (MenuPrincipal.EstadoSFX == 1)
                     {
@@ -187,6 +182,10 @@ namespace ChatJuego.Cliente
             }
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se dad click en el botón de Registrarse. Nos manda a la ventana de Registro de Jugador
+        /// </summary>
+
         private void BotonRegistrarse_Click(object sender, RoutedEventArgs e)
         {
             if (MenuPrincipal.EstadoSFX == 1)
@@ -198,6 +197,9 @@ namespace ChatJuego.Cliente
             this.Hide();
         }
 
+        /// <summary>
+        /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
+        /// </summary>
         public void ActualizarIdiomaDeVentana()
         {
             if (idioma == Idioma.Frances)
@@ -237,6 +239,10 @@ namespace ChatJuego.Cliente
                 Boton_Registrarse.Source = new BitmapImage(new Uri("Iconos/botonRegistrarseIN.png", UriKind.Relative));
             }
         }
+
+        /// <summary>
+        /// Método que se ejeucta cuando se aprita la tecla Enter al estar posicionado sobre el campo de contraseña
+        /// </summary>
 
         private void TBContrasenia_KeyDown(object sender, KeyEventArgs e)
         {
