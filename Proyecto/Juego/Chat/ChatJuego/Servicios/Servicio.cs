@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
-using System.Windows;
 using System.Linq;
 using ChatJuego.Servicios;
 using System.Net.Mail;
@@ -20,6 +19,12 @@ namespace ChatJuego.Host
         private const string SMTPServidor = "smtp.gmail.com";
         private const int puerto = 587;
         private const string contrasenia = "gusandreacarlos1*";
+
+        /// <summary>
+        /// Permite conectar un jugador al servidor. Guarda su conexión.
+        /// </summary>
+        /// <param name="jugador">Objeto de tipo jugador que contiene la información de inicio de sesión.</param>
+        /// <returns>Regresa el estado de inicio de sesión, es decir, si fue correcto, fallido, etc.</returns>
         public EstadoDeInicioDeSesion Conectarse(Jugador jugador)
         {
             Autenticacion autenticacion = new Autenticacion();
@@ -52,6 +57,9 @@ namespace ChatJuego.Host
                 return EstadoDeInicioDeSesion.Fallido;
         }
 
+        /// <summary>
+        /// Desconecta al jugador del servidor. Elimina su conexión del servidor.
+        /// </summary>
         public void Desconectarse()
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
@@ -73,7 +81,13 @@ namespace ChatJuego.Host
         }
 
         
-
+        /// <summary>
+        /// Permite enviar la invitación de la partida creada al jugador recibido.
+        /// </summary>
+        /// <param name="jugadorInvitado">Jugador que recibirá la invitación.</param>
+        /// <param name="codigoPartida">Código de la partida para unirse.</param>
+        /// <param name="jugadorInvitador">Jugador que manda la invitación.</param>
+        /// <returns></returns>
         public EstadoDeEnvio EnviarInvitacion(Jugador jugadorInvitado, string codigoPartida, Jugador jugadorInvitador)
         {
             EstadoDeEnvio estado = EstadoDeEnvio.Fallido;
@@ -127,8 +141,10 @@ namespace ChatJuego.Host
 
         }
    
-
-    public void InicializarChat()
+        /// <summary>
+        /// Cuando se conecta un jugador nuevo o desconecta, este método actualiza los jugadores conectados de los jugadores en el chat.
+        /// </summary>
+        public void InicializarChat()
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
             string[] nombresDeJugadores = new string[jugadores.Count()];
@@ -144,6 +160,11 @@ namespace ChatJuego.Host
             }
         }
 
+        /// <summary>
+        /// Este método permite el intercambio de mensajes entre jugadores. Manda un mensaje a los jugadores conectados.
+        /// </summary>
+        /// <param name="mensaje">Contiene la información del mensaje.</param>
+        /// <param name="jugadorQueMandaMensaje">Contiene la información del jugador que manda el mensaje.</param>
         public void MandarMensaje(Mensaje mensaje, Jugador jugadorQueMandaMensaje)
         {
             Console.WriteLine("{0}:{1}", jugadorQueMandaMensaje.usuario, mensaje.ContenidoMensaje);
@@ -162,6 +183,12 @@ namespace ChatJuego.Host
             }
         }
 
+        /// <summary>
+        /// Este método permite el intercambio de mensajes entre dos jugadores específicos. Se utiliza para el chat durante la partida o para mensajes directos privados.
+        /// </summary>
+        /// <param name="mensaje">Contiene la información del mensaje.</param>
+        /// <param name="nombreJugador">Nombre del jugador que recibirá el mensaje privado.</param>
+        /// <param name="jugadorQueMandaMensaje">Contiene la información del jugador que manda el mensaje.</param>
         public void MandarMensajePrivado(Mensaje mensaje, string nombreJugador, Jugador jugadorQueMandaMensaje)
         {
             Console.WriteLine("{0}:{1}", jugadorQueMandaMensaje.usuario, mensaje.ContenidoMensaje);
@@ -184,6 +211,9 @@ namespace ChatJuego.Host
             }
         }
 
+        /// <summary>
+        /// Recupera los puntajes de los jugadores para mostrarlos en el jugador que abre la ventana de tabla de puntajes.
+        /// </summary>
         public void RecuperarPuntajesDeJugadores()
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
@@ -204,6 +234,14 @@ namespace ChatJuego.Host
             }
         }
 
+        /// <summary>
+        /// Permite el registro de un jugador en la base de datos.
+        /// </summary>
+        /// <param name="usuario">Usuario que tendrá el jugador.</param>
+        /// <param name="contrasenia">Contraseña del jugador.</param>
+        /// <param name="correo">Correo del jugador.</param>
+        /// <param name="imagenDeJugador">Arreglo de bytes de la imágen del jugador.</param>
+        /// <returns></returns>
         public EstadoDeRegistro RegistroDeJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador)
         {
             Autenticacion autenticacion = new Autenticacion();
@@ -211,6 +249,12 @@ namespace ChatJuego.Host
             return estadoDeRegistro;
         }
 
+        /// <summary>
+        /// Manda un código de registro al correo ingresado por el jugador.
+        /// </summary>
+        /// <param name="codigoDeRegistro">Código de registro.</param>
+        /// <param name="correoDeRegistro">Correo al que se envía el código.</param>
+        /// <returns></returns>
         public EstadoDeEnvio MandarCodigoDeRegistro(string codigoDeRegistro, string correoDeRegistro)
         {
             EstadoDeEnvio estado = EstadoDeEnvio.Fallido;
@@ -251,6 +295,11 @@ namespace ChatJuego.Host
 
         }
 
+        /// <summary>
+        /// Obtiene los bytes de la imágen de un jugador.
+        /// </summary>
+        /// <param name="usuario">Usuario del jugador del que se quiere recuperar los bytes de la imagen.</param>
+        /// <returns>Regresa un arreglo con los bytes de la inagen.</returns>
         public byte[] ObtenerBytesDeImagenDeJugador(string usuario)
         {
             using (var contexto = new JugadorContexto())
@@ -265,12 +314,23 @@ namespace ChatJuego.Host
             }
         }
 
+        /// <summary>
+        /// Llama al método de la clase Autenticación para eliminar un jugador de la base de datos.
+        /// </summary>
+        /// <param name="jugador">Contiene la información del jugador a eliminar.</param>
+        /// <returns>Regresa el estado de eliminación, es decir, correcto, fallido, etc.</returns>
         public EstadoDeEliminacion EliminarJugador(Jugador jugador)
         {
             Autenticacion autenticacion = new Autenticacion();
             return autenticacion.EliminarJugador(jugador.usuario, jugador.contrasenia);
         }
 
+        /// <summary>
+        /// Permite a un jugador unirse a una partida, registrándolo en la partida que tenga el código de partida recibido.
+        /// </summary>
+        /// <param name="jugador">Contiene la información del jugador que e va a unir a la partida.</param>
+        /// <param name="codigoDePartida">Contiene el código de la partida a la que se quiere unir.</param>
+        /// <returns>Regresa el estado de unirse a la partida, es decir, correcto, fallido, etc.</returns>
         public EstadoUnirseAPartida UnirseAPartida(Jugador jugador, string codigoDePartida)
         {
             bool encontroPartida = false;
@@ -293,6 +353,10 @@ namespace ChatJuego.Host
             return EstadoUnirseAPartida.Correcto;
         }
 
+        /// <summary>
+        /// Método que inicializa la partida de los jugadores asignados a una partida.
+        /// </summary>
+        /// <param name="codigoDePartida">Código de la partida en la que se ecuentran los dos jugadores.</param>
         public void InicializarPartida(string codigoDePartida)
         {
             foreach (Partida partida in partidas)
@@ -315,6 +379,12 @@ namespace ChatJuego.Host
             }
         }
 
+        /// <summary>
+        /// Elimina una partida del servidor.
+        /// </summary>
+        /// <param name="codigoDePartida">Código de la partida que se va a eliminar.</param>
+        /// <param name="usuarioQueFinaliza">Usuario que finaliza la partida.</param>
+        /// <param name="estadoPartida">Estado de fin de partida.</param>
         public void EliminarPartida(string codigoDePartida, string usuarioQueFinaliza, EstadoPartida estadoPartida)
         {
             foreach (Partida partida in partidas)
@@ -346,6 +416,14 @@ namespace ChatJuego.Host
             }
         }
 
+        /// <summary>
+        /// Elimina una partida del servidor, pero este método, a diferencia del anterior, se llama cuando alguien gana.
+        /// </summary>
+        /// <param name="codigoDePartida">Código de la partida que se va a eliminar.</param>
+        /// <param name="usuarioQueFinaliza">Usuario que finaliza la partida.</param>
+        /// <param name="estadoPartida">Estado de fin de partida, es decir, ganada.</param>
+        /// <param name="puntaje">Puntaje que se le agregará al ganador.</param>
+        /// <param name="ganador">Usuario del jugador que ganó.</param>
         public void EliminarPartidaConGanador(string codigoDePartida, string usuarioQueFinaliza, EstadoPartida estadoPartida, float puntaje, string ganador)
         {
             foreach (Partida partida in partidas)
@@ -389,6 +467,12 @@ namespace ChatJuego.Host
             }
         }
 
+        /// <summary>
+        /// Agrega puntaje al usuario recibido.
+        /// </summary>
+        /// <param name="usuario">Usuario al que se le agregarán los puntos</param>
+        /// <param name="puntaje">Puntaje que se agregará al usuario.</param>
+        /// <returns></returns>
         public EstadoAgregarPuntuacion AgregarPuntajeAJugador(string usuario, float puntaje)
         {
             foreach (var conexiones in jugadores.Keys)
@@ -416,6 +500,12 @@ namespace ChatJuego.Host
             return EstadoAgregarPuntuacion.Fallido;
         }
 
+        /// <summary>
+        /// Permite insertar una ficha en el tablero del oponente.
+        /// </summary>
+        /// <param name="columna">Columna a la que se insertará la ficha.</param>
+        /// <param name="codigoDePartida">Código de la partidae en curso.</param>
+        /// <param name="oponente">Usuario del oponente para insertar la ficha en su tablero.</param>
         public void InsertarFichaEnOponente(int columna, string codigoDePartida, string oponente)
         {
             foreach (Partida partida in partidas)

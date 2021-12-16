@@ -39,5 +39,8 @@
         <Button Grid.Column="2" Grid.Row="0" x:Name="BotonChat" BorderThickness="0" Background = "Transparent" Foreground="Transparent" Width="100" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="22,18,28,22" Click="BotonChat_Click">
             <Image Source="Iconos\chat.png"/>
         </Button>
+        <Button Grid.Column="0" Grid.Row="3" BorderThickness="0" Background="Transparent" Width="100" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="22,77,28,53" Grid.RowSpan="2" Click="BotonTutorial_Click" >
+            <Image Source="Iconos\interrogacion.png"></Image>
+        </Button>
     </Grid>
 </Window>

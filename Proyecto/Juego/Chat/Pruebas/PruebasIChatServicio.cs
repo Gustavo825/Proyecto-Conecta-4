@@ -14,7 +14,7 @@ namespace Pruebas
         private static ChatServicioClient servidorDelChat;
         private static ServidorClient servidor;
 
-
+        
         [ClassInitialize]
         public static void Inicializar(TestContext testContext)
         {

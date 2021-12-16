@@ -1,5 +1,6 @@
 ﻿using ChatJuego.Cliente.Proxy;
 using ChatJuego.Cliente.Ventanas.Configuracion;
+using ChatJuego.Cliente.Ventanas.Tutorial;
 using ChatJuego.Cliente.Ventanas.Unirse_a_Partida;
 using System;
 using System.IO;
@@ -224,6 +225,7 @@ namespace ChatJuego.Cliente
         {
             ReproducirBoton();
             MainWindow mainWindow = new MainWindow();
+            musicaDeMenu.Stop();
             try
             {
                 if (desconexionDelServidor == false)
@@ -250,9 +252,16 @@ namespace ChatJuego.Cliente
                 {
                     MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
                 }
-                musicaDeMenu.Stop(); mainWindow.Show();
+                musicaDeMenu.Stop(); 
+                mainWindow.Show();
             }
 
+        }
+
+        private void BotonTutorial_Click(object sender, RoutedEventArgs e)
+        {
+            Tutorial tutorial = new Tutorial();
+            tutorial.Show();
         }
     }
 }

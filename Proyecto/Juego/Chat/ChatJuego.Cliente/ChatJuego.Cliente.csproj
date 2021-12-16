@@ -95,6 +95,9 @@
     <Compile Include="Ventanas\Tabla de Puntajes\TablaDePuntajes.xaml.cs">
       <DependentUpon>TablaDePuntajes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\Tutorial\Tutorial.xaml.cs">
+      <DependentUpon>Tutorial.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\Unirse a Partida\UnirseAPartida.xaml.cs">
       <DependentUpon>UnirseAPartida.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\Tabla de Puntajes\TablaDePuntajes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\Tutorial\Tutorial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -322,6 +329,10 @@
     <Resource Include="Ventanas\Registro de Jugador\Iconos\imagenPredeterminada.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Ventanas\Tutorial\Iconos\salirPO.png" />
+    <Resource Include="Ventanas\Tutorial\Iconos\salirFR.png" />
+    <Resource Include="Ventanas\Tutorial\Iconos\salirEN.png" />
+    <Resource Include="Ventanas\Tutorial\Iconos\salir.png" />
     <Resource Include="Ventanas\Unirse a Partida\Iconos\textoIngresarCodigoEN.png" />
     <Resource Include="Ventanas\Unirse a Partida\Iconos\textoIngresarCodigoES.png" />
     <Resource Include="Ventanas\Unirse a Partida\Iconos\textoIngresarCodigoFR.png" />
@@ -450,6 +461,7 @@
     <Resource Include="Ventanas\Juego\Iconos\salirEN.png" />
     <Resource Include="Ventanas\Juego\Iconos\salirFR.png" />
     <Resource Include="Ventanas\Juego\Iconos\salirPO.png" />
+    <Resource Include="Ventanas\Menu Principal\Iconos\interrogacion.png" />
     <Content Include="Ventanas\Sonidos\ClicEnBoton.wav" />
     <Content Include="Ventanas\Sonidos\Error.wav" />
     <Content Include="Ventanas\Sonidos\MusicaDeMenu.wav" />

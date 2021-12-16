@@ -108,6 +108,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             int columnaDeTablero = 0;
             for (int fila = 2; fila >= 0; fila--)
             {
+                int filaOriginal = fila;
                 for (int comprobacion = numeroDeComprobaciones; comprobacion > 0; comprobacion--)
                 {
                     if (tablero[fila, columnaDeTablero] == 1 && tablero[fila + 1, columnaDeTablero + 1] == 1 && tablero[fila + 2, columnaDeTablero + 2] == 1 && tablero[fila + 3, columnaDeTablero + 3] == 1)
@@ -119,7 +120,9 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                         return TIROOPONENTE;
                     }
                     columnaDeTablero++;
+                    fila++;
                 }
+                fila = filaOriginal;
                 numeroDeComprobaciones++;
                 columnaDeTablero = 0;
             }

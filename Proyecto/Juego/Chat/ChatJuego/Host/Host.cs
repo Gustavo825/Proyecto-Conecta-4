@@ -1,16 +1,15 @@
 ﻿using ChatJuego.Base_de_datos;
-using ChatJuego.Servicios;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChatJuego.Host
 {
     class Host
     {
+
+        /// <summary>
+        /// Permite la ejecución del servidor, inicializando el Servicio con los métodos definidios.
+        /// </summary>
         static void Main(string[] args)
         {
             JugadorContexto contextoDelJugador = new JugadorContexto();

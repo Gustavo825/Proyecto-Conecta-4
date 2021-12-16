@@ -1,0 +1,1 @@
+	 2csXãhr,Ventanas/Configuracion/Configuracion.xaml.cs

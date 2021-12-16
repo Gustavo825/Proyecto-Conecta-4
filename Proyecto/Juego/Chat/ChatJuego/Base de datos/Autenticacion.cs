@@ -1,10 +1,7 @@
 ﻿using ChatJuego.Servicios;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ChatJuego.Base_de_datos
 {
@@ -15,6 +12,14 @@ namespace ChatJuego.Base_de_datos
         {
         }
 
+        /// <summary>
+        /// Permite el registro de un jugador en la base de datos.
+        /// </summary>
+        /// <param name="usuarioARegistrar">Usuario del jugador.</param>
+        /// <param name="contraseniaARegistrar">Contraseña del jugador-</param>
+        /// <param name="correoARegistrar">Correo del jugador.</param>
+        /// <param name="imagenDeJugador">Arreglo de bytes de la imagen del jugador.</param>
+        /// <returns></returns>
         public EstadoDeRegistro Registro(string usuarioARegistrar, string contraseniaARegistrar, string correoARegistrar, byte[] imagenDeJugador)
         {
             EstadoDeRegistro estado = EstadoDeRegistro.Fallido;
@@ -43,6 +48,12 @@ namespace ChatJuego.Base_de_datos
             }
         }
 
+        /// <summary>
+        /// Verifica que las credenciales de inicio de sesión sean correctas para permitir el inicio de sesión.
+        /// </summary>
+        /// <param name="usuario">Usuario del jugador.</param>
+        /// <param name="contrasenia">Contraseña del jugador.</param>
+        /// <returns>Regresa un estado de autenticación, true si son correctas las credenciales y false si son incorrectas.</returns>
         public EstadoDeAutenticacion IniciarSesion(string usuario, string contrasenia)
         {
             EstadoDeAutenticacion estado = EstadoDeAutenticacion.Failed;
@@ -60,6 +71,11 @@ namespace ChatJuego.Base_de_datos
             return estado;
         }
 
+        /// <summary>
+        /// Permite cifrar la contraseña del usuario para que no se pueda consultar desde la base de datos.
+        /// </summary>
+        /// <param name="contrasenia"></param>
+        /// <returns></returns>
         private string ComputeSHA256Hash(string contrasenia)
         {
             using (SHA256 sha256Hash = SHA256.Create())
@@ -74,6 +90,12 @@ namespace ChatJuego.Base_de_datos
             }
         }
 
+        /// <summary>
+        /// Elimina un jugador de la base de datos.
+        /// </summary>
+        /// <param name="usuario">Usuario del jugador.</param>
+        /// <param name="contrasenia">Contraseña del jugador.</param>
+        /// <returns>Regresa un estado de eliminación, es decir, correcto o fallido.</returns>
         internal EstadoDeEliminacion EliminarJugador(string usuario, string contrasenia)
         {
             EstadoDeEliminacion estado = EstadoDeEliminacion.Fallido;
@@ -96,6 +118,9 @@ namespace ChatJuego.Base_de_datos
         }
     }
 
+    /// <summary>
+    /// Enum que define el estado de autenticación, siendo correcto o fallido los valores posibles.
+    /// </summary>
     public enum EstadoDeAutenticacion
     {
         Correcto = 0,
