@@ -67,6 +67,15 @@ namespace Pruebas
         }
 
         [TestMethod]
+        public void TestUnirseAPartidaCorrecto()
+        {
+            InvitacionCorreoServicioClient servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
+            servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = "WastyFace" }, "1111", new Jugador() { usuario = "Prueba" });
+            Assert.AreEqual(EstadoUnirseAPartida.Correcto, servidor.UnirseAPartida(new Jugador() { usuario = "Prueba" }, "1111"));
+            servidor.EliminarPartida("1111", "Prueba", EstadoPartida.FinDePartidaGanada);
+        }
+
+        [TestMethod]
         public void TestEliminarJugadorCorrecto()
         {
             EstadoDeRegistro resultado = servidor.RegistroDeJugador("UsuarioDePrueba", "12345", "correo@gmail.com", new byte[2]);
@@ -103,14 +112,7 @@ namespace Pruebas
             servidor.Desconectarse();
         }
 
-        [TestMethod]
-        public void TestUnirseAPartidaCorrecto()
-        {
-            InvitacionCorreoServicioClient servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
-            servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = "Gustavo825" }, "0000", new Jugador() { usuario = "Prueba" });
-            Assert.AreEqual(EstadoUnirseAPartida.Correcto, servidor.UnirseAPartida(new Jugador() { usuario = "Prueba" }, "0000"));
-            servidor.EliminarPartida("0000", "Prueba", EstadoPartida.FinDePartidaGanada);
-        }
+       
 
         [TestMethod]
         public void TestUnirseAPartidaNoEncontrada()

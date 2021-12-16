@@ -329,6 +329,10 @@
     <Resource Include="Ventanas\Registro de Jugador\Iconos\imagenPredeterminada.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Ventanas\Tutorial\Iconos\tutoEN.png" />
+    <Resource Include="Ventanas\Tutorial\Iconos\tutoES.PNG" />
+    <Resource Include="Ventanas\Tutorial\Iconos\tutoFR.PNG" />
+    <Resource Include="Ventanas\Tutorial\Iconos\tutoPO.PNG" />
     <Resource Include="Ventanas\Tutorial\Iconos\salirPO.png" />
     <Resource Include="Ventanas\Tutorial\Iconos\salirFR.png" />
     <Resource Include="Ventanas\Tutorial\Iconos\salirEN.png" />
