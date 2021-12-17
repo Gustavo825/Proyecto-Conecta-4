@@ -6,7 +6,6 @@ namespace ChatJuego.Host
 {
     class Host
     {
-
         /// <summary>
         /// Permite la ejecución del servidor, inicializando el Servicio con los métodos definidios.
         /// </summary>

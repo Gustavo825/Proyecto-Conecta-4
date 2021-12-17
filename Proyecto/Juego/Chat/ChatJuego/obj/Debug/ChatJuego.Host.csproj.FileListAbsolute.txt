@@ -23,3 +23,4 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\obj\Debug\ChatJuego.Host.cspro
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\obj\Debug\ChatJuego.exe
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\obj\Debug\ChatJuego.pdb
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\obj\Debug\ChatJuego.Host.csproj.AssemblyReference.cache
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego\obj\Debug\ChatJuego.Host.csproj.CopyComplete

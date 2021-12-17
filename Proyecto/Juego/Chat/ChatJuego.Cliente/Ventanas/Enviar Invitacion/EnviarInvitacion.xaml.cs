@@ -1,7 +1,6 @@
 ﻿using ChatJuego.Cliente.Proxy;
 using ChatJuego.Cliente.Ventanas.Juego;
 using System;
-using System.Media;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Media.Imaging;
@@ -14,8 +13,6 @@ namespace ChatJuego.Cliente
     /// </summary>
     public partial class EnviarInvitacion : Window
     {
-        private SoundPlayer sonidoDeBoton = new SoundPlayer();
-        private SoundPlayer sonidoDeError = new SoundPlayer();
         private InvitacionCorreoServicioClient servidorDeCorreo;
         private ChatServicioClient servidorDelChat;
         private InstanceContext contexto;
@@ -29,10 +26,6 @@ namespace ChatJuego.Cliente
 
         public EnviarInvitacion(Jugador jugador, MenuPrincipal menuPrincipal, InstanceContext contexto, ChatServicioClient servidorDelChat, JugadorCallBack jugadorCallBack, ServidorClient servidor)
         {
-            string ruta = System.IO.Directory.GetCurrentDirectory();
-            ruta = ruta.Substring(0, ruta.Length - 9);
-            sonidoDeBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
-            sonidoDeError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
             InitializeComponent();
             Actualizar_Idioma();
             this.jugador = jugador;
@@ -47,11 +40,8 @@ namespace ChatJuego.Cliente
         /// Método que se ejecuta cuando se da click en el botón de Enviar Invitación.
         /// Verifica que el usuario sea correcto, que no esté vacío, entre otras cosas para luego mandar la invitación.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void BotonDeEnviarInvitacion_Click(object sender, RoutedEventArgs e)
         {
-            sonidoDeBoton.Play();
             if (!string.IsNullOrEmpty(TBUsuarioInvitacion.Text))
             {
                 if (jugador.usuario != TBUsuarioInvitacion.Text)
@@ -63,6 +53,7 @@ namespace ChatJuego.Cliente
                         var estado = servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = TBUsuarioInvitacion.Text }, codigoDePartida, jugador);
                         if (estado == EstadoDeEnvio.UsuarioNoEncontrado)
                         {
+                            MenuPrincipal.ReproducirError();
                             if (idioma == Idioma.Espaniol)
                             {
                                 MessageBox.Show("El usuario ingresado no existe", "Usuario no encontrado", MessageBoxButton.OK);
@@ -82,6 +73,7 @@ namespace ChatJuego.Cliente
                         }
                         else if (estado == EstadoDeEnvio.Fallido)
                         {
+                            MenuPrincipal.ReproducirError();
                             if (idioma == Idioma.Espaniol)
                             {
                                 MessageBox.Show("Ocurrió un error y no se pudo mandar la invitación", "Error", MessageBoxButton.OK);
@@ -101,6 +93,7 @@ namespace ChatJuego.Cliente
                         }
                         else
                         {
+                            MenuPrincipal.ReproducirBoton();
                             if (idioma == Idioma.Espaniol)
                             {
                                 MessageBox.Show("Invitación enviada", "Correcto", MessageBoxButton.OK);
@@ -146,12 +139,13 @@ namespace ChatJuego.Cliente
                         MainWindow mainWindow = new MainWindow();
                         mainWindow.Show();
                         perdidaDeConexion = true;
+                        menuPrincipal.desconexionDelServidor = true;
                         menuPrincipal.Close();
                         this.Close();
                     }
                 } else
                 {
-                    sonidoDeError.Play();
+                    MenuPrincipal.ReproducirError(); 
                     if (idioma == Idioma.Espaniol)
                     {
                         MessageBox.Show("No te puedes invitar a ti mismo", "Usuario inválido", MessageBoxButton.OK);
@@ -171,7 +165,7 @@ namespace ChatJuego.Cliente
                 }
             } else
             {
-                sonidoDeError.Play();
+                MenuPrincipal.ReproducirError();
                 if (idioma == Idioma.Espaniol)
                 {
                     MessageBox.Show("Ingrese la información requerida", "Campos vacíos", MessageBoxButton.OK);

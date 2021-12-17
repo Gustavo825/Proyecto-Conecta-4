@@ -15,10 +15,10 @@ namespace ChatJuego.Host
     {
         public static Dictionary<IJugadorCallBack, Jugador> jugadores = new Dictionary<IJugadorCallBack, Jugador>();
         public static List<Partida> partidas = new List<Partida>();
-        private const string correo = "juegocontecta4equipo1@gmail.com";
-        private const string SMTPServidor = "smtp.gmail.com";
-        private const int puerto = 587;
-        private const string contrasenia = "gusandreacarlos1*";
+        private const string CORREO = "juegocontecta4equipo1@gmail.com";
+        private const string SMTP_SERVIDOR = "smtp.gmail.com";
+        private const int PUERTO = 587;
+        private const string CONTRASENIA = "gusandreacarlos1*";
 
         /// <summary>
         /// Permite conectar un jugador al servidor. Guarda su conexión.
@@ -35,25 +35,16 @@ namespace ChatJuego.Host
                 {
                     if (jugador.usuario == jugadorIniciado.usuario)
                     {
-                       
+
                         return EstadoDeInicioDeSesion.FallidoPorUsuarioYaConectado;
                     }
                 }
                 var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
                 Console.WriteLine("Jugador Conectado: {0}", jugador.usuario);
                 jugadores.Add(conexion, jugador);
-                //int i = 0;
-                //foreach (Jugador nombre in jugadores.Values)
-                //{
-                  //  nombresDeJugadores[i] = nombre.usuario;
-                   // i++;
-                //}
-                //foreach (var conexiones in jugadores.Keys)
-                //{
-                //conexion.ActualizarJugadoresConectados(null);
-                ////}
                 return EstadoDeInicioDeSesion.Correcto;
-            } else
+            }
+            else
                 return EstadoDeInicioDeSesion.Fallido;
         }
 
@@ -63,7 +54,7 @@ namespace ChatJuego.Host
         public void Desconectarse()
         {
             var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
-            Console.WriteLine("Jugador desconectado: {0}",jugadores[conexion].usuario);
+            Console.WriteLine("Jugador desconectado: {0}", jugadores[conexion].usuario);
             jugadores.Remove(conexion);
             string[] nombresDeJugadores = new string[jugadores.Count()];
             var i = 0;
@@ -80,7 +71,7 @@ namespace ChatJuego.Host
             }
         }
 
-        
+
         /// <summary>
         /// Permite enviar la invitación de la partida creada al jugador recibido.
         /// </summary>
@@ -102,45 +93,41 @@ namespace ChatJuego.Host
                     return estado;
                 }
                 jugadorInvitado.correo = (from jugador in contexto.jugadores
-                                           where jugador.usuario == jugadorInvitado.usuario
-                                           select jugador.correo).Single();
+                                          where jugador.usuario == jugadorInvitado.usuario
+                                          select jugador.correo).Single();
                 try
                 {
-                    SmtpClient smtpCliente = new SmtpClient(SMTPServidor, puerto);
+                    SmtpClient smtpCliente = new SmtpClient(SMTP_SERVIDOR, PUERTO);
                     smtpCliente.EnableSsl = true;
                     smtpCliente.DeliveryMethod = SmtpDeliveryMethod.Network;
                     smtpCliente.UseDefaultCredentials = false;
-                    smtpCliente.Credentials = new NetworkCredential(correo, contrasenia);
+                    smtpCliente.Credentials = new NetworkCredential(CORREO, CONTRASENIA);
                     string jugadorQueInvita = "";
                     jugadorQueInvita = jugadorInvitador.usuario;
                     using (MailMessage mensaje = new MailMessage())
                     {
-                        mensaje.From = new MailAddress(correo);
+                        mensaje.From = new MailAddress(CORREO);
                         mensaje.Subject = "Invitación de " + jugadorQueInvita;
                         mensaje.Body = "El código para unirse a la partida es: " + codigoPartida;
                         mensaje.IsBodyHtml = false;
                         mensaje.To.Add(jugadorInvitado.correo);
-                        try
-                        {
-                            smtpCliente.Send(mensaje);
-                            estado = EstadoDeEnvio.Correcto;
-                            partidas.Add(new Partida(codigoPartida,jugadorInvitador));
-                        }
-                        catch
-                        {
-                            Console.WriteLine("Aquí");
-                            estado = EstadoDeEnvio.Fallido;
-                        }
+                        smtpCliente.Send(mensaje);
+                        estado = EstadoDeEnvio.Correcto;
+                        partidas.Add(new Partida(codigoPartida, jugadorInvitador));
                     }
-                } catch
+
+                }
+                catch (Exception exception) when (exception is SmtpException || exception is InvalidOperationException
+              || exception is FormatException || exception is ArgumentNullException)
                 {
-                    Console.WriteLine("Ups");
+                    estado = EstadoDeEnvio.Fallido;
+                    Console.WriteLine(exception.StackTrace);
                 }
             }
             return estado;
 
         }
-   
+
         /// <summary>
         /// Cuando se conecta un jugador nuevo o desconecta, este método actualiza los jugadores conectados de los jugadores en el chat.
         /// </summary>
@@ -179,7 +166,7 @@ namespace ChatJuego.Host
             {
                 if (jugadores[conexiones].usuario == jugadorQueMandaMensaje.usuario)
                     continue;
-                conexiones.RecibirMensaje(jugadorQueMandaMensaje, mensaje,nombresDeJugadores);
+                conexiones.RecibirMensaje(jugadorQueMandaMensaje, mensaje, nombresDeJugadores);
             }
         }
 
@@ -230,7 +217,7 @@ namespace ChatJuego.Host
                     i++;
                 }
                 conexion.MostrarPuntajes(jugadoresArreglo);
-                
+
             }
         }
 
@@ -258,39 +245,30 @@ namespace ChatJuego.Host
         public EstadoDeEnvio MandarCodigoDeRegistro(string codigoDeRegistro, string correoDeRegistro)
         {
             EstadoDeEnvio estado = EstadoDeEnvio.Fallido;
-            
-                try
+            try
+            {
+                SmtpClient smtpCliente = new SmtpClient(SMTP_SERVIDOR, PUERTO);
+                smtpCliente.EnableSsl = true;
+                smtpCliente.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtpCliente.UseDefaultCredentials = false;
+                smtpCliente.Credentials = new NetworkCredential(CORREO, CONTRASENIA);
+                using (MailMessage mensaje = new MailMessage())
                 {
-                    SmtpClient smtpCliente = new SmtpClient(SMTPServidor, puerto);
-                    smtpCliente.EnableSsl = true;
-                    smtpCliente.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    smtpCliente.UseDefaultCredentials = false;
-                    smtpCliente.Credentials = new NetworkCredential(correo, contrasenia);
-                    using (MailMessage mensaje = new MailMessage())
-                    {
-                        mensaje.From = new MailAddress(correo);
-                        mensaje.Subject = "Confirmación de registro de jugador";
-                        mensaje.Body = "Ingrese el siguiente código para validar su registro: " + codigoDeRegistro;
-                        mensaje.IsBodyHtml = false;
-                        mensaje.To.Add(correoDeRegistro);
-                          Console.WriteLine(correoDeRegistro);
-                        try
-                        {
-                            smtpCliente.Send(mensaje);
-                            estado = EstadoDeEnvio.Correcto;
-                        }
-                        catch
-                        {
-                            Console.WriteLine("No se mandó el correo");
-                            estado = EstadoDeEnvio.Fallido;
-                        }
-                    }
+                    mensaje.From = new MailAddress(CORREO);
+                    mensaje.Subject = "Confirmación de registro de jugador";
+                    mensaje.Body = "Ingrese el siguiente código para validar su registro: " + codigoDeRegistro;
+                    mensaje.IsBodyHtml = false;
+                    mensaje.To.Add(correoDeRegistro);
+                    smtpCliente.Send(mensaje);
+                    estado = EstadoDeEnvio.Correcto;
                 }
-                catch
-                {
-                    Console.WriteLine("No se pudo crear el cliente SMTP ");
-                }
-            
+            }
+            catch (Exception exception) when (exception is SmtpException || exception is InvalidOperationException
+            || exception is FormatException || exception is ArgumentNullException)
+            {
+                estado = EstadoDeEnvio.Fallido;
+                Console.WriteLine(exception.StackTrace);
+            }
             return estado;
 
         }
@@ -305,8 +283,8 @@ namespace ChatJuego.Host
             using (var contexto = new JugadorContexto())
             {
                 var bytesDeImagen = (from jugador in contexto.jugadores
-                                 where jugador.usuario == usuario
-                                 select jugador.imagenUsuario).ToArray();
+                                     where jugador.usuario == usuario
+                                     select jugador.imagenUsuario).ToArray();
                 if (bytesDeImagen.Length > 0)
                     return bytesDeImagen[0];
                 else
@@ -342,7 +320,9 @@ namespace ChatJuego.Host
                     if (partida.jugadores[1] != null)
                     {
                         return EstadoUnirseAPartida.FallidoPorMaximoDeJugadores;
-                    } else {
+                    }
+                    else
+                    {
                         partida.jugadores[1] = jugador;
                         break;
                     }
@@ -400,7 +380,8 @@ namespace ChatJuego.Host
                                 conexiones.DesconectarDePartida(estadoPartida);
                             }
                         }
-                    } else if (partida.jugadores[1] != null && usuarioQueFinaliza == partida.jugadores[1].usuario  )
+                    }
+                    else if (partida.jugadores[1] != null && usuarioQueFinaliza == partida.jugadores[1].usuario)
                     {
                         foreach (var conexiones in jugadores.Keys)
                         {
@@ -482,8 +463,8 @@ namespace ChatJuego.Host
                     using (var contexto = new JugadorContexto())
                     {
                         float puntajeDelJugador = (from jugador in contexto.jugadores
-                                         where jugador.usuario == usuario
-                                         select jugador.puntaje).First().Value;
+                                                   where jugador.usuario == usuario
+                                                   select jugador.puntaje).First().Value;
 
                         puntajeDelJugador += puntaje;
                         var jugadorBD = contexto.jugadores.Where(j => j.usuario == usuario).FirstOrDefault();
@@ -492,7 +473,17 @@ namespace ChatJuego.Host
                         {
                             contexto.Entry(jugadorBD).CurrentValues.SetValues(copia);
                         }
-                        contexto.SaveChanges();
+                        try
+                        {
+                            contexto.SaveChanges();
+                        }
+                        catch (Exception exception) when (exception is SmtpException || exception is InvalidOperationException
+                         || exception is FormatException || exception is ArgumentNullException)
+                        {
+                            Console.WriteLine(exception.StackTrace);
+                            return EstadoAgregarPuntuacion.Fallido;
+
+                        }
                     }
                     return EstadoAgregarPuntuacion.Correcto;
                 }
@@ -512,7 +503,7 @@ namespace ChatJuego.Host
             {
                 if (partida.codigoDePartida == codigoDePartida)
                 {
-                   if (partida.jugadores[0].usuario == oponente)
+                    if (partida.jugadores[0].usuario == oponente)
                     {
                         foreach (var conexiones in jugadores.Keys)
                         {
@@ -521,7 +512,8 @@ namespace ChatJuego.Host
                                 conexiones.InsertarFichaEnTablero(columna);
                             }
                         }
-                    } else
+                    }
+                    else
                     {
                         foreach (var conexiones in jugadores.Keys)
                         {

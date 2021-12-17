@@ -58,6 +58,7 @@ namespace ChatJuego.Cliente.Ventanas.Tutorial
 
         private void BotoSalir_Click(object sender, RoutedEventArgs e)
         {
+            MenuPrincipal.ReproducirBoton();
             this.Close();
         }
     }

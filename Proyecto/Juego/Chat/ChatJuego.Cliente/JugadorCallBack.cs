@@ -120,7 +120,7 @@ namespace ChatJuego.Cliente
         {
             if (ventanaDeJuego != null)
             {
-                ventanaDeJuego.IntroducirFicha(columna, VentanaDeJuego.TIROOPONENTE);
+                ventanaDeJuego.IntroducirFicha(columna, VentanaDeJuego.TIRO_OPONENTE);
                 ventanaDeJuego.turnoDeJuego = true;
             }
         }

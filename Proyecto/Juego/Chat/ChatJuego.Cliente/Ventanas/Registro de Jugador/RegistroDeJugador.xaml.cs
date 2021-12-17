@@ -22,15 +22,20 @@ namespace ChatJuego.Cliente
         private InstanceContext contexto;
         private MainWindow inicioDeSesion;
         private int codigoDeRegistro;
-        string ruta = "pack://application:,,,/ChatJuego.Cliente;component/Ventanas/Registro de Jugador/Iconos/imagenPredeterminada.png";
+        string ruta = String.Empty;
 
         public RegistroDeJugador(ServidorClient servidor, MainWindow inicioDeSesion, InstanceContext contexto)
         {
-            string ruta = System.IO.Directory.GetCurrentDirectory();
+            ruta = "Iconos/imagenPredeterminada.png";
+            InitializeComponent();
+            imagenJugador.Source = new BitmapImage(new Uri(ruta, UriKind.Relative));
+            ruta = System.IO.Directory.GetCurrentDirectory();
             ruta = ruta.Substring(0, ruta.Length - 9);
             sonidoDeBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
             sonidoDeError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
-            InitializeComponent();
+            ruta = System.IO.Directory.GetCurrentDirectory();
+            ruta = ruta.Substring(0, ruta.Length - 9);
+            ruta += @"Ventanas/Registro de Jugador/Iconos/imagenPredeterminada.png";
             Actualizar_Idioma();
             this.servidor = servidor;
             this.inicioDeSesion = inicioDeSesion;
@@ -56,7 +61,6 @@ namespace ChatJuego.Cliente
                         var valor = ventanaDeConfirmacion.ShowDialog();
                         if (valor == true)
                         {
-
                             var estadoDeRegistro = servidor.RegistroDeJugador(TBUsuarioR.Text, TBContraseniaRegistro.Password, TBCorreoR.Text, ConvertirImagenABytes());
                             if (estadoDeRegistro == EstadoDeRegistro.Correcto)
                             {
@@ -143,8 +147,9 @@ namespace ChatJuego.Cliente
                             codigoDeRegistro = EnviarInvitacion.GenerarCodigoDePartida();
                         }
                     }
-                    catch (EndpointNotFoundException endpointNotFoundException)
+                    catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
                     {
+                        sonidoDeError.Play();
                         if (idioma == Idioma.Espaniol)
                         {
                             MessageBox.Show("No se ha podido conectar con el servidor", "Error de conexión", MessageBoxButton.OK);
@@ -372,6 +377,5 @@ namespace ChatJuego.Cliente
                 Boton_Cancelar.Source = new BitmapImage(new Uri("Iconos/botonCancelarIN.png", UriKind.Relative));
             }
         }
-
     }
 }

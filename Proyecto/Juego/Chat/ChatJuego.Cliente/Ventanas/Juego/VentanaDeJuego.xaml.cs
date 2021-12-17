@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Media;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using static ChatJuego.Cliente.Ventanas.Configuracion.Configuracion;
@@ -17,7 +19,9 @@ namespace ChatJuego.Cliente.Ventanas.Juego
     /// </summary>
     public partial class VentanaDeJuego : Window
     {
-        InstanceContext contexto;
+        private static MediaPlayer MusicaDePartida = new MediaPlayer();
+        private static SoundPlayer SonidoDeFicha = new SoundPlayer();
+        private InstanceContext contexto;
         public string oponente { get; set; }
         MenuPrincipal menuPrincipal;
         ServidorClient servidor;
@@ -31,11 +35,12 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         private bool imagenesCargadas;
         public bool turnoDeJuego { get; set; }
 
-        const string RUTAFICHAAZUL = "Iconos/fichaAzul.png";
-        const string RUTAFICHAROJA = "Iconos/fichaRoja.png";
-        public const int TIROPROPIO = 1;
-        public const int TIROOPONENTE = 2;
+        const string RUTA_FICHA_AZUL = "Iconos/fichaAzul.png";
+        const string RUTA_FICHA_ROJA = "Iconos/fichaRoja.png";
+        public const int TIRO_PROPIO = 1;
+        public const int TIRO_OPONENTE = 2;
         public const int EMPATE = 3;
+        public const int SIN_LINEA_GANADORA = 0;
         private bool partidaFinalizada;
 
         int[,] tablero = new int[6, 7]
@@ -50,6 +55,16 @@ namespace ChatJuego.Cliente.Ventanas.Juego
 
         public VentanaDeJuego(InstanceContext contexto, MenuPrincipal menuPrincipal, Jugador jugador, ChatServicioClient servidorDelChat, string codigoDePartida, JugadorCallBack jugadorCallBack, ServidorClient servidor)
         {
+            MenuPrincipal.MusicaDeMenu.Stop();
+            string ruta = Directory.GetCurrentDirectory();
+            ruta = ruta.Substring(0, ruta.Length - 9);
+            MusicaDePartida.Open(new Uri(ruta + @"Ventanas\Sonidos\MusicaDePartida2.wav"));
+            MusicaDePartida.MediaEnded += new EventHandler(Media_Ended);
+            if (MenuPrincipal.EstadoMusica == MenuPrincipal.MUSICA_ENCENDIDA)
+            {
+                MusicaDePartida.Play();
+            }
+            SonidoDeFicha.SoundLocation = ruta + @"Ventanas\Sonidos\SonidoFicha.wav";
             InitializeComponent();
             ActualizarIdiomaDeVentana();
             ImagenJugadorDerecho.Source = ConvertirArrayAImagen(servidor.ObtenerBytesDeImagenDeJugador(jugador.usuario));
@@ -73,36 +88,81 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         /// <returns>Si hay un ganador, regresa TIROPROPIO si el ganador es uno mismo, o TIROOPONENTE si el ganador es el oponente. Si nadie gana, regresa un 0</returns>
         public int VerificarTablero()
         {
-            //Horizontal
+            int resultado = VerificarHorizontal();
+            if (resultado != SIN_LINEA_GANADORA)
+            {
+                return resultado;
+            }
+            resultado = VerificarVertical();
+            if (resultado != SIN_LINEA_GANADORA)
+            {
+                return resultado;
+            }
+            resultado = VerificarDiagonalesDerechaIzquierda();
+            if (resultado != SIN_LINEA_GANADORA)
+            {
+                return resultado;
+            }
+            resultado = VerificarDiagonalesIzquierdaDerecha();
+            if (resultado != SIN_LINEA_GANADORA)
+            {
+                return resultado;
+            }
+            return SIN_LINEA_GANADORA;
+        }
+
+        /// <summary>
+        /// Verifica que existan 4 fichas consecutivas horizontales en el tablero 
+        /// </summary>
+        /// <returns>Regresa el resulta de la verificación</returns>
+        private int VerificarHorizontal()
+        {
             for (int fila = 5; fila >= 0; fila--)
             {
-                for (int columna = 0; columna <= 3; columna++ )
+                for (int columna = 0; columna <= 3; columna++)
                 {
-                    if (tablero[fila,columna] == 1 && tablero[fila, columna + 1] == 1 && tablero[fila, columna + 2] == 1 && tablero[fila, columna + 3] == 1)
+                    if (tablero[fila, columna] == TIRO_PROPIO && tablero[fila, columna + 1] == TIRO_PROPIO && tablero[fila, columna + 2] == TIRO_PROPIO && tablero[fila, columna + 3] == TIRO_PROPIO)
                     {
-                        return TIROPROPIO;
+                        return TIRO_PROPIO;
                     }
-                    if (tablero[fila, columna] == 2 && tablero[fila, columna + 1] == 2 && tablero[fila, columna + 2] == 2 && tablero[fila, columna + 3] == 2)
+                    if (tablero[fila, columna] == TIRO_OPONENTE && tablero[fila, columna + 1] == TIRO_OPONENTE && tablero[fila, columna + 2] == TIRO_OPONENTE && tablero[fila, columna + 3] == TIRO_OPONENTE)
                     {
-                        return TIROOPONENTE;
+                        return TIRO_OPONENTE;
                     }
                 }
             }
-            //Vertical
+            return SIN_LINEA_GANADORA;
+        }
+
+        /// <summary>
+        /// Verifica que existan 4 fichas consecutivas verticales en el tablero 
+        /// </summary>
+        /// <returns>Regresa el resulta de la verificación</returns>
+        private int VerificarVertical()
+        {
             for (int columna = 0; columna < 7; columna++)
             {
                 for (int fila = 5; fila >= 3; fila--)
                 {
-                    if (tablero[fila, columna] == 1 && tablero[fila - 1, columna] == 1 && tablero[fila - 2, columna] == 1 && tablero[fila - 3, columna] == 1)
+                    if (tablero[fila, columna] == TIRO_PROPIO && tablero[fila - 1, columna] == TIRO_PROPIO && tablero[fila - 2, columna] == TIRO_PROPIO && tablero[fila - 3, columna] == TIRO_PROPIO)
                     {
-                        return TIROPROPIO;
+                        return TIRO_PROPIO;
                     }
-                    if (tablero[fila, columna] == 2 && tablero[fila - 1, columna] == 2 && tablero[fila - 2, columna] == 2 && tablero[fila - 3, columna] == 2)
+                    if (tablero[fila, columna] == TIRO_OPONENTE && tablero[fila - 1, columna] == TIRO_OPONENTE && tablero[fila - 2, columna] == TIRO_OPONENTE && tablero[fila - 3, columna] == TIRO_OPONENTE)
                     {
-                        return TIROOPONENTE;
+                        return TIRO_OPONENTE;
                     }
                 }
             }
+            return SIN_LINEA_GANADORA;
+        }
+
+        /// <summary>
+        /// Verifica que existan 4 fichas consecutivas en las diagonales izquierda-derecha en el tablero 
+        /// </summary>
+        /// <returns>Regresa el resulta de la verificación</returns>
+        private int VerificarDiagonalesIzquierdaDerecha()
+        {
             //diagonal izquierda-derecha
             int numeroDeComprobaciones = 1;
             int columnaDeTablero = 0;
@@ -111,13 +171,13 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 int filaOriginal = fila;
                 for (int comprobacion = numeroDeComprobaciones; comprobacion > 0; comprobacion--)
                 {
-                    if (tablero[fila, columnaDeTablero] == 1 && tablero[fila + 1, columnaDeTablero + 1] == 1 && tablero[fila + 2, columnaDeTablero + 2] == 1 && tablero[fila + 3, columnaDeTablero + 3] == 1)
+                    if (tablero[fila, columnaDeTablero] == TIRO_PROPIO && tablero[fila + 1, columnaDeTablero + 1] == TIRO_PROPIO && tablero[fila + 2, columnaDeTablero + 2] == TIRO_PROPIO && tablero[fila + 3, columnaDeTablero + 3] == TIRO_PROPIO)
                     {
-                        return TIROPROPIO;
+                        return TIRO_PROPIO;
                     }
-                    if (tablero[fila, columnaDeTablero] == 2 && tablero[fila + 1, columnaDeTablero + 1] == 2 && tablero[fila + 2, columnaDeTablero + 2] == 2 && tablero[fila + 3, columnaDeTablero + 3] == 2)
+                    if (tablero[fila, columnaDeTablero] == TIRO_OPONENTE && tablero[fila + 1, columnaDeTablero + 1] == TIRO_OPONENTE && tablero[fila + 2, columnaDeTablero + 2] == TIRO_OPONENTE && tablero[fila + 3, columnaDeTablero + 3] == TIRO_OPONENTE)
                     {
-                        return TIROOPONENTE;
+                        return TIRO_OPONENTE;
                     }
                     columnaDeTablero++;
                     fila++;
@@ -134,13 +194,13 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 int columnaOriginal = columna;
                 for (int comprobacion = numeroDeComprobaciones; comprobacion > 0; comprobacion--)
                 {
-                    if (tablero[filaDeTablero, columna] == 1 && tablero[filaDeTablero + 1, columna + 1] == 1 && tablero[filaDeTablero + 2, columna + 2] == 1 && tablero[filaDeTablero + 3, columna + 3] == 1)
+                    if (tablero[filaDeTablero, columna] == TIRO_PROPIO && tablero[filaDeTablero + 1, columna + 1] == TIRO_PROPIO && tablero[filaDeTablero + 2, columna + 2] == TIRO_PROPIO && tablero[filaDeTablero + 3, columna + 3] == TIRO_PROPIO)
                     {
-                        return TIROPROPIO;
+                        return TIRO_PROPIO;
                     }
-                    if (tablero[filaDeTablero, columna] == 2 && tablero[filaDeTablero + 1, columna + 1] == 2 && tablero[filaDeTablero + 2, columna + 2] == 2 && tablero[filaDeTablero + 3, columna + 3] == 2)
+                    if (tablero[filaDeTablero, columna] == TIRO_OPONENTE && tablero[filaDeTablero + 1, columna + 1] == TIRO_OPONENTE && tablero[filaDeTablero + 2, columna + 2] == TIRO_OPONENTE && tablero[filaDeTablero + 3, columna + 3] == TIRO_OPONENTE)
                     {
-                        return TIROOPONENTE;
+                        return TIRO_OPONENTE;
                     }
                     filaDeTablero++;
                     columna++;
@@ -149,21 +209,29 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 filaDeTablero = 0;
                 numeroDeComprobaciones--;
             }
-            //Diagonal derecha-izquierda
-            numeroDeComprobaciones = 1;
-            columnaDeTablero = 6;
+            return SIN_LINEA_GANADORA;
+        }
+
+        /// <summary>
+        /// Verifica que existan 4 fichas consecutivas en las diagonales izquierda-derecha en el tablero 
+        /// </summary>
+        /// <returns>Regresa el resulta de la verificación</returns>
+        private int VerificarDiagonalesDerechaIzquierda()
+        {
+            int numeroDeComprobaciones = 1;
+            int columnaDeTablero = 6;
             for (int fila = 2; fila >= 0; fila--)
             {
                 int filaOriginal = fila;
                 for (int comprobacion = numeroDeComprobaciones; comprobacion > 0; comprobacion--)
                 {
-                    if (tablero[fila, columnaDeTablero] == 1 && tablero[fila + 1, columnaDeTablero - 1] == 1 && tablero[fila + 2, columnaDeTablero - 2] == 1 && tablero[fila + 3, columnaDeTablero - 3] == 1)
+                    if (tablero[fila, columnaDeTablero] == TIRO_PROPIO && tablero[fila + 1, columnaDeTablero - 1] == TIRO_PROPIO && tablero[fila + 2, columnaDeTablero - 2] == TIRO_PROPIO && tablero[fila + 3, columnaDeTablero - 3] == TIRO_PROPIO)
                     {
-                        return TIROPROPIO;
+                        return TIRO_PROPIO;
                     }
-                    if (tablero[fila, columnaDeTablero] == 2 && tablero[fila + 1, columnaDeTablero - 1] == 2 && tablero[fila + 2, columnaDeTablero - 2] == 2 && tablero[fila + 3, columnaDeTablero - 3] == 2)
+                    if (tablero[fila, columnaDeTablero] == TIRO_OPONENTE && tablero[fila + 1, columnaDeTablero - 1] == TIRO_OPONENTE && tablero[fila + 2, columnaDeTablero - 2] == TIRO_OPONENTE && tablero[fila + 3, columnaDeTablero - 3] == TIRO_OPONENTE)
                     {
-                        return TIROOPONENTE;
+                        return TIRO_OPONENTE;
                     }
                     columnaDeTablero--;
                     fila++;
@@ -173,20 +241,20 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 columnaDeTablero = 6;
             }
 
-            filaDeTablero = 0;
+            int filaDeTablero = 0;
             numeroDeComprobaciones = 3;
             for (int columna = 5; columna > 2; columna--)
             {
                 int columnaOriginal = columna;
                 for (int comprobacion = numeroDeComprobaciones; comprobacion > 0; comprobacion--)
                 {
-                    if (tablero[filaDeTablero, columna] == 1 && tablero[filaDeTablero + 1, columna - 1] == 1 && tablero[filaDeTablero + 2, columna - 2] == 1 && tablero[filaDeTablero + 3, columna - 3] == 1)
+                    if (tablero[filaDeTablero, columna] == TIRO_PROPIO && tablero[filaDeTablero + 1, columna - 1] == TIRO_PROPIO && tablero[filaDeTablero + 2, columna - 2] == TIRO_PROPIO && tablero[filaDeTablero + 3, columna - 3] == TIRO_PROPIO)
                     {
-                        return TIROPROPIO;
+                        return TIRO_PROPIO;
                     }
-                    if (tablero[filaDeTablero, columna] == 2 && tablero[filaDeTablero + 1, columna - 1] == 2 && tablero[filaDeTablero + 2, columna - 2] == 2 && tablero[filaDeTablero + 3, columna - 3] == 2)
+                    if (tablero[filaDeTablero, columna] == TIRO_OPONENTE && tablero[filaDeTablero + 1, columna - 1] == TIRO_OPONENTE && tablero[filaDeTablero + 2, columna - 2] == TIRO_OPONENTE && tablero[filaDeTablero + 3, columna - 3] == TIRO_OPONENTE)
                     {
-                        return TIROOPONENTE;
+                        return TIRO_OPONENTE;
                     }
                     filaDeTablero++;
                     columna--;
@@ -195,8 +263,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 numeroDeComprobaciones--;
                 filaDeTablero = 0;
             }
-
-            return 0;
+            return SIN_LINEA_GANADORA;
         }
 
         /// <summary>
@@ -236,11 +303,13 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                         }
                         else if (idioma == Idioma.Ingles)
                         {
-                           MessageBox.Show("You were inactive for too long, you will be taken to the main menu", "Inactive", MessageBoxButton.OK) ;
+                            MessageBox.Show("You were inactive for too long, you will be taken to the main menu", "Inactive", MessageBoxButton.OK);
                         }
                         menuPrincipal.Show();
                         CerrarConfirmacionDePresencia();
                         timer.Stop();
+                        MusicaDePartida.Stop();
+                        MenuPrincipal.ReproducirMusica();
                         this.Close();
                     }
                 }
@@ -288,6 +357,8 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 CerrarConfirmacionDePresencia();
+                MusicaDePartida.Stop();
+                MenuPrincipal.ReproducirMusica();
                 this.Close();
             }
         }
@@ -299,369 +370,371 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         public void IntroducirFicha(int columna, int quienTira)
         {
 
-                KeyValuePair<int, int> posicionDeFicha;
-                for (int fila = 5; fila >= 0; fila--)
+            KeyValuePair<int, int> posicionDeFicha;
+            for (int fila = 5; fila >= 0; fila--)
+            {
+                if (quienTira == TIRO_PROPIO)
                 {
-                    if (quienTira == TIROPROPIO)
+                    if (tablero[fila, columna - 1] == 0)
                     {
-                        if (tablero[fila, columna - 1] == 0)
+                        posicionDeFicha = new KeyValuePair<int, int>(fila + 1, columna);
+                        switch (posicionDeFicha.Value)
                         {
-                            posicionDeFicha = new KeyValuePair<int, int>(fila + 1, columna);
-                            switch (posicionDeFicha.Value)
-                            {
-                                case 1:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f16.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f15.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f14.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f13.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f12.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f11.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 2:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f26.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f25.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f24.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f23.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f22.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f21.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 3:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f36.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f35.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f34.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f33.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f32.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f31.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 4:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f46.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f45.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f44.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f43.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f42.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f41.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 5:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f56.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f55.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f54.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f53.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f52.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f51.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 6:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f66.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f65.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f64.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f63.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f62.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f61.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 7:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f76.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f75.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f74.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f73.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f72.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f71.Source = new BitmapImage(new Uri(RUTAFICHAAZUL, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                            }
-                            tablero[fila, columna - 1] = TIROPROPIO;
-                            break;
+                            case 1:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f16.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f15.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f14.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f13.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f12.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f11.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 2:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f26.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f25.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f24.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f23.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f22.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f21.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 3:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f36.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f35.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f34.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f33.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f32.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f31.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 4:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f46.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f45.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f44.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f43.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f42.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f41.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 5:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f56.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f55.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f54.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f53.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f52.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f51.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 6:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f66.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f65.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f64.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f63.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f62.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f61.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 7:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f76.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f75.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f74.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f73.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f72.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f71.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                                        break;
+                                }
+                                break;
                         }
-                    }
-                    else
-                    {
-                        if (tablero[fila, columna - 1] == 0)
-                        {
-                            posicionDeFicha = new KeyValuePair<int, int>(fila + 1, columna);
-                            switch (posicionDeFicha.Value)
-                            {
-                                case 1:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f16.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f15.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f14.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f13.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f12.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f11.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 2:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f26.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f25.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f24.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f23.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f22.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f21.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 3:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f36.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f35.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f34.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f33.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f32.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f31.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 4:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f46.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f45.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f44.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f43.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f42.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f41.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 5:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f56.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f55.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f54.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f53.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f52.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f51.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 6:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f66.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f65.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f64.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f63.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f62.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f61.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                                case 7:
-                                    switch (posicionDeFicha.Key)
-                                    {
-                                        case 6:
-                                            f76.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 5:
-                                            f75.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 4:
-                                            f74.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 3:
-                                            f73.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 2:
-                                            f72.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                        case 1:
-                                            f71.Source = new BitmapImage(new Uri(RUTAFICHAROJA, UriKind.Relative));
-                                            break;
-                                    }
-                                    break;
-                            }
-                            tablero[fila, columna - 1] = TIROOPONENTE;
-                            break;
-                        }
+                        tablero[fila, columna - 1] = TIRO_PROPIO;
+                        break;
                     }
                 }
+                else
+                {
+                    if (tablero[fila, columna - 1] == 0)
+                    {
+                        posicionDeFicha = new KeyValuePair<int, int>(fila + 1, columna);
+                        switch (posicionDeFicha.Value)
+                        {
+                            case 1:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f16.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f15.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f14.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f13.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f12.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f11.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 2:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f26.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f25.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f24.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f23.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f22.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f21.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 3:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f36.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f35.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f34.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f33.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f32.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f31.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 4:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f46.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f45.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f44.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f43.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f42.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f41.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 5:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f56.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f55.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f54.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f53.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f52.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f51.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 6:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f66.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f65.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f64.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f63.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f62.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f61.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                            case 7:
+                                switch (posicionDeFicha.Key)
+                                {
+                                    case 6:
+                                        f76.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 5:
+                                        f75.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 4:
+                                        f74.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 3:
+                                        f73.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 2:
+                                        f72.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                    case 1:
+                                        f71.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                                        break;
+                                }
+                                break;
+                        }
+                        tablero[fila, columna - 1] = TIRO_OPONENTE;
+                        break;
+                    }
+                }
+            }
             int ganadorDePartida = VerificarTablero();
-            if (ganadorDePartida == TIROPROPIO)
+            if (ganadorDePartida == TIRO_PROPIO)
             {
                 servidor.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
                 FinalizarPartida(EstadoPartida.FinDePartidaGanada);
                 partidaFinalizada = true;
-            } else if (ganadorDePartida == TIROOPONENTE)
+            }
+            else if (ganadorDePartida == TIRO_OPONENTE)
             {
                 partidaFinalizada = true;
                 return;
             }
             int empate = VerificarTableroLleno();
-            if (empate == EMPATE) {
+            if (empate == EMPATE)
+            {
                 servidor.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
                 FinalizarPartida(EstadoPartida.FinDePartidaPorEmpate);
                 partidaFinalizada = true;
@@ -701,10 +774,13 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     bool lleno = VerificarColumnaLlena(columna);
                     if (!lleno)
                     {
-                        IntroducirFicha(columna, TIROPROPIO);
+                        ReproducirFicha();
+                        IntroducirFicha(columna, TIRO_PROPIO);
                         turnoDeJuego = false;
                         servidor.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
-                    } else {
+                    }
+                    else
+                    {
                         if (idioma == Idioma.Espaniol)
                         {
                             MessageBox.Show("Columna llena, seleccione otra columna", "Columna llena", MessageBoxButton.OK);
@@ -745,6 +821,8 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 CerrarConfirmacionDePresencia();
+                MusicaDePartida.Stop();
+                MenuPrincipal.ReproducirMusica();
                 this.Close();
             }
         }
@@ -756,7 +834,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         /// <returns>Regresa un booleano, true si la columna está llena, y false si sí se pueden meter fichas en esa columna</returns>
         private bool VerificarColumnaLlena(int columna)
         {
-            if (tablero[0,columna - 1] != 0)
+            if (tablero[0, columna - 1] != 0)
             {
                 return true;
             }
@@ -800,6 +878,8 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                     CerrarConfirmacionDePresencia();
+                    MusicaDePartida.Stop();
+                    MenuPrincipal.ReproducirMusica();
                     this.Close();
                 }
             }
@@ -840,11 +920,13 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 else if (estadoDePartida == EstadoPartida.FinDePartidaPorTiempoDeEsperaLimite || estadoDePartida == EstadoPartida.FinDePartidaSalir)
                 {
                     servidor.EliminarPartidaConGanador(codigoDePartida, jugador.usuario, estadoDePartida, 10, oponente);
-                } else if (estadoDePartida == EstadoPartida.FinDePartidaGanada)
+                }
+                else if (estadoDePartida == EstadoPartida.FinDePartidaGanada)
                 {
                     servidor.EliminarPartidaConGanador(codigoDePartida, jugador.usuario, estadoDePartida, 50, jugador.usuario);
                     Desconectarse(estadoDePartida);
-                } else if (estadoDePartida == EstadoPartida.FinDePartidaPorEmpate)
+                }
+                else if (estadoDePartida == EstadoPartida.FinDePartidaPorEmpate)
                 {
                     servidor.EliminarPartida(codigoDePartida, jugador.usuario, estadoDePartida);
                     Desconectarse(estadoDePartida);
@@ -871,6 +953,8 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 CerrarConfirmacionDePresencia();
+                MusicaDePartida.Stop();
+                MenuPrincipal.ReproducirMusica();
                 this.Close();
             }
         }
@@ -880,7 +964,9 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         /// </summary>
         private void BotonSalir_Click(object sender, RoutedEventArgs e)
         {
-            
+            MenuPrincipal.ReproducirBoton();
+            MusicaDePartida.Stop();
+            MenuPrincipal.ReproducirMusica();
             this.Close();
         }
 
@@ -930,7 +1016,8 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 {
                     MessageBox.Show("The opponent was inactive for too long, You win!", "Opponent inactive", MessageBoxButton.OK);
                 }
-            } else if (estadoPartida == EstadoPartida.FinDePartidaGanada)
+            }
+            else if (estadoPartida == EstadoPartida.FinDePartidaGanada)
             {
                 if (idioma == Idioma.Espaniol)
                 {
@@ -948,7 +1035,8 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 {
                     MessageBox.Show("You win!", "Game finished", MessageBoxButton.OK);
                 }
-            } else if (estadoPartida == EstadoPartida.FinDePartidaPerdida)
+            }
+            else if (estadoPartida == EstadoPartida.FinDePartidaPerdida)
             {
                 if (idioma == Idioma.Espaniol)
                 {
@@ -966,7 +1054,8 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 {
                     MessageBox.Show("You lose!", "Game finished", MessageBoxButton.OK);
                 }
-            } else if (estadoPartida == EstadoPartida.FinDePartidaPorEmpate)
+            }
+            else if (estadoPartida == EstadoPartida.FinDePartidaPorEmpate)
             {
                 if (idioma == Idioma.Espaniol)
                 {
@@ -985,9 +1074,9 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     MessageBox.Show("Tie!", "Game finished", MessageBoxButton.OK);
                 }
             }
+            MusicaDePartida.Stop();
+            MenuPrincipal.ReproducirMusica();
             this.Close();
-
-
         }
 
         /// <summary>
@@ -1076,6 +1165,28 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             {
                 Title = "Game";
                 BotonSalirImagen.Source = new BitmapImage(new Uri("Iconos/salirEN.png", UriKind.Relative));
+            }
+        }
+
+        /// <summary>
+        /// Método que se ejecuta cuando se activa la música.
+        /// Detecta cuando termina la canción para reiniciarla y así hacer un loop.
+        /// </summary>
+        private void Media_Ended(object sender, EventArgs e)
+        {
+            MusicaDePartida.Position = TimeSpan.Zero;
+            MusicaDePartida.Play();
+        }
+
+        private void ReproducirFicha()
+        {
+            if (MenuPrincipal.EstadoSFX != MenuPrincipal.EFECTOS_ENCENDIDO)
+            {
+                return;
+            }
+            else
+            {
+                SonidoDeFicha.Play();
             }
         }
     }

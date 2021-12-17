@@ -17,35 +17,38 @@ namespace ChatJuego.Cliente
     {
         private static MediaPlayer musicaDeMenu = new MediaPlayer();
         private static SoundPlayer sonidoDeBoton = new SoundPlayer();
+        private static SoundPlayer sonidoDeError = new SoundPlayer();
         private ServidorClient servidor;
         ChatServicioClient servidorDelChat = null;
         TablaDePuntajesClient servidorDeTablaDePuntajes;
         InstanceContext contexto;
         JugadorCallBack callBackDeJugador;
         Jugador jugador;
-        private bool desconexionDelServidor = false;
-        private const int MUSICAENCENDIDA = 1;
-        private const int EFECTOSENCENDIDO = 1;
-        private static int estadoMusica = MUSICAENCENDIDA;
-        private static int estadoSFX = EFECTOSENCENDIDO;
+        public bool desconexionDelServidor { get; set; }
+        public const int MUSICA_ENCENDIDA = 1;
+        public const int EFECTOS_ENCENDIDO = 1;
+        private static int estadoMusica = MUSICA_ENCENDIDA;
+        private static int estadoSFX = EFECTOS_ENCENDIDO;
 
         public static MediaPlayer MusicaDeMenu { get => musicaDeMenu; set => musicaDeMenu = value; }
         public static SoundPlayer SonidoDeBoton { get => sonidoDeBoton; set => sonidoDeBoton = value; }
         public static int EstadoMusica { get => estadoMusica; set => estadoMusica = value; }
         public static int EstadoSFX { get => estadoSFX; set => estadoSFX = value; }
-
+        public static SoundPlayer SonidoDeError { get => sonidoDeError; set => sonidoDeError = value; }
 
         public MenuPrincipal(ServidorClient servidor, JugadorCallBack callBackDeJugador, Jugador jugador, InstanceContext contexto)
         {
+            desconexionDelServidor = false;
             string ruta = Directory.GetCurrentDirectory();
             ruta = ruta.Substring(0, ruta.Length - 9);
             musicaDeMenu.Open(new Uri(ruta + @"Ventanas\Sonidos\MusicaDePartida.wav"));
             MusicaDeMenu.MediaEnded += new EventHandler(Media_Ended);
-            if (EstadoMusica == MUSICAENCENDIDA)
+            if (EstadoMusica == MUSICA_ENCENDIDA)
             {
                 musicaDeMenu.Play();
             }
             sonidoDeBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
+            sonidoDeError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
             this.callBackDeJugador = callBackDeJugador;
             this.servidor = servidor;
             this.jugador = jugador;
@@ -59,12 +62,11 @@ namespace ChatJuego.Cliente
 
         /// <summary>
         /// Método que se ejecuta cuando se da click en el botón de Tabla de Puntajes.
-        /// Abre la ventana de Tabla de Púntajes.
+        /// Abre la ventana de Tabla de Puntajes.
         /// </summary>
         private void BotonTablaDePuntajes_Click(object sender, RoutedEventArgs e)
         {
             ReproducirBoton();
-            musicaDeMenu.Stop();
             TablaDePuntajes tablaPuntajes = new TablaDePuntajes(servidorDeTablaDePuntajes);
             callBackDeJugador.SetTablaDePuntajes(tablaPuntajes);
             tablaPuntajes.Show();
@@ -86,7 +88,7 @@ namespace ChatJuego.Cliente
         private void BotonChat_Click(object sender, RoutedEventArgs e)
         {
             ReproducirBoton();
-            Chat chat = new Chat(jugador, servidorDelChat);
+            Chat chat = new Chat(jugador, servidorDelChat,this);
             try
             {
                 servidorDelChat = new ChatServicioClient(contexto);
@@ -111,7 +113,8 @@ namespace ChatJuego.Cliente
                 {
                     MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
                 }
-                musicaDeMenu.Stop(); desconexionDelServidor = true;
+                musicaDeMenu.Stop(); 
+                desconexionDelServidor = true;
                 this.Close();
             }
         }
@@ -147,7 +150,6 @@ namespace ChatJuego.Cliente
         private void BotonUnirse_Click(object sender, RoutedEventArgs e)
         {
             ReproducirBoton();
-            musicaDeMenu.Stop();
             servidorDelChat = new ChatServicioClient(contexto);
             UnirseAPartida unirseAPartida = new UnirseAPartida(jugador, this, contexto, servidorDelChat, callBackDeJugador, servidor);
             unirseAPartida.Show();
@@ -192,13 +194,27 @@ namespace ChatJuego.Cliente
                 Boton_Salir.Source = new BitmapImage(new Uri("Iconos/salirIN.png", UriKind.Relative));
             }
         }
+        /// <summary>
+        /// Método que reproduce el sonido cuando se da click en un botón.
+        /// </summary>
+        public static void ReproducirMusica()
+        {
+            if (estadoMusica != MUSICA_ENCENDIDA)
+            {
+                return;
+            }
+            else
+            {
+                MusicaDeMenu.Play();
+            }
+        }
 
-       /// <summary>
-       /// Método que reproduce el sonido cuando se da click en un botón.
-       /// </summary>
+        /// <summary>
+        /// Método que reproduce el sonido cuando se da click en un botón.
+        /// </summary>
         public static void ReproducirBoton()
         {
-            if (estadoSFX == 0)
+            if (estadoSFX != EFECTOS_ENCENDIDO)
             {
                 return;
             }
@@ -209,7 +225,23 @@ namespace ChatJuego.Cliente
         }
 
         /// <summary>
+        /// Método que reproduce el sonido cuando se produce un error.
+        /// </summary>
+        public static void ReproducirError()
+        {
+            if (estadoSFX != EFECTOS_ENCENDIDO)
+            {
+                return;
+            }
+            else
+            {
+                SonidoDeError.Play();
+            }
+        }
+
+        /// <summary>
         /// Método que se ejecuta cuando se activa la música.
+        /// Detecta cuando termina la canción para reiniciarla y así hacer un loop.
         /// </summary>
         private void Media_Ended(object sender, EventArgs e)
         {
@@ -260,6 +292,7 @@ namespace ChatJuego.Cliente
 
         private void BotonTutorial_Click(object sender, RoutedEventArgs e)
         {
+            ReproducirBoton();
             Tutorial tutorial = new Tutorial();
             tutorial.Show();
         }

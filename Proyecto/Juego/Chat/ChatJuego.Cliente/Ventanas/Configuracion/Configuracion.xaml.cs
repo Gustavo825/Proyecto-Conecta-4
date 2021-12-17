@@ -33,6 +33,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
 
         private void EliminarCuenta_Click(object sender, RoutedEventArgs e)
         {
+            MenuPrincipal.ReproducirBoton();
             if (idioma == Idioma.Espaniol)
             {
                 if (MessageBox.Show("¿Estás seguro que quieres eliminar tu cuenta?", "Eliminar cuenta", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
@@ -45,6 +46,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                             this.Close();
                         } else
                         {
+                            MenuPrincipal.ReproducirError();
                             if (idioma == Idioma.Espaniol)
                             {
                                 MessageBox.Show("No se pudo eliminar la cuenta", "Error", MessageBoxButton.OK);
@@ -66,6 +68,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                     }
                     catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
                     {
+                        MenuPrincipal.ReproducirError();
                         if (idioma == Idioma.Espaniol)
                         {
                             MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
@@ -93,10 +96,12 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                     {
                         if (servidor.EliminarJugador(jugador) == EstadoDeEliminacion.Correcto)
                         {
+                            eliminarJugador = true;
                             this.Close();
                         }
                         else
                         {
+                            MenuPrincipal.ReproducirError();
                             if (idioma == Idioma.Espaniol)
                             {
                                 MessageBox.Show("No se pudo eliminar la cuenta", "Error", MessageBoxButton.OK);
@@ -118,6 +123,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                     }
                     catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
                     {
+                        MenuPrincipal.ReproducirError();
                         if (idioma == Idioma.Espaniol)
                         {
                             MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
@@ -145,10 +151,12 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                     {
                         if (servidor.EliminarJugador(jugador) == EstadoDeEliminacion.Correcto)
                         {
+                            eliminarJugador = true;
                             this.Close();
                         }
                         else
                         {
+                            MenuPrincipal.ReproducirError();
                             if (idioma == Idioma.Espaniol)
                             {
                                 MessageBox.Show("No se pudo eliminar la cuenta", "Error", MessageBoxButton.OK);
@@ -170,6 +178,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                     }
                     catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
                     {
+                        MenuPrincipal.ReproducirError();
                         if (idioma == Idioma.Espaniol)
                         {
                             MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
@@ -197,10 +206,12 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                     {
                         if (servidor.EliminarJugador(jugador) == EstadoDeEliminacion.Correcto)
                         {
+                            eliminarJugador = true;
                             this.Close();
                         }
                         else
                         {
+                            MenuPrincipal.ReproducirError();
                             if (idioma == Idioma.Espaniol)
                             {
                                 MessageBox.Show("No se pudo eliminar la cuenta", "Error", MessageBoxButton.OK);
@@ -222,6 +233,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                     }
                     catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
                     {
+                        MenuPrincipal.ReproducirError();
                         if (idioma == Idioma.Espaniol)
                         {
                             MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);

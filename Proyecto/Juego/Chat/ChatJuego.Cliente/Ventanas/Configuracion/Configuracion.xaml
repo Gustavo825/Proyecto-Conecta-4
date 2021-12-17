@@ -1,4 +1,4 @@
-﻿<Window x:Class="ChatJuego.Cliente.Ventanas.Configuracion.Configuracion"
+﻿<Window x:Class="ChatJuego.Cliente.Ventanas.Configuracion.Configuracion" Closing="Ventana_Configuracion_Closing"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"

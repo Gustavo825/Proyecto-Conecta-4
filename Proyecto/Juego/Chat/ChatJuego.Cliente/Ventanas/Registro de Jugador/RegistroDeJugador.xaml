@@ -36,7 +36,7 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Name="imagenJugador" Source="Iconos/imagenPredeterminada.png" Height="60" Width="60" Grid.Column="1" HorizontalAlignment="Center"></Image>
+            <Image Name="imagenJugador" Height="60" Width="60" Grid.Column="1" HorizontalAlignment="Center"></Image>
             <Button x:Name="Boton_Imagen" Content="Imagen" Height="30" Width="60" Grid.Column="2" HorizontalAlignment="Left" Click="Button_Click"></Button>
         </Grid>
         <Grid Grid.Row="3" Grid.ColumnSpan="2">
