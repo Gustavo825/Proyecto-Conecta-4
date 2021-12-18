@@ -1,0 +1,7 @@
+else if (idioma == Idioma.Ingles)	
+	{
+	Title = “Are you still there?”;
+	lblQuestion.Content = “Click on &quot;Still here&quot; to confirm you’re still here, otherwise the game will end”;
+	btnDialogOk.Content = “Still here”
+
+	}
