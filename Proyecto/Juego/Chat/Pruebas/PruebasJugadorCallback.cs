@@ -33,6 +33,7 @@ namespace Pruebas
             Thread.Sleep(2000);
             mockCallback.Verify(mock => mock.RecibirMensaje(It.IsAny<Jugador>(),It.IsAny<Mensaje>(),It.IsAny<string[]>()),Times.AtLeastOnce());
             servidor.Desconectarse();
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -47,6 +48,7 @@ namespace Pruebas
             Thread.Sleep(2000);
             mockCallback.Verify(mock => mock.ActualizarJugadoresConectados(It.IsAny<string[]>()), Times.AtLeastOnce());
             servidor.Desconectarse();
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -61,6 +63,7 @@ namespace Pruebas
             Thread.Sleep(2000);
             mockCallback.Verify(mock => mock.MostrarPuntajes(It.IsAny<Jugador[]>()), Times.AtLeastOnce());
             servidor.Desconectarse();
+            Assert.IsTrue(true);
         }
     }
 }

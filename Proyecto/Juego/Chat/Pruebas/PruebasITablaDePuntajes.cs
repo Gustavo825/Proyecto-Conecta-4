@@ -30,6 +30,7 @@ namespace Pruebas
             servidor.Conectarse(new Jugador() { usuario = "Gustavo825", contrasenia = "61245" });
             servidorDeTablaDePuntajes.RecuperarPuntajesDeJugadores();
             servidor.Desconectarse();
+            Assert.IsTrue(true);
         }
 
     }

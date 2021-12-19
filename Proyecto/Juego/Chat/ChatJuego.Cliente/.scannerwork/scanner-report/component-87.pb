@@ -1,1 +1,0 @@
-W 2csX(hr.Ventanas/Juego/ConfirmacionDePresencia.xaml.cs

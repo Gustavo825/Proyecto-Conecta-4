@@ -1,1 +1,0 @@
-Cliente :µW	U|2¤œbž¶RCliente

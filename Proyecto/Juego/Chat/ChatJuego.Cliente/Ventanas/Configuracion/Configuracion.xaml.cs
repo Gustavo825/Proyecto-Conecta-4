@@ -20,7 +20,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
         public Configuracion(MenuPrincipal menuPrincipal, ServidorClient servidor, Jugador jugador)
         {
             InitializeComponent();
-            Actualizar_Idioma();
+            ActualizarIdioma();
             this.servidor = servidor;
             this.jugador = jugador;
             this.menuPrincipal = menuPrincipal;
@@ -263,17 +263,17 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
         private void Musica_Click(object sender, RoutedEventArgs e)
         {
             MenuPrincipal.ReproducirBoton();
-            if (MenuPrincipal.EstadoMusica == 1)
+            if (MenuPrincipal.EstadoMusica == MenuPrincipal.EFECTOS_ENCENDIDO)
             {
                 MenuPrincipal.MusicaDeMenu.Stop();
-                MenuPrincipal.EstadoMusica = 0;
-                Actualizar_Idioma();
+                MenuPrincipal.EstadoMusica = MenuPrincipal.EFECTOS_APAGADO;
+                ActualizarIdioma();
             }
             else
             {
                 MenuPrincipal.MusicaDeMenu.Play();
-                MenuPrincipal.EstadoMusica = 1;
-                Actualizar_Idioma();
+                MenuPrincipal.EstadoMusica = MenuPrincipal.EFECTOS_ENCENDIDO;
+                ActualizarIdioma();
             }
         }
 
@@ -282,16 +282,16 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
         /// </summary>
         private void SFX_Click(object sender, RoutedEventArgs e)
         {
-            if (MenuPrincipal.EstadoSFX == 1)
+            if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
             {
-                MenuPrincipal.EstadoSFX = 0;
-                Actualizar_Idioma();
+                MenuPrincipal.EstadoSFX = MenuPrincipal.EFECTOS_APAGADO;
+                ActualizarIdioma();
             }
             else
             {
-                MenuPrincipal.EstadoSFX = 1;
+                MenuPrincipal.EstadoSFX = MenuPrincipal.EFECTOS_ENCENDIDO;
                 MenuPrincipal.ReproducirBoton();
-                Actualizar_Idioma();
+                ActualizarIdioma();
             }
         }
 
@@ -304,7 +304,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
         {
             MenuPrincipal.ReproducirBoton();
             idioma = Idioma.Ingles;
-            Actualizar_Idioma();
+            ActualizarIdioma();
             menuPrincipal.ActualizarIdiomaDeVentana();
         }
 
@@ -316,7 +316,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
         {
             MenuPrincipal.ReproducirBoton();
             idioma = Idioma.Espaniol;
-            Actualizar_Idioma();
+            ActualizarIdioma();
             menuPrincipal.ActualizarIdiomaDeVentana();
             
         }
@@ -329,7 +329,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
         {
             MenuPrincipal.ReproducirBoton();
             idioma = Idioma.Frances;
-            Actualizar_Idioma();
+            ActualizarIdioma();
             menuPrincipal.ActualizarIdiomaDeVentana();
            
         }
@@ -342,7 +342,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
         {
             MenuPrincipal.ReproducirBoton();
             idioma = Idioma.Portugues;
-            Actualizar_Idioma();
+            ActualizarIdioma();
             menuPrincipal.ActualizarIdiomaDeVentana();
            
         }
@@ -350,7 +350,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
         /// <summary>
         /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
         /// </summary>
-        private void Actualizar_Idioma()
+        private void ActualizarIdioma()
         {
             if (idioma == Idioma.Espaniol)
             {
@@ -364,7 +364,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                 ConfigMusica.Source = new BitmapImage(new Uri("Iconos/musica.png", UriKind.Relative));
                 ConfigSFX.Source = new BitmapImage(new Uri("Iconos/SFX.png", UriKind.Relative));
                 Boton_EliminarCuenta.Source = new BitmapImage(new Uri("Iconos/botonEliminarCuenta.png", UriKind.Relative));
-                if (MenuPrincipal.EstadoMusica == 0)
+                if (MenuPrincipal.EstadoMusica != MenuPrincipal.EFECTOS_ENCENDIDO)
                 {
                     Boton_Musica.Source = new BitmapImage(new Uri("Iconos/botonOFFES.png", UriKind.Relative));
                 }
@@ -372,7 +372,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                 {
                     Boton_Musica.Source = new BitmapImage(new Uri("Iconos/botonONES.png", UriKind.Relative));
                 }
-                if (MenuPrincipal.EstadoSFX == 0)
+                if (MenuPrincipal.EstadoSFX != MenuPrincipal.EFECTOS_ENCENDIDO)
                 {
                     Boton_SFX.Source = new BitmapImage(new Uri("Iconos/botonOFFES.png", UriKind.Relative));
                 }
@@ -393,7 +393,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                 ConfigMusica.Source = new BitmapImage(new Uri("Iconos/textoMusicaFR.png", UriKind.Relative));
                 ConfigSFX.Source = new BitmapImage(new Uri("Iconos/textoSFXFR.png", UriKind.Relative));
                 Boton_EliminarCuenta.Source = new BitmapImage(new Uri("Iconos/botonEliminarCuentaFR.png", UriKind.Relative));
-                if (MenuPrincipal.EstadoMusica == 0)
+                if (MenuPrincipal.EstadoMusica != MenuPrincipal.EFECTOS_ENCENDIDO)
                 {
                     Boton_Musica.Source = new BitmapImage(new Uri("Iconos/botonApagadoFR.png", UriKind.Relative));
                 }
@@ -401,7 +401,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                 {
                     Boton_Musica.Source = new BitmapImage(new Uri("Iconos/botonEncendidoFR.png", UriKind.Relative));
                 }
-                if (MenuPrincipal.EstadoSFX == 0)
+                if (MenuPrincipal.EstadoSFX != MenuPrincipal.EFECTOS_ENCENDIDO)
                 {
                     Boton_SFX.Source = new BitmapImage(new Uri("Iconos/botonApagadoFR.png", UriKind.Relative));
                 }
@@ -422,7 +422,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                 ConfigMusica.Source = new BitmapImage(new Uri("Iconos/textoMusicaPO.png", UriKind.Relative));
                 ConfigSFX.Source = new BitmapImage(new Uri("Iconos/textoSFXPO.png", UriKind.Relative));
                 Boton_EliminarCuenta.Source = new BitmapImage(new Uri("Iconos/botonEliminarCuentaPO.png", UriKind.Relative));
-                if (MenuPrincipal.EstadoMusica == 0)
+                if (MenuPrincipal.EstadoMusica != MenuPrincipal.EFECTOS_ENCENDIDO)
                 {
                     Boton_Musica.Source = new BitmapImage(new Uri("Iconos/botonApagadoPO.png", UriKind.Relative));
                 }
@@ -430,7 +430,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                 {
                     Boton_Musica.Source = new BitmapImage(new Uri("Iconos/botonEncendidoPO.png", UriKind.Relative));
                 }
-                if (MenuPrincipal.EstadoSFX == 0)
+                if (MenuPrincipal.EstadoSFX != MenuPrincipal.EFECTOS_ENCENDIDO)
                 {
                     Boton_SFX.Source = new BitmapImage(new Uri("Iconos/botonApagadoPO.png", UriKind.Relative));
                 }
@@ -451,7 +451,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                 ConfigMusica.Source = new BitmapImage(new Uri("Iconos/textoMusica.png", UriKind.Relative));
                 ConfigSFX.Source = new BitmapImage(new Uri("Iconos/textoSFXEN.png", UriKind.Relative));
                 Boton_EliminarCuenta.Source = new BitmapImage(new Uri("Iconos/botonEliminarCuentaEN.png", UriKind.Relative));
-                if (MenuPrincipal.EstadoMusica == 0)
+                if (MenuPrincipal.EstadoMusica != MenuPrincipal.EFECTOS_ENCENDIDO)
                 {
                     Boton_Musica.Source = new BitmapImage(new Uri("Iconos/botonOFF.png", UriKind.Relative));
                 }
@@ -459,7 +459,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                 {
                     Boton_Musica.Source = new BitmapImage(new Uri("Iconos/botonON.png", UriKind.Relative));
                 }
-                if (MenuPrincipal.EstadoSFX == 0)
+                if (MenuPrincipal.EstadoSFX != MenuPrincipal.EFECTOS_ENCENDIDO)
                 {
                     Boton_SFX.Source = new BitmapImage(new Uri("Iconos/botonOFF.png", UriKind.Relative));
                 }

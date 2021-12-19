@@ -30,7 +30,7 @@ namespace ChatJuego.Cliente.Ventanas.Unirse_a_Partida
             this.jugadorCallBack = callBackDeJugador;
             this.menuPrincipal = menuPrincipal;
             this.servidor = servidor;
-            Actualizar_Idioma();
+            ActualizarIdioma();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace ChatJuego.Cliente.Ventanas.Unirse_a_Partida
         private void BotonDeUnirseAPartida_Click(object sender, RoutedEventArgs e)
         {
             MenuPrincipal.ReproducirBoton();
-            if (!string.IsNullOrEmpty(TBUsuarioInvitacion.Text))
+            if (!string.IsNullOrWhiteSpace(TBUsuarioInvitacion.Text))
             {
                 try
                 {
@@ -144,7 +144,7 @@ namespace ChatJuego.Cliente.Ventanas.Unirse_a_Partida
         /// <summary>
         /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
         /// </summary>
-        private void Actualizar_Idioma()
+        private void ActualizarIdioma()
         {
             if (idioma == Idioma.Espaniol)
             {

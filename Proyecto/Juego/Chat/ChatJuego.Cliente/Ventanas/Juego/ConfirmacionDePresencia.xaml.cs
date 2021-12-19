@@ -10,10 +10,12 @@ namespace ChatJuego.Cliente.Ventanas.Juego
     public partial class ConfirmacionDePresencia : Window
     {
         private DispatcherTimer timer;
+        public const int TIEMPO_DE_ESPERA = 30;
+
         public ConfirmacionDePresencia()
         {
             InitializeComponent();
-            timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(10) };
+            timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(TIEMPO_DE_ESPERA) };
             timer.Tick += delegate
             {
                 timer.Stop();

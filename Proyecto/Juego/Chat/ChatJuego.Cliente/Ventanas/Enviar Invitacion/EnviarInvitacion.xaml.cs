@@ -27,7 +27,7 @@ namespace ChatJuego.Cliente
         public EnviarInvitacion(Jugador jugador, MenuPrincipal menuPrincipal, InstanceContext contexto, ChatServicioClient servidorDelChat, JugadorCallBack jugadorCallBack, ServidorClient servidor)
         {
             InitializeComponent();
-            Actualizar_Idioma();
+            ActualizarIdioma();
             this.jugador = jugador;
             this.menuPrincipal = menuPrincipal;
             this.contexto = contexto;
@@ -42,7 +42,7 @@ namespace ChatJuego.Cliente
         /// </summary>
         private void BotonDeEnviarInvitacion_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(TBUsuarioInvitacion.Text))
+            if (!string.IsNullOrWhiteSpace(TBUsuarioInvitacion.Text))
             {
                 if (jugador.usuario != TBUsuarioInvitacion.Text)
                 {
@@ -197,7 +197,7 @@ namespace ChatJuego.Cliente
         /// <summary>
         /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
         /// </summary>
-        private void Actualizar_Idioma()
+        private void ActualizarIdioma()
         {
             if (idioma == Idioma.Espaniol)
             {

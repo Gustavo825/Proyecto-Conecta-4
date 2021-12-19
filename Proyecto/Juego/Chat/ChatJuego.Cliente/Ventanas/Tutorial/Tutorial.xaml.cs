@@ -23,10 +23,10 @@ namespace ChatJuego.Cliente.Ventanas.Tutorial
         public Tutorial()
         {
             InitializeComponent();
-            ActualizarIdiomaDeVentana();
+            ActualizarIdioma();
         }
 
-        public void ActualizarIdiomaDeVentana()
+        public void ActualizarIdioma()
         {
             if (idioma == Idioma.Frances)
             {

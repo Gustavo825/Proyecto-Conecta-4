@@ -28,11 +28,11 @@ namespace ChatJuego.Cliente
             contexto = new InstanceContext(callBackDelJugador);
             servidor = new ServidorClient(contexto);
             InitializeComponent();
-            ActualizarIdiomaDeVentana();
+            ActualizarIdioma();
             string ruta = System.IO.Directory.GetCurrentDirectory();
             ruta = ruta.Substring(0, ruta.Length - 9);
             musicaDelMenu.Open(new Uri(ruta + @"Ventanas\Sonidos\MusicaDeMenu.wav"));
-            if (MenuPrincipal.EstadoMusica == 1)
+            if (MenuPrincipal.EstadoMusica == MenuPrincipal.EFECTOS_ENCENDIDO)
             {
                 musicaDelMenu.Play();
             }
@@ -48,7 +48,7 @@ namespace ChatJuego.Cliente
 
         private void BotonIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(TBUsuario.Text) && !string.IsNullOrEmpty(TBContrasenia.Password))
+            if (!string.IsNullOrWhiteSpace(TBUsuario.Text) && !string.IsNullOrWhiteSpace(TBContrasenia.Password))
             {
                 Jugador jugador = new Jugador()
                 {
@@ -67,7 +67,7 @@ namespace ChatJuego.Cliente
                     }
                     else if (estado == EstadoDeInicioDeSesion.Fallido)
                     {
-                        if (MenuPrincipal.EstadoSFX == 1)
+                        if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
                         {
                             sonidoDeError.Play();
                         }
@@ -89,7 +89,7 @@ namespace ChatJuego.Cliente
                         }
                     } else if (estado == EstadoDeInicioDeSesion.FallidoPorUsuarioYaConectado)
                     {
-                        if (MenuPrincipal.EstadoSFX == 1)
+                        if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
                         {
                             sonidoDeError.Play();
                         }
@@ -112,7 +112,7 @@ namespace ChatJuego.Cliente
                     }
                 } catch (EndpointNotFoundException)
                 {
-                    if (MenuPrincipal.EstadoSFX == 1)
+                    if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
                     {
                         sonidoDeError.Play();
                     }
@@ -135,7 +135,7 @@ namespace ChatJuego.Cliente
                     servidor = new ServidorClient(contexto);
                 } catch (TimeoutException)
                 {
-                    if (MenuPrincipal.EstadoSFX == 1)
+                    if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
                     {
                         sonidoDeError.Play();
                     }
@@ -159,7 +159,7 @@ namespace ChatJuego.Cliente
                 }
             } else
             {
-                if (MenuPrincipal.EstadoSFX == 1)
+                if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
                 {
                     sonidoDeError.Play();
                 }
@@ -188,7 +188,7 @@ namespace ChatJuego.Cliente
 
         private void BotonRegistrarse_Click(object sender, RoutedEventArgs e)
         {
-            if (MenuPrincipal.EstadoSFX == 1)
+            if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
             {
                 sonidoDeBoton.Play();
             }
@@ -200,7 +200,7 @@ namespace ChatJuego.Cliente
         /// <summary>
         /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
         /// </summary>
-        public void ActualizarIdiomaDeVentana()
+        public void ActualizarIdioma()
         {
             if (idioma == Idioma.Frances)
             {

@@ -86,7 +86,7 @@
                 </Button.Resources>
                 <Image x:Name="Boton_Registrarse" Source="Iconos\botonRegistrarse.png" Height="62" Width="176"/>
             </Button>
-            <Button Grid.Column="2" Height="62" Width="176" x:Name="BotonCancelarR" BorderThickness="0" Background = "Transparent" Foreground="Transparent" Click="BotonCancelar" HorizontalAlignment="Left" >
+            <Button Grid.Column="2" Height="62" Width="176" x:Name="BotonCancelarR" BorderThickness="0" Background = "Transparent" Foreground="Transparent" Click="BotonCancelar_Click" HorizontalAlignment="Left" >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="60"/>

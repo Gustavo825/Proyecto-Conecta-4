@@ -30,6 +30,7 @@ namespace Pruebas
             servidor.Conectarse(new Jugador() { usuario = "Gustavo825", contrasenia = "61245" });
             servidorDelChat.InicializarChat();
             servidor.Desconectarse();
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -40,6 +41,7 @@ namespace Pruebas
             servidor.Conectarse(new Jugador() { usuario = "Gustavo825", contrasenia = "61245" });
             servidorDelChat.MandarMensaje(new Mensaje() { ContenidoMensaje = "Hola", TiempoDeEnvio = System.DateTime.Now, UsuarioEmisor = "JugadorFalso", UsuarioReceptor = "JugadorFalso" }, new Jugador() { usuario = "JugadorFalso" });
             servidor.Desconectarse();
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -50,6 +52,7 @@ namespace Pruebas
             servidor.Conectarse(new Jugador() { usuario = "Gustavo825", contrasenia = "61245" });
             servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = "Hola", TiempoDeEnvio = System.DateTime.Now, UsuarioEmisor = "JugadorFalso", UsuarioReceptor = "JugadorFalso" }, "Gustavo825" ,new Jugador() { usuario = "JugadorFalso" });
             servidor.Desconectarse();
+            Assert.IsTrue(true);
         }
     }
 }

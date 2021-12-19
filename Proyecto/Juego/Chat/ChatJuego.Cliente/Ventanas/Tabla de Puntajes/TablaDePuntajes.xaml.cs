@@ -15,14 +15,14 @@ namespace ChatJuego.Cliente
         {
             InitializeComponent();
             this.servidorTablaDePuntajes = servidorTablaDePuntajes;
-            Actualizar_Idioma();
+            ActualizarIdioma();
             this.servidorTablaDePuntajes.RecuperarPuntajesDeJugadores();
         }
 
         /// <summary>
         /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
         /// </summary>
-        private void Actualizar_Idioma()
+        private void ActualizarIdioma()
         {
             if (idioma == Idioma.Espaniol)
             {

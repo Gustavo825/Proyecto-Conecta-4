@@ -1,1 +1,0 @@
-ž 2csXXhrCVentanas/Registro de Jugador/RegistroDeJugadorInputDeCodigo.xaml.cs

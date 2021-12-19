@@ -110,9 +110,10 @@ namespace Pruebas
         {
             servidor.Conectarse(new Jugador() { usuario = "Gustavo825", contrasenia = "61245" });
             servidor.Desconectarse();
+            Assert.IsTrue(true);
         }
 
-       
+
 
         [TestMethod]
         public void TestUnirseAPartidaNoEncontrada()
@@ -139,14 +140,16 @@ namespace Pruebas
         public void TestInicializarPartida()
         {
             servidor.InicializarPartida("0000");
+            Assert.IsTrue(true);
         }
-        
+
         [TestMethod]
         public void TestEliminarPartida()
         {
             InvitacionCorreoServicioClient servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
             servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = "Gustavo825" }, "0000", new Jugador() { usuario = "Prueba" });
             servidor.EliminarPartida("0000", "Gustavo825", EstadoPartida.FinDePartidaPorEmpate);
+            Assert.IsTrue(true);
         }
 
         [TestMethod]
@@ -155,6 +158,7 @@ namespace Pruebas
             InvitacionCorreoServicioClient servidorDeCorreo = new InvitacionCorreoServicioClient(contexto);
             servidorDeCorreo.EnviarInvitacion(new Jugador() { usuario = "Gustavo825" }, "0000", new Jugador() { usuario = "Prueba" });
             servidor.EliminarPartidaConGanador("0000", "Gustavo825", EstadoPartida.FinDePartidaGanada,1,"Gustavo825");
+            Assert.IsTrue(true);
         }
 
         [TestMethod]

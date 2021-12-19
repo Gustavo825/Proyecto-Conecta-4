@@ -19,7 +19,7 @@ namespace ChatJuego.Cliente
         private static SoundPlayer sonidoDeBoton = new SoundPlayer();
         private static SoundPlayer sonidoDeError = new SoundPlayer();
         private ServidorClient servidor;
-        ChatServicioClient servidorDelChat = null;
+        ChatServicioClient servidorDelChat;
         TablaDePuntajesClient servidorDeTablaDePuntajes;
         InstanceContext contexto;
         JugadorCallBack callBackDeJugador;
@@ -27,8 +27,11 @@ namespace ChatJuego.Cliente
         public bool desconexionDelServidor { get; set; }
         public const int MUSICA_ENCENDIDA = 1;
         public const int EFECTOS_ENCENDIDO = 1;
+        public const int EFECTOS_APAGADO = 0;
+
         private static int estadoMusica = MUSICA_ENCENDIDA;
         private static int estadoSFX = EFECTOS_ENCENDIDO;
+
 
         public static MediaPlayer MusicaDeMenu { get => musicaDeMenu; set => musicaDeMenu = value; }
         public static SoundPlayer SonidoDeBoton { get => sonidoDeBoton; set => sonidoDeBoton = value; }
@@ -39,6 +42,7 @@ namespace ChatJuego.Cliente
         public MenuPrincipal(ServidorClient servidor, JugadorCallBack callBackDeJugador, Jugador jugador, InstanceContext contexto)
         {
             desconexionDelServidor = false;
+            servidorDelChat = null;
             string ruta = Directory.GetCurrentDirectory();
             ruta = ruta.Substring(0, ruta.Length - 9);
             musicaDeMenu.Open(new Uri(ruta + @"Ventanas\Sonidos\MusicaDePartida.wav"));

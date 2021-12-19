@@ -58,3 +58,46 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Conecta 4.pd
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Tutorial\Tutorial.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Tutorial\Tutorial.baml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.AssemblyReference.cache
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.AssemblyReference.cache
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Chat\Chat.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Configuracion\Configuracion.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Juego\ConfirmacionDePresencia.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Juego\VentanaDeJuego.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Registro de Jugador\RegistroDeJugadorInputDeCodigo.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Enviar Invitacion\EnviarInvitacion.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Iniciar Sesion\IniciarSesion.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Menu Principal\MenuPrincipal.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Registro de Jugador\RegistroDeJugador.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Tabla de Puntajes\TablaDePuntajes.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Tutorial\Tutorial.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Unirse a Partida\UnirseAPartida.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\App.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Conecta 4_Content.g.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Conecta 4_MarkupCompile.cache
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Conecta 4_MarkupCompile.lref
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Conecta 4.exe
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Conecta 4.pdb
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\bin\Debug\Conecta 4.exe.config
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\bin\Debug\Conecta 4.exe
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\bin\Debug\Conecta 4.pdb
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Chat\Chat.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Configuracion\Configuracion.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Juego\ConfirmacionDePresencia.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Juego\VentanaDeJuego.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Registro de Jugador\RegistroDeJugadorInputDeCodigo.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Enviar Invitacion\EnviarInvitacion.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Iniciar Sesion\IniciarSesion.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Menu Principal\MenuPrincipal.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Registro de Jugador\RegistroDeJugador.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Tabla de Puntajes\TablaDePuntajes.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Tutorial\Tutorial.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Unirse a Partida\UnirseAPartida.baml
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\Conecta 4.g.resources
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.Properties.Resources.resources
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.GenerateResource.cache
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.CoreCompileInputs.cache
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.CopyComplete

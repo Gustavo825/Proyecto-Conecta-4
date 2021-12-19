@@ -41,6 +41,8 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         public const int TIRO_OPONENTE = 2;
         public const int EMPATE = 3;
         public const int SIN_LINEA_GANADORA = 0;
+        public const int VACIO = 0;
+        public const int TIEMPO_DE_ESPERA = 30;
         private bool partidaFinalizada;
 
         int[,] tablero = new int[6, 7]
@@ -66,7 +68,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             }
             SonidoDeFicha.SoundLocation = ruta + @"Ventanas\Sonidos\SonidoFicha.wav";
             InitializeComponent();
-            ActualizarIdiomaDeVentana();
+            ActualizarIdioma();
             ImagenJugadorDerecho.Source = ConvertirArrayAImagen(servidor.ObtenerBytesDeImagenDeJugador(jugador.usuario));
             imagenesCargadas = false;
             partidaFinalizada = false;
@@ -272,7 +274,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         private void IniciarTiempoDeEspera()
         {
 
-            timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(30) };
+            timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(TIEMPO_DE_ESPERA) };
             timer.Tick += delegate
             {
                 if (oponenteConectado)
@@ -306,7 +308,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                             MessageBox.Show("You were inactive for too long, you will be taken to the main menu", "Inactive", MessageBoxButton.OK);
                         }
                         menuPrincipal.Show();
-                        CerrarConfirmacionDePresencia();
+                        CerrarConfirmacionPresencia();
                         timer.Stop();
                         MusicaDePartida.Stop();
                         MenuPrincipal.ReproducirMusica();
@@ -323,7 +325,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     imagenesCargadas = true;
                 }
                 if (r.StagingItem.Input is MouseButtonEventArgs || r.StagingItem.Input is KeyEventArgs)
-                    timer.Interval = TimeSpan.FromSeconds(30);
+                    timer.Interval = TimeSpan.FromSeconds(TIEMPO_DE_ESPERA);
             };
         }
 
@@ -356,7 +358,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 }
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
-                CerrarConfirmacionDePresencia();
+                CerrarConfirmacionPresencia();
                 MusicaDePartida.Stop();
                 MenuPrincipal.ReproducirMusica();
                 this.Close();
@@ -375,7 +377,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             {
                 if (quienTira == TIRO_PROPIO)
                 {
-                    if (tablero[fila, columna - 1] == 0)
+                    if (tablero[fila, columna - 1] == VACIO)
                     {
                         posicionDeFicha = new KeyValuePair<int, int>(fila + 1, columna);
                         switch (posicionDeFicha.Value)
@@ -548,7 +550,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 }
                 else
                 {
-                    if (tablero[fila, columna - 1] == 0)
+                    if (tablero[fila, columna - 1] == VACIO)
                     {
                         posicionDeFicha = new KeyValuePair<int, int>(fila + 1, columna);
                         switch (posicionDeFicha.Value)
@@ -752,7 +754,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             {
                 for (int columna = 0; columna < 7; columna++)
                 {
-                    if (tablero[fila, columna] == 0)
+                    if (tablero[fila, columna] == VACIO)
                         return 0;
                 }
             }
@@ -774,7 +776,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     bool lleno = VerificarColumnaLlena(columna);
                     if (!lleno)
                     {
-                        ReproducirFicha();
+                        ReproducirSonidoFicha();
                         IntroducirFicha(columna, TIRO_PROPIO);
                         turnoDeJuego = false;
                         servidor.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
@@ -820,7 +822,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 }
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
-                CerrarConfirmacionDePresencia();
+                CerrarConfirmacionPresencia();
                 MusicaDePartida.Stop();
                 MenuPrincipal.ReproducirMusica();
                 this.Close();
@@ -834,7 +836,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         /// <returns>Regresa un booleano, true si la columna está llena, y false si sí se pueden meter fichas en esa columna</returns>
         private bool VerificarColumnaLlena(int columna)
         {
-            if (tablero[0, columna - 1] != 0)
+            if (tablero[0, columna - 1] != VACIO)
             {
                 return true;
             }
@@ -877,7 +879,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     }
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
-                    CerrarConfirmacionDePresencia();
+                    CerrarConfirmacionPresencia();
                     MusicaDePartida.Stop();
                     MenuPrincipal.ReproducirMusica();
                     this.Close();
@@ -924,12 +926,12 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 else if (estadoDePartida == EstadoPartida.FinDePartidaGanada)
                 {
                     servidor.EliminarPartidaConGanador(codigoDePartida, jugador.usuario, estadoDePartida, 50, jugador.usuario);
-                    Desconectarse(estadoDePartida);
+                    Desconectar(estadoDePartida);
                 }
                 else if (estadoDePartida == EstadoPartida.FinDePartidaPorEmpate)
                 {
                     servidor.EliminarPartida(codigoDePartida, jugador.usuario, estadoDePartida);
-                    Desconectarse(estadoDePartida);
+                    Desconectar(estadoDePartida);
                 }
             }
             catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
@@ -952,7 +954,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 }
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
-                CerrarConfirmacionDePresencia();
+                CerrarConfirmacionPresencia();
                 MusicaDePartida.Stop();
                 MenuPrincipal.ReproducirMusica();
                 this.Close();
@@ -975,10 +977,10 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         /// Termina el juego completamente y detiene el monitoreo de presencia.
         /// </summary>
         /// <param name="estadoPartida">Contiene el estado de la partida, si se ganó, perdió, empató, etc.</param>
-        public void Desconectarse(EstadoPartida estadoPartida)
+        public void Desconectar(EstadoPartida estadoPartida)
         {
             timer.Stop();
-            CerrarConfirmacionDePresencia();
+            CerrarConfirmacionPresencia();
             if (estadoPartida == EstadoPartida.FinDePartidaSalir)
             {
                 if (idioma == Idioma.Espaniol)
@@ -1082,7 +1084,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         /// <summary>
         /// Cierra la ventana de confirmación de presencia
         /// </summary>
-        private void CerrarConfirmacionDePresencia()
+        private void CerrarConfirmacionPresencia()
         {
             if (confirmacionDePresencia != null && confirmacionDePresencia.IsActive)
                 confirmacionDePresencia.Close();
@@ -1138,13 +1140,13 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                 FinalizarPartida(EstadoPartida.FinDePartidaSalir);
             }
             menuPrincipal.Show();
-            CerrarConfirmacionDePresencia();
+            CerrarConfirmacionPresencia();
         }
 
         /// <summary>
         /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
         /// </summary>
-        public void ActualizarIdiomaDeVentana()
+        public void ActualizarIdioma()
         {
             if (idioma == Idioma.Frances)
             {
@@ -1178,7 +1180,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             MusicaDePartida.Play();
         }
 
-        private void ReproducirFicha()
+        private void ReproducirSonidoFicha()
         {
             if (MenuPrincipal.EstadoSFX != MenuPrincipal.EFECTOS_ENCENDIDO)
             {

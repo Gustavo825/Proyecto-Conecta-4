@@ -17,21 +17,17 @@ namespace ChatJuego.Cliente
     {
         private Jugador jugador;
         private ChatServicioClient servidorDelChat;
-        private bool esMensajePrivado = false;
+        private bool mensajePrivado = false;
         private Label jugadorPrivadoSeleccionado;
         public MenuPrincipal menuPrincipal;
         public bool chatDePartida { get; set; }
         public string nombreJugadorInvitado { get; set; }
-
-
 
         public TextBox ContenedorDelMensaje
         {
             get { return ContenidoDelMensaje; }
             set { ContenidoDelMensaje = value; }
         }
-
-
 
         public Chat(Jugador jugador, ChatServicioClient servidorDelChat, MenuPrincipal menuPrincipal)
         {
@@ -40,7 +36,7 @@ namespace ChatJuego.Cliente
             this.servidorDelChat = servidorDelChat;
             this.menuPrincipal = menuPrincipal;
             chatDePartida = false;
-            Actualizar_Idioma();
+            ActualizarIdioma();
 
         }
 
@@ -51,7 +47,7 @@ namespace ChatJuego.Cliente
             this.servidorDelChat = servidorDelChat;
             this.nombreJugadorInvitado = oponente;
             chatDePartida = false;
-            Actualizar_Idioma();
+            ActualizarIdioma();
         }
 
         /// <summary>
@@ -86,14 +82,14 @@ namespace ChatJuego.Cliente
                 }
                 try
                 {
-                    if (esMensajePrivado && !chatDePartida)
+                    if (mensajePrivado && !chatDePartida)
                     {
                         if (idioma == Idioma.Ingles)
                         {
                             string mensaje = "Private message: " + mensajeFinal;
                             PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
                             servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
-                            esMensajePrivado = false;
+                            mensajePrivado = false;
                             jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
                             ContenidoDelMensaje.Clear();
                         }
@@ -102,7 +98,7 @@ namespace ChatJuego.Cliente
                             string mensaje = "Mensaje privado: " + mensajeFinal;
                             PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
                             servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
-                            esMensajePrivado = false;
+                            mensajePrivado = false;
                             jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
                             ContenidoDelMensaje.Clear();
                         }
@@ -111,7 +107,7 @@ namespace ChatJuego.Cliente
                             string mensaje = "Mensagem privada: " + mensajeFinal;
                             PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
                             servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
-                            esMensajePrivado = false;
+                            mensajePrivado = false;
                             jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
                             ContenidoDelMensaje.Clear();
                         }
@@ -120,7 +116,7 @@ namespace ChatJuego.Cliente
                             string mensaje = "Message privé: " + mensajeFinal;
                             PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
                             servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
-                            esMensajePrivado = false;
+                            mensajePrivado = false;
                             jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
                             ContenidoDelMensaje.Clear();
                         }
@@ -166,7 +162,6 @@ namespace ChatJuego.Cliente
             }
         }
 
-
         /// <summary>
         /// Activa el envío de mensajes privados al usuario seleccionado
         /// </summary>
@@ -176,7 +171,7 @@ namespace ChatJuego.Cliente
             Label texto = sender as Label;
             jugadorPrivadoSeleccionado = texto;
             texto.Foreground = new SolidColorBrush(Colors.Red);
-            esMensajePrivado = true;
+            mensajePrivado = true;
         }
 
         /// <summary>
@@ -192,7 +187,7 @@ namespace ChatJuego.Cliente
         /// <summary>
         /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
         /// </summary>
-        private void Actualizar_Idioma()
+        private void ActualizarIdioma()
         {
             if (idioma == Idioma.Espaniol)
             {

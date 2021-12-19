@@ -36,7 +36,7 @@ namespace ChatJuego.Cliente
             ruta = System.IO.Directory.GetCurrentDirectory();
             ruta = ruta.Substring(0, ruta.Length - 9);
             ruta += @"Ventanas/Registro de Jugador/Iconos/imagenPredeterminada.png";
-            Actualizar_Idioma();
+            ActualizarIdioma();
             this.servidor = servidor;
             this.inicioDeSesion = inicioDeSesion;
             this.contexto = contexto;
@@ -51,8 +51,8 @@ namespace ChatJuego.Cliente
         /// </summary>
         private void BotonRegistrarse_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(TBCorreoR.Text) && !string.IsNullOrEmpty(TBContraseniaRegistro.Password) && 
-                !string.IsNullOrEmpty(TBContraseniaRegistroConfirmacion.Password) && !string.IsNullOrEmpty(TBUsuarioR.Text)) {
+            if (!string.IsNullOrWhiteSpace(TBCorreoR.Text) && !string.IsNullOrWhiteSpace(TBContraseniaRegistro.Password) &&
+                !string.IsNullOrWhiteSpace(TBContraseniaRegistroConfirmacion.Password) && !string.IsNullOrWhiteSpace(TBUsuarioR.Text)) {
                 if (TBContraseniaRegistro.Password == TBContraseniaRegistroConfirmacion.Password) {
                     try
                     {
@@ -217,7 +217,7 @@ namespace ChatJuego.Cliente
        /// Método que se ejecuta cuando se da click en el botó de Cancelar.
        /// Se regresa a la ventana de Iniciar Sesión.
        /// </summary>
-        private void BotonCancelar(object sender, RoutedEventArgs e)
+        private void BotonCancelar_Click(object sender, RoutedEventArgs e)
         {
             sonidoDeBoton.Play();
             inicioDeSesion.Show();
@@ -326,7 +326,7 @@ namespace ChatJuego.Cliente
         /// <summary>
         /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
         /// </summary>
-        private void Actualizar_Idioma()
+        private void ActualizarIdioma()
         {
             if (idioma == Idioma.Espaniol)
             {

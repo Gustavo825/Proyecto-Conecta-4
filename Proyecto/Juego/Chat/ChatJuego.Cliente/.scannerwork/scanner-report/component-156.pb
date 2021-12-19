@@ -1,1 +1,0 @@
-œ 2csXúhr6Ventanas/Registro de Jugador/RegistroDeJugador.xaml.cs

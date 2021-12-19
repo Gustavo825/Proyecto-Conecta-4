@@ -14,7 +14,7 @@ namespace ChatJuego.Cliente
         public RegistroDeJugador_InputDeCodigo(int codigoDeRegistro)
         {
             InitializeComponent();
-            Actualizar_Idioma();
+            ActualizarIdioma();
             this.codigoDeRegistro = codigoDeRegistro;
         }
 
@@ -51,7 +51,7 @@ namespace ChatJuego.Cliente
         /// <summary>
         /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
         /// </summary>
-        private void Actualizar_Idioma()
+        private void ActualizarIdioma()
         {
             if (idioma == Idioma.Espaniol)
             {
