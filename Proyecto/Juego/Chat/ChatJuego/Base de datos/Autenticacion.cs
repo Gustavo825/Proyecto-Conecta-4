@@ -22,7 +22,7 @@ namespace ChatJuego.Base_de_datos
         /// <returns></returns>
         public EstadoDeRegistro Registrar(string usuarioARegistrar, string contraseniaARegistrar, string correoARegistrar, byte[] imagenDeJugador)
         {
-            EstadoDeRegistro estado = EstadoDeRegistro.Fallido;
+            EstadoDeRegistro estado;
             using (var contexto = new JugadorContexto())
             {
                 var jugadores = (from jugador in contexto.jugadores
@@ -41,7 +41,7 @@ namespace ChatJuego.Base_de_datos
                     estado = EstadoDeRegistro.FallidoPorCorreo;
                     return estado;
                 }
-                var jugadorRegistrado = contexto.jugadores.Add(new Jugador() { usuario = usuarioARegistrar, contrasenia = CifrarContrasenia(contraseniaARegistrar), correo = correoARegistrar, puntaje = 0 , imagenUsuario = imagenDeJugador });
+                contexto.jugadores.Add(new Jugador() { usuario = usuarioARegistrar, contrasenia = CifrarContrasenia(contraseniaARegistrar), correo = correoARegistrar, puntaje = 0 , imagenUsuario = imagenDeJugador });
                 contexto.SaveChanges();
                 estado = EstadoDeRegistro.Correcto;
                 return estado;
@@ -98,7 +98,7 @@ namespace ChatJuego.Base_de_datos
         /// <returns>Regresa un estado de eliminación, es decir, correcto o fallido.</returns>
         internal EstadoDeEliminacion EliminarJugador(string usuario, string contrasenia)
         {
-            EstadoDeEliminacion estado = EstadoDeEliminacion.Fallido;
+            EstadoDeEliminacion estado;
             using (var contexto = new JugadorContexto())
             {
                 string contraseniaCifrada = CifrarContrasenia(contrasenia);

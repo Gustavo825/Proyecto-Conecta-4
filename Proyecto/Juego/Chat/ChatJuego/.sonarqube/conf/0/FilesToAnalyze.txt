@@ -1,0 +1,19 @@
+﻿C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Base de datos\Autenticacion.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Base de datos\Jugador.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Dominio\Partida.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Servicios\Servicio.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Servicios\IJugadorCallBack.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Servicios\IChatServicio.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Dominio\Mensaje.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Host\Host.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Properties\AssemblyInfo.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Servicios\IInvitacionCorreoServicio.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Servicios\ITablaDePuntajes.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Servicios\IServidor.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Base de datos\JugadorModelo.Context.tt
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Base de datos\JugadorModelo.tt
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\ServerIcon.ico
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Base de datos\JugadorModelo.edmx
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\App.config
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\Base de datos\JugadorModelo.edmx.diagram
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\packages.config

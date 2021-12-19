@@ -1,0 +1,29 @@
+﻿C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\PruebasIChatServicio.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\PruebasITablaDePuntajes.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\PruebasJugadorCallback.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\PruebasIInvitacionPorCorreo.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\PruebasIServidor.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Properties\AssemblyInfo.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\packages\MSTest.TestAdapter.2.2.8\build\_common\es\Microsoft.TestPlatform.AdapterUtilities.resources.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\packages\MSTest.TestAdapter.2.2.8\build\_common\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\packages\MSTest.TestAdapter.2.2.8\build\_common\es\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\packages\MSTest.TestAdapter.2.2.8\build\_common\es\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\packages\MSTest.TestAdapter.2.2.8\build\_common\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\packages\MSTest.TestAdapter.2.2.8\build\_common\es\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\packages\MSTest.TestAdapter.2.2.8\build\_common\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\packages\MSTest.TestAdapter.2.2.8\build\_common\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\packages\MSTest.TestAdapter.2.2.8\build\_common\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\packages\MSTest.TestAdapter.2.2.8\build\net45\Microsoft.TestPlatform.AdapterUtilities.dll
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\app.config
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Connected Services\Proxy\item.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Connected Services\Proxy\item1.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Connected Services\Proxy\item2.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Connected Services\Proxy\item3.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Connected Services\Proxy\item4.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Connected Services\Proxy\item5.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Connected Services\Proxy\Servicio.wsdl
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\packages.config
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Connected Services\Proxy\item.disco
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Connected Services\Proxy\configuration91.svcinfo
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Connected Services\Proxy\configuration.svcinfo
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\Connected Services\Proxy\Reference.svcmap

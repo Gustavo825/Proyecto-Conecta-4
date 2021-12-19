@@ -1,0 +1,1369 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Compilador de Microsoft (R) Visual C#",
+        "version": "3.11.0.0",
+        "fileVersion": "3.11.0-4.21403.6 (ae1fff34)",
+        "semanticVersion": "3.11.0",
+        "language": "es-MX"
+      },
+      "results": [
+        {
+          "ruleId": "S1104",
+          "level": "warning",
+          "message": "Make this field 'private' and encapsulate it in a 'public' property.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Dominio/Partida.cs",
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 26,
+                  "endLine": 8,
+                  "endColumn": 52
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1104",
+          "level": "warning",
+          "message": "Make this field 'private' and encapsulate it in a 'public' property.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 61,
+                  "endLine": 16,
+                  "endColumn": 116
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2223",
+          "level": "warning",
+          "message": "Change the visibility of 'jugadores' or make it 'const' or 'readonly'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 61,
+                  "endLine": 16,
+                  "endColumn": 70
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1104",
+          "level": "warning",
+          "message": "Make this field 'private' and encapsulate it in a 'public' property.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 37,
+                  "endLine": 17,
+                  "endColumn": 67
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2223",
+          "level": "warning",
+          "message": "Change the visibility of 'partidas' or make it 'const' or 'readonly'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 37,
+                  "endLine": 17,
+                  "endColumn": 45
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2386",
+          "level": "warning",
+          "message": "Use an immutable collection or reduce the accessibility of the public static field 'jugadores'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 23,
+                  "endLine": 16,
+                  "endColumn": 60
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2386",
+          "level": "warning",
+          "message": "Use an immutable collection or reduce the accessibility of the public static field 'partidas'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 23,
+                  "endLine": 17,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2292",
+          "level": "warning",
+          "message": "Make this an auto-implemented property and remove its backing field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Dominio/Mensaje.cs",
+                "region": {
+                  "startLine": 12,
+                  "startColumn": 25,
+                  "endLine": 12,
+                  "endColumn": 38
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2292",
+          "level": "warning",
+          "message": "Make this an auto-implemented property and remove its backing field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Dominio/Mensaje.cs",
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 23,
+                  "endLine": 13,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2292",
+          "level": "warning",
+          "message": "Make this an auto-implemented property and remove its backing field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Dominio/Mensaje.cs",
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 23,
+                  "endLine": 14,
+                  "endColumn": 38
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2292",
+          "level": "warning",
+          "message": "Make this an auto-implemented property and remove its backing field.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Dominio/Mensaje.cs",
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 23,
+                  "endLine": 15,
+                  "endColumn": 39
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1118",
+          "level": "warning",
+          "message": "Add a 'protected' constructor or the 'static' keyword to the class declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Host/Host.cs",
+                "region": {
+                  "startLine": 7,
+                  "startColumn": 11,
+                  "endLine": 7,
+                  "endColumn": 15
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1481",
+          "level": "warning",
+          "message": "Remove the unused local variable 'contextoDelJugador'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Host/Host.cs",
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 29,
+                  "endLine": 14,
+                  "endColumn": 47
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Use 'Count' property here instead.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 59,
+                  "startColumn": 64,
+                  "endLine": 59,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1854",
+          "level": "warning",
+          "message": "Remove this useless assignment to local variable 'estado'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Base%20de%20datos/Autenticacion.cs",
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 30,
+                  "endLine": 25,
+                  "endColumn": 63
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Use 'Count' property here instead.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 137,
+                  "startColumn": 64,
+                  "endLine": 137,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2068",
+          "level": "warning",
+          "message": "Please review this hard-coded password.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 104,
+                  "startColumn": 47,
+                  "endLine": 104,
+                  "endColumn": 89
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1481",
+          "level": "warning",
+          "message": "Remove the unused local variable 'conexion'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 136,
+                  "startColumn": 17,
+                  "endLine": 136,
+                  "endColumn": 25
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Use 'Count' property here instead.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 158,
+                  "startColumn": 64,
+                  "endLine": 158,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Use 'Count' property here instead.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 182,
+                  "startColumn": 64,
+                  "endLine": 182,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1117",
+          "level": "warning",
+          "message": "Rename 'jugadores' which hides the field with the same name.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 87,
+                  "startColumn": 21,
+                  "endLine": 87,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1481",
+          "level": "warning",
+          "message": "Remove the unused local variable 'jugadorRegistrado'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Base%20de%20datos/Autenticacion.cs",
+                "region": {
+                  "startLine": 44,
+                  "startColumn": 21,
+                  "endLine": 44,
+                  "endColumn": 38
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2971",
+          "level": "warning",
+          "message": "Drop this useless call to 'ToList' or replace it by 'AsEnumerable' if you are using LINQ to Entities.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 210,
+                  "startColumn": 50,
+                  "endLine": 210,
+                  "endColumn": 56
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1854",
+          "level": "warning",
+          "message": "Remove this useless assignment to local variable 'estado'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Base%20de%20datos/Autenticacion.cs",
+                "region": {
+                  "startLine": 101,
+                  "startColumn": 33,
+                  "endLine": 101,
+                  "endColumn": 69
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1117",
+          "level": "warning",
+          "message": "Rename 'jugadores' which hides the field with the same name.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 209,
+                  "startColumn": 21,
+                  "endLine": 209,
+                  "endColumn": 30
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S2068",
+          "level": "warning",
+          "message": "Please review this hard-coded password.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 254,
+                  "startColumn": 43,
+                  "endLine": 254,
+                  "endColumn": 85
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S927",
+          "level": "warning",
+          "message": "Rename parameter 'correoDeRegistro' to 'correo' to match the interface declaration.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 245,
+                  "startColumn": 85,
+                  "endLine": 245,
+                  "endColumn": 101
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S1168",
+          "level": "warning",
+          "message": "Return an empty collection instead of null.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 291,
+                  "startColumn": 21,
+                  "endLine": 291,
+                  "endColumn": 33
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        },
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 368,
+                  "startColumn": 21,
+                  "endLine": 368,
+                  "endColumn": 36
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 370,
+                  "startColumn": 13,
+                  "endLine": 370,
+                  "endColumn": 20
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 372,
+                  "startColumn": 17,
+                  "endLine": 372,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 374,
+                  "startColumn": 21,
+                  "endLine": 374,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 374,
+                  "startColumn": 54,
+                  "endLine": 374,
+                  "endColumn": 56
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 376,
+                  "startColumn": 25,
+                  "endLine": 376,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 378,
+                  "startColumn": 29,
+                  "endLine": 378,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 384,
+                  "startColumn": 21,
+                  "endLine": 384,
+                  "endColumn": 25
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 384,
+                  "startColumn": 59,
+                  "endLine": 384,
+                  "endColumn": 61
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 386,
+                  "startColumn": 25,
+                  "endLine": 386,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 388,
+                  "startColumn": 29,
+                  "endLine": 388,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+1",
+              "1": "+2 (incl 1 for nesting)",
+              "2": "+3 (incl 2 for nesting)",
+              "3": "+1",
+              "4": "+4 (incl 3 for nesting)",
+              "5": "+5 (incl 4 for nesting)",
+              "6": "+1",
+              "7": "+1",
+              "8": "+4 (incl 3 for nesting)",
+              "9": "+5 (incl 4 for nesting)"
+            }
+          }
+        },
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 47 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 408,
+                  "startColumn": 21,
+                  "endLine": 408,
+                  "endColumn": 46
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 410,
+                  "startColumn": 13,
+                  "endLine": 410,
+                  "endColumn": 20
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 412,
+                  "startColumn": 17,
+                  "endLine": 412,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 415,
+                  "startColumn": 21,
+                  "endLine": 415,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 417,
+                  "startColumn": 21,
+                  "endLine": 417,
+                  "endColumn": 25
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 419,
+                  "startColumn": 21,
+                  "endLine": 419,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 419,
+                  "startColumn": 54,
+                  "endLine": 419,
+                  "endColumn": 56
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 421,
+                  "startColumn": 25,
+                  "endLine": 421,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 423,
+                  "startColumn": 29,
+                  "endLine": 423,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 425,
+                  "startColumn": 33,
+                  "endLine": 425,
+                  "endColumn": 35
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 425,
+                  "startColumn": 78,
+                  "endLine": 425,
+                  "endColumn": 80
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 427,
+                  "startColumn": 33,
+                  "endLine": 427,
+                  "endColumn": 37
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 432,
+                  "startColumn": 21,
+                  "endLine": 432,
+                  "endColumn": 25
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 432,
+                  "startColumn": 59,
+                  "endLine": 432,
+                  "endColumn": 61
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 434,
+                  "startColumn": 25,
+                  "endLine": 434,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 436,
+                  "startColumn": 29,
+                  "endLine": 436,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 438,
+                  "startColumn": 33,
+                  "endLine": 438,
+                  "endColumn": 35
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 438,
+                  "startColumn": 78,
+                  "endLine": 438,
+                  "endColumn": 80
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 440,
+                  "startColumn": 33,
+                  "endLine": 440,
+                  "endColumn": 37
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+1",
+              "1": "+2 (incl 1 for nesting)",
+              "10": "+1",
+              "11": "+1",
+              "12": "+1",
+              "13": "+4 (incl 3 for nesting)",
+              "14": "+5 (incl 4 for nesting)",
+              "15": "+6 (incl 5 for nesting)",
+              "16": "+1",
+              "17": "+1",
+              "2": "+3 (incl 2 for nesting)",
+              "3": "+1",
+              "4": "+3 (incl 2 for nesting)",
+              "5": "+1",
+              "6": "+4 (incl 3 for nesting)",
+              "7": "+5 (incl 4 for nesting)",
+              "8": "+6 (incl 5 for nesting)",
+              "9": "+1"
+            }
+          }
+        },
+        {
+          "ruleId": "S3776",
+          "level": "warning",
+          "message": "Refactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 500,
+                  "startColumn": 21,
+                  "endLine": 500,
+                  "endColumn": 44
+                }
+              }
+            }
+          ],
+          "relatedLocations": [
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 502,
+                  "startColumn": 13,
+                  "endLine": 502,
+                  "endColumn": 20
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 504,
+                  "startColumn": 17,
+                  "endLine": 504,
+                  "endColumn": 19
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 506,
+                  "startColumn": 21,
+                  "endLine": 506,
+                  "endColumn": 23
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 508,
+                  "startColumn": 25,
+                  "endLine": 508,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 510,
+                  "startColumn": 29,
+                  "endLine": 510,
+                  "endColumn": 31
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 516,
+                  "startColumn": 21,
+                  "endLine": 516,
+                  "endColumn": 25
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 518,
+                  "startColumn": 25,
+                  "endLine": 518,
+                  "endColumn": 32
+                }
+              }
+            },
+            {
+              "physicalLocation": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 520,
+                  "startColumn": 29,
+                  "endLine": 520,
+                  "endColumn": 31
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1,
+            "customProperties": {
+              "0": "+1",
+              "1": "+2 (incl 1 for nesting)",
+              "2": "+3 (incl 2 for nesting)",
+              "3": "+4 (incl 3 for nesting)",
+              "4": "+5 (incl 4 for nesting)",
+              "5": "+1",
+              "6": "+4 (incl 3 for nesting)",
+              "7": "+5 (incl 4 for nesting)"
+            }
+          }
+        },
+        {
+          "ruleId": "S2589",
+          "level": "warning",
+          "message": "Change this condition so that it does not always evaluate to 'true'.",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/UV/Desktop/Proyecto-Conecta-4/Proyecto/Juego/Chat/ChatJuego/Servicios/Servicio.cs",
+                "region": {
+                  "startLine": 472,
+                  "startColumn": 29,
+                  "endLine": 472,
+                  "endColumn": 46
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "S1104": {
+          "id": "S1104",
+          "shortDescription": "Fields should not have public accessibility",
+          "fullDescription": "Public fields in public classes do not respect the encapsulation principle and has three main disadvantages:",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1104",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope"
+            ]
+          }
+        },
+        "S1117": {
+          "id": "S1117",
+          "shortDescription": "Local variables should not shadow class fields",
+          "fullDescription": "Overriding or shadowing a variable declared in an outer scope can strongly impact the readability, and therefore the maintainability, of a piece of code. Further, it could lead maintainers to introduce bugs because they think they’re using one variable but are really using another.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1117",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S1118": {
+          "id": "S1118",
+          "shortDescription": "Utility classes should not have public constructors",
+          "fullDescription": "Utility classes, which are collections of static members, are not meant to be instantiated.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1118",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S1168": {
+          "id": "S1168",
+          "shortDescription": "Empty arrays and collections should be returned instead of null",
+          "fullDescription": "Returning null instead of an actual array, collection or map forces callers of the method to explicitly test for nullity, making them more complex and less readable.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1168",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope"
+            ]
+          }
+        },
+        "S1481": {
+          "id": "S1481",
+          "shortDescription": "Unused local variables should be removed",
+          "fullDescription": "If a local variable is declared but not used, it is dead code and should be removed. Doing so will improve maintainability because developers will not wonder what the variable is used for.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1481",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S1854": {
+          "id": "S1854",
+          "shortDescription": "Unused assignments should be removed",
+          "fullDescription": "A dead store happens when a local variable is assigned a value that is not read by any subsequent instruction. Calculating or retrieving a value only to then overwrite it or throw it away, could indicate a serious error in the code. Even if it’s not an error, it is at best a waste of resources. Therefore all calculated values should be used.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-1854",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S2068": {
+          "id": "S2068",
+          "shortDescription": "Hard-coded credentials are security-sensitive",
+          "fullDescription": "Because it is easy to extract strings from an application source code or binary, credentials should not be hard-coded. This is particularly true for applications that are distributed or that are open-source.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2068",
+          "properties": {
+            "category": "Blocker Security Hotspot",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "NotConfigurable"
+            ]
+          }
+        },
+        "S2223": {
+          "id": "S2223",
+          "shortDescription": "Non-constant static fields should not be visible",
+          "fullDescription": "A static field that is neither constant nor read-only is not thread-safe. Correctly accessing these fields from different threads needs synchronization with locks. Improper synchronization may lead to unexpected results, thus publicly visible static fields are best suited for storing non-changing data shared by many consumers. To enforce this intent, these fields should be marked readonly or converted to constants.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2223",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope"
+            ]
+          }
+        },
+        "S2292": {
+          "id": "S2292",
+          "shortDescription": "Trivial properties should be auto-implemented",
+          "fullDescription": "Trivial properties, which include no logic but setting and getting a backing field should be converted to auto-implemented properties, yielding cleaner and more readable code.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2292",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S2386": {
+          "id": "S2386",
+          "shortDescription": "Mutable fields should not be \"public static\"",
+          "fullDescription": "public static mutable fields of classes which are accessed directly should be protected to the degree possible. This can be done by reducing the accessibility of the field or by changing the return type to an immutable type.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2386",
+          "properties": {
+            "category": "Minor Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope"
+            ]
+          }
+        },
+        "S2589": {
+          "id": "S2589",
+          "shortDescription": "Boolean expressions should not be gratuitous",
+          "fullDescription": "If a boolean expression doesn’t change the evaluation of the condition, then it is entirely unnecessary, and can be removed. If it is gratuitous because it does not match the programmer’s intent, then it’s a bug and the expression should be fixed.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2589",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S2971": {
+          "id": "S2971",
+          "shortDescription": "\"IEnumerable\" LINQs should be simplified",
+          "fullDescription": "In the interests of readability, code that can be simplified should be simplified. To that end, there are several ways IEnumerable language integrated queries (LINQ) can be simplified",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-2971",
+          "properties": {
+            "category": "Major Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S3776": {
+          "id": "S3776",
+          "shortDescription": "Cognitive Complexity of methods should not be too high",
+          "fullDescription": "Cognitive Complexity is a measure of how hard the control flow of a method is to understand. Methods with high Cognitive Complexity will be difficult to maintain.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-3776",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": false,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        },
+        "S927": {
+          "id": "S927",
+          "shortDescription": "Parameter names should match base declaration and other partial definitions",
+          "fullDescription": "The name of a parameter in an externally visible. This rule raises an issue when method override does not match the name of the parameter in the base declaration of the method, or the name of the parameter in the interface declaration of the method or the name of any other partial definition.",
+          "defaultLevel": "warning",
+          "helpUri": "https://rules.sonarsource.com/csharp/RSPEC-927",
+          "properties": {
+            "category": "Critical Code Smell",
+            "isEnabledByDefault": true,
+            "tags": [
+              "C#",
+              "SonarWay",
+              "MainSourceScope",
+              "TestSourceScope"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

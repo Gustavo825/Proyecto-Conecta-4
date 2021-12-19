@@ -31,7 +31,6 @@ C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\bin\Debug\E
 C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\bin\Debug\EntityFramework.xml
 C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\obj\Debug\ChatJuego.Host.csproj.AssemblyReference.cache
 C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\obj\Debug\ChatJuego.Host.csproj.CoreCompileInputs.cache
 C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\obj\Debug\ChatJuego.Host.csproj.CopyComplete
 C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego\obj\Debug\ChatJuego.exe

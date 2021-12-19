@@ -1,0 +1,40 @@
+﻿C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Configuracion\Configuracion.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Juego\ConfirmacionDePresencia.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Juego\VentanaDeJuego.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Registro de Jugador\RegistroDeJugadorInputDeCodigo.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Enviar Invitacion\EnviarInvitacion.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Menu Principal\MenuPrincipal.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Registro de Jugador\RegistroDeJugador.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Tabla de Puntajes\TablaDePuntajes.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Tutorial\Tutorial.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Unirse a Partida\UnirseAPartida.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\App.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Chat\Chat.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Iniciar Sesion\IniciarSesion.xaml.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\JugadorCallBack.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Properties\AssemblyInfo.cs
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Sonidos\ClicEnBoton.wav
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Sonidos\Error.wav
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Sonidos\MusicaDeMenu.wav
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Ventanas\Sonidos\MusicaDePartida.wav
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Properties\Resources.resx
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\ChatJuego.Cliente.Proxy.EstadoAgregarPuntuacion.datasource
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\ChatJuego.Cliente.Proxy.EstadoDeEliminacion.datasource
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\ChatJuego.Cliente.Proxy.EstadoDeEnvio.datasource
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\ChatJuego.Cliente.Proxy.EstadoDeInicioDeSesion.datasource
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\ChatJuego.Cliente.Proxy.EstadoDeRegistro.datasource
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\ChatJuego.Cliente.Proxy.EstadoUnirseAPartida.datasource
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\item.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\item1.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\item2.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\item3.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\item4.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\item5.xsd
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\Servicio.wsdl
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\packages.config
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Properties\Settings.settings
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\App.config
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\item.disco
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\configuration91.svcinfo
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\configuration.svcinfo
+C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\ChatJuego.Cliente\Connected Services\Proxy\Reference.svcmap

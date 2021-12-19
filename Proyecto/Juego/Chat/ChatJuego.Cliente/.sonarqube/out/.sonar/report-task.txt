@@ -1,0 +1,6 @@
+projectKey=ChatJuego.Cliente
+serverUrl=http://localhost:9000
+serverVersion=9.2.3.50713
+dashboardUrl=http://localhost:9000/dashboard?id=ChatJuego.Cliente
+ceTaskId=AX3QzSerT2yg77wHS5lS
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX3QzSerT2yg77wHS5lS
