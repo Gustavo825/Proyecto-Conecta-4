@@ -14,7 +14,6 @@ namespace ChatJuego.Servicios
         [OperationContract(IsOneWay = false)]
         EstadoDeEliminacion EliminarJugador(Jugador jugador);
 
-
         [OperationContract(IsOneWay = false)]
         EstadoDeRegistro RegistroDeJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador);
 
@@ -32,7 +31,6 @@ namespace ChatJuego.Servicios
 
         [OperationContract(IsOneWay = true)]
         void EliminarPartidaConGanador(string codigoDePartida, string usuarioQueFinaliza, EstadoPartida estadoPartida, float puntaje, string ganador);
-
 
         [OperationContract(IsOneWay = true)]
         void InicializarPartida(string codigoDePartida);

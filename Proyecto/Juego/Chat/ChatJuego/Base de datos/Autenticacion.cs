@@ -20,7 +20,7 @@ namespace ChatJuego.Base_de_datos
         /// <param name="correoARegistrar">Correo del jugador.</param>
         /// <param name="imagenDeJugador">Arreglo de bytes de la imagen del jugador.</param>
         /// <returns></returns>
-        public EstadoDeRegistro Registro(string usuarioARegistrar, string contraseniaARegistrar, string correoARegistrar, byte[] imagenDeJugador)
+        public EstadoDeRegistro Registrar(string usuarioARegistrar, string contraseniaARegistrar, string correoARegistrar, byte[] imagenDeJugador)
         {
             EstadoDeRegistro estado = EstadoDeRegistro.Fallido;
             using (var contexto = new JugadorContexto())
@@ -41,7 +41,7 @@ namespace ChatJuego.Base_de_datos
                     estado = EstadoDeRegistro.FallidoPorCorreo;
                     return estado;
                 }
-                var jugadorRegistrado = contexto.jugadores.Add(new Jugador() { usuario = usuarioARegistrar, contrasenia = ComputeSHA256Hash(contraseniaARegistrar), correo = correoARegistrar, puntaje = 0 , imagenUsuario = imagenDeJugador });
+                var jugadorRegistrado = contexto.jugadores.Add(new Jugador() { usuario = usuarioARegistrar, contrasenia = CifrarContrasenia(contraseniaARegistrar), correo = correoARegistrar, puntaje = 0 , imagenUsuario = imagenDeJugador });
                 contexto.SaveChanges();
                 estado = EstadoDeRegistro.Correcto;
                 return estado;
@@ -57,7 +57,7 @@ namespace ChatJuego.Base_de_datos
         public EstadoDeAutenticacion IniciarSesion(string usuario, string contrasenia)
         {
             EstadoDeAutenticacion estado = EstadoDeAutenticacion.Failed;
-            string contraseniaCifrada = ComputeSHA256Hash(contrasenia);
+            string contraseniaCifrada = CifrarContrasenia(contrasenia);
             using (var contexto = new JugadorContexto())
             {
                 var jugadores = (from jugador in contexto.jugadores
@@ -76,7 +76,7 @@ namespace ChatJuego.Base_de_datos
         /// </summary>
         /// <param name="contrasenia"></param>
         /// <returns></returns>
-        private string ComputeSHA256Hash(string contrasenia)
+        private string CifrarContrasenia(string contrasenia)
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {
@@ -101,7 +101,7 @@ namespace ChatJuego.Base_de_datos
             EstadoDeEliminacion estado = EstadoDeEliminacion.Fallido;
             using (var contexto = new JugadorContexto())
             {
-                string contraseniaCifrada = ComputeSHA256Hash(contrasenia);
+                string contraseniaCifrada = CifrarContrasenia(contrasenia);
                 var jugadores = (from jugador in contexto.jugadores
                                  where jugador.usuario == usuario && jugador.contrasenia == contraseniaCifrada
                                  select jugador).Count();

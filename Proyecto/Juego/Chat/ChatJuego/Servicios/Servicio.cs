@@ -232,7 +232,7 @@ namespace ChatJuego.Host
         public EstadoDeRegistro RegistroDeJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador)
         {
             Autenticacion autenticacion = new Autenticacion();
-            EstadoDeRegistro estadoDeRegistro = autenticacion.Registro(usuario, contrasenia, correo, imagenDeJugador);
+            EstadoDeRegistro estadoDeRegistro = autenticacion.Registrar(usuario, contrasenia, correo, imagenDeJugador);
             return estadoDeRegistro;
         }
 

@@ -11,7 +11,6 @@ using static ChatJuego.Host.Servicio;
 namespace ChatJuego.Servicios
 {
     [ServiceContract(CallbackContract = typeof(IJugadorCallBack))]
-
     public interface IInvitacionCorreoServicio
     {
         [OperationContract(IsOneWay = false)]
