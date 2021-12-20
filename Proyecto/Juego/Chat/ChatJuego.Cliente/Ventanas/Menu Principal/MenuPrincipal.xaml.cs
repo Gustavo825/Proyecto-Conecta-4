@@ -16,12 +16,16 @@ namespace ChatJuego.Cliente
     public partial class MenuPrincipal : Window
     {
         private ServidorClient servidor;
-        ChatServicioClient servidorDelChat;
-        TablaDePuntajesClient servidorDeTablaDePuntajes;
-        InstanceContext contexto;
-        JugadorCallBack callBackDeJugador;
-        Jugador jugador;
-        public bool desconexionDelServidor { get; set; }
+        private ChatServicioClient servidorDelChat;
+        private TablaDePuntajesClient servidorDeTablaDePuntajes;
+        private InstanceContext contexto;
+        private JugadorCallBack callBackDeJugador;
+        private Configuracion configuracion;
+        private Chat chat;
+        private Tutorial tutorial;
+        private Jugador jugador;
+        private TablaDePuntajes tablaDePuntajes;
+        public bool DesconexionDelServidor { get; set; }
         public const int MUSICA_ENCENDIDA = 1;
         public const int EFECTOS_ENCENDIDO = 1;
         public const int EFECTOS_APAGADO = 0;
@@ -34,7 +38,7 @@ namespace ChatJuego.Cliente
 
         public MenuPrincipal(ServidorClient servidor, JugadorCallBack callBackDeJugador, Jugador jugador, InstanceContext contexto)
         {
-            desconexionDelServidor = false;
+            DesconexionDelServidor = false;
             servidorDelChat = null;
             string ruta = Directory.GetCurrentDirectory();
             ruta = ruta.Substring(0, ruta.Length - 9);
@@ -63,9 +67,9 @@ namespace ChatJuego.Cliente
         private void BotonTablaDePuntajes_Click(object sender, RoutedEventArgs e)
         {
             ReproducirBoton();
-            TablaDePuntajes tablaPuntajes = new TablaDePuntajes(servidorDeTablaDePuntajes);
-            callBackDeJugador.SetTablaDePuntajes(tablaPuntajes);
-            tablaPuntajes.Show();
+            tablaDePuntajes = new TablaDePuntajes(servidorDeTablaDePuntajes);
+            callBackDeJugador.SetTablaDePuntajes(tablaDePuntajes);
+            tablaDePuntajes.Show();
         }
 
         /// <summary>
@@ -84,34 +88,43 @@ namespace ChatJuego.Cliente
         private void BotonChat_Click(object sender, RoutedEventArgs e)
         {
             ReproducirBoton();
-            Chat chat = new Chat(jugador, servidorDelChat,this);
+            chat = new Chat(jugador, servidorDelChat, this);
             try
             {
                 servidorDelChat = new ChatServicioClient(contexto);
                 servidorDelChat.InicializarChat();
                 callBackDeJugador.SetChat(chat);
                 chat.Show();
+                this.Hide();
             } catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("The connection with the server was lost", "Conenction lost", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("Le server ne peut connecter", "Échec de connexion", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
-                }
-                MusicaDeMenu.Stop(); 
-                desconexionDelServidor = true;
+                NotificarDesconexionDelServidor();
+                MusicaDeMenu.Stop();
+                DesconexionDelServidor = true;
                 this.Close();
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de error de desconexión del servidor
+        /// </summary>
+        private static void NotificarDesconexionDelServidor()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("The connection with the server was lost", "Conenction lost", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Le server ne peut connecter", "Échec de connexion", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
             }
         }
 
@@ -122,7 +135,7 @@ namespace ChatJuego.Cliente
         private void BotonConfiguracion_Click(object sender, RoutedEventArgs e)
         {
             ReproducirBoton();
-            Configuracion configuracion = new Configuracion(this,servidor,jugador);
+            configuracion = new Configuracion(this,servidor,jugador);
             configuracion.Show();
         }
 
@@ -147,7 +160,7 @@ namespace ChatJuego.Cliente
         {
             ReproducirBoton();
             servidorDelChat = new ChatServicioClient(contexto);
-            UnirseAPartida unirseAPartida = new UnirseAPartida(jugador, this, contexto, servidorDelChat, callBackDeJugador, servidor);
+            UnirseAPartida unirseAPartida = new UnirseAPartida(jugador, this, servidorDelChat, callBackDeJugador, servidor);
             unirseAPartida.Show();
             this.Hide();
         }
@@ -242,9 +255,21 @@ namespace ChatJuego.Cliente
             ReproducirBoton();
             MainWindow mainWindow = new MainWindow();
             MusicaDeMenu.Stop();
+            if (tutorial != null)
+            {
+                tutorial.Close();
+            }
+            if (configuracion != null)
+            {
+                configuracion.Close();
+            }
+            if (tablaDePuntajes != null)
+            {
+                tablaDePuntajes.Close();
+            }
             try
             {
-                if (!desconexionDelServidor)
+                if (!DesconexionDelServidor)
                 {
                     servidor.Desconectarse();
                 }
@@ -252,32 +277,20 @@ namespace ChatJuego.Cliente
             }
             catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("The connection with the server was lost", "Conenction lost", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("Le server ne peut connecter", "Échec de connexion", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
-                }
+                NotificarDesconexionDelServidor();
                 MusicaDeMenu.Stop(); 
                 mainWindow.Show();
             }
 
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el botón del tutorial
+        /// </summary>
         private void BotonTutorial_Click(object sender, RoutedEventArgs e)
         {
             ReproducirBoton();
-            Tutorial tutorial = new Tutorial();
+            tutorial = new Tutorial();
             tutorial.Show();
         }
     }

@@ -96,8 +96,8 @@ namespace ChatJuego.Cliente
         {
             if (ventanaDeJuego != null)
             {
-                ventanaDeJuego.oponente = nombreOponente;
-                ventanaDeJuego.oponenteConectado = true;
+                ventanaDeJuego.Oponente = nombreOponente;
+                ventanaDeJuego.OponenteConectado = true;
             }
         }
 
@@ -121,7 +121,7 @@ namespace ChatJuego.Cliente
             if (ventanaDeJuego != null)
             {
                 ventanaDeJuego.IntroducirFicha(columna, VentanaDeJuego.TIRO_OPONENTE);
-                ventanaDeJuego.turnoDeJuego = true;
+                ventanaDeJuego.TurnoDeJuego = true;
             }
         }
     }

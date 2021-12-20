@@ -14,19 +14,17 @@ namespace ChatJuego.Cliente.Ventanas.Unirse_a_Partida
     public partial class UnirseAPartida : Window
     {
         private ChatServicioClient servidorDelChat;
-        private InstanceContext contexto;
         private JugadorCallBack jugadorCallBack;
         private ServidorClient servidor;
         private Jugador jugador;
         private MenuPrincipal menuPrincipal;
         bool unionCorrectaAPartida = false;
 
-        public UnirseAPartida(Jugador jugador, MenuPrincipal menuPrincipal, InstanceContext contexto, ChatServicioClient servidorDelChat, JugadorCallBack callBackDeJugador, ServidorClient servidor)
+        public UnirseAPartida(Jugador jugador, MenuPrincipal menuPrincipal, ChatServicioClient servidorDelChat, JugadorCallBack callBackDeJugador, ServidorClient servidor)
         {
             InitializeComponent();
             this.jugador = jugador;
             this.servidorDelChat = servidorDelChat;
-            this.contexto = contexto;
             this.jugadorCallBack = callBackDeJugador;
             this.menuPrincipal = menuPrincipal;
             this.servidor = servidor;
@@ -48,73 +46,27 @@ namespace ChatJuego.Cliente.Ventanas.Unirse_a_Partida
                     if (estado == EstadoUnirseAPartida.Correcto)
                     {
                         unionCorrectaAPartida = true;
-                        VentanaDeJuego ventanDeJuego = new VentanaDeJuego(contexto, menuPrincipal, jugador, servidorDelChat, TBUsuarioInvitacion.Text, jugadorCallBack, servidor);
+                        VentanaDeJuego ventanDeJuego = new VentanaDeJuego(menuPrincipal, jugador, servidorDelChat, TBUsuarioInvitacion.Text, jugadorCallBack, servidor);
                         jugadorCallBack.SetVentanaDeJuego(ventanDeJuego);
                         ventanDeJuego.Show();
-                        ventanDeJuego.turnoDeJuego = false;
+                        ventanDeJuego.TurnoDeJuego = false;
                         unionCorrectaAPartida = true;
                         servidor.InicializarPartida(TBUsuarioInvitacion.Text);
                         this.Close();
                     }
                     else if (estado == EstadoUnirseAPartida.FallidoPorPartidaNoEncontrada)
                     {
-                        MenuPrincipal.ReproducirError();
-                        if (idioma == Idioma.Espaniol)
-                        {
-                            MessageBox.Show("Partida no encontrada", "Error", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Frances)
-                        {
-                            MessageBox.Show("Partie non trouvé", "Erreur", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Portugues)
-                        {
-                            MessageBox.Show("Jogo não encontrado", "Error", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Ingles)
-                        {
-                            MessageBox.Show("Game not found", "Error", MessageBoxButton.OK);
-                        }
+                        NotificarPartidaNoEncontrada();
                     }
                     else if (estado == EstadoUnirseAPartida.FallidoPorMaximoDeJugadores)
                     {
-                        if (idioma == Idioma.Espaniol)
-                        {
-                            MessageBox.Show("Máximo de jugadores en la partida", "Error", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Frances)
-                        {
-                            MessageBox.Show("Plafond de joueurs atteint", "Erreur", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Portugues)
-                        {
-                            MessageBox.Show("Jogadores máximos no jogo", "Error", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Ingles)
-                        {
-                            MessageBox.Show("Player limit reached", "Error", MessageBoxButton.OK);
-                        }
+                        NotificarPartidaMaximoJugadores();
                     }
                 }
                 catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
                 {
-                    if (idioma == Idioma.Espaniol)
-                    {
-                        MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Frances)
-                    {
-                        MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Portugues)
-                    {
-                        MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Ingles)
-                    {
-                        MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
-                    }
-                    menuPrincipal.desconexionDelServidor = true;
+                    NotificarErrorDeConexion();
+                    menuPrincipal.DesconexionDelServidor = true;
                     unionCorrectaAPartida = true;
                     this.Close();
                     menuPrincipal.Close();
@@ -122,22 +74,100 @@ namespace ChatJuego.Cliente.Ventanas.Unirse_a_Partida
             }
             else
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("Ingrese la información requerida", "Campos vacíos", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("Entrer les informations requises", "Information tronquée", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("Entre a informação requerida", "Campos incompletos", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("Enter the required information", "Empty fields", MessageBoxButton.OK);
-                }
+                NotificarInformacionFaltante();
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de error de información requerida
+        /// </summary>
+        private static void NotificarInformacionFaltante()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Ingrese la información requerida", "Campos vacíos", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Entrer les informations requises", "Information tronquée", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Entre a informação requerida", "Campos incompletos", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("Enter the required information", "Empty fields", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de error de conexion al servidor
+        /// </summary>
+        private static void NotificarErrorDeConexion()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de partida llena
+        /// </summary>
+        private static void NotificarPartidaMaximoJugadores()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Máximo de jugadores en la partida", "Error", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Plafond de joueurs atteint", "Erreur", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Jogadores máximos no jogo", "Error", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("Player limit reached", "Error", MessageBoxButton.OK);
+            }
+        }
+        
+        /// <summary>
+        /// Muestra el mensaje de que la partida no fue encontrada
+        /// </summary>
+        private static void NotificarPartidaNoEncontrada()
+        {
+            MenuPrincipal.ReproducirError();
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Partida no encontrada", "Error", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Partie non trouvé", "Erreur", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Jogo não encontrado", "Error", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("Game not found", "Error", MessageBoxButton.OK);
             }
         }
 

@@ -21,8 +21,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
     {
         private static MediaPlayer MusicaDePartida = new MediaPlayer();
         private static SoundPlayer SonidoDeFicha = new SoundPlayer();
-        private InstanceContext contexto;
-        public string oponente { get; set; }
+        public string Oponente { get; set; }
         MenuPrincipal menuPrincipal;
         ServidorClient servidor;
         Jugador jugador;
@@ -31,18 +30,25 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         ConfirmacionDePresencia confirmacionDePresencia;
         string codigoDePartida;
         DispatcherTimer timer;
-        public bool oponenteConectado { get; set; }
+        public bool OponenteConectado { get; set; }
         private bool imagenesCargadas;
-        public bool turnoDeJuego { get; set; }
+        public bool TurnoDeJuego { get; set; }
 
-        const string RUTA_FICHA_AZUL = "Iconos/fichaAzul.png";
-        const string RUTA_FICHA_ROJA = "Iconos/fichaRoja.png";
+        private const string RUTA_FICHA_AZUL = "Iconos/fichaAzul.png";
+        private const string RUTA_FICHA_ROJA = "Iconos/fichaRoja.png";
         public const int TIRO_PROPIO = 1;
         public const int TIRO_OPONENTE = 2;
         public const int EMPATE = 3;
         public const int SIN_LINEA_GANADORA = 0;
         public const int VACIO = 0;
         public const int TIEMPO_DE_ESPERA = 30;
+        public const int COLUMNA_1 = 1;
+        public const int COLUMNA_2 = 2;
+        public const int COLUMNA_3 = 3;
+        public const int COLUMNA_4 = 4;
+        public const int COLUMNA_5 = 5;
+        public const int COLUMNA_6 = 6;
+        public const int COLUMNA_7 = 7;
         private bool partidaFinalizada;
 
         int[,] tablero = new int[6, 7]
@@ -55,7 +61,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             {0 , 0 , 0 , 0 , 0 , 0 , 0},
         };
 
-        public VentanaDeJuego(InstanceContext contexto, MenuPrincipal menuPrincipal, Jugador jugador, ChatServicioClient servidorDelChat, string codigoDePartida, JugadorCallBack jugadorCallBack, ServidorClient servidor)
+        public VentanaDeJuego(MenuPrincipal menuPrincipal, Jugador jugador, ChatServicioClient servidorDelChat, string codigoDePartida, JugadorCallBack jugadorCallBack, ServidorClient servidor)
         {
             MenuPrincipal.MusicaDeMenu.Stop();
             string ruta = Directory.GetCurrentDirectory();
@@ -72,7 +78,6 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             ImagenJugadorDerecho.Source = ConvertirArrayAImagen(servidor.ObtenerBytesDeImagenDeJugador(jugador.usuario));
             imagenesCargadas = false;
             partidaFinalizada = false;
-            this.contexto = contexto;
             this.menuPrincipal = menuPrincipal;
             this.jugador = jugador;
             this.servidorDelChat = servidorDelChat;
@@ -80,7 +85,6 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             this.jugadorCallBack = jugadorCallBack;
             this.servidor = servidor;
             IniciarTiempoDeEspera();
-
         }
 
         /// <summary>
@@ -277,7 +281,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(TIEMPO_DE_ESPERA) };
             timer.Tick += delegate
             {
-                if (oponenteConectado)
+                if (OponenteConectado)
                 {
                     confirmacionDePresencia = new ConfirmacionDePresencia();
                     timer.Stop();
@@ -291,22 +295,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     {
                         confirmacionDePresencia.Close();
                         FinalizarPartida(EstadoPartida.FinDePartidaPorTiempoDeEsperaLimite);
-                        if (idioma == Idioma.Espaniol)
-                        {
-                            MessageBox.Show("Te austentaste demasiado tiempo, serás llevado al menú principal", "Ausente", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Frances)
-                        {
-                            MessageBox.Show("Vous avez été absent trop longtemps, vous serez ramené au menu principal", "Absent", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Portugues)
-                        {
-                            MessageBox.Show("Você esteve ausente por muito tempo, você será levado ao menu principal", "Ausente", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Ingles)
-                        {
-                            MessageBox.Show("You were inactive for too long, you will be taken to the main menu", "Inactive", MessageBoxButton.OK);
-                        }
+                        NotificarAusenciaDeJugador();
                         menuPrincipal.Show();
                         CerrarConfirmacionPresencia();
                         timer.Stop();
@@ -319,7 +308,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             timer.Start();
             InputManager.Current.PostProcessInput += delegate (object s, ProcessInputEventArgs r)
             {
-                if (!imagenesCargadas && oponenteConectado)
+                if (!imagenesCargadas && OponenteConectado)
                 {
                     CargarImagenesDeJugadores();
                     imagenesCargadas = true;
@@ -330,32 +319,40 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         }
 
         /// <summary>
+        /// Muestra el mensaje de ausencia de jugador
+        /// </summary>
+        private static void NotificarAusenciaDeJugador()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Te austentaste demasiado tiempo, serás llevado al menú principal", "Ausente", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Vous avez été absent trop longtemps, vous serez ramené au menu principal", "Absent", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Você esteve ausente por muito tempo, você será levado ao menu principal", "Ausente", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("You were inactive for too long, you will be taken to the main menu", "Inactive", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
         /// Recupera la imagen de jugador del oponente para mostrarla en la Ventana de Juego
         /// </summary>
         public void CargarImagenesDeJugadores()
         {
             try
             {
-                ImagenJugadorIzquiero.Source = ConvertirArrayAImagen(servidor.ObtenerBytesDeImagenDeJugador(oponente));
+                ImagenJugadorIzquiero.Source = ConvertirArrayAImagen(servidor.ObtenerBytesDeImagenDeJugador(Oponente));
             }
             catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
-                }
+                NotificarDesconexionDeServidor();
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 CerrarConfirmacionPresencia();
@@ -366,12 +363,34 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         }
 
         /// <summary>
+        /// Muestra el mensaje de error de desconexión del servidor
+        /// </summary>
+        private static void NotificarDesconexionDeServidor()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
         /// Verifica que la posición seleccionada para ingresar la ficha sea posible.
         /// Si es posible, introduce la ficha y también llama a la función de VerificarTablero para checar si hay ya un ganador.
         /// </summary>
         public void IntroducirFicha(int columna, int quienTira)
         {
-
             KeyValuePair<int, int> posicionDeFicha;
             for (int fila = 5; fila >= 0; fila--)
             {
@@ -380,170 +399,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     if (tablero[fila, columna - 1] == VACIO)
                     {
                         posicionDeFicha = new KeyValuePair<int, int>(fila + 1, columna);
-                        switch (posicionDeFicha.Value)
-                        {
-                            case 1:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f16.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f15.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f14.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f13.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f12.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f11.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 2:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f26.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f25.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f24.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f23.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f22.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f21.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 3:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f36.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f35.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f34.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f33.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f32.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f31.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 4:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f46.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f45.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f44.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f43.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f42.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f41.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 5:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f56.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f55.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f54.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f53.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f52.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f51.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 6:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f66.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f65.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f64.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f63.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f62.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f61.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 7:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f76.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f75.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f74.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f73.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f72.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f71.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                        }
+                        InsertarFichaPropia(posicionDeFicha);
                         tablero[fila, columna - 1] = TIRO_PROPIO;
                         break;
                     }
@@ -553,170 +409,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     if (tablero[fila, columna - 1] == VACIO)
                     {
                         posicionDeFicha = new KeyValuePair<int, int>(fila + 1, columna);
-                        switch (posicionDeFicha.Value)
-                        {
-                            case 1:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f16.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f15.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f14.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f13.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f12.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f11.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 2:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f26.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f25.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f24.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f23.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f22.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f21.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 3:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f36.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f35.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f34.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f33.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f32.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f31.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 4:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f46.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f45.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f44.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f43.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f42.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f41.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 5:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f56.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f55.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f54.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f53.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f52.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f51.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 6:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f66.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f65.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f64.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f63.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f62.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f61.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                            case 7:
-                                switch (posicionDeFicha.Key)
-                                {
-                                    case 6:
-                                        f76.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 5:
-                                        f75.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 4:
-                                        f74.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 3:
-                                        f73.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 2:
-                                        f72.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                    case 1:
-                                        f71.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
-                                        break;
-                                }
-                                break;
-                        }
+                        InsertarFichaOponente(posicionDeFicha);
                         tablero[fila, columna - 1] = TIRO_OPONENTE;
                         break;
                     }
@@ -725,7 +418,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             int ganadorDePartida = VerificarTablero();
             if (ganadorDePartida == TIRO_PROPIO)
             {
-                servidor.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
+                servidor.InsertarFichaEnOponente(columna, codigoDePartida, Oponente);
                 FinalizarPartida(EstadoPartida.FinDePartidaGanada);
                 partidaFinalizada = true;
             }
@@ -737,11 +430,355 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             int empate = VerificarTableroLleno();
             if (empate == EMPATE)
             {
-                servidor.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
+                servidor.InsertarFichaEnOponente(columna, codigoDePartida, Oponente);
                 FinalizarPartida(EstadoPartida.FinDePartidaPorEmpate);
                 partidaFinalizada = true;
             }
 
+        }
+
+        /// <summary>
+        /// Inserta la ficha en el tablero con ficha del oponente
+        /// </summary>
+        /// <param name="posicionDeFicha">Posicion de la ficha</param>
+        private void InsertarFichaOponente(KeyValuePair<int,int> posicionDeFicha)
+        {
+            switch (posicionDeFicha.Value)
+            {
+                case 1:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f16.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 5:
+                            f15.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 4:
+                            f14.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 3:
+                            f13.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 2:
+                            f12.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 1:
+                            f11.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case 2:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f26.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 5:
+                            f25.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 4:
+                            f24.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 3:
+                            f23.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 2:
+                            f22.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 1:
+                            f21.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case 3:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f36.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 5:
+                            f35.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 4:
+                            f34.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 3:
+                            f33.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 2:
+                            f32.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 1:
+                            f31.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case 4:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f46.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 5:
+                            f45.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 4:
+                            f44.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 3:
+                            f43.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 2:
+                            f42.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 1:
+                            f41.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case 5:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f56.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 5:
+                            f55.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 4:
+                            f54.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 3:
+                            f53.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 2:
+                            f52.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 1:
+                            f51.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case 6:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f66.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 5:
+                            f65.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 4:
+                            f64.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 3:
+                            f63.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 2:
+                            f62.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 1:
+                            f61.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case 7:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f76.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 5:
+                            f75.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 4:
+                            f74.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 3:
+                            f73.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 2:
+                            f72.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                        case 1:
+                            f71.Source = new BitmapImage(new Uri(RUTA_FICHA_ROJA, UriKind.Relative));
+                            break;
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Inserta la ficha en el tablero con ficha propia
+        /// </summary>
+        /// <param name="posicionDeFicha">Posicion de la ficha</param>
+        private void InsertarFichaPropia(KeyValuePair<int, int> posicionDeFicha)
+        {
+            switch (posicionDeFicha.Value)
+            {
+                case COLUMNA_1:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f16.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 5:
+                            f15.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 4:
+                            f14.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 3:
+                            f13.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 2:
+                            f12.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 1:
+                            f11.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case COLUMNA_2:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f26.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 5:
+                            f25.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 4:
+                            f24.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 3:
+                            f23.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 2:
+                            f22.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 1:
+                            f21.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case COLUMNA_3:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f36.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 5:
+                            f35.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 4:
+                            f34.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 3:
+                            f33.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 2:
+                            f32.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 1:
+                            f31.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case COLUMNA_4:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f46.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 5:
+                            f45.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 4:
+                            f44.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 3:
+                            f43.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 2:
+                            f42.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 1:
+                            f41.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case COLUMNA_5:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f56.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 5:
+                            f55.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 4:
+                            f54.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 3:
+                            f53.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 2:
+                            f52.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 1:
+                            f51.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case COLUMNA_6:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f66.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 5:
+                            f65.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 4:
+                            f64.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 3:
+                            f63.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 2:
+                            f62.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 1:
+                            f61.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                    }
+                    break;
+                case COLUMNA_7:
+                    switch (posicionDeFicha.Key)
+                    {
+                        case 6:
+                            f76.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 5:
+                            f75.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 4:
+                            f74.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 3:
+                            f73.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 2:
+                            f72.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                        case 1:
+                            f71.Source = new BitmapImage(new Uri(RUTA_FICHA_AZUL, UriKind.Relative));
+                            break;
+                    }
+                    break;
+            }
         }
 
         /// <summary>
@@ -769,7 +806,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         {
             try
             {
-                if (oponenteConectado && turnoDeJuego)
+                if (OponenteConectado && TurnoDeJuego)
                 {
                     Button boton = (Button)sender;
                     int columna = int.Parse(boton.Name[1].ToString());
@@ -778,54 +815,47 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     {
                         ReproducirSonidoFicha();
                         IntroducirFicha(columna, TIRO_PROPIO);
-                        turnoDeJuego = false;
-                        servidor.InsertarFichaEnOponente(columna, codigoDePartida, oponente);
+                        TurnoDeJuego = false;
+                        servidor.InsertarFichaEnOponente(columna, codigoDePartida, Oponente);
                     }
                     else
                     {
-                        if (idioma == Idioma.Espaniol)
-                        {
-                            MessageBox.Show("Columna llena, seleccione otra columna", "Columna llena", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Frances)
-                        {
-                            MessageBox.Show("Colonne pleine, sélectionnez une autre colonne", "Colonne pleine", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Portugues)
-                        {
-                            MessageBox.Show("Coluna cheia, selecione outra coluna", "Coluna cheia", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Ingles)
-                        {
-                            MessageBox.Show("Full column, selecto another one", "Full column", MessageBoxButton.OK);
-                        }
+                        NotificarColumnaLlena();
                     }
                 }
             }
             catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
-                }
+                NotificarDesconexionDeServidor();
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 CerrarConfirmacionPresencia();
                 MusicaDePartida.Stop();
                 MenuPrincipal.ReproducirMusica();
                 this.Close();
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de columna llena
+        /// </summary>
+        private static void NotificarColumnaLlena()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Columna llena, seleccione otra columna", "Columna llena", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Colonne pleine, sélectionnez une autre colonne", "Colonne pleine", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Coluna cheia, selecione outra coluna", "Coluna cheia", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("Full column, selecto another one", "Full column", MessageBoxButton.OK);
             }
         }
 
@@ -849,34 +879,19 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         /// </summary>
         private void BotonChat_Click(object sender, RoutedEventArgs e)
         {
-            if (oponenteConectado)
+            if (OponenteConectado)
             {
-                Chat chat = new Chat(jugador, servidorDelChat, oponente);
+                Chat chat = new Chat(jugador, servidorDelChat, Oponente);
                 try
                 {
-                    chat.chatDePartida = true;
+                    chat.ChatDePartida = true;
                     jugadorCallBack.SetChat(chat);
                     servidorDelChat.InicializarChat();
                     chat.Show();
                 }
                 catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
                 {
-                    if (idioma == Idioma.Espaniol)
-                    {
-                        MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Frances)
-                    {
-                        MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Portugues)
-                    {
-                        MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Ingles)
-                    {
-                        MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
-                    }
+                    NotificarDesconexionDeServidor();
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.Show();
                     CerrarConfirmacionPresencia();
@@ -887,22 +902,30 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             }
             else
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("El oponente aún no se conecta a la partida", "Error", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("Adversaire non encore connecté au jeu", "Erreur", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("Oponente ainda não conectado ao jogo", "Error", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("The opponent has not joined yet", "Error", MessageBoxButton.OK);
-                }
+                NotificarOponenteNoConectado();
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de error de oponente conectado
+        /// </summary>
+        private static void NotificarOponenteNoConectado()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("El oponente aún no se conecta a la partida", "Error", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Adversaire non encore connecté au jeu", "Erreur", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Oponente ainda não conectado ao jogo", "Error", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("The opponent has not joined yet", "Error", MessageBoxButton.OK);
             }
         }
 
@@ -915,13 +938,13 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             timer.Stop();
             try
             {
-                if (!oponenteConectado)
+                if (!OponenteConectado)
                 {
                     servidor.EliminarPartida(codigoDePartida, jugador.usuario, estadoDePartida);
                 }
                 else if (estadoDePartida == EstadoPartida.FinDePartidaPorTiempoDeEsperaLimite || estadoDePartida == EstadoPartida.FinDePartidaSalir)
                 {
-                    servidor.EliminarPartidaConGanador(codigoDePartida, jugador.usuario, estadoDePartida, 10, oponente);
+                    servidor.EliminarPartidaConGanador(codigoDePartida, jugador.usuario, estadoDePartida, 10, Oponente);
                 }
                 else if (estadoDePartida == EstadoPartida.FinDePartidaGanada)
                 {
@@ -936,22 +959,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             }
             catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
-                }
+                NotificarDesconexionDeServidor();
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 CerrarConfirmacionPresencia();
@@ -983,102 +991,142 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             CerrarConfirmacionPresencia();
             if (estadoPartida == EstadoPartida.FinDePartidaSalir)
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("El oponente salió de la partida, ¡Tú ganas!", "Oponente salió", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("L'adversaire est hors partie, vous gagnez!", "L'adversaire est parti", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("O adversário está fora do jogo, você ganha!", "O oponente partiu", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("The opponent left the game, You win!", "Opponent left", MessageBoxButton.OK);
-                }
+                NotificarPartidaGanadaPorOponenteSalio();
             }
             else if (estadoPartida == EstadoPartida.FinDePartidaPorTiempoDeEsperaLimite)
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("El oponente se ausentó más del tiempo límite, ¡Tú ganas!", "Oponente ausente", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("L'adversaire était absent au-delà du temps imparti, vous gagnez!", "Absent Opposant", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("O adversário estava ausente além do tempo limite, você ganha!", "Oponente ausentado", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("The opponent was inactive for too long, You win!", "Opponent inactive", MessageBoxButton.OK);
-                }
+                NotificarPartidaGanadaPorTiempo();
             }
             else if (estadoPartida == EstadoPartida.FinDePartidaGanada)
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("¡Tú ganas!", "Partida finalizada", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("Vous avez gagné!", "Partie terminé", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("Você ganhou!", "Jogo concluído", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("You win!", "Game finished", MessageBoxButton.OK);
-                }
+                NotificarPartidaGanada();
             }
             else if (estadoPartida == EstadoPartida.FinDePartidaPerdida)
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("¡Has perdido!", "Partida finalizada", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("Vous avez perdu!", "Partie terminé", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("Você perdeu!", "Jogo concluído", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("You lose!", "Game finished", MessageBoxButton.OK);
-                }
+                NotificarPartidaPerdida();
             }
             else if (estadoPartida == EstadoPartida.FinDePartidaPorEmpate)
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("¡Empate!", "Partida finalizada", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("Cravate!", "Partie terminé", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("Empate!", "Jogo concluído", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("Tie!", "Game finished", MessageBoxButton.OK);
-                }
+                NotificarEmpate();
             }
             MusicaDePartida.Stop();
             MenuPrincipal.ReproducirMusica();
             this.Close();
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de empate
+        /// </summary>
+        private static void NotificarEmpate()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("¡Empate!", "Partida finalizada", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Cravate!", "Partie terminé", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Empate!", "Jogo concluído", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("Tie!", "Game finished", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de partida perdida
+        /// </summary>
+        private static void NotificarPartidaPerdida()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("¡Has perdido!", "Partida finalizada", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Vous avez perdu!", "Partie terminé", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Você perdeu!", "Jogo concluído", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("You lose!", "Game finished", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de partida ganada
+        /// </summary>
+        private static void NotificarPartidaGanada()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("¡Tú ganas!", "Partida finalizada", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Vous avez gagné!", "Partie terminé", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Você ganhou!", "Jogo concluído", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("You win!", "Game finished", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de partida ganada por tiempo
+        /// </summary>
+        private static void NotificarPartidaGanadaPorTiempo()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("El oponente se ausentó más del tiempo límite, ¡Tú ganas!", "Oponente ausente", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("L'adversaire était absent au-delà du temps imparti, vous gagnez!", "Absent Opposant", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("O adversário estava ausente além do tempo limite, você ganha!", "Oponente ausentado", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("The opponent was inactive for too long, You win!", "Opponent inactive", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
+        /// Muestar el mensaje de partida ganada por salida del oponente
+        /// </summary>
+        private static void NotificarPartidaGanadaPorOponenteSalio()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("El oponente salió de la partida, ¡Tú ganas!", "Oponente salió", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("L'adversaire est hors partie, vous gagnez!", "L'adversaire est parti", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("O adversário está fora do jogo, você ganha!", "O oponente partiu", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("The opponent left the game, You win!", "Opponent left", MessageBoxButton.OK);
+            }
         }
 
         /// <summary>
@@ -1116,24 +1164,9 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             timer.Stop();
-            if (!oponenteConectado)
+            if (!OponenteConectado)
             {
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("El oponente nunca se unió a la partida", "Error", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("L'adversaire n'a jamais rejoint le partie", "Erreur", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("O oponente nunca se juntou ao jogo", "Error", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("The opponent never joined the game", "Error", MessageBoxButton.OK);
-                }
+                NotificarOponenteNoConectado();
             }
             if (!partidaFinalizada)
             {
@@ -1180,6 +1213,9 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             MusicaDePartida.Play();
         }
 
+        /// <summary>
+        /// Reproduce el sonido de la ficha al insertarla
+        /// </summary>
         private void ReproducirSonidoFicha()
         {
             if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)

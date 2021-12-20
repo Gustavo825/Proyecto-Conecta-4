@@ -17,11 +17,12 @@ namespace ChatJuego.Cliente
     {
         private Jugador jugador;
         private ChatServicioClient servidorDelChat;
-        private bool mensajePrivado = false;
+        private bool MensajePrivado { get; set; }
+        private bool Error { get; set; }
         private Label jugadorPrivadoSeleccionado;
         public MenuPrincipal menuPrincipal;
-        public bool chatDePartida { get; set; }
-        public string nombreJugadorInvitado { get; set; }
+        public bool ChatDePartida { get; set; }
+        public string NombreJugadorInvitado { get; set; }
 
         public TextBox ContenedorDelMensaje
         {
@@ -32,10 +33,12 @@ namespace ChatJuego.Cliente
         public Chat(Jugador jugador, ChatServicioClient servidorDelChat, MenuPrincipal menuPrincipal)
         {
             InitializeComponent();
+            MensajePrivado = false;
+            Error = false;
             this.jugador = jugador;
             this.servidorDelChat = servidorDelChat;
             this.menuPrincipal = menuPrincipal;
-            chatDePartida = false;
+            ChatDePartida = false;
             ActualizarIdioma();
 
         }
@@ -43,10 +46,11 @@ namespace ChatJuego.Cliente
         public Chat(Jugador jugador, ChatServicioClient servidorDelChat, string oponente)
         {
             InitializeComponent();
+            MensajePrivado = false;
             this.jugador = jugador;
             this.servidorDelChat = servidorDelChat;
-            this.nombreJugadorInvitado = oponente;
-            chatDePartida = false;
+            this.NombreJugadorInvitado = oponente;
+            ChatDePartida = false;
             ActualizarIdioma();
         }
 
@@ -82,83 +86,112 @@ namespace ChatJuego.Cliente
                 }
                 try
                 {
-                    if (mensajePrivado && !chatDePartida)
+                    if (MensajePrivado && !ChatDePartida)
                     {
-                        if (idioma == Idioma.Ingles)
-                        {
-                            string mensaje = "Private message: " + mensajeFinal;
-                            PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
-                            servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
-                            mensajePrivado = false;
-                            jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
-                            ContenidoDelMensaje.Clear();
-                        }
-                        else if (idioma == Idioma.Espaniol)
-                        {
-                            string mensaje = "Mensaje privado: " + mensajeFinal;
-                            PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
-                            servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
-                            mensajePrivado = false;
-                            jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
-                            ContenidoDelMensaje.Clear();
-                        }
-                        else if (idioma == Idioma.Portugues)
-                        {
-                            string mensaje = "Mensagem privada: " + mensajeFinal;
-                            PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
-                            servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
-                            mensajePrivado = false;
-                            jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
-                            ContenidoDelMensaje.Clear();
-                        }
-                        else if (idioma == Idioma.Frances)
-                        {
-                            string mensaje = "Message privé: " + mensajeFinal;
-                            PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
-                            servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
-                            mensajePrivado = false;
-                            jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
-                            ContenidoDelMensaje.Clear();
-                        }
+                        MandarMensajePrivado(mensajeFinal);
                     }
-                    else if (!chatDePartida)
+                    else if (!ChatDePartida)
                     {
 
                         Mensaje mensaje = new Mensaje() { ContenidoMensaje = mensajeFinal, TiempoDeEnvio = DateTime.Now };
-                        PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = mensaje.TiempoDeEnvio.ToString(), MensajeEnviado = mensaje.ContenidoMensaje });
                         servidorDelChat.MandarMensaje(mensaje, jugador);
+                        PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = mensaje.TiempoDeEnvio.ToString(), MensajeEnviado = mensaje.ContenidoMensaje });
                         ContenidoDelMensaje.Clear();
                     }
-                    else if (chatDePartida)
+                    else if (ChatDePartida)
                     {
                         string mensaje = "Mensaje de partida: " + mensajeFinal;
+                        servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, NombreJugadorInvitado, jugador);
                         PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
-                        servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, nombreJugadorInvitado, jugador);
                         ContenidoDelMensaje.Clear();
                     }
                 }
                 catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
                 {
-                    if (idioma == Idioma.Espaniol)
-                    {
-                        MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Frances)
-                    {
-                        MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Portugues)
-                    {
-                        MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Ingles)
-                    {
-                        MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
-                    }
-                    menuPrincipal.desconexionDelServidor = true;
+                    NotificarErrorDeConexion();
+                    menuPrincipal.DesconexionDelServidor = true;
                     menuPrincipal.Close();
+                    Error = true;
                     this.Close();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de error de conexión al servidor
+        /// </summary>
+        private static void NotificarErrorDeConexion()
+        {
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("La connexion au serveur a été perdue", "Erreur de connexion", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("A conexão com o servidor foi perdida", "Error de conexão", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("The connection with the server was lost", "Connection lost", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
+        /// Manda un mensaje privado al usuario seleccionado
+        /// </summary>
+        /// <param name="mensajeFinal">Contiene el mensaje final</param>
+        private void MandarMensajePrivado(string mensajeFinal)
+        {
+            try
+            {
+                if (idioma == Idioma.Ingles)
+                {
+                    string mensaje = "Private message: " + mensajeFinal;
+                    servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
+                    PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
+                    MensajePrivado = false;
+                    jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
+                    ContenidoDelMensaje.Clear();
+                }
+                else if (idioma == Idioma.Espaniol)
+                {
+                    string mensaje = "Mensaje privado: " + mensajeFinal;
+                    servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
+                    PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
+                    MensajePrivado = false;
+                    jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
+                    ContenidoDelMensaje.Clear();
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    string mensaje = "Mensagem privada: " + mensajeFinal;
+                    servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
+                    PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
+                    MensajePrivado = false;
+                    jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
+                    ContenidoDelMensaje.Clear();
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    string mensaje = "Message privé: " + mensajeFinal;
+                    servidorDelChat.MandarMensajePrivado(new Mensaje() { ContenidoMensaje = mensaje, TiempoDeEnvio = DateTime.Now }, jugadorPrivadoSeleccionado.Content.ToString(), jugador);
+                    PlantillaMensaje.Items.Add(new { Posicion = "Right", FondoElemento = "White", FondoCabecera = "#97FFB6", Nombre = jugador.usuario, TiempoDeEnvio = DateTime.Now, MensajeEnviado = mensaje });
+                    MensajePrivado = false;
+                    jugadorPrivadoSeleccionado.Foreground = new SolidColorBrush(Colors.Black);
+                    ContenidoDelMensaje.Clear();
+                }
+            }
+            catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
+            {
+                NotificarErrorDeConexion();
+                menuPrincipal.DesconexionDelServidor = true;
+                menuPrincipal.Close();
+                Error = true;
+                this.Close();
             }
         }
 
@@ -171,7 +204,7 @@ namespace ChatJuego.Cliente
             Label texto = sender as Label;
             jugadorPrivadoSeleccionado = texto;
             texto.Foreground = new SolidColorBrush(Colors.Red);
-            mensajePrivado = true;
+            MensajePrivado = true;
         }
 
         /// <summary>
@@ -213,6 +246,17 @@ namespace ChatJuego.Cliente
                 Titulo.Content = "Online";
                 Boton_Enviar.Source = new BitmapImage(new Uri("Iconos/botonEnviarIN.png", UriKind.Relative));
             }
+        }
+
+        /// <summary>
+        /// Método que se ejecuta cuando se cierra el chat
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!ChatDePartida && !Error)
+                menuPrincipal.Show();
         }
     }
 }

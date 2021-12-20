@@ -33,6 +33,11 @@ namespace ChatJuego.Cliente
 
         }
 
+        /// <summary>
+        /// Método que hace que se enfoque en la ventana
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_ContentRendered(object sender, EventArgs e)
         {
             txtAnswer.SelectAll();

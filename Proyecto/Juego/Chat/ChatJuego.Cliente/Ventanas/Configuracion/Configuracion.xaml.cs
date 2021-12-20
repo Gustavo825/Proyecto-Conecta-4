@@ -30,70 +30,16 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
         /// Método que se ejecuta cuando se da click en el Botón de Eliminar cuenta;
         /// Elimina la cuenta del usuario que tiene la sesión iniciada
         /// </summary>
-
         private void EliminarCuenta_Click(object sender, RoutedEventArgs e)
         {
             MenuPrincipal.ReproducirBoton();
-            if (idioma == Idioma.Espaniol)
+            try
             {
-                if (MessageBox.Show("¿Estás seguro que quieres eliminar tu cuenta?", "Eliminar cuenta", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                if (idioma == Idioma.Espaniol)
                 {
-                    try
+                    if (MessageBox.Show("¿Estás seguro que quieres eliminar tu cuenta?", "Eliminar cuenta", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
-                        if (servidor.EliminarJugador(jugador) == EstadoDeEliminacion.Correcto)
-                        {
-                            eliminarJugador = true;
-                            this.Close();
-                        } else
-                        {
-                            MenuPrincipal.ReproducirError();
-                            if (idioma == Idioma.Espaniol)
-                            {
-                                MessageBox.Show("No se pudo eliminar la cuenta", "Error", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Ingles)
-                            {
-                                MessageBox.Show("Unable to delete the account", "Error", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Frances)
-                            {
-                                MessageBox.Show("Le compte n'a pas pu être supprimé", "Erreur", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Portugues)
-                            {
-                                MessageBox.Show("A conta não pôde ser excluída", "Erro", MessageBoxButton.OK);
-                            }
-                        }
-                        
-                    }
-                    catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
-                    {
-                        MenuPrincipal.ReproducirError();
-                        if (idioma == Idioma.Espaniol)
-                        {
-                            MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Ingles)
-                        {
-                            MessageBox.Show("The connection with the server was lost", "Conenction lost", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Frances)
-                        {
-                            MessageBox.Show("Le server ne peut connecter", "Échec de connexion", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Portugues)
-                        {
-                            MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
-                        }
-                    }
-                }
-            }
-            else if (idioma == Idioma.Frances)
-            {
-                if (MessageBox.Show("Êtes-vous sûr de vouloir supprimer votre compte?", "Supprimer compte", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
-                {
-                    try
-                    {
+
                         if (servidor.EliminarJugador(jugador) == EstadoDeEliminacion.Correcto)
                         {
                             eliminarJugador = true;
@@ -101,54 +47,17 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                         }
                         else
                         {
-                            MenuPrincipal.ReproducirError();
-                            if (idioma == Idioma.Espaniol)
-                            {
-                                MessageBox.Show("No se pudo eliminar la cuenta", "Error", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Ingles)
-                            {
-                                MessageBox.Show("Unable to delete the account", "Error", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Frances)
-                            {
-                                MessageBox.Show("Le compte n'a pas pu être supprimé", "Erreur", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Portugues)
-                            {
-                                MessageBox.Show("A conta não pôde ser excluída", "Erro", MessageBoxButton.OK);
-                            }
+                            NotificarErrorElminarCuenta();
                         }
+                    }
 
-                    }
-                    catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
-                    {
-                        MenuPrincipal.ReproducirError();
-                        if (idioma == Idioma.Espaniol)
-                        {
-                            MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Ingles)
-                        {
-                            MessageBox.Show("The connection with the server was lost", "Conenction lost", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Frances)
-                        {
-                            MessageBox.Show("Le server ne peut connecter", "Échec de connexion", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Portugues)
-                        {
-                            MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
-                        }
-                    }
                 }
-            }
-            else if (idioma == Idioma.Portugues)
-            {
-                if (MessageBox.Show("Queres mesmo apagar esta conta?", "Apagar conta", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+
+                else if (idioma == Idioma.Frances)
                 {
-                    try
+                    if (MessageBox.Show("Êtes-vous sûr de vouloir supprimer votre compte?", "Supprimer compte", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
+
                         if (servidor.EliminarJugador(jugador) == EstadoDeEliminacion.Correcto)
                         {
                             eliminarJugador = true;
@@ -156,54 +65,18 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                         }
                         else
                         {
-                            MenuPrincipal.ReproducirError();
-                            if (idioma == Idioma.Espaniol)
-                            {
-                                MessageBox.Show("No se pudo eliminar la cuenta", "Error", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Ingles)
-                            {
-                                MessageBox.Show("Unable to delete the account", "Error", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Frances)
-                            {
-                                MessageBox.Show("Le compte n'a pas pu être supprimé", "Erreur", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Portugues)
-                            {
-                                MessageBox.Show("A conta não pôde ser excluída", "Erro", MessageBoxButton.OK);
-                            }
+                            NotificarErrorElminarCuenta();
                         }
 
                     }
-                    catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
-                    {
-                        MenuPrincipal.ReproducirError();
-                        if (idioma == Idioma.Espaniol)
-                        {
-                            MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Ingles)
-                        {
-                            MessageBox.Show("The connection with the server was lost", "Conenction lost", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Frances)
-                        {
-                            MessageBox.Show("Le server ne peut connecter", "Échec de connexion", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Portugues)
-                        {
-                            MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
-                        }
-                    }
+
+
                 }
-            }
-            else if (idioma == Idioma.Ingles)
-            {
-                if (MessageBox.Show("Do you really want to delete this account?", "Delete account", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                else if (idioma == Idioma.Portugues)
                 {
-                    try
+                    if (MessageBox.Show("Queres mesmo apagar esta conta?", "Apagar conta", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                     {
+
                         if (servidor.EliminarJugador(jugador) == EstadoDeEliminacion.Correcto)
                         {
                             eliminarJugador = true;
@@ -211,51 +84,78 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
                         }
                         else
                         {
-                            MenuPrincipal.ReproducirError();
-                            if (idioma == Idioma.Espaniol)
-                            {
-                                MessageBox.Show("No se pudo eliminar la cuenta", "Error", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Ingles)
-                            {
-                                MessageBox.Show("Unable to delete the account", "Error", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Frances)
-                            {
-                                MessageBox.Show("Le compte n'a pas pu être supprimé", "Erreur", MessageBoxButton.OK);
-                            }
-                            else if (idioma == Idioma.Portugues)
-                            {
-                                MessageBox.Show("A conta não pôde ser excluída", "Erro", MessageBoxButton.OK);
-                            }
+                            NotificarErrorElminarCuenta();
                         }
 
                     }
-                    catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
-                    {
-                        MenuPrincipal.ReproducirError();
-                        if (idioma == Idioma.Espaniol)
-                        {
-                            MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Ingles)
-                        {
-                            MessageBox.Show("The connection with the server was lost", "Conenction lost", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Frances)
-                        {
-                            MessageBox.Show("Le server ne peut connecter", "Échec de connexion", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Portugues)
-                        {
-                            MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
-                        }
-                    }
+
                 }
-               
+
+                else if (idioma == Idioma.Ingles)
+                {
+                    if (MessageBox.Show("Do you really want to delete this account?", "Delete account", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+
+                        if (servidor.EliminarJugador(jugador) == EstadoDeEliminacion.Correcto)
+                        {
+                            eliminarJugador = true;
+                            this.Close();
+                        }
+                        else
+                        {
+                            NotificarErrorElminarCuenta();
+                        }
+
+                    }
+
+                }
+
+            }
+            catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
+            {
+                MenuPrincipal.ReproducirError();
+                if (idioma == Idioma.Espaniol)
+                {
+                    MessageBox.Show("Se perdió la conexión con el servidor", "Error de conexión", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Ingles)
+                {
+                    MessageBox.Show("The connection with the server was lost", "Conenction lost", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Frances)
+                {
+                    MessageBox.Show("Le server ne peut connecter", "Échec de connexion", MessageBoxButton.OK);
+                }
+                else if (idioma == Idioma.Portugues)
+                {
+                    MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
+                }
             }
         }
 
+        /// <summary>
+        /// Muestra el mensaje de error de eliminar la cuenta
+        /// </summary>
+        private void NotificarErrorElminarCuenta()
+        {
+            MenuPrincipal.ReproducirError();
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("No se pudo eliminar la cuenta", "Error", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("Unable to delete the account", "Error", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Le compte n'a pas pu être supprimé", "Erreur", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("A conta não pôde ser excluída", "Erro", MessageBoxButton.OK);
+            }
+        }
         /// <summary>
         /// Método que se ejecuta cuando se desactiva o activa la música
         /// </summary>
@@ -318,7 +218,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
             idioma = Idioma.Espaniol;
             ActualizarIdioma();
             menuPrincipal.ActualizarIdioma();
-            
+
         }
 
         /// <summary>
@@ -331,7 +231,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
             idioma = Idioma.Frances;
             ActualizarIdioma();
             menuPrincipal.ActualizarIdioma();
-           
+
         }
 
         /// <summary>
@@ -344,7 +244,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
             idioma = Idioma.Portugues;
             ActualizarIdioma();
             menuPrincipal.ActualizarIdioma();
-           
+
         }
 
         /// <summary>

@@ -45,7 +45,6 @@ namespace ChatJuego.Cliente
         /// Método que se ejecuta cuando se da click en el botón de Iniciar Sesión.
         /// Valida que la información de inicio de sesión sea correcta y nos manda al menú principal
         /// </summary>
-
         private void BotonIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(TBUsuario.Text) && !string.IsNullOrWhiteSpace(TBContrasenia.Password))
@@ -53,7 +52,7 @@ namespace ChatJuego.Cliente
                 Jugador jugador = new Jugador()
                 {
                     usuario = TBUsuario.Text,
-                    contrasenia = TBContrasenia.Password 
+                    contrasenia = TBContrasenia.Password
                 };
                 try
                 {
@@ -67,118 +66,130 @@ namespace ChatJuego.Cliente
                     }
                     else if (estado == EstadoDeInicioDeSesion.Fallido)
                     {
-                        if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
-                        {
-                            sonidoDeError.Play();
-                        }
-                        if (idioma == Idioma.Espaniol)
-                        {
-                            MessageBox.Show("Credenciales incorrectas", "Error en el inicio de sesión", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Frances)
-                        {
-                            MessageBox.Show("Identifiants incorrects", "Erreur d'authentification", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Portugues)
-                        {
-                            MessageBox.Show("Credenciais incorrectas", "Error na autenticação", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Ingles)
-                        {
-                            MessageBox.Show("User or the password incorrect", "Failed to login", MessageBoxButton.OK);
-                        }
-                    } else if (estado == EstadoDeInicioDeSesion.FallidoPorUsuarioYaConectado)
-                    {
-                        if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
-                        {
-                            sonidoDeError.Play();
-                        }
-                        if (idioma == Idioma.Espaniol)
-                        {
-                            MessageBox.Show("Ya hay una sesión de este usuario", "Error", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Frances)
-                        {
-                            MessageBox.Show("Ce utilisateur est déjà connecté", "Erreur", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Portugues)
-                        {
-                            MessageBox.Show("Esse usuário já está ligado", "Error", MessageBoxButton.OK);
-                        }
-                        else if (idioma == Idioma.Ingles)
-                        {
-                            MessageBox.Show("There's already a session with this user", "Error", MessageBoxButton.OK);
-                        }
+                        NotificarInicioFallidoPorCredenciales();
                     }
-                } catch (EndpointNotFoundException)
+                    else if (estado == EstadoDeInicioDeSesion.FallidoPorUsuarioYaConectado)
+                    {
+                        NotificarInvitacionFallidoUsuarioConectado();
+                    }
+                }
+                catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
                 {
-                    if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
-                    {
-                        sonidoDeError.Play();
-                    }
-                    if (idioma == Idioma.Espaniol)
-                    {
-                        MessageBox.Show("No se ha podido conectar con el servidor", "Error de conexión", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Frances)
-                    {
-                        MessageBox.Show("Le server ne peut connecter", "Échec de connexion", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Portugues)
-                    {
-                        MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Ingles)
-                    {
-                        MessageBox.Show("The game was unable to connect with the server", "Connection error", MessageBoxButton.OK);
-                    }
-                    servidor = new ServidorClient(contexto);
-                } catch (TimeoutException)
-                {
-                    if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
-                    {
-                        sonidoDeError.Play();
-                    }
-                    if (idioma == Idioma.Espaniol)
-                    {
-                        MessageBox.Show("No se ha podido conectar con el servidor", "Error de conexión", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Frances)
-                    {
-                        MessageBox.Show("Le server ne peut connecter", "Échec de connexion", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Portugues)
-                    {
-                        MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
-                    }
-                    else if (idioma == Idioma.Ingles)
-                    {
-                        MessageBox.Show("The game was unable to connect with the server", "Connection error", MessageBoxButton.OK);
-                    }
+                    NotificarErrorDeConexion();
                     servidor = new ServidorClient(contexto);
                 }
-            } else
+            }
+            else
             {
-                if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
-                {
-                    sonidoDeError.Play();
-                }
-                if (idioma == Idioma.Espaniol)
-                {
-                    MessageBox.Show("Existen campos vacíos", "Campos incompletos", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Frances)
-                {
-                    MessageBox.Show("Il comprend formulaires en blanc", "Information tronquée", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Portugues)
-                {
-                    MessageBox.Show("Há campos vazios", "Campos incompletos", MessageBoxButton.OK);
-                }
-                else if (idioma == Idioma.Ingles)
-                {
-                    MessageBox.Show("Input the information required", "Empty fields", MessageBoxButton.OK);
-                }
+                NotificarCamposVacios();
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de error campos vacíos
+        /// </summary>
+        private void NotificarCamposVacios()
+        {
+            if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
+            {
+                sonidoDeError.Play();
+            }
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Existen campos vacíos", "Campos incompletos", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Il comprend formulaires en blanc", "Information tronquée", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Há campos vazios", "Campos incompletos", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("Input the information required", "Empty fields", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de error de conexión
+        /// </summary>
+        private void NotificarErrorDeConexion()
+        {
+            if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
+            {
+                sonidoDeError.Play();
+            }
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("No se ha podido conectar con el servidor", "Error de conexión", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Le server ne peut connecter", "Échec de connexion", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("The game was unable to connect with the server", "Connection error", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de error de invitación fallida por usuario ya conectado
+        /// </summary>
+        private void NotificarInvitacionFallidoUsuarioConectado()
+        {
+            if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
+            {
+                sonidoDeError.Play();
+            }
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Ya hay una sesión de este usuario", "Error", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Ce utilisateur est déjà connecté", "Erreur", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Esse usuário já está ligado", "Error", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("There's already a session with this user", "Error", MessageBoxButton.OK);
+            }
+        }
+
+        /// <summary>
+        /// Muestra el mensaje de error de credenciales incorrectas
+        /// </summary>
+        private void NotificarInicioFallidoPorCredenciales()
+        {
+            if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
+            {
+                sonidoDeError.Play();
+            }
+            if (idioma == Idioma.Espaniol)
+            {
+                MessageBox.Show("Credenciales incorrectas", "Error en el inicio de sesión", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Frances)
+            {
+                MessageBox.Show("Identifiants incorrects", "Erreur d'authentification", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Portugues)
+            {
+                MessageBox.Show("Credenciais incorrectas", "Error na autenticação", MessageBoxButton.OK);
+            }
+            else if (idioma == Idioma.Ingles)
+            {
+                MessageBox.Show("User or the password incorrect", "Failed to login", MessageBoxButton.OK);
             }
         }
 
@@ -192,7 +203,7 @@ namespace ChatJuego.Cliente
             {
                 sonidoDeBoton.Play();
             }
-            RegistroDeJugador registro = new RegistroDeJugador(servidor,this,contexto);
+            RegistroDeJugador registro = new RegistroDeJugador(servidor, this, contexto);
             registro.Show();
             this.Hide();
         }
@@ -248,10 +259,10 @@ namespace ChatJuego.Cliente
         {
             if (e.Key == Key.Enter)
             {
-                BotonIniciarSesion_Click(new object(),new RoutedEventArgs());
+                BotonIniciarSesion_Click(new object(), new RoutedEventArgs());
             }
         }
 
-        
+
     }
 }

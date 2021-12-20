@@ -41,7 +41,7 @@
         </Grid>
         <Grid Grid.Row="3" Grid.ColumnSpan="2">
             <Image x:Name="Texto_Usuario" Source="Iconos\usuario.png" Margin="177,0,394,0"></Image>
-            <TextBox x:Name="TBUsuarioR" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"/>
+            <TextBox x:Name="TBUsuarioR" MaxLength="15" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"/>
 
         </Grid>
         <Grid Grid.Row="3" Grid.ColumnSpan="2">
@@ -49,7 +49,7 @@
         </Grid>
         <Grid Grid.Row="5" Grid.ColumnSpan="2">
             <Image x:Name="Texto_Correo" Source="Iconos\correo.png" Margin="165,0,394,0"></Image>
-            <TextBox Name="TBCorreoR" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"></TextBox>
+            <TextBox Name="TBCorreoR" MaxLength="50" HorizontalAlignment="Center"  TextWrapping="Wrap" VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"></TextBox>
 
         </Grid>
         <Grid Grid.Row="5" Grid.ColumnSpan="2">
@@ -57,7 +57,7 @@
         </Grid>
         <Grid Grid.Row="7" Grid.ColumnSpan="2">
             <Image x:Name="Texto_Contrasenia" Source="Iconos\contrasenia.png" Margin="159,0,394,0"></Image>
-            <PasswordBox Name="TBContraseniaRegistro" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"></PasswordBox>
+            <PasswordBox Name="TBContraseniaRegistro" MaxLength="20" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"></PasswordBox>
 
         </Grid>
         <Grid Grid.Row="8" Grid.ColumnSpan="2">
@@ -69,7 +69,7 @@
         </Grid>
         <Grid Grid.Row="9" Grid.ColumnSpan="2">
             <Image x:Name="Texto_Confirmar_Contrasenia" Source="Iconos\confirmarContrasenia.png" Margin="26,0,389,0"></Image>
-            <PasswordBox x:Name="TBContraseniaRegistroConfirmacion" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"/>
+            <PasswordBox x:Name="TBContraseniaRegistroConfirmacion" MaxLength="20" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="22" Margin="403,4,139,4"/>
 
         </Grid>
         <Grid Grid.Row="10" Grid.ColumnSpan="2">
