@@ -388,7 +388,10 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
         private void Ventana_Configuracion_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (eliminarJugador)
+            {
+                menuPrincipal.CuentaEliminada = true;
                 menuPrincipal.Close();
+            }
         }
     }
 }

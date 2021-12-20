@@ -26,6 +26,7 @@ namespace ChatJuego.Cliente
         private Jugador jugador;
         private TablaDePuntajes tablaDePuntajes;
         public bool DesconexionDelServidor { get; set; }
+        public bool CuentaEliminada { get; set; }
         public const int MUSICA_ENCENDIDA = 1;
         public const int EFECTOS_ENCENDIDO = 1;
         public const int EFECTOS_APAGADO = 0;
@@ -40,6 +41,7 @@ namespace ChatJuego.Cliente
         {
             DesconexionDelServidor = false;
             servidorDelChat = null;
+            CuentaEliminada = false;
             string ruta = Directory.GetCurrentDirectory();
             ruta = ruta.Substring(0, ruta.Length - 9);
             MusicaDeMenu.Open(new Uri(ruta + @"Ventanas\Sonidos\MusicaDePartida.wav"));
@@ -259,7 +261,7 @@ namespace ChatJuego.Cliente
             {
                 tutorial.Close();
             }
-            if (configuracion != null)
+            if (configuracion != null && !CuentaEliminada)
             {
                 configuracion.Close();
             }
