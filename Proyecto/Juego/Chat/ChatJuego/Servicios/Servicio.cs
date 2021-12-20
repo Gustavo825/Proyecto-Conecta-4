@@ -13,8 +13,8 @@ namespace ChatJuego.Host
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
     public class Servicio : IChatServicio, IInvitacionCorreoServicio, ITablaDePuntajes, IServidor
     {
-        public static Dictionary<IJugadorCallBack, Jugador> jugadores = new Dictionary<IJugadorCallBack, Jugador>();
-        public static List<Partida> partidas = new List<Partida>();
+        private static Dictionary<IJugadorCallBack, Jugador> jugadores = new Dictionary<IJugadorCallBack, Jugador>();
+        private static List<Partida> partidas = new List<Partida>();
         private const string CORREO = "juegocontecta4equipo1@gmail.com";
         private const string SMTP_SERVIDOR = "smtp.gmail.com";
         private const int PUERTO = 587;
@@ -206,11 +206,11 @@ namespace ChatJuego.Host
             var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
             using (var contexto = new JugadorContexto())
             {
-                var jugadores = (from jugador in contexto.jugadores
-                                 select jugador).ToList().OrderByDescending(x => x.puntaje);
-                var jugadoresArreglo = new Jugador[jugadores.Count()];
+                var puntajesDeJugadores = (from jugador in contexto.jugadores
+                                 select jugador).OrderByDescending(x => x.puntaje);
+                var jugadoresArreglo = new Jugador[puntajesDeJugadores.Count()];
                 int i = 0;
-                foreach (Jugador jugador in jugadores)
+                foreach (Jugador jugador in puntajesDeJugadores)
                 {
                     jugador.imagenUsuario = null;
                     jugadoresArreglo[i] = jugador;

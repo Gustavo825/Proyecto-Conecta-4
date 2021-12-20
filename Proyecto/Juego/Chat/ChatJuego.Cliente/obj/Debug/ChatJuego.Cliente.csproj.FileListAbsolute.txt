@@ -15,6 +15,13 @@ C:\Users\perez\Desktop\Croy\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj
 C:\Users\perez\Desktop\Croy\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.exe
 C:\Users\perez\Desktop\Croy\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.pdb
 C:\Users\perez\Desktop\Croy\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.AssemblyReference.cache
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Conecta 4.exe.config
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Conecta 4.exe
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Conecta 4.pdb
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Chat\Chat.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Configuracion\Configuracion.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Juego\ConfirmacionDePresencia.g.cs
@@ -31,14 +38,6 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\App.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Conecta 4_Content.g.cs
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Conecta 4_MarkupCompile.cache
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Conecta 4_MarkupCompile.lref
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Conecta 4.exe.config
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Conecta 4.exe
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Conecta 4.pdb
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
-C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\ChatJuego.Cliente.csproj.AssemblyReference.cache
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Chat\Chat.baml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Configuracion\Configuracion.baml
 C:\Users\gustt\OneDrive\Escritorio\Chat\ChatJuego.Cliente\obj\Debug\Ventanas\Juego\ConfirmacionDePresencia.baml
