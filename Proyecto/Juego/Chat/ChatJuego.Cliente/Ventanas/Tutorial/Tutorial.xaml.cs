@@ -26,6 +26,9 @@ namespace ChatJuego.Cliente.Ventanas.Tutorial
             ActualizarIdioma();
         }
 
+        /// <summary>
+        /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
+        /// </summary>
         public void ActualizarIdioma()
         {
             if (idioma == Idioma.Frances)
@@ -56,6 +59,9 @@ namespace ChatJuego.Cliente.Ventanas.Tutorial
             }
         }
 
+        /// <summary>
+        /// Método que se ejecuta cuando se da click en el boton de Salir
+        /// </summary>
         private void BotoSalir_Click(object sender, RoutedEventArgs e)
         {
             MenuPrincipal.ReproducirBoton();

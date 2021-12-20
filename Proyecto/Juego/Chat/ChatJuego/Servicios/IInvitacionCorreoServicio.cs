@@ -35,9 +35,6 @@ namespace ChatJuego.Servicios
         EstadoDeEnvio MandarCodigoDeRegistro(string codigoDeRegistro, string correo);
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
     public enum EstadoDeEnvio
     {
         Correcto = 0,

@@ -10,6 +10,9 @@ using ChatJuego.Dominio;
 
 namespace ChatJuego.Host
 {
+    /// <summary>
+    /// Lógica de interacción del servidor
+    /// </summary>
     [ServiceBehavior(ConcurrencyMode = ConcurrencyMode.Single, InstanceContextMode = InstanceContextMode.Single)]
     public class Servicio : IChatServicio, IInvitacionCorreoServicio, ITablaDePuntajes, IServidor
     {

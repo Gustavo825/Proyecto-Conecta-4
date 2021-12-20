@@ -3,6 +3,9 @@ using ChatJuego.Cliente.Ventanas.Juego;
 
 namespace ChatJuego.Cliente
 {
+    /// <summary>
+    /// Lógica de interacción del CallBack del jugador
+    /// </summary>
     public class JugadorCallBack : IChatServicioCallback, IInvitacionCorreoServicioCallback, IServidorCallback, ITablaDePuntajesCallback
     {
         private Chat chat;
