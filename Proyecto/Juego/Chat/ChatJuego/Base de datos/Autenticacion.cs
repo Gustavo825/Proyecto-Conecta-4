@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ChatJuego.Base_de_datos
 {
+    /// <summary>
+    /// Lógica de administración de la base de datos
+    /// </summary>
     public class Autenticacion
     {
 

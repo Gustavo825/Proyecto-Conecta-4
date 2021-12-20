@@ -56,7 +56,7 @@ namespace ChatJuego.Host
             var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
             Console.WriteLine("Jugador desconectado: {0}", jugadores[conexion].usuario);
             jugadores.Remove(conexion);
-            string[] nombresDeJugadores = new string[jugadores.Count()];
+            string[] nombresDeJugadores = new string[jugadores.Count];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -84,10 +84,9 @@ namespace ChatJuego.Host
             EstadoDeEnvio estado = EstadoDeEnvio.Fallido;
             using (var contexto = new JugadorContexto())
             {
-                var jugadores = (from jugador in contexto.jugadores
-                                 where jugador.usuario == jugadorInvitado.usuario
-                                 select jugador).Count();
-                if (jugadores == 0)
+                if ((from jugador in contexto.jugadores
+                     where jugador.usuario == jugadorInvitado.usuario
+                     select jugador).Count() == 0)
                 {
                     estado = EstadoDeEnvio.UsuarioNoEncontrado;
                     return estado;
@@ -129,12 +128,13 @@ namespace ChatJuego.Host
         }
 
         /// <summary>
-        /// Cuando se conecta un jugador nuevo o desconecta, este método actualiza los jugadores conectados de los jugadores en el chat.
+        /// Cuando se conecta un jugador nuevo o desconecta, este método actualiza 
+        /// los jugadores conectados de los jugadores en el chat.
         /// </summary>
         public void InicializarChat()
         {
-            var conexion = OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
-            string[] nombresDeJugadores = new string[jugadores.Count()];
+            OperationContext.Current.GetCallbackChannel<IJugadorCallBack>();
+            string[] nombresDeJugadores = new string[jugadores.Count];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -155,7 +155,7 @@ namespace ChatJuego.Host
         public void MandarMensaje(Mensaje mensaje, Jugador jugadorQueMandaMensaje)
         {
             Console.WriteLine("{0}:{1}", jugadorQueMandaMensaje.usuario, mensaje.ContenidoMensaje);
-            string[] nombresDeJugadores = new string[jugadores.Count()];
+            string[] nombresDeJugadores = new string[jugadores.Count];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -179,7 +179,7 @@ namespace ChatJuego.Host
         public void MandarMensajePrivado(Mensaje mensaje, string nombreJugador, Jugador jugadorQueMandaMensaje)
         {
             Console.WriteLine("{0}:{1}", jugadorQueMandaMensaje.usuario, mensaje.ContenidoMensaje);
-            string[] nombresDeJugadores = new string[jugadores.Count()];
+            string[] nombresDeJugadores = new string[jugadores.Count];
             var i = 0;
             foreach (Jugador nombre in jugadores.Values)
             {
@@ -228,7 +228,7 @@ namespace ChatJuego.Host
         /// <param name="contrasenia">Contraseña del jugador.</param>
         /// <param name="correo">Correo del jugador.</param>
         /// <param name="imagenDeJugador">Arreglo de bytes de la imágen del jugador.</param>
-        /// <returns></returns>
+        /// <returns>Regresa el estado del registro del jugador</returns>
         public EstadoDeRegistro RegistroDeJugador(string usuario, string contrasenia, string correo, byte[] imagenDeJugador)
         {
             Autenticacion autenticacion = new Autenticacion();
@@ -240,9 +240,9 @@ namespace ChatJuego.Host
         /// Manda un código de registro al correo ingresado por el jugador.
         /// </summary>
         /// <param name="codigoDeRegistro">Código de registro.</param>
-        /// <param name="correoDeRegistro">Correo al que se envía el código.</param>
+        /// <param name="correo">Correo al que se envía el código.</param>
         /// <returns></returns>
-        public EstadoDeEnvio MandarCodigoDeRegistro(string codigoDeRegistro, string correoDeRegistro)
+        public EstadoDeEnvio MandarCodigoDeRegistro(string codigoDeRegistro, string correo)
         {
             EstadoDeEnvio estado = EstadoDeEnvio.Fallido;
             try
@@ -258,7 +258,7 @@ namespace ChatJuego.Host
                     mensaje.Subject = "Confirmación de registro de jugador";
                     mensaje.Body = "Ingrese el siguiente código para validar su registro: " + codigoDeRegistro;
                     mensaje.IsBodyHtml = false;
-                    mensaje.To.Add(correoDeRegistro);
+                    mensaje.To.Add(correo);
                     smtpCliente.Send(mensaje);
                     estado = EstadoDeEnvio.Correcto;
                 }
@@ -277,18 +277,18 @@ namespace ChatJuego.Host
         /// Obtiene los bytes de la imágen de un jugador.
         /// </summary>
         /// <param name="usuario">Usuario del jugador del que se quiere recuperar los bytes de la imagen.</param>
-        /// <returns>Regresa un arreglo con los bytes de la inagen.</returns>
+        /// <returns>Regresa un arreglo con los bytes de la imágen.</returns>
         public byte[] ObtenerBytesDeImagenDeJugador(string usuario)
         {
             using (var contexto = new JugadorContexto())
             {
-                var bytesDeImagen = (from jugador in contexto.jugadores
+                byte[][] bytesDeImagen;
+                bytesDeImagen = (from jugador in contexto.jugadores
                                      where jugador.usuario == usuario
                                      select jugador.imagenUsuario).ToArray();
-                if (bytesDeImagen.Length > 0)
-                    return bytesDeImagen[0];
-                else
-                    return null;
+                if (bytesDeImagen.Length == 0)
+                    bytesDeImagen = new byte[1][];
+                return bytesDeImagen[0];
             }
         }
 

@@ -31,36 +31,3 @@ C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\bin\Debug\es\Microsoft.TestPlatf
 C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\bin\Debug\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
 C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
 C:\Users\gustt\OneDrive\Escritorio\Chat\Pruebas\bin\Debug\Microsoft.TestPlatform.AdapterUtilities.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\obj\Debug\Pruebas.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\obj\Debug\Pruebas.pdb
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\es\Microsoft.TestPlatform.AdapterUtilities.resources.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\es\Microsoft.TestPlatform.CoreUtilities.resources.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\es\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Microsoft.TestPlatform.AdapterUtilities.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Pruebas.dll.config
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Pruebas.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Pruebas.pdb
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Castle.Core.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Conecta 4.exe
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Moq.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\System.Threading.Tasks.Extensions.dll
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Conecta 4.pdb
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Conecta 4.exe.config
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Castle.Core.xml
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\Moq.xml
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\bin\Debug\System.Threading.Tasks.Extensions.xml
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\obj\Debug\Pruebas.csproj.AssemblyReference.cache
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\obj\Debug\Pruebas.csproj.CoreCompileInputs.cache
-C:\Users\UV\Desktop\Proyecto-Conecta-4\Proyecto\Juego\Chat\Pruebas\obj\Debug\Pruebas.csproj.CopyComplete

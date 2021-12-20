@@ -2,6 +2,9 @@
 
 namespace ChatJuego.Dominio
 {
+    /// <summary>
+    /// Guarda la información de una partida
+    /// </summary>
     public class Partida
     {
         public string codigoDePartida { get; set; }

@@ -769,7 +769,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         {
             try
             {
-                if (oponenteConectado == true && turnoDeJuego == true)
+                if (oponenteConectado && turnoDeJuego)
                 {
                     Button boton = (Button)sender;
                     int columna = int.Parse(boton.Name[1].ToString());
@@ -915,7 +915,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
             timer.Stop();
             try
             {
-                if (oponenteConectado == false)
+                if (!oponenteConectado)
                 {
                     servidor.EliminarPartida(codigoDePartida, jugador.usuario, estadoDePartida);
                 }
@@ -1116,7 +1116,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             timer.Stop();
-            if (oponenteConectado == false)
+            if (!oponenteConectado)
             {
                 if (idioma == Idioma.Espaniol)
                 {
@@ -1135,7 +1135,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
                     MessageBox.Show("The opponent never joined the game", "Error", MessageBoxButton.OK);
                 }
             }
-            if (partidaFinalizada != true)
+            if (!partidaFinalizada)
             {
                 FinalizarPartida(EstadoPartida.FinDePartidaSalir);
             }
@@ -1182,11 +1182,7 @@ namespace ChatJuego.Cliente.Ventanas.Juego
 
         private void ReproducirSonidoFicha()
         {
-            if (MenuPrincipal.EstadoSFX != MenuPrincipal.EFECTOS_ENCENDIDO)
-            {
-                return;
-            }
-            else
+            if (MenuPrincipal.EstadoSFX == MenuPrincipal.EFECTOS_ENCENDIDO)
             {
                 SonidoDeFicha.Play();
             }

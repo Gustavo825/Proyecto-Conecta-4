@@ -15,9 +15,6 @@ namespace ChatJuego.Cliente
 {
     public partial class MenuPrincipal : Window
     {
-        private static MediaPlayer musicaDeMenu = new MediaPlayer();
-        private static SoundPlayer sonidoDeBoton = new SoundPlayer();
-        private static SoundPlayer sonidoDeError = new SoundPlayer();
         private ServidorClient servidor;
         ChatServicioClient servidorDelChat;
         TablaDePuntajesClient servidorDeTablaDePuntajes;
@@ -29,15 +26,11 @@ namespace ChatJuego.Cliente
         public const int EFECTOS_ENCENDIDO = 1;
         public const int EFECTOS_APAGADO = 0;
 
-        private static int estadoMusica = MUSICA_ENCENDIDA;
-        private static int estadoSFX = EFECTOS_ENCENDIDO;
-
-
-        public static MediaPlayer MusicaDeMenu { get => musicaDeMenu; set => musicaDeMenu = value; }
-        public static SoundPlayer SonidoDeBoton { get => sonidoDeBoton; set => sonidoDeBoton = value; }
-        public static int EstadoMusica { get => estadoMusica; set => estadoMusica = value; }
-        public static int EstadoSFX { get => estadoSFX; set => estadoSFX = value; }
-        public static SoundPlayer SonidoDeError { get => sonidoDeError; set => sonidoDeError = value; }
+        public static MediaPlayer MusicaDeMenu { get; set; } = new MediaPlayer();
+        public static SoundPlayer SonidoDeBoton { get; set; } = new SoundPlayer();
+        public static int EstadoMusica { get; set; } = MUSICA_ENCENDIDA;
+        public static int EstadoSFX { get; set; } = EFECTOS_ENCENDIDO;
+        public static SoundPlayer SonidoDeError { get; set; } = new SoundPlayer();
 
         public MenuPrincipal(ServidorClient servidor, JugadorCallBack callBackDeJugador, Jugador jugador, InstanceContext contexto)
         {
@@ -45,14 +38,14 @@ namespace ChatJuego.Cliente
             servidorDelChat = null;
             string ruta = Directory.GetCurrentDirectory();
             ruta = ruta.Substring(0, ruta.Length - 9);
-            musicaDeMenu.Open(new Uri(ruta + @"Ventanas\Sonidos\MusicaDePartida.wav"));
+            MusicaDeMenu.Open(new Uri(ruta + @"Ventanas\Sonidos\MusicaDePartida.wav"));
             MusicaDeMenu.MediaEnded += new EventHandler(Media_Ended);
             if (EstadoMusica == MUSICA_ENCENDIDA)
             {
-                musicaDeMenu.Play();
+                MusicaDeMenu.Play();
             }
-            sonidoDeBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
-            sonidoDeError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
+            SonidoDeBoton.SoundLocation = ruta + @"Ventanas\Sonidos\ClicEnBoton.wav";
+            SonidoDeError.SoundLocation = ruta + @"Ventanas\Sonidos\Error.wav";
             this.callBackDeJugador = callBackDeJugador;
             this.servidor = servidor;
             this.jugador = jugador;
@@ -60,8 +53,7 @@ namespace ChatJuego.Cliente
             servidorDelChat = new ChatServicioClient(contexto);
             servidorDeTablaDePuntajes = new TablaDePuntajesClient(contexto);
             InitializeComponent();
-            ActualizarIdiomaDeVentana();
-            //ImagenJugador.Source = ConvertirArrayAImagen(jugador.imagenUsuario);
+            ActualizarIdioma();
         }
 
         /// <summary>
@@ -117,7 +109,7 @@ namespace ChatJuego.Cliente
                 {
                     MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
                 }
-                musicaDeMenu.Stop(); 
+                MusicaDeMenu.Stop(); 
                 desconexionDelServidor = true;
                 this.Close();
             }
@@ -163,7 +155,7 @@ namespace ChatJuego.Cliente
         /// <summary>
         /// Actualiza el idioma de la ventana dependiendo del idioma seleccionado en la ventana de Configuración
         /// </summary>
-        public void ActualizarIdiomaDeVentana()
+        public void ActualizarIdioma()
         {
             if (idioma == Idioma.Frances)
             {
@@ -203,11 +195,7 @@ namespace ChatJuego.Cliente
         /// </summary>
         public static void ReproducirMusica()
         {
-            if (estadoMusica != MUSICA_ENCENDIDA)
-            {
-                return;
-            }
-            else
+            if (EstadoMusica == MUSICA_ENCENDIDA)
             {
                 MusicaDeMenu.Play();
             }
@@ -218,11 +206,7 @@ namespace ChatJuego.Cliente
         /// </summary>
         public static void ReproducirBoton()
         {
-            if (estadoSFX != EFECTOS_ENCENDIDO)
-            {
-                return;
-            }
-            else
+            if (EstadoSFX == EFECTOS_ENCENDIDO)
             {
                 SonidoDeBoton.Play();
             }
@@ -233,11 +217,7 @@ namespace ChatJuego.Cliente
         /// </summary>
         public static void ReproducirError()
         {
-            if (estadoSFX != EFECTOS_ENCENDIDO)
-            {
-                return;
-            }
-            else
+            if (EstadoSFX == EFECTOS_ENCENDIDO)
             {
                 SonidoDeError.Play();
             }
@@ -261,10 +241,10 @@ namespace ChatJuego.Cliente
         {
             ReproducirBoton();
             MainWindow mainWindow = new MainWindow();
-            musicaDeMenu.Stop();
+            MusicaDeMenu.Stop();
             try
             {
-                if (desconexionDelServidor == false)
+                if (!desconexionDelServidor)
                 {
                     servidor.Desconectarse();
                 }
@@ -288,7 +268,7 @@ namespace ChatJuego.Cliente
                 {
                     MessageBox.Show("Erro ao se conectar ao servidor", "Falha da conexão", MessageBoxButton.OK);
                 }
-                musicaDeMenu.Stop(); 
+                MusicaDeMenu.Stop(); 
                 mainWindow.Show();
             }
 

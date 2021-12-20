@@ -305,7 +305,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
             MenuPrincipal.ReproducirBoton();
             idioma = Idioma.Ingles;
             ActualizarIdioma();
-            menuPrincipal.ActualizarIdiomaDeVentana();
+            menuPrincipal.ActualizarIdioma();
         }
 
         /// <summary>
@@ -317,7 +317,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
             MenuPrincipal.ReproducirBoton();
             idioma = Idioma.Espaniol;
             ActualizarIdioma();
-            menuPrincipal.ActualizarIdiomaDeVentana();
+            menuPrincipal.ActualizarIdioma();
             
         }
 
@@ -330,7 +330,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
             MenuPrincipal.ReproducirBoton();
             idioma = Idioma.Frances;
             ActualizarIdioma();
-            menuPrincipal.ActualizarIdiomaDeVentana();
+            menuPrincipal.ActualizarIdioma();
            
         }
 
@@ -343,7 +343,7 @@ namespace ChatJuego.Cliente.Ventanas.Configuracion
             MenuPrincipal.ReproducirBoton();
             idioma = Idioma.Portugues;
             ActualizarIdioma();
-            menuPrincipal.ActualizarIdiomaDeVentana();
+            menuPrincipal.ActualizarIdioma();
            
         }
 

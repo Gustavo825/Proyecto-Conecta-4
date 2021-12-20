@@ -4,10 +4,10 @@ using System.ServiceModel;
 
 namespace ChatJuego.Host
 {
-    public class Host
+    public static class Host
     {
         /// <summary>
-        /// Permite la ejecución del servidor, inicializando el Servicio con los métodos definidios.
+        /// Permite la ejecución del servidor, inicializando el Servicio.
         /// </summary>
         static void Main(string[] args)
         {

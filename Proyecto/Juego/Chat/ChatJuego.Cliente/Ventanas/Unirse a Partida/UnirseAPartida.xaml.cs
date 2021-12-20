@@ -183,7 +183,7 @@ namespace ChatJuego.Cliente.Ventanas.Unirse_a_Partida
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (unionCorrectaAPartida == false)
+            if (!unionCorrectaAPartida)
                 menuPrincipal.Show();
         }
     }

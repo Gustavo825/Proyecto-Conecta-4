@@ -471,5 +471,11 @@
     <Content Include="Ventanas\Sonidos\MusicaDeMenu.wav" />
     <Content Include="Ventanas\Sonidos\MusicaDePartida.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="packages\SonarAnalyzer.CSharp.8.33.0.40503\analyzers\Google.Protobuf.dll" />
+    <Analyzer Include="packages\SonarAnalyzer.CSharp.8.33.0.40503\analyzers\SonarAnalyzer.CFG.dll" />
+    <Analyzer Include="packages\SonarAnalyzer.CSharp.8.33.0.40503\analyzers\SonarAnalyzer.CSharp.dll" />
+    <Analyzer Include="packages\SonarAnalyzer.CSharp.8.33.0.40503\analyzers\SonarAnalyzer.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

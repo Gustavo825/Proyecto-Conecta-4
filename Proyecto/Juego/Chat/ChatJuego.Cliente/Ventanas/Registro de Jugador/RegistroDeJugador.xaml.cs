@@ -22,7 +22,7 @@ namespace ChatJuego.Cliente
         private InstanceContext contexto;
         private MainWindow inicioDeSesion;
         private int codigoDeRegistro;
-        string ruta = String.Empty;
+        string ruta;
 
         public RegistroDeJugador(ServidorClient servidor, MainWindow inicioDeSesion, InstanceContext contexto)
         {
@@ -56,96 +56,120 @@ namespace ChatJuego.Cliente
                 if (TBContraseniaRegistro.Password == TBContraseniaRegistroConfirmacion.Password) {
                     try
                     {
-                        servidorDeCorreo.MandarCodigoDeRegistro(codigoDeRegistro.ToString(), TBCorreoR.Text);
-                        RegistroDeJugador_InputDeCodigo ventanaDeConfirmacion = new RegistroDeJugador_InputDeCodigo(codigoDeRegistro);
-                        var valor = ventanaDeConfirmacion.ShowDialog();
-                        if (valor == true)
-                        {
-                            var estadoDeRegistro = servidor.RegistroDeJugador(TBUsuarioR.Text, TBContraseniaRegistro.Password, TBCorreoR.Text, ConvertirImagenABytes());
-                            if (estadoDeRegistro == EstadoDeRegistro.Correcto)
-                            {
-                                sonidoDeBoton.Play();
-                                if (idioma == Idioma.Espaniol)
-                                {
-                                    MessageBox.Show("Jugador registrado exitosamente", "Registro completado", MessageBoxButton.OK);
-                                }
-                                else if (idioma == Idioma.Frances)
-                                {
-                                    MessageBox.Show("Joueur enregistré avec succès", "Enregistrement complet", MessageBoxButton.OK);
-                                }
-                                else if (idioma == Idioma.Portugues)
-                                {
-                                    MessageBox.Show("Jogador registado com êxito", "Registro completo", MessageBoxButton.OK);
-                                }
-                                else if (idioma == Idioma.Ingles)
-                                {
-                                    MessageBox.Show("Player registered succesfully", "Register completed", MessageBoxButton.OK);
-                                }
-                                inicioDeSesion.Show();
-                                this.Close();
-                            }
-                            else if (estadoDeRegistro == EstadoDeRegistro.FallidoPorCorreo)
-                            {
-                                sonidoDeError.Play();
-                                if (idioma == Idioma.Espaniol)
-                                {
-                                    MessageBox.Show("El correo ingresado ya se encuentra en uso", "Correo en uso", MessageBoxButton.OK);
-                                }
-                                else if (idioma == Idioma.Frances)
-                                {
-                                    MessageBox.Show("Le courriel est en utilisation", "Courriel en utilisation", MessageBoxButton.OK);
-                                }
-                                else if (idioma == Idioma.Portugues)
-                                {
-                                    MessageBox.Show("O correio introduzido já está sendo usado", "Correio em uso", MessageBoxButton.OK);
-                                }
-                                else if (idioma == Idioma.Ingles)
-                                {
-                                    MessageBox.Show("The email is already in use", "Email in use", MessageBoxButton.OK);
-                                }
-                            }
-                            else if (estadoDeRegistro == EstadoDeRegistro.FallidoPorUsuario)
-                            {
-                                sonidoDeError.Play();
-                                if (idioma == Idioma.Espaniol)
-                                {
-                                    MessageBox.Show("El usuario ingresado ya se encuentra en uso", "Usuario en uso", MessageBoxButton.OK);
-                                }
-                                else if (idioma == Idioma.Frances)
-                                {
-                                    MessageBox.Show("Le nom de l'utilisateur est en utilisation", "Nom de l'utilisateur en utilisation", MessageBoxButton.OK);
-                                }
-                                else if (idioma == Idioma.Portugues)
-                                {
-                                    MessageBox.Show("O usuário introduzido já está sendo usado", "Usuáio em uso", MessageBoxButton.OK);
-                                }
-                                else if (idioma == Idioma.Ingles)
-                                {
-                                    MessageBox.Show("The user is already in use", "User in use", MessageBoxButton.OK);
-                                }
-                            }
-                        }
-                        else
+                        EstadoDeEnvio estado = servidorDeCorreo.MandarCodigoDeRegistro(codigoDeRegistro.ToString(), TBCorreoR.Text);
+                        if (estado == EstadoDeEnvio.Fallido)
                         {
                             sonidoDeError.Play();
                             if (idioma == Idioma.Espaniol)
                             {
-                                MessageBox.Show("El código de confirmación no coincide", "Error", MessageBoxButton.OK);
+                                MessageBox.Show("Envío de correo fallido", "Error", MessageBoxButton.OK);
                             }
                             else if (idioma == Idioma.Frances)
                             {
-                                MessageBox.Show("Le code d'confirmation ne correspond", "Erreur", MessageBoxButton.OK);
+                                MessageBox.Show("Mailing infructueux", "Erreur", MessageBoxButton.OK);
                             }
                             else if (idioma == Idioma.Portugues)
                             {
-                                MessageBox.Show("O código introduzido não é correto", "Error", MessageBoxButton.OK);
+                                MessageBox.Show("Envio sem êxito", "Error", MessageBoxButton.OK);
                             }
                             else if (idioma == Idioma.Ingles)
                             {
-                                MessageBox.Show("The confirmation code does not match", "Error", MessageBoxButton.OK);
+                                MessageBox.Show("Delivery failed", "Error", MessageBoxButton.OK);
                             }
-                            codigoDeRegistro = EnviarInvitacion.GenerarCodigoDePartida();
                         }
+                        else
+                        {
+                            RegistroDeJugador_InputDeCodigo ventanaDeConfirmacion = new RegistroDeJugador_InputDeCodigo(codigoDeRegistro);
+                            var valor = ventanaDeConfirmacion.ShowDialog();
+                            if (valor == true)
+                            {
+                                var estadoDeRegistro = servidor.RegistroDeJugador(TBUsuarioR.Text, TBContraseniaRegistro.Password, TBCorreoR.Text, ConvertirImagenABytes());
+                                if (estadoDeRegistro == EstadoDeRegistro.Correcto)
+                                {
+                                    sonidoDeBoton.Play();
+                                    if (idioma == Idioma.Espaniol)
+                                    {
+                                        MessageBox.Show("Jugador registrado exitosamente", "Registro completado", MessageBoxButton.OK);
+                                    }
+                                    else if (idioma == Idioma.Frances)
+                                    {
+                                        MessageBox.Show("Joueur enregistré avec succès", "Enregistrement complet", MessageBoxButton.OK);
+                                    }
+                                    else if (idioma == Idioma.Portugues)
+                                    {
+                                        MessageBox.Show("Jogador registado com êxito", "Registro completo", MessageBoxButton.OK);
+                                    }
+                                    else if (idioma == Idioma.Ingles)
+                                    {
+                                        MessageBox.Show("Player registered succesfully", "Register completed", MessageBoxButton.OK);
+                                    }
+                                    inicioDeSesion.Show();
+                                    this.Close();
+                                }
+                                else if (estadoDeRegistro == EstadoDeRegistro.FallidoPorCorreo)
+                                {
+                                    sonidoDeError.Play();
+                                    if (idioma == Idioma.Espaniol)
+                                    {
+                                        MessageBox.Show("El correo ingresado ya se encuentra en uso", "Correo en uso", MessageBoxButton.OK);
+                                    }
+                                    else if (idioma == Idioma.Frances)
+                                    {
+                                        MessageBox.Show("Le courriel est en utilisation", "Courriel en utilisation", MessageBoxButton.OK);
+                                    }
+                                    else if (idioma == Idioma.Portugues)
+                                    {
+                                        MessageBox.Show("O correio introduzido já está sendo usado", "Correio em uso", MessageBoxButton.OK);
+                                    }
+                                    else if (idioma == Idioma.Ingles)
+                                    {
+                                        MessageBox.Show("The email is already in use", "Email in use", MessageBoxButton.OK);
+                                    }
+                                }
+                                else if (estadoDeRegistro == EstadoDeRegistro.FallidoPorUsuario)
+                                {
+                                    sonidoDeError.Play();
+                                    if (idioma == Idioma.Espaniol)
+                                    {
+                                        MessageBox.Show("El usuario ingresado ya se encuentra en uso", "Usuario en uso", MessageBoxButton.OK);
+                                    }
+                                    else if (idioma == Idioma.Frances)
+                                    {
+                                        MessageBox.Show("Le nom de l'utilisateur est en utilisation", "Nom de l'utilisateur en utilisation", MessageBoxButton.OK);
+                                    }
+                                    else if (idioma == Idioma.Portugues)
+                                    {
+                                        MessageBox.Show("O usuário introduzido já está sendo usado", "Usuáio em uso", MessageBoxButton.OK);
+                                    }
+                                    else if (idioma == Idioma.Ingles)
+                                    {
+                                        MessageBox.Show("The user is already in use", "User in use", MessageBoxButton.OK);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                sonidoDeError.Play();
+                                if (idioma == Idioma.Espaniol)
+                                {
+                                    MessageBox.Show("El código de confirmación no coincide", "Error", MessageBoxButton.OK);
+                                }
+                                else if (idioma == Idioma.Frances)
+                                {
+                                    MessageBox.Show("Le code d'confirmation ne correspond", "Erreur", MessageBoxButton.OK);
+                                }
+                                else if (idioma == Idioma.Portugues)
+                                {
+                                    MessageBox.Show("O código introduzido não é correto", "Error", MessageBoxButton.OK);
+                                }
+                                else if (idioma == Idioma.Ingles)
+                                {
+                                    MessageBox.Show("The confirmation code does not match", "Error", MessageBoxButton.OK);
+                                }
+                                codigoDeRegistro = EnviarInvitacion.GenerarCodigoDePartida();
+                            }
+                        }
+                        
                     }
                     catch (Exception exception) when (exception is TimeoutException || exception is EndpointNotFoundException)
                     {

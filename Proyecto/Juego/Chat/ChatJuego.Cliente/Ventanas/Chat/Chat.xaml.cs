@@ -65,7 +65,7 @@ namespace ChatJuego.Cliente
         private void BotonEnviar_Click(object sender, RoutedEventArgs e)
         {
             ScrollerContenido.ScrollToBottom();
-            if (!string.IsNullOrEmpty(ContenidoDelMensaje.Text))
+            if (!string.IsNullOrWhiteSpace(ContenidoDelMensaje.Text))
             {
                 string mensajeFinal;
                 if (ContenedorDelMensaje.Text.Length > 36)
